@@ -49,14 +49,16 @@ export default function AnatomyView({
     setSelectedPart(part);
     if (modelRef.current) {
       modelRef.current.autoRotate = false;
-      modelRef.current.cameraTarget = part.position;
-      modelRef.current.cameraOrbit = 'auto auto 2m';
+      // Zoom cinemático y preciso hacia la articulación seleccionada
+      modelRef.current.cameraTarget = part.zoomTarget || part.position;
+      modelRef.current.cameraOrbit = part.zoomOrbit || 'auto auto 0.65m';
     }
   };
 
   const handleClosePanel = () => {
     setSelectedPart(null);
     if (modelRef.current) {
+      // Regreso suave a vista completa del cuerpo
       modelRef.current.cameraTarget = 'auto auto auto';
       modelRef.current.cameraOrbit = '0deg 75deg 105%';
       modelRef.current.autoRotate = true;
@@ -83,7 +85,7 @@ export default function AnatomyView({
           shadow-intensity="0.8"
           shadow-softness="0.5"
           power-preference="high-performance"
-          interpolation-decay="200"
+          interpolation-decay="150"
           camera-controls
           auto-rotate
           rotation-per-second="4deg"
@@ -103,7 +105,7 @@ export default function AnatomyView({
           {BODY_PARTS.map((part) => (
             <button
               key={part.id}
-              className="Hotspot"
+              className={`Hotspot ${selectedPart?.id === part.id ? 'active-hotspot' : ''}`}
               slot={part.hotspotId}
               data-position={part.position}
               data-normal={part.normal}
@@ -132,9 +134,22 @@ export default function AnatomyView({
               </button>
             </div>
             <p>
-              Toca los números intermitentes en el cuerpo para descubrir los soportes y
-              ortesis diseñados para esa zona. Arrastra para rotar en 360°.
+              Toca los números intermitentes en el cuerpo para hacer zoom a cada articulación y descubrir los soportes diseñados para esa zona.
             </p>
+
+            <div className="anatomy-hud-chips">
+              {BODY_PARTS.map((bp) => (
+                <button
+                  key={bp.id}
+                  className={`anatomy-hud-chip ${selectedPart?.id === bp.id ? 'active' : ''}`}
+                  onClick={() => handleHotspotClick(bp)}
+                  title={`Enfocar ${bp.name}`}
+                >
+                  <span className="anatomy-chip-num">{bp.label}</span>
+                  <span>{bp.name.split(' ')[0]}</span>
+                </button>
+              ))}
+            </div>
           </div>
         ) : (
           <button

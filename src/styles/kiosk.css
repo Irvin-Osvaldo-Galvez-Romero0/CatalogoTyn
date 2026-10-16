@@ -662,6 +662,14 @@ model-viewer > .hide,
   transform: scale(1.25);
 }
 
+.Hotspot.active-hotspot {
+  background: linear-gradient(135deg, #F59E0B, #EA580C) !important;
+  border-color: #FEF3C7 !important;
+  transform: scale(1.18);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.8), 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  animation: none !important;
+}
+
 @keyframes pulse-hotspot {
   0%, 100% {
     box-shadow: 0 0 0 0 var(--brand-glow), 0 4px 12px rgba(0, 0, 0, 0.35);
@@ -760,6 +768,52 @@ model-viewer > .hide,
   font-size: 0.82rem;
   color: var(--ink-secondary);
   line-height: 1.45;
+}
+
+.anatomy-hud-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+}
+
+.anatomy-hud-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.anatomy-hud-chip:active,
+.anatomy-hud-chip.active {
+  background: var(--brand);
+  color: #FFFFFF;
+  border-color: var(--brand);
+  transform: scale(0.96);
+  box-shadow: 0 0 12px var(--brand-glow);
+}
+
+.anatomy-chip-num {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  color: inherit;
+  font-size: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
 }
 
 .kiosk-icon-btn-xs {

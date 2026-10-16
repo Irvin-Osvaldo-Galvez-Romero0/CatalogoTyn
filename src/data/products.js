@@ -1,38 +1,26 @@
 export const CATEGORIES = [
   { id: "todos", label: "Todos los productos", icon: "Grid" },
+  { id: "hombro_brazo", label: "Hombro y Brazo", icon: "Shield" },
   { id: "cabestrillo", label: "Cabestrillos", icon: "Shield" },
   { id: "inmovilizador", label: "Inmovilizadores", icon: "Activity" },
-  { id: "clavicula", label: "Soportes de Clavícula", icon: "Crosshair" },
-  { id: "rodillera", label: "Rodilleras Ortopédicas", icon: "Disc" }
+  { id: "cervical", label: "Cuello y Cervical", icon: "Crosshair" },
+  { id: "clavicula", label: "Clavícula", icon: "Crosshair" },
+  { id: "lumbar", label: "Columna y Lumbar", icon: "Activity" },
+  { id: "rodillera", label: "Rodilleras", icon: "Disc" },
+  { id: "tobillo", label: "Tobillo y Pie", icon: "Disc" }
 ];
 
 export const BODY_PARTS = [
   {
-    id: "clavicula",
-    name: "Clavícula y Postura",
-    hotspotId: "hotspot-clavicula",
-    position: "0.02 1.35 0.11",
-    normal: "0 0.2 1",
-    label: "1",
-    desc: "Soportes posturales y alineación ósea de clavícula"
-  },
-  {
     id: "hombro",
     name: "Hombro y Manguito Rotador",
     hotspotId: "hotspot-hombro",
-    position: "0.20 1.36 0.05",
+    position: "0.19 1.36 0.05",
     normal: "0.8 0.3 0.5",
-    label: "2",
-    desc: "Inmovilización trilateral y compresión elástica glenohumeral"
-  },
-  {
-    id: "brazo",
-    name: "Brazo, Codo y Antebrazo",
-    hotspotId: "hotspot-brazo",
-    position: "0.28 1.10 0.04",
-    normal: "0.9 0 0.4",
-    label: "3",
-    desc: "Cabestrillos ergonómicos de soporte y descarga articular"
+    zoomTarget: "0.19m 1.36m 0.05m",
+    zoomOrbit: "40deg 75deg 0.70m",
+    label: "1",
+    desc: "Inmovilización trilateral, fijación acromial y patologías de manguito rotador"
   },
   {
     id: "mano",
@@ -40,17 +28,65 @@ export const BODY_PARTS = [
     hotspotId: "hotspot-mano",
     position: "0.38 0.88 0.06",
     normal: "0.7 0.3 0.6",
-    label: "4",
-    desc: "Férulas maleables de aluminio y soporte distal de mano"
+    zoomTarget: "0.38m 0.88m 0.06m",
+    zoomOrbit: "55deg 80deg 0.52m",
+    label: "2",
+    desc: "Férulas maleables de aluminio y soporte distal de mano y falanges"
   },
   {
     id: "rodilla",
-    name: "Rodilla y Ligamentos",
+    name: "Rodilla y Articulación Femorotibial",
     hotspotId: "hotspot-rodilla",
     position: "0.09 0.49 0.11",
     normal: "0 0.2 1",
+    zoomTarget: "0.09m 0.49m 0.11m",
+    zoomOrbit: "10deg 80deg 0.62m",
+    label: "3",
+    desc: "Soportes elásticos 3D, estabilizadores rotulianos y bisagras policéntricas"
+  },
+  {
+    id: "cuello",
+    name: "Cuello y Columna Cervical",
+    hotspotId: "hotspot-cuello",
+    position: "0 1.44 0.06",
+    normal: "0 0.2 1",
+    zoomTarget: "0m 1.44m 0.06m",
+    zoomOrbit: "0deg 78deg 0.58m",
+    label: "4",
+    desc: "Collarines cervicales anatómicos de soporte mentoniano y control de latigazo"
+  },
+  {
+    id: "clavicula",
+    name: "Clavícula y Tórax",
+    hotspotId: "hotspot-clavicula",
+    position: "0.02 1.34 0.11",
+    normal: "0 0.2 1",
+    zoomTarget: "0.02m 1.34m 0.11m",
+    zoomOrbit: "0deg 75deg 0.68m",
     label: "5",
-    desc: "Soportes elásticos 3D y estabilizadores rotulianos"
+    desc: "Soportes posturales y corrección dorsal de fracturas de clavícula"
+  },
+  {
+    id: "brazo",
+    name: "Brazo, Codo y Antebrazo",
+    hotspotId: "hotspot-brazo",
+    position: "0.28 1.10 0.04",
+    normal: "0.9 0 0.4",
+    zoomTarget: "0.28m 1.10m 0.04m",
+    zoomOrbit: "55deg 75deg 0.62m",
+    label: "6",
+    desc: "Cabestrillos de descarga articular ergonómica y recuperación en flexión"
+  },
+  {
+    id: "espalda",
+    name: "Espalda y Columna Lumbar",
+    hotspotId: "hotspot-espalda",
+    position: "0 1.05 -0.09",
+    normal: "0 0 -1",
+    zoomTarget: "0m 1.05m -0.09m",
+    zoomOrbit: "180deg 85deg 0.78m",
+    label: "7",
+    desc: "Fajas sacrolumbares de doble tensión para lumbalgias y hernias discales"
   },
   {
     id: "pierna",
@@ -58,8 +94,21 @@ export const BODY_PARTS = [
     hotspotId: "hotspot-pierna",
     position: "-0.08 0.49 0.10",
     normal: "0 0.2 1",
-    label: "6",
-    desc: "Ortesis graduables de rango de movimiento (ROM) post-operatorio"
+    zoomTarget: "-0.08m 0.49m 0.10m",
+    zoomOrbit: "-20deg 80deg 0.68m",
+    label: "8",
+    desc: "Ortesis graduables de rango de movimiento (ROM) post-cirugía de ligamentos"
+  },
+  {
+    id: "tobillo",
+    name: "Tobillo y Articulación del Pie",
+    hotspotId: "hotspot-tobillo",
+    position: "0.08 0.12 0.08",
+    normal: "0 0.2 1",
+    zoomTarget: "0.08m 0.12m 0.08m",
+    zoomOrbit: "15deg 80deg 0.55m",
+    label: "9",
+    desc: "Tobilleras elásticas compresivas con talón abierto para esguinces y estabilidad"
   }
 ];
 
@@ -69,7 +118,7 @@ export const PRODUCTS = [
     name: "Cabestrillo (Tropical)",
     cat: "cabestrillo",
     price: 125.00,
-    bodyPart: ["brazo", "hombro", "mano", "clavicula"],
+    bodyPart: ["hombro", "brazo", "mano", "clavicula"],
     badge: "Más Vendido",
     sizes: ["CH", "M", "G", "XG"],
     hasPdf: true,
@@ -92,7 +141,7 @@ export const PRODUCTS = [
     name: "Cabestrillo Ancho (Buggy)",
     cat: "cabestrillo",
     price: 140.00,
-    bodyPart: ["brazo", "hombro", "mano"],
+    bodyPart: ["hombro", "brazo", "mano"],
     badge: "Confort Extra",
     sizes: ["Universal"],
     hasPdf: false,
@@ -115,7 +164,7 @@ export const PRODUCTS = [
     name: "Cabestrillo Oxypore",
     cat: "cabestrillo",
     price: null,
-    bodyPart: ["brazo", "hombro"],
+    bodyPart: ["hombro", "brazo"],
     badge: "Tecnología Oxypore",
     sizes: ["CH", "M", "G", "XG"],
     hasPdf: false,
@@ -157,29 +206,6 @@ export const PRODUCTS = [
     ]
   },
   {
-    code: "F03",
-    name: "Inmovilizador de Aluminio para Dedo",
-    cat: "inmovilizador",
-    price: null,
-    bodyPart: ["mano"],
-    badge: "Maleable",
-    sizes: ["CH", "M", "G"],
-    hasPdf: false,
-    hasVideo: false,
-    shortDesc: "Férula anatómica acolchada maleable para falanges interfalángicas.",
-    desc: "Férula de aluminio maleable recubierta de espuma de alta densidad que inmoviliza y protege las falanges de los dedos en caso de fracturas, esguinces o rehabilitación articular.",
-    uses: [
-      "Fracturas de falanges distales y medias.",
-      "Esguinces articulares interfalángicos.",
-      "Protección post-traumática deportiva."
-    ],
-    features: [
-      "Aluminio anodizado maleable a la anatomía del paciente",
-      "Interior en espuma de poliuretano ventilada",
-      "No interfiere con rayos X de control médico"
-    ]
-  },
-  {
     code: "C03",
     name: "Inmovilizador Elástico de Hombros",
     cat: "inmovilizador",
@@ -203,11 +229,34 @@ export const PRODUCTS = [
     ]
   },
   {
+    code: "F03",
+    name: "Inmovilizador de Aluminio para Dedo",
+    cat: "inmovilizador",
+    price: null,
+    bodyPart: ["mano"],
+    badge: "Maleable",
+    sizes: ["CH", "M", "G"],
+    hasPdf: false,
+    hasVideo: false,
+    shortDesc: "Férula anatómica acolchada maleable para falanges interfalángicas.",
+    desc: "Férula de aluminio maleable recubierta de espuma de alta densidad que inmoviliza y protege las falanges de los dedos en caso de fracturas, esguinces o rehabilitación articular.",
+    uses: [
+      "Fracturas de falanges distales y medias.",
+      "Esguinces articulares interfalángicos.",
+      "Protección post-traumática deportiva."
+    ],
+    features: [
+      "Aluminio anodizado maleable a la anatomía del paciente",
+      "Interior en espuma de poliuretano ventilada",
+      "No interfiere con rayos X de control médico"
+    ]
+  },
+  {
     code: "C05",
     name: "Soporte para Clavícula con Velcro",
     cat: "clavicula",
     price: 210.00,
-    bodyPart: ["clavicula", "hombro"],
+    bodyPart: ["clavicula", "hombro", "espalda"],
     badge: "Postural",
     sizes: ["CH", "M", "G", "XG"],
     hasPdf: false,
@@ -230,7 +279,7 @@ export const PRODUCTS = [
     name: "Soporte para Clavícula con Hebilla",
     cat: "clavicula",
     price: 213.00,
-    bodyPart: ["clavicula", "hombro"],
+    bodyPart: ["clavicula", "hombro", "espalda"],
     badge: "Ajuste Firme",
     sizes: ["CH", "M", "G"],
     hasPdf: false,
@@ -246,6 +295,52 @@ export const PRODUCTS = [
       "Hebillas de aleación ligera no deformables",
       "Almohadillas axilares de espuma viscoelástica para evitar compresión vascular",
       "Construcción duradera de resistencia grado hospitalario"
+    ]
+  },
+  {
+    code: "B01",
+    name: "Collarín Cervical Suave",
+    cat: "cervical",
+    price: 185.00,
+    bodyPart: ["cuello"],
+    badge: "Soporte Anatómico",
+    sizes: ["CH", "M", "G", "XG"],
+    hasPdf: false,
+    hasVideo: false,
+    shortDesc: "Inmovilización cómoda y soporte mentoniano para contracturas y latigazo cervical.",
+    desc: "Diseñado para brindar soporte térmico y contención fisiológica de la columna cervical, limitando la flexo-extensión excesiva sin comprimir la mandíbula.",
+    uses: [
+      "Esguinces y contracturas musculares cervicales (latigazo).",
+      "Cervicobraquialgias y tortícolis agudas.",
+      "Rehabilitación post-trauma leve."
+    ],
+    features: [
+      "Espuma de poliuretano de alta densidad indeformable",
+      "Funda de algodón 100% transpirable y lavable",
+      "Cierre de velcro regulable para ajuste milimétrico"
+    ]
+  },
+  {
+    code: "A01",
+    name: "Faja Sacrolumbar Reforzada",
+    cat: "lumbar",
+    price: 420.00,
+    bodyPart: ["espalda"],
+    badge: "Doble Tensión",
+    sizes: ["CH", "M", "G", "XG", "XXG"],
+    hasPdf: false,
+    hasVideo: false,
+    shortDesc: "Estabilidad dorsal y descompresión lumbosacra con varillas anatómicas flexibles.",
+    desc: "Soporte lumbosacro de grado terapéutico con doble banda de contra-tracción elástica y varillas posteriores que descargan la presión de las vértebras lumbares.",
+    uses: [
+      "Lumbalgias agudas, dolor lumbosacro y ciática.",
+      "Hernias discales y espondilólisis.",
+      "Soporte preventivo ocupacional y levantamiento de carga."
+    ],
+    features: [
+      "Varillas dorsales anatómicas de soporte rígido",
+      "Doble banda elástica de contra-tracción para compresión ajustable",
+      "Tejido monofilamento elástico poroso de máxima ventilación"
     ]
   },
   {
@@ -315,6 +410,29 @@ export const PRODUCTS = [
       "Selector de ángulo con pines de bloqueo rápido de 0° a 120°",
       "Barras telescópicas extensibles según la longitud de pierna",
       "Acolchados lavables desmontables con fijación velcro de alta seguridad"
+    ]
+  },
+  {
+    code: "D01",
+    name: "Tobillera Elástica de Compresión",
+    cat: "tobillo",
+    price: 160.00,
+    bodyPart: ["tobillo"],
+    badge: "Compresión 3D",
+    sizes: ["CH", "M", "G", "XG"],
+    hasPdf: false,
+    hasVideo: false,
+    shortDesc: "Compresión articular y propiocepción dinámica para el tobillo y talón.",
+    desc: "Soporte elástico anatómico de alta densidad con apertura en talón que estabiliza el complejo ligamentoso del tobillo sin restringir la marcha normal ni molestar dentro del calzado.",
+    uses: [
+      "Esguinces de tobillo (Grado I y II) y laxitud ligamentosa.",
+      "Tendinitis aquílea y edema post-esfuerzo.",
+      "Soporte preventivo deportivo y laboral."
+    ],
+    features: [
+      "Talón anatómico abierto para óptima adaptación a la pisada",
+      "Tejido circular sin costuras de compresión controlada",
+      "Material transpirable que retiene el calor terapéutico"
     ]
   }
 ];
