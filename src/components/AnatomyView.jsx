@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import '@google/model-viewer';
 import { X, ArrowRight, Eye, ShieldAlert } from 'lucide-react';
 import { BODY_PARTS } from '../data/products';
 
