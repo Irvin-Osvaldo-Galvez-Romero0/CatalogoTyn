@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { X, ArrowRight, Eye, ShieldAlert } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { X, ArrowRight, Eye, ShieldAlert, Sparkles } from 'lucide-react';
 import { BODY_PARTS } from '../data/products';
 
 export default function AnatomyView({
@@ -9,7 +9,40 @@ export default function AnatomyView({
   onToggleInterest
 }) {
   const [selectedPart, setSelectedPart] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(0);
   const modelRef = useRef(null);
+
+  useEffect(() => {
+    const model = modelRef.current;
+    if (!model) return;
+
+    // Si ya cargó previamente (ej. persistencia o caché en memoria)
+    if (model.loaded) {
+      setIsLoaded(true);
+    }
+
+    const handleProgress = (event) => {
+      const p = Math.min(100, Math.round((event.detail?.totalProgress || 0) * 100));
+      setLoadProgress(p);
+      if (p >= 100) {
+        // Breve retraso para transición visual suave
+        setTimeout(() => setIsLoaded(true), 150);
+      }
+    };
+
+    const handleLoad = () => {
+      setIsLoaded(true);
+    };
+
+    model.addEventListener('progress', handleProgress);
+    model.addEventListener('load', handleLoad);
+
+    return () => {
+      model.removeEventListener('progress', handleProgress);
+      model.removeEventListener('load', handleLoad);
+    };
+  }, []);
 
   const handleHotspotClick = (part) => {
     setSelectedPart(part);
@@ -40,17 +73,24 @@ export default function AnatomyView({
           ref={modelRef}
           src="/assets/Model_Human.glb"
           alt="Modelo Humano Anatómico Tynor"
-          shadow-intensity="1"
+          shadow-intensity="0.8"
+          shadow-softness="0.5"
+          power-preference="high-performance"
+          interpolation-decay="200"
           camera-controls
           auto-rotate
-          rotation-per-second="5deg"
+          rotation-per-second="4deg"
           interaction-prompt="none"
           loading="eager"
+          reveal="auto"
           style={{ width: '100%', height: '100%', display: 'block' }}
         >
-          <div slot="progress-bar" className="model-loading-indicator">
+          <div slot="progress-bar" className={`model-loading-indicator ${isLoaded ? 'hide' : ''}`}>
             <div className="model-spinner" />
-            <span>Cargando Modelo 3D...</span>
+            <div className="model-loading-text">
+              <span>Cargando Modelo 3D...</span>
+              <span className="model-loading-pct">{loadProgress}%</span>
+            </div>
           </div>
 
           {BODY_PARTS.map((part) => (
