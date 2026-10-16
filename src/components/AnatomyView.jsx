@@ -109,7 +109,7 @@ export default function AnatomyView({
     : [];
 
   return (
-    <div className="anatomy-container">
+    <div className={`anatomy-container ${viewMode === 'skeleton' ? 'mode-skeleton-active' : ''}`}>
       <div className="model-wrapper-kiosk">
         <model-viewer
           ref={modelRef}

@@ -742,12 +742,22 @@ html, body {
   display: flex;
   position: relative;
   overflow: hidden;
-  /* Fondo gris claro de estudio clínico de alto contraste para visibilidad nítida del mouse y modelo */
-  background: radial-gradient(circle at 50% 45%, #EAF0F5 0%, #D8E2EA 65%, #C7D3DC 100%);
+  /* Fondo de estudio clínico de alto contraste para visibilidad nítida del esqueleto y del cursor */
+  background: radial-gradient(circle at 50% 45%, #243542 0%, #15222B 65%, #0D161C 100%);
+  transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.anatomy-container.mode-skeleton-active {
+  /* Fondo radiológico de contraste quirúrgico para el sistema esquelético óseo */
+  background: radial-gradient(circle at 50% 45%, #1C2D3A 0%, #101B24 65%, #080F14 100%);
 }
 
 [data-theme="dark"] .anatomy-container {
   background: radial-gradient(circle at 50% 45%, #131E24 0%, #0B1317 70%, #060B0E 100%);
+}
+
+[data-theme="dark"] .anatomy-container.mode-skeleton-active {
+  background: radial-gradient(circle at 50% 45%, #0F1B23 0%, #081116 70%, #04080B 100%);
 }
 
 .model-wrapper-kiosk {
