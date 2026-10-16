@@ -17,12 +17,20 @@ export default function KioskHeader({
   return (
     <header className="kiosk-header">
       <div className="kiosk-brand">
-        <img
-          src={theme === 'dark' ? '/assets/logo1.png' : '/assets/logo.png'}
-          alt="Tynor Recupera"
-          className="kiosk-logo"
-        />
-        <span className="brand-tag-simple">Catálogo de exhibición</span>
+        <div className="kiosk-brand-card" title="Tynor — Ortopedia y Rehabilitación">
+          <img
+            src={theme === 'dark' ? '/assets/logo1.png' : '/assets/logo.png'}
+            alt="Tynor"
+            className="kiosk-logo"
+          />
+        </div>
+        <div className="kiosk-brand-badge">
+          <div className="brand-status-line">
+            <span className="brand-live-pulse" />
+            <span className="brand-expo-tag">EXPOMEDICAL 2026</span>
+          </div>
+          <span className="brand-subtitle">Ortopedia & Biomecánica</span>
+        </div>
       </div>
 
       <div className="kiosk-tabs">
