@@ -136,7 +136,7 @@ export default function App() {
       />
 
       <main className="kiosk-main">
-        {view === 'catalog' ? (
+        <div style={{ display: view === 'catalog' ? 'flex' : 'none', width: '100%', height: '100%', flex: 1, minHeight: 0, flexDirection: 'column' }}>
           <CatalogView
             products={PRODUCTS}
             category={category}
@@ -147,14 +147,16 @@ export default function App() {
             onToggleInterest={handleToggleInterest}
             onSelectProduct={(p) => setSelectedProduct(p)}
           />
-        ) : (
+        </div>
+
+        <div style={{ display: view === 'anatomy' ? 'flex' : 'none', width: '100%', height: '100%', flex: 1, minHeight: 0, flexDirection: 'column' }}>
           <AnatomyView
             products={PRODUCTS}
             onSelectProduct={(p) => setSelectedProduct(p)}
             interestList={interestList}
             onToggleInterest={handleToggleInterest}
           />
-        )}
+        </div>
       </main>
 
       <KioskResetFab onReset={handleResetKiosk} />

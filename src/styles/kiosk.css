@@ -111,11 +111,20 @@ html, body {
   touch-action: pan-y;
 }
 
-#root {
+#root, .app-kiosk-root {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.brand-tag-simple {
+  font-size: 0.76rem;
+  color: var(--ink-faint);
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 /* Topbar Header */
@@ -264,16 +273,24 @@ html, body {
 /* Main Content Area */
 .kiosk-main {
   flex: 1;
+  min-height: 0;
+  height: calc(100vh - 76px);
+  height: calc(100dvh - 76px);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   position: relative;
 }
 
 /* Catalog View Layout */
 .catalog-container {
+  width: 100%;
   height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  flex: 1;
 }
 
 .kiosk-filter-bar {
@@ -370,8 +387,15 @@ html, body {
 /* Product Grid */
 .products-scroll {
   flex: 1;
-  overflow-y: auto;
-  padding: 1.5rem 1.75rem;
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding: 1.5rem 1.75rem 6rem 1.75rem;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand) transparent;
 }
 
 .products-grid {
@@ -550,7 +574,37 @@ html, body {
 model-viewer {
   width: 100%;
   height: 100%;
+  display: block;
   --poster-color: transparent;
+  position: relative;
+}
+
+.model-loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+.model-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Hotspots Táctiles Grandes (Touch-Friendly) */

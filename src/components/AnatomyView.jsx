@@ -46,8 +46,14 @@ export default function AnatomyView({
           auto-rotate
           rotation-per-second="5deg"
           interaction-prompt="none"
-          style={{ width: '100%', height: '100%' }}
+          loading="eager"
+          style={{ width: '100%', height: '100%', display: 'block' }}
         >
+          <div slot="progress-bar" className="model-loading-indicator">
+            <div className="model-spinner" />
+            <span>Cargando Modelo 3D...</span>
+          </div>
+
           {BODY_PARTS.map((part) => (
             <button
               key={part.id}

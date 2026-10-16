@@ -22,13 +22,7 @@ export default function KioskHeader({
           alt="Tynor Recupera"
           className="kiosk-logo"
         />
-        <div className="kiosk-badge-expo">
-          <span>EXPOMEDICAL 2026</span>
-        </div>
-        <div className="offline-pill" title="Aplicación ejecutándose 100% offline">
-          <div className="offline-dot" />
-          <span>Offline Kiosk</span>
-        </div>
+        <span className="brand-tag-simple">Catálogo de exhibición</span>
       </div>
 
       <div className="kiosk-tabs">
