@@ -807,52 +807,6 @@ model-viewer > .hide,
   line-height: 1.45;
 }
 
-.anatomy-hud-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 0.75rem;
-  padding-top: 0.65rem;
-  border-top: 1px solid var(--border);
-}
-
-.anatomy-hud-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.28rem 0.6rem;
-  border-radius: var(--radius-pill);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  color: var(--ink);
-  font-size: 0.75rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.anatomy-hud-chip:active,
-.anatomy-hud-chip.active {
-  background: var(--brand);
-  color: #FFFFFF;
-  border-color: var(--brand);
-  transform: scale(0.96);
-  box-shadow: 0 0 12px var(--brand-glow);
-}
-
-.anatomy-chip-num {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  color: inherit;
-  font-size: 0.65rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-}
-
 .kiosk-icon-btn-xs {
   width: 28px;
   height: 28px;
@@ -873,56 +827,27 @@ model-viewer > .hide,
   background: var(--bg-card);
 }
 
-.anatomy-hud-eye-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.28rem 0.65rem;
-  border-radius: var(--radius-pill);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  color: var(--ink-secondary);
-  font-size: 0.72rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.anatomy-hud-eye-btn:hover,
-.anatomy-hud-eye-btn.active {
-  background: rgba(0, 122, 120, 0.15);
-  color: var(--brand);
-  border-color: var(--brand);
-}
-
-.anatomy-hud-eye-btn:active {
-  transform: scale(0.95);
-}
-
 .anatomy-hud-toggle {
-  position: static;
-  height: 38px;
-  padding: 0 0.9rem;
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+  height: 40px;
+  padding: 0 1rem;
   border-radius: var(--radius-pill);
   background: var(--bg-surface);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
   color: var(--brand);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   z-index: 20;
   transition: all 0.2s ease;
   animation: fadeIn 0.25s ease;
-}
-
-.anatomy-hud-toggle.muted {
-  color: var(--ink-secondary);
-  opacity: 0.8;
 }
 
 .anatomy-hud-toggle:active {
