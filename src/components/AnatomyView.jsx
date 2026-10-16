@@ -11,6 +11,7 @@ export default function AnatomyView({
   const [selectedPart, setSelectedPart] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
+  const [showGuide, setShowGuide] = useState(true);
   const modelRef = useRef(null);
 
   useEffect(() => {
@@ -108,13 +109,38 @@ export default function AnatomyView({
           ))}
         </model-viewer>
 
-        <div className="anatomy-hud-guide">
-          <h4>💡 Exploración Anatómica 3D</h4>
-          <p>
-            Toca cualquiera de los números intermitentes en el cuerpo para descubrir los soportes y
-            ortesis diseñados para esa articulación. Puedes arrastrar para rotar el modelo.
-          </p>
-        </div>
+        {showGuide ? (
+          <div className="anatomy-hud-guide">
+            <div className="anatomy-hud-guide-head">
+              <div className="anatomy-hud-guide-title">
+                <Sparkles size={16} />
+                <h4>Exploración Anatómica 3D</h4>
+              </div>
+              <button
+                className="kiosk-icon-btn-xs"
+                onClick={() => setShowGuide(false)}
+                aria-label="Ocultar guía"
+                title="Ocultar información"
+              >
+                <X size={15} />
+              </button>
+            </div>
+            <p>
+              Toca los números intermitentes en el cuerpo para descubrir los soportes y
+              ortesis diseñados para esa zona. Arrastra para rotar en 360°.
+            </p>
+          </div>
+        ) : (
+          <button
+            className="anatomy-hud-toggle"
+            onClick={() => setShowGuide(true)}
+            aria-label="Mostrar guía de exploración 3D"
+            title="Mostrar guía de exploración 3D"
+          >
+            <Sparkles size={16} />
+            <span>Guía 3D</span>
+          </button>
+        )}
       </div>
 
       <div className={`anatomy-panel-drawer ${selectedPart ? 'open' : ''}`}>
