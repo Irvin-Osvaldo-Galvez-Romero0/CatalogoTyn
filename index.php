@@ -1,3 +1,4 @@
+<?php // Versión 1.0.0 ?>
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
 <head>
