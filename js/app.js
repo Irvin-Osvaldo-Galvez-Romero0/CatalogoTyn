@@ -268,11 +268,6 @@ const PRODUCTS = [
   detailOverlay.addEventListener("click", (e) => { if (e.target === detailOverlay) closeDetail(); });
   pdfOverlay.addEventListener("click", (e) => { if (e.target === pdfOverlay) document.getElementById("pdfClose").click(); });
   videoOverlay.addEventListener("click", (e) => { if (e.target === videoOverlay) document.getElementById("videoClose").click(); });
-  function closeDetail(){
-    detailOverlay.classList.remove("open");
-    detailOverlay.setAttribute("aria-hidden", "true");
-  }
-  detailOverlay.addEventListener("click", (e) => { if (e.target === detailOverlay) closeDetail(); });
 
   const listBadge = document.getElementById("listBadge");
   const drawer = document.getElementById("drawer");
