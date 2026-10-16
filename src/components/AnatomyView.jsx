@@ -12,6 +12,7 @@ export default function AnatomyView({
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
   const [showGuide, setShowGuide] = useState(true);
+  const [showHotspots, setShowHotspots] = useState(true);
   const modelRef = useRef(null);
 
   useEffect(() => {
@@ -102,19 +103,24 @@ export default function AnatomyView({
             </div>
           </div>
 
-          {BODY_PARTS.map((part) => (
-            <button
-              key={part.id}
-              className={`Hotspot ${selectedPart?.id === part.id ? 'active-hotspot' : ''}`}
-              slot={part.hotspotId}
-              data-position={part.position}
-              data-normal={part.normal}
-              onClick={() => handleHotspotClick(part)}
-              aria-label={`Explorar soluciones para ${part.name}`}
-            >
-              {part.label}
-            </button>
-          ))}
+          {showHotspots &&
+            BODY_PARTS.map((part) => {
+              const isSelected = selectedPart?.id === part.id;
+              const isDimmed = selectedPart && !isSelected;
+              return (
+                <button
+                  key={part.id}
+                  className={`Hotspot ${isSelected ? 'active-hotspot' : ''} ${isDimmed ? 'dimmed-hotspot' : ''}`}
+                  slot={part.hotspotId}
+                  data-position={part.position}
+                  data-normal={part.normal}
+                  onClick={() => handleHotspotClick(part)}
+                  aria-label={`Explorar soluciones para ${part.name}`}
+                >
+                  {part.label}
+                </button>
+              );
+            })}
         </model-viewer>
 
         {showGuide ? (
@@ -124,17 +130,28 @@ export default function AnatomyView({
                 <Sparkles size={16} />
                 <h4>Exploración Anatómica 3D</h4>
               </div>
-              <button
-                className="kiosk-icon-btn-xs"
-                onClick={() => setShowGuide(false)}
-                aria-label="Ocultar guía"
-                title="Ocultar información"
-              >
-                <X size={15} />
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <button
+                  className={`anatomy-hud-eye-btn ${showHotspots ? 'active' : ''}`}
+                  onClick={() => setShowHotspots(!showHotspots)}
+                  title={showHotspots ? 'Ocultar puntos para apreciar el diseño 3D limpio' : 'Mostrar puntos anatómicos'}
+                  aria-label={showHotspots ? 'Ocultar puntos anatómicos' : 'Mostrar puntos anatómicos'}
+                >
+                  <Eye size={13} />
+                  <span>{showHotspots ? 'Puntos ON' : 'Puntos OFF'}</span>
+                </button>
+                <button
+                  className="kiosk-icon-btn-xs"
+                  onClick={() => setShowGuide(false)}
+                  aria-label="Ocultar guía"
+                  title="Ocultar información"
+                >
+                  <X size={15} />
+                </button>
+              </div>
             </div>
             <p>
-              Toca los números intermitentes en el cuerpo para hacer zoom a cada articulación y descubrir los soportes diseñados para esa zona.
+              Puntos ubicados en los laterales para no obstruir el modelo 3D. Toca un número o chip para enfocar la articulación.
             </p>
 
             <div className="anatomy-hud-chips">
@@ -152,15 +169,26 @@ export default function AnatomyView({
             </div>
           </div>
         ) : (
-          <button
-            className="anatomy-hud-toggle"
-            onClick={() => setShowGuide(true)}
-            aria-label="Mostrar guía de exploración 3D"
-            title="Mostrar guía de exploración 3D"
-          >
-            <Sparkles size={16} />
-            <span>Guía 3D</span>
-          </button>
+          <div style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', zIndex: 10, display: 'flex', gap: '0.5rem' }}>
+            <button
+              className="anatomy-hud-toggle"
+              onClick={() => setShowGuide(true)}
+              aria-label="Mostrar guía de exploración 3D"
+              title="Mostrar guía de exploración 3D"
+            >
+              <Sparkles size={16} />
+              <span>Guía 3D</span>
+            </button>
+            <button
+              className="anatomy-hud-toggle"
+              onClick={() => setShowHotspots(!showHotspots)}
+              aria-label={showHotspots ? 'Ocultar puntos anatómicos' : 'Mostrar puntos anatómicos'}
+              title={showHotspots ? 'Ocultar puntos anatómicos' : 'Mostrar puntos anatómicos'}
+            >
+              <Eye size={16} />
+              <span>{showHotspots ? 'Puntos ON' : 'Puntos OFF'}</span>
+            </button>
+          </div>
         )}
       </div>
 
