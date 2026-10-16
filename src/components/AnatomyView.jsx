@@ -64,7 +64,13 @@ export default function AnatomyView({
   };
 
   const partProducts = selectedPart
-    ? products.filter((p) => p.bodyPart.includes(selectedPart.id))
+    ? products.filter((p) => {
+        if (!p.bodyPart) return false;
+        if (Array.isArray(p.bodyPart)) {
+          return p.bodyPart.includes(selectedPart.id);
+        }
+        return p.bodyPart === selectedPart.id;
+      })
     : [];
 
   return (
@@ -146,10 +152,22 @@ export default function AnatomyView({
       <div className={`anatomy-panel-drawer ${selectedPart ? 'open' : ''}`}>
         <div className="anatomy-panel-head">
           <div>
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--brand)', textTransform: 'uppercase' }}>
-              Zona Anatómica
-            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--brand)', textTransform: 'uppercase' }}>
+                Zona Anatómica {selectedPart ? `#${selectedPart.label}` : ''}
+              </span>
+              {partProducts.length > 0 && (
+                <span className="badge-count" style={{ position: 'static' }}>
+                  {partProducts.length}
+                </span>
+              )}
+            </div>
             <h3>{selectedPart ? selectedPart.name : ''}</h3>
+            {selectedPart?.desc && (
+              <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.78rem', color: 'var(--ink-secondary)' }}>
+                {selectedPart.desc}
+              </p>
+            )}
           </div>
           <button
             className="kiosk-icon-btn"

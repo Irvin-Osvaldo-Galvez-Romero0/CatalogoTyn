@@ -7,9 +7,60 @@ export const CATEGORIES = [
 ];
 
 export const BODY_PARTS = [
-  { id: "hombro", name: "Hombro y Brazo", hotspotId: "hotspot-hombro", position: "0.2 1.5 0", normal: "0 0 1", label: "1" },
-  { id: "mano", name: "Muñeca y Mano", hotspotId: "hotspot-mano", position: "0.4 0.9 0", normal: "1 0 0", label: "2" },
-  { id: "rodillera", name: "Rodilla y Pierna", hotspotId: "hotspot-rodilla", position: "0.1 0.5 0.1", normal: "0 0 1", label: "3" }
+  {
+    id: "clavicula",
+    name: "Clavícula y Postura",
+    hotspotId: "hotspot-clavicula",
+    position: "0.02 1.35 0.11",
+    normal: "0 0.2 1",
+    label: "1",
+    desc: "Soportes posturales y alineación ósea de clavícula"
+  },
+  {
+    id: "hombro",
+    name: "Hombro y Manguito Rotador",
+    hotspotId: "hotspot-hombro",
+    position: "0.20 1.36 0.05",
+    normal: "0.8 0.3 0.5",
+    label: "2",
+    desc: "Inmovilización trilateral y compresión elástica glenohumeral"
+  },
+  {
+    id: "brazo",
+    name: "Brazo, Codo y Antebrazo",
+    hotspotId: "hotspot-brazo",
+    position: "0.28 1.10 0.04",
+    normal: "0.9 0 0.4",
+    label: "3",
+    desc: "Cabestrillos ergonómicos de soporte y descarga articular"
+  },
+  {
+    id: "mano",
+    name: "Muñeca, Mano y Dedos",
+    hotspotId: "hotspot-mano",
+    position: "0.38 0.88 0.06",
+    normal: "0.7 0.3 0.6",
+    label: "4",
+    desc: "Férulas maleables de aluminio y soporte distal de mano"
+  },
+  {
+    id: "rodilla",
+    name: "Rodilla y Ligamentos",
+    hotspotId: "hotspot-rodilla",
+    position: "0.09 0.49 0.11",
+    normal: "0 0.2 1",
+    label: "5",
+    desc: "Soportes elásticos 3D y estabilizadores rotulianos"
+  },
+  {
+    id: "pierna",
+    name: "Pierna y Rehabilitación ROM",
+    hotspotId: "hotspot-pierna",
+    position: "-0.08 0.49 0.10",
+    normal: "0 0.2 1",
+    label: "6",
+    desc: "Ortesis graduables de rango de movimiento (ROM) post-operatorio"
+  }
 ];
 
 export const PRODUCTS = [
@@ -18,7 +69,7 @@ export const PRODUCTS = [
     name: "Cabestrillo (Tropical)",
     cat: "cabestrillo",
     price: 125.00,
-    bodyPart: ["hombro", "brazo"],
+    bodyPart: ["brazo", "hombro", "mano", "clavicula"],
     badge: "Más Vendido",
     sizes: ["CH", "M", "G", "XG"],
     hasPdf: true,
@@ -41,7 +92,7 @@ export const PRODUCTS = [
     name: "Cabestrillo Ancho (Buggy)",
     cat: "cabestrillo",
     price: 140.00,
-    bodyPart: ["hombro", "brazo"],
+    bodyPart: ["brazo", "hombro", "mano"],
     badge: "Confort Extra",
     sizes: ["Universal"],
     hasPdf: false,
@@ -64,7 +115,7 @@ export const PRODUCTS = [
     name: "Cabestrillo Oxypore",
     cat: "cabestrillo",
     price: null,
-    bodyPart: ["hombro", "brazo"],
+    bodyPart: ["brazo", "hombro"],
     badge: "Tecnología Oxypore",
     sizes: ["CH", "M", "G", "XG"],
     hasPdf: false,
@@ -156,7 +207,7 @@ export const PRODUCTS = [
     name: "Soporte para Clavícula con Velcro",
     cat: "clavicula",
     price: 210.00,
-    bodyPart: ["hombro"],
+    bodyPart: ["clavicula", "hombro"],
     badge: "Postural",
     sizes: ["CH", "M", "G", "XG"],
     hasPdf: false,
@@ -179,7 +230,7 @@ export const PRODUCTS = [
     name: "Soporte para Clavícula con Hebilla",
     cat: "clavicula",
     price: 213.00,
-    bodyPart: ["hombro"],
+    bodyPart: ["clavicula", "hombro"],
     badge: "Ajuste Firme",
     sizes: ["CH", "M", "G"],
     hasPdf: false,
@@ -202,7 +253,7 @@ export const PRODUCTS = [
     name: "Rodillera Mecánica Abierta (Algodón)",
     cat: "rodillera",
     price: null,
-    bodyPart: ["rodilla"],
+    bodyPart: ["rodilla", "pierna"],
     badge: "Bisagras Laterales",
     sizes: ["CH", "M", "G", "XG", "XXG"],
     hasPdf: false,
@@ -225,7 +276,7 @@ export const PRODUCTS = [
     name: "Rodillera Elástica",
     cat: "rodillera",
     price: null,
-    bodyPart: ["rodilla"],
+    bodyPart: ["rodilla", "pierna"],
     badge: "Compresión 3D",
     sizes: ["CH", "M", "G", "XG"],
     hasPdf: false,
@@ -248,7 +299,7 @@ export const PRODUCTS = [
     name: "Rodillera Mecánica Graduable (ROM)",
     cat: "rodillera",
     price: null,
-    bodyPart: ["rodilla"],
+    bodyPart: ["rodilla", "pierna"],
     badge: "Control ROM",
     sizes: ["Universal Graduable"],
     hasPdf: false,
