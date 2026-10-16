@@ -654,18 +654,18 @@ model-viewer > .hide,
   to { transform: rotate(360deg); }
 }
 
-/* Hotspots Anatómicos Siempre Interactivos (Selección Inmediata) */
+/* Hotspots Anatómicos Ultraligeros (No obstruyen el muñeco 3D) */
 .Hotspot {
-  background: rgba(15, 23, 42, 0.78);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-radius: 50%;
-  border: 2px solid #00F2FE;
-  box-shadow: 0 0 14px rgba(0, 242, 254, 0.45), 0 3px 8px rgba(0, 0, 0, 0.35);
+  border: 1.5px solid #00F2FE;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
   color: #FFFFFF;
-  width: 34px;
-  height: 34px;
-  font-size: 0.95rem;
+  width: 28px;
+  height: 28px;
+  font-size: 0.82rem;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -673,29 +673,38 @@ model-viewer > .hide,
   cursor: pointer !important;
   pointer-events: auto !important;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  animation: pulse-hotspot 2.5s infinite;
+  animation: pulse-hotspot-micro 3s infinite;
   z-index: 10;
 }
 
 .Hotspot:hover {
   transform: scale(1.25);
-  background: #007A78 !important;
+  background: rgba(0, 122, 120, 0.9) !important;
   border-color: #FFFFFF !important;
-  box-shadow: 0 0 22px rgba(0, 122, 120, 0.95), 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.85), 0 4px 12px rgba(0, 0, 0, 0.4) !important;
   z-index: 30;
 }
 
 .Hotspot:active {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
 .Hotspot.active-hotspot {
   background: linear-gradient(135deg, #F59E0B, #EA580C) !important;
   border-color: #FEF3C7 !important;
-  transform: scale(1.22);
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.9), 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  transform: scale(1.2);
+  box-shadow: 0 0 22px rgba(245, 158, 11, 0.9), 0 4px 14px rgba(0, 0, 0, 0.5) !important;
   animation: none !important;
   z-index: 20;
+}
+
+@keyframes pulse-hotspot-micro {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(0, 242, 254, 0), 0 3px 8px rgba(0, 0, 0, 0.35);
+  }
 }
 
 @keyframes pulse-hotspot {
