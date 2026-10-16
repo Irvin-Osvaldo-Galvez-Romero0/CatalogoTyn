@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, ArrowRight, ShieldAlert, Sparkles } from 'lucide-react';
+import { X, ArrowRight, ShieldAlert, Sparkles, Activity, Bone } from 'lucide-react';
 import { BODY_PARTS } from '../data/products';
 
 export default function AnatomyView({
@@ -12,6 +12,10 @@ export default function AnatomyView({
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
   const [showGuide, setShowGuide] = useState(true);
+  const [viewMode, setViewMode] = useState('body'); // 'body' | 'skeleton'
+  const [isTransforming, setIsTransforming] = useState(false);
+  const [currentOrbit, setCurrentOrbit] = useState(null);
+  const [currentTarget, setCurrentTarget] = useState(null);
   const modelRef = useRef(null);
 
   useEffect(() => {
@@ -65,6 +69,35 @@ export default function AnatomyView({
     }
   };
 
+  const handleToggleMode = (newMode) => {
+    if (newMode === viewMode || isTransforming) return;
+    const model = modelRef.current;
+    if (model) {
+      try {
+        const orbit = model.getCameraOrbit();
+        const target = model.getCameraTarget();
+        if (orbit) {
+          setCurrentOrbit(`${orbit.theta}rad ${orbit.phi}rad ${orbit.radius}m`);
+        }
+        if (target) {
+          setCurrentTarget(`${target.x}m ${target.y}m ${target.z}m`);
+        }
+      } catch (e) {
+        console.warn('Could not read camera:', e);
+      }
+    }
+
+    setIsTransforming(true);
+
+    // Transición cinemática: destello de rayos X y cambio de modelo
+    setTimeout(() => {
+      setViewMode(newMode);
+      setTimeout(() => {
+        setIsTransforming(false);
+      }, 550);
+    }, 380);
+  };
+
   const partProducts = selectedPart
     ? products.filter((p) => {
         if (!p.bodyPart) return false;
@@ -80,18 +113,21 @@ export default function AnatomyView({
       <div className="model-wrapper-kiosk">
         <model-viewer
           ref={modelRef}
-          src="/assets/Model_Human.glb"
-          alt="Modelo Humano Anatómico Tynor"
+          src={viewMode === 'body' ? '/assets/Model_Human.glb' : '/assets/Model_Skeleton.glb'}
+          alt={viewMode === 'body' ? 'Modelo Humano Anatómico Tynor' : 'Sistema Esquelético Humano 3D Tynor'}
           shadow-intensity="0.8"
           shadow-softness="0.5"
           power-preference="high-performance"
           interpolation-decay="150"
           camera-controls
-          auto-rotate
+          auto-rotate={!selectedPart && !isTransforming}
           rotation-per-second="4deg"
           interaction-prompt="none"
           loading="eager"
           reveal="auto"
+          camera-orbit={currentOrbit || undefined}
+          camera-target={currentTarget || undefined}
+          className={`model-viewer-elem ${isTransforming ? 'transforming-xray' : ''} ${viewMode === 'skeleton' ? 'mode-skeleton' : ''}`}
           style={{ width: '100%', height: '100%', display: 'block' }}
         >
           <div slot="progress-bar" className={`model-loading-indicator ${isLoaded ? 'hide' : ''}`}>
@@ -121,6 +157,41 @@ export default function AnatomyView({
           })}
         </model-viewer>
 
+        {isTransforming && (
+          <div className="xray-scanner-effect">
+            <div className="xray-laser-beam" />
+            <div className="xray-flash-glare" />
+            <div className="xray-scan-hud">
+              <span className="xray-hud-text">
+                {viewMode === 'body' ? '⚡ ESCANEANDO SISTEMA ÓSEO...' : '🧬 RECONSTRUYENDO TEJIDO MUSCULAR...'}
+              </span>
+            </div>
+          </div>
+        )}
+
+        <div className="anatomy-layer-toggle-container">
+          <div className="anatomy-layer-switch" role="group" aria-label="Modo de visualización anatómica">
+            <button
+              className={`anatomy-layer-btn ${viewMode === 'body' ? 'active' : ''}`}
+              onClick={() => handleToggleMode('body')}
+              disabled={isTransforming}
+              title="Ver masa muscular y superficie anatómica"
+            >
+              <Activity size={14} />
+              <span>Cuerpo 3D</span>
+            </button>
+            <button
+              className={`anatomy-layer-btn ${viewMode === 'skeleton' ? 'active' : ''}`}
+              onClick={() => handleToggleMode('skeleton')}
+              disabled={isTransforming}
+              title="Transformar al sistema esquelético óseo"
+            >
+              <Bone size={14} />
+              <span>Esqueleto</span>
+            </button>
+          </div>
+        </div>
+
         {showGuide ? (
           <div className="anatomy-hud-guide">
             <div className="anatomy-hud-guide-head">
@@ -138,7 +209,7 @@ export default function AnatomyView({
               </button>
             </div>
             <p>
-              Toca los números en el modelo para hacer zoom a cada articulación y descubrir los soportes ortopédicos diseñados para esa zona.
+              Toca los números para zoom en cada articulación. Usa el selector superior para transformar entre el Cuerpo 3D y el Esqueleto con efecto Rayos X.
             </p>
           </div>
         ) : (
