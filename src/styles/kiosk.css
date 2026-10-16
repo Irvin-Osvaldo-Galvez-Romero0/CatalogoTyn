@@ -1,17 +1,17 @@
 :root {
-  /* Tynor Medical Brand Palette - Light Mode */
-  --bg-kiosk: #F4F7F6;
+  /* Tynor Medical Brand Palette - Light Mode (Soft Clinical Gray Studio) */
+  --bg-kiosk: #E5EBF0;
   --bg-surface: #FFFFFF;
-  --bg-surface-raised: #FFFFFF;
-  --bg-surface-hover: #EDF4F2;
+  --bg-surface-raised: #EDF2F6;
+  --bg-surface-hover: #DDE5EB;
   --bg-card: #FFFFFF;
   
   --ink: #0F1F1B;
-  --ink-secondary: #475569;
-  --ink-faint: #94A3B8;
+  --ink-secondary: #334155;
+  --ink-faint: #64748B;
   
-  --border: rgba(15, 31, 27, 0.12);
-  --border-strong: rgba(15, 31, 27, 0.22);
+  --border: rgba(15, 31, 27, 0.15);
+  --border-strong: rgba(15, 31, 27, 0.28);
   
   --brand: #007A78;
   --brand-hover: #006361;
@@ -562,6 +562,11 @@ html, body {
   display: flex;
   position: relative;
   overflow: hidden;
+  /* Fondo gris claro de estudio clínico de alto contraste para visibilidad nítida del mouse y modelo */
+  background: radial-gradient(circle at 50% 45%, #E6EDF2 0%, #CCD7E0 100%);
+}
+
+[data-theme="dark"] .anatomy-container {
   background: radial-gradient(circle at center, var(--bg-surface-raised) 0%, var(--bg-kiosk) 100%);
 }
 
@@ -569,6 +574,11 @@ html, body {
   flex: 1;
   height: 100%;
   position: relative;
+  cursor: grab !important;
+}
+
+.model-wrapper-kiosk:active {
+  cursor: grabbing !important;
 }
 
 model-viewer {
@@ -577,6 +587,11 @@ model-viewer {
   display: block;
   --poster-color: transparent;
   position: relative;
+  cursor: grab !important;
+}
+
+model-viewer:active {
+  cursor: grabbing !important;
 }
 
 .model-loading-indicator {
@@ -639,33 +654,35 @@ model-viewer > .hide,
   to { transform: rotate(360deg); }
 }
 
-/* Hotspots Anatómicos Ultraligeros (No obstruyen el diseño 3D) */
+/* Hotspots Anatómicos Siempre Interactivos (Selección Inmediata) */
 .Hotspot {
-  background: rgba(10, 25, 47, 0.72);
+  background: rgba(15, 23, 42, 0.78);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 50%;
   border: 2px solid #00F2FE;
   box-shadow: 0 0 14px rgba(0, 242, 254, 0.45), 0 3px 8px rgba(0, 0, 0, 0.35);
   color: #FFFFFF;
-  width: 32px;
-  height: 32px;
-  font-size: 0.92rem;
+  width: 34px;
+  height: 34px;
+  font-size: 0.95rem;
   font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   animation: pulse-hotspot 2.5s infinite;
-  z-index: 5;
+  z-index: 10;
 }
 
 .Hotspot:hover {
-  transform: scale(1.2);
-  background: rgba(0, 122, 120, 0.9);
-  border-color: #FFFFFF;
-  box-shadow: 0 0 20px rgba(0, 242, 254, 0.85);
+  transform: scale(1.25);
+  background: #007A78 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 22px rgba(0, 122, 120, 0.95), 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+  z-index: 30;
 }
 
 .Hotspot:active {
@@ -675,18 +692,10 @@ model-viewer > .hide,
 .Hotspot.active-hotspot {
   background: linear-gradient(135deg, #F59E0B, #EA580C) !important;
   border-color: #FEF3C7 !important;
-  transform: scale(1.18);
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.85), 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  transform: scale(1.22);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.9), 0 4px 16px rgba(0, 0, 0, 0.5) !important;
   animation: none !important;
-  z-index: 10;
-}
-
-/* Al enfocar una zona en 3D, los demás puntos se atenúan para no tapar el modelo */
-.Hotspot.dimmed-hotspot {
-  opacity: 0.12 !important;
-  transform: scale(0.75) !important;
-  pointer-events: none;
-  filter: grayscale(80%);
+  z-index: 20;
 }
 
 @keyframes pulse-hotspot {

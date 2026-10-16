@@ -106,16 +106,16 @@ export default function AnatomyView({
           {showHotspots &&
             BODY_PARTS.map((part) => {
               const isSelected = selectedPart?.id === part.id;
-              const isDimmed = selectedPart && !isSelected;
               return (
                 <button
                   key={part.id}
-                  className={`Hotspot ${isSelected ? 'active-hotspot' : ''} ${isDimmed ? 'dimmed-hotspot' : ''}`}
+                  className={`Hotspot ${isSelected ? 'active-hotspot' : ''}`}
                   slot={part.hotspotId}
                   data-position={part.position}
                   data-normal={part.normal}
                   onClick={() => handleHotspotClick(part)}
                   aria-label={`Explorar soluciones para ${part.name}`}
+                  title={`Ver productos para ${part.name}`}
                 >
                   {part.label}
                 </button>
