@@ -8,7 +8,6 @@ import ProductDetailModal from './components/ProductDetailModal';
 import MediaOverlay from './components/MediaOverlay';
 import InterestDrawer from './components/InterestDrawer';
 import AttractMode from './components/AttractMode';
-import KioskResetFab from './components/KioskResetFab';
 
 const INACTIVITY_TIMEOUT_MS = 75000; // 75 segundos de inactividad para modo descanso
 
@@ -158,8 +157,6 @@ export default function App() {
           />
         </div>
       </main>
-
-      <KioskResetFab onReset={handleResetKiosk} />
 
       {selectedProduct && (
         <ProductDetailModal
