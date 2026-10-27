@@ -1,1 +1,0 @@
-Estilos visuales del sitio.

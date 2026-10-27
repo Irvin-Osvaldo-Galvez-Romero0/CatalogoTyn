@@ -11,7 +11,7 @@ export default function AnatomyView({
   const [selectedPart, setSelectedPart] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
-  const [showGuide, setShowGuide] = useState(true);
+  const [showGuide, setShowGuide] = useState(false);
   const [viewMode, setViewMode] = useState('body'); // 'body' | 'skeleton'
   const [isTransforming, setIsTransforming] = useState(false);
   const [currentOrbit, setCurrentOrbit] = useState(null);
@@ -38,6 +38,9 @@ export default function AnatomyView({
 
     const handleLoad = () => {
       setIsLoaded(true);
+      if (model && !selectedPart) {
+        model.autoRotate = true;
+      }
     };
 
     model.addEventListener('progress', handleProgress);
@@ -62,7 +65,7 @@ export default function AnatomyView({
   const handleClosePanel = () => {
     setSelectedPart(null);
     if (modelRef.current) {
-      // Regreso suave a vista completa del cuerpo
+      // Regreso suave a vista completa del cuerpo y reanudación de rotación automática continua
       modelRef.current.cameraTarget = 'auto auto auto';
       modelRef.current.cameraOrbit = '0deg 75deg 105%';
       modelRef.current.autoRotate = true;
@@ -89,9 +92,12 @@ export default function AnatomyView({
 
     setIsTransforming(true);
 
-    // Transición cinemática: destello de rayos X y cambio de modelo
+    // Transición cinemática: destello de rayos X y cambio de modelo manteniendo rotación automática
     setTimeout(() => {
       setViewMode(newMode);
+      if (modelRef.current && !selectedPart) {
+        modelRef.current.autoRotate = true;
+      }
       setTimeout(() => {
         setIsTransforming(false);
       }, 550);
@@ -115,13 +121,18 @@ export default function AnatomyView({
           ref={modelRef}
           src={viewMode === 'body' ? '/assets/Model_Human.glb' : '/assets/Model_Skeleton.glb'}
           alt={viewMode === 'body' ? 'Modelo Humano Anatómico Tynor' : 'Sistema Esquelético Humano 3D Tynor'}
-          shadow-intensity="0.8"
-          shadow-softness="0.5"
+          shadow-intensity="0"
+          shadow-softness="0"
+          environment-image="neutral"
+          tone-mapping="neutral"
+          exposure={viewMode === 'skeleton' ? '1.08' : '1'}
+          interpolation-decay="100"
+          min-scale="0.25"
           power-preference="high-performance"
-          interpolation-decay="150"
           camera-controls
-          auto-rotate={!selectedPart && !isTransforming}
-          rotation-per-second="4deg"
+          auto-rotate
+          auto-rotate-delay="1500"
+          rotation-per-second="18deg"
           interaction-prompt="none"
           loading="eager"
           reveal="auto"
@@ -275,8 +286,8 @@ export default function AnatomyView({
                 <div className="drawer-item-details">
                   <div className="drawer-item-code">Ref. {p.code}</div>
                   <div className="drawer-item-name">{p.name}</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--ink-secondary)' }}>
-                    {p.price == null ? 'Consultar precio' : `$${p.price.toFixed(2)}`}
+                  <div style={{ fontSize: '0.8rem', color: 'var(--brand)', fontWeight: 600 }}>
+                    Consultar Precio
                   </div>
                 </div>
                 <button

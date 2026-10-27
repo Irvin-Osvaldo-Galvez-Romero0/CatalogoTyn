@@ -1,0 +1,46 @@
+{
+  "appId": "com.tynor.catalogokiosk.lite",
+  "productName": "Tynor Catálogo Kiosco Ultra Lite",
+  "directories": {
+    "output": "release/lite"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*",
+    "build/icon.ico"
+  ],
+  "asar": true,
+  "asarUnpack": [
+    "**/*.glb",
+    "**/*.pdf",
+    "**/*.mp4"
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "dir",
+        "arch": ["x64"]
+      },
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      },
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "build/icon.ico"
+  },
+  "portable": {
+    "artifactName": "${productName} Portable.${ext}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Tynor Catálogo Kiosco Ultra Lite",
+    "uninstallDisplayName": "Tynor Catálogo Kiosco Ultra Lite"
+  }
+}

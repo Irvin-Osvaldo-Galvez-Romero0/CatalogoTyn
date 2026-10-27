@@ -11,7 +11,7 @@
 ---
 
 ## 2. 🗜️ PRIORIDAD MÁXIMA: COMPRESIÓN DE CONTEXTO, PROMPT ENGINEERING & REDUCCIÓN DE TOKENS (FRAMEWORK ECC)
-*(Skills base: `context-engineering`, `token-budget-advisor`, `caveman`, `ponytail`, `code-simplification`, `cost-tracking`, `planning-and-task-breakdown`, `context-compressor`)*
+*(Skills base: `token-budget-advisor`, `caveman`, `context-compressor`, `context-budget`, `task-observer`, `karpathy-inspired`)*
 
 1. **La Jerarquía de Contexto de 5 Niveles (ECC Context Hierarchy):**
    *(Skill activa: `context-engineering`)*
@@ -96,54 +96,67 @@
 
 ---
 
-## 3. ⚖️ ECOSISTEMA INTEGRADO: ECC (MOTOR PRINCIPAL) ⚔️ THE AGENCY (COMPLEMENTO DE DOMINIO) ⚔️ AGENT SKILLS (ADDY OSMANI) ⚔️ SKILLS PROCEDIMENTALES
-*(Skills base: `everything-claude-code`, `ecc-agents`, `agency-agents`, `agent-skills`)*
+## 3. ⚖️ ECOSISTEMA INTEGRADO: ECC ⚔️ VERCEL ⚔️ RESIDUALITY ⚔️ ARCHIFY ⚔️ DESIGN SUITE & PRO-DEV SKILLS
+*(Skills base: `everything-claude-code`, `ecc-agents`, `residuality-theory`, `archify`, suite `vercel-*`, `superpowers`, `feature-dev`, `impeccable-design`, `ui-ux-pro-max`, `taste-skill`, `awesome-design`, `scroll-world`, `image-to-code`, `web-design-guidelines`, `playwright-cli`, `agent-reach`, `task-observer`, `watermarks-remover`, `karpathy-inspired`, `token-budget-advisor`, `caveman`)*
 
-El entorno de Antigravity opera bajo una arquitectura jerárquica de alta ingeniería donde **ECC (Everything Claude Code) constituye el núcleo operativo y motor de ingeniería principal**, complementado estratégicamente por **The Agency** para especialización profunda de dominio, negocio y producto, y por las **Agent Skills de Addy Osmani** para verificación empírica en runtime y WebPerf.
+El entorno de Antigravity opera bajo un stack consolidado, quirúrgico y de máxima potencia:
+- **ECC (Everything Claude Code) + Superpowers + Feature Dev:** El motor central de ingeniería dura, diseño arquitectónico, flujos TDD estrictos y desarrollo de features paso a paso con preguntas clarificadoras antes de codificar.
+- **Suite Vercel:** Despliegue ágil, funciones serverless/edge, gestión de storage y optimización de React.
+- **Design & UI/UX Suite Premium (Impeccable, UI UX Pro Max, Taste Skill, Awesome Design, Scroll World, Image-to-Code, Web Design Guidelines):** Erradicación total del diseño genérico ("Anti-AI Slop"). Diseño intencional con paletas cromáticas armónicas, sistemas tipográficos de alto rango, mundos 3D controlados por scroll y reconstrucción fidedigna de imágenes a código.
+- **Residuality Theory & Archify:** Resiliencia estructural ante estresores de entorno y compilación de diagramas interactivos HTML.
+- **E2E Testing, Reach & Calidad (Playwright CLI, Agent Reach, Task Observer, Watermarks Remover):** Automatización headless/browser ultra-rápida, investigación profunda en plataformas web, meta-observación de patrones y purga de marcas de agua.
+- **Compresión & Directivas Karpathy:** Filosofía anti-sobreingeniería de Karpathy y compresión radical de tokens (`caveman`, `context-compressor`, `token-budget-advisor`).
 
 ```mermaid
 flowchart TD
-    subgraph Ecosistema["Arquitectura Antigravity: ECC Núcleo Primario + Extensiones"]
+    subgraph Ecosistema["Arquitectura Antigravity: Stack Técnico Consolidado"]
         direction TB
-        ECC["<b>ECC - Everything Claude Code (ecc-*)</b><br/><b>NÚCLEO PRINCIPAL DE INGENIERÍA DURA</b><br/>• 68 Agentes Especializados de Ingeniería<br/>• Arneses de Ejecución, Compilación y TDD<br/>• Simplificación de Código, Detección de Errores & AppSec"]
+        ECC["<b>ECC + Superpowers + Feature Dev</b><br/><b>MOTOR PRINCIPAL DE INGENIERÍA DURA & TDD</b><br/>• 68 Agentes Especializados de Ingeniería<br/>• Flujo Disciplinado de Features & Arneses Autónomos<br/>• Simplificación de Código, Detección de Errores & AppSec"]
         
-        AGENCY["<b>The Agency (agency-*)</b><br/><b>COMPLEMENTO DE DOMINIO & NEGOCIO</b><br/>• 265 Especialistas Funcionales & Verticales<br/>• Producto, UX/UI, GIS, Marketing, n8n & Estrategia"]
+        DESIGN["<b>Design & UI/UX Suite</b><br/><b>ANTI-SLOP & ALTA ESTÉTICA</b><br/>• Impeccable Design + UI UX Pro Max + Taste Skill<br/>• Scroll World + Image-to-Code + Web Design Guidelines<br/>• Awesome Design: Tokens, Tipografía & Microinteracciones"]
         
-        OSMANI["<b>Agent Skills (Addy Osmani)</b><br/><b>VERIFICACIÓN RUNTIME & WEBPERF</b><br/>• Metodología Prove-It & DevTools MCP<br/>• 25 Skills + 4 Auditores Especializados"]
+        VERCEL["<b>Vercel Platform Suite (vercel-*)</b><br/><b>DESPLIEGUE, STORAGE & EDGE</b><br/>• Despliegue en producción, serverless, edge functions<br/>• Optimización React, view transitions y composición"]
         
-        SKILLS["<b>Skills Procedimentales & Arneses</b><br/>• Context Engineering, Token Budget (TBA), Ponytail<br/>• Residuality Theory, Verification Loop, Benchmarks"]
+        RESID["<b>Residuality Theory & Archify</b><br/><b>RESILIENCIA & MODELADO VISUAL</b><br/>• Análisis de estresores, atractores y residuos invariantes<br/>• Diagramación técnica interactiva con Archify"]
+        
+        TOOLS["<b>E2E, Reach & Meta-Gobernanza</b><br/>• Playwright CLI + Agent Reach<br/>• Task Observer + Watermarks Remover<br/>• Karpathy-Inspired Guidelines + Compresores"]
     end
     
-    AGENCY -->|Aporta requerimientos de dominio, producto y negocio| ECC
-    OSMANI -->|Provee verificación empírica en runtime y DevTools| ECC
-    SKILLS -->|Gobierna la economía de tokens, contexto y resiliencia| ECC
+    DESIGN -->|Aporta sistemas de diseño y estética de alto impacto| ECC
+    VERCEL -->|Provee plataforma, hosting y rendimiento web| ECC
+    RESID -->|Guía el diseño resiliente y modelado visual| ECC
+    TOOLS -->|Verificación E2E, investigación y control de calidad| ECC
     ECC -->|Produce la solución técnica, código robusto y arquitectura| SISTEMA["Software en Producción / PWA / API / Vault"]
 ```
 
-1. **Núcleo Primario: ECC (`ecc-*` & `ecc-agent-*` | Motor de Ingeniería Dura & Arneses Autónomos):**
-   - 68 agentes de ingeniería y arneses de ejecución especializada que rigen el estándar técnico:
-     - *Arquitectura & Diseño:* `ecc-agent-architect`, `ecc-agent-code-architect`, `ecc-agent-code-explorer`.
-     - *TDD & Cobertura:* `ecc-agent-tdd-guide`, `ecc-agent-pr-test-analyzer`, `ecc-agent-e2e-runner`.
-     - *Resolutores de Compilación & Build:* `ecc-agent-build-error-resolver`, `ecc-agent-react-build-resolver`, `ecc-agent-*-build-resolver` (Rust, Go, C++, Python, Dart, etc.).
-     - *Refactorización & Limpieza:* `ecc-agent-code-simplifier`, `ecc-agent-refactor-cleaner`, `ecc-agent-type-design-analyzer`.
-     - *Seguridad & Resiliencia:* `ecc-agent-security-reviewer`, `ecc-agent-silent-failure-hunter`.
-     - *Arneses Autónomos:* `continuous-agent-loop`, `verification-loop`, `eval-harness`, `ecc-agent-loop-operator`.
-   - *Ámbito:* Es el motor base y predeterminado. Garantiza que cualquier desarrollo cumpla con pruebas primero, cero sobreingeniería, tipos sólidos y compilación limpia.
+1. **Núcleo Primario: ECC, Superpowers & Feature Dev:**
+   - 68 agentes de ingeniería y arneses de ejecución que rigen el estándar técnico.
+   - `superpowers`: Flujos estructurados de brainstorming, planes de ejecución y TDD inquebrantable.
+   - `feature-dev`: Proceso de 7 fases con preguntas clarificadoras, análisis exploratorio (`code-explorer`) y arquitectura deliberada (`code-architect`) antes de la implementación.
 
-2. **Complemento de Dominio: The Agency (`agency-*` | Especialización Funcional, Negocio & Producto):**
-   - 265 roles de alta especialización funcional e industrial que complementan al núcleo de ingeniería cuando se requiere profundidad temática:
-     - *Diseño & Experiencia:* `agency-ui-designer`, `agency-ux-architect`, `agency-inclusive-visuals-specialist`.
-     - *Producto & Estrategia:* `agency-product-manager`, `agency-business-strategist`, `agency-chief-of-staff`.
-     - *Geomática & GIS:* `agency-cartography-designer`, `agency-gis-analyst`, `agency-web-gis-developer`.
-     - *Automatización Empresarial:* `agency-workflow-architect`, `agency-automation-governance-architect`, nodos n8n.
-   - *Ámbito:* Define el contexto de negocio, los flujos humanos, la lógica de dominio vertical y las interfaces complejas para que ECC las implemente con rigor técnico.
+2. **Suite de Diseño & Frontend Premium:**
+   - `impeccable-design`: Eliminación sistemática de patrones de diseño genéricos y aplicación de microinteracciones refinadas.
+   - `ui-ux-pro-max`: Base de conocimiento de estilos visuales, paletas de color, tipografía y presets de componentes.
+   - `taste-skill`: Enfoque intencional de varianza visual, densidad y ritmo espacial.
+   - `scroll-world`: Landing pages 3D inmersivas y cinematográficas gobernadas por la posición del scroll.
+   - `awesome-design`: Tokens visuales y sistemas de diseño de marcas y productos referentes mundiales.
+   - `image-to-code`: Reconstrucción precisa y atómica de interfaces desde imágenes y mockups de referencia.
+   - `web-design-guidelines`: Auditoría de accesibilidad (a11y), contrastes, ergonomía de formularios y responsividad móvil.
 
-3. **Complemento de Verificación: Agent Skills de Addy Osmani (`agent-skills` & `osmani-*` | Calidad de Runtime & DevTools):**
-   - 25 habilidades procedimentales y 4 auditores (`osmani-web-performance-auditor`, `osmani-code-reviewer`, `osmani-test-engineer`, `osmani-security-auditor`).
-   - *Ámbito:* Metodología Prove-It (reproducción estricta de bugs antes de parchar), inspección profunda del DOM, consola y red con Chrome DevTools MCP, y auditorías de Core Web Vitals.
+3. **Plataforma Cloud & Despliegue: Suite Vercel:**
+   - Despliegue continuo con `deploy-to-vercel`, CLI moderna, Functions, Storage y optimizaciones React.
 
-4. **Skills Procedimentales Globales:**
-   - Procedimientos transversales: `context-engineering`, `token-budget-advisor`, `ponytail`, `caveman`, `residuality-theory`, `data-throughput-accelerator`, `benchmark-optimization-loop`.
+4. **Resiliencia & Modelado Visual: Residuality Theory & Archify:**
+   - `residuality-theory`: Modelado de estresores, atractores y residuos invariantes.
+   - `archify`: Compilación de diagramas de arquitectura, secuencias y workflows en HTML interactivo.
+
+5. **Herramientas de Verificación, Calidad y Meta-Gobernanza:**
+   - `playwright-cli`: Automatización de navegador y pruebas E2E por línea de comandos ligera y de alta velocidad.
+   - `agent-reach`: Búsqueda e investigación profunda en foros, GitHub, Reddit, Twitter y documentación técnica.
+   - `task-observer`: Observación de fricciones, detección de tareas repetitivas y generación de mejoras operativas.
+   - `watermarks-remover`: Purga de marcas de agua, metadatos y rastreadores sintéticos en assets y documentos.
+   - `karpathy-inspired`: Guardarraíles contra la sobreingeniería, comprobación empírica y claridad conceptual.
+   - `token-budget-advisor`, `caveman`, `context-compressor`: Compresión radical de tokens.
 
 ---
 
@@ -222,17 +235,28 @@ flowchart TD
 
 ---
 
-## 7. 🎨 DISEÑO, UI/UX Y ESTÉTICA PREMIUM
-*(Skills base: `agency-ui-designer`, `agency-ux-architect`, `frontend-design`, `ecc-agent-a11y-architect`, `frontend-ui-engineering`, `agency-accessibility-auditor`)*
+## 7. 🎨 DISEÑO, UI/UX Y ESTÉTICA PREMIUM (FRAMEWORK TASTE & EMIL KOWALSKI CRAFT)
+*(Skills base: `impeccable-design`, `ui-ux-pro-max`, `taste-skill`, `awesome-design`, `scroll-world`, `image-to-code`, `web-design-guidelines`, `ecc-agent-a11y-architect`, `vercel-composition-patterns`, `vercel-react-view-transitions`)*
 
-1. **Experiencia Wow:** Rechaza interfaces genéricas, grises o tipo plantilla por defecto. Aplica paletas cromáticas armónicas (HSL adaptativo), modos oscuros elegantes y tipografías modernas.
-2. **Micro-Animaciones & Interactividad:** Transiciones fluidas, feedback visual inmediato en estados de carga, error y éxito.
-3. **Accesibilidad Universal (WCAG 2.2 AA/AAA con ECC):** Estructura semántica HTML5, contraste suficiente de colores, navegación por teclado y soporte para lectores de pantalla validado con `ecc-agent-a11y-architect`.
+1. **Experiencia Wow & Anti-Generic Bar (Leonxlnx Taste Suite):**
+   - Rechaza enérgicamente interfaces genéricas, grises o tipo plantilla por defecto ("AI Slop"). Aplica los estándares de `high-end-visual-design` y `design-taste-frontend`: paletas cromáticas armónicas (HSL adaptativo), tipografías modernas no predeterminadas, jerarquía visual calibrada y contrastes asimétricos intencionales.
+   - Para estéticas técnicas e institucionales, recurre a `industrial-brutalist-ui` o `minimalist-ui` (composiciones bento limpias, rejillas rígidas y micro-detalles utilitarios).
+
+2. **Ingeniería de Diseño, Animaciones & Micro-Interacciones (Emil Kowalski Craft):**
+   - Sigue los principios de `emil-design-eng` y `apple-design` para movimiento físico natural (resortes, amortiguación, transiciones con salida fluida y retroalimentación táctil).
+   - Diseña e implementa animaciones con `animate`, audita y valida con `review-animations` y busca oportunidades de dinamismo con `find-animation-opportunities`.
+   - Adopta `mobile-native` para optimizar la experiencia móvil en PWAs: eliminación de lag al pulsar (tap delay), prevención de zoom indeseado en inputs, adaptación al notch y cálculo preciso de viewport (`dvh`/`svh` en lugar del bug clásico de `100vh`).
+   - Somete las interfaces a pruebas de estrés con `break-ui` para evaluar tolerancia ante textos excesivamente largos, valores numéricos extremos o datos nulos.
+
+3. **Patrones de Composición & Estándares Web (Vercel Labs Suite):**
+   - Aplica `vercel-composition-patterns` para estructurar componentes React 19 desacoplados, evitando la proliferación desordenada de boolean props en favor de componentes compuestos y providers puros.
+   - Emplea `vercel-react-view-transitions` para animaciones nativas de enrutamiento y transiciones de estado compartidas sin sobrecargar librerías externas.
+   - Cumple con las directivas de `web-design-guidelines` en cuanto a usabilidad, layout y accesibilidad universal (WCAG 2.2 AA/AAA con `ecc-agent-a11y-architect`).
 
 ---
 
 ## 8. 🧪 AUDITORÍAS, PRUEBAS QA Y CALIDAD DE SOFTWARE
-*(Skills base: `verification-loop`, `eval-harness`, `ecc-agent-code-reviewer`, `ecc-agent-pr-test-analyzer`, `ecc-agent-build-error-resolver`, `lighthouse-audit`, `osmani-code-reviewer`, `osmani-web-performance-auditor`, `agency-test-automation-engineer`)*
+*(Skills base: `playwright-cli`, `superpowers`, `feature-dev`, `verification-loop`, `eval-harness`, `ecc-agent-code-reviewer`, `ecc-agent-pr-test-analyzer`, `ecc-agent-build-error-resolver`, `task-observer`)*
 
 1. **Compuerta de Verificación Continua (ECC Verification Loop):** Toda entrega debe superar el ciclo de verificación (`verification-loop` y `eval-harness`): compilación limpia, tests al 100% pasando y cero errores de linter.
 2. **Auditorías de Código:** Revisiones estáticas rigurosas con `ecc-agent-code-reviewer` y `osmani-code-reviewer` (SOLID, DRY, Clean Code).
@@ -250,7 +274,7 @@ flowchart TD
   2. `AGENTS.md` (instrucciones maestras con prefijo `[Irvin Dev]`).
   3. `GEMINI.md` (reglas del asistente).
 - **Skills 100% GLOBALES (Cero Duplicación Local):**
-  - Las 699 skills técnicas (The Agency, ECC, Addy Osmani, Strix, n8n, etc.) **residen y deben residir exclusivamente en `C:\Users\User\.agents\skills`** (enlazada con `~/.gemini/config/skills`).
+  - Las skills técnicas seleccionadas (ECC, Vercel, Residuality Theory, Archify, Design Suite, Superpowers, Compresores) **residen exclusivamente de forma global en `C:\Users\User\.agents\skills`** (enlazada con `~/.gemini/config/skills`) (enlazada con `~/.gemini/config/skills`).
   - **PROHIBIDO clonar o copiar carpetas `.agents/skills` dentro de proyectos o repositorios locales (incluido el vault).** Antigravity hereda y resuelve automáticamente todas las habilidades de forma global. Crear carpetas de skills locales provoca duplicaciones, conflictos de nombres y desactualización.
 
 ### Protocolo de Onboarding para Nuevos Proyectos:
@@ -263,7 +287,7 @@ Al iniciar o interactuar por primera vez con un proyecto:
    - Índice documental centralizado con enlaces `[[...]]`.
    - Diagrama Mermaid de Arquitectura & Relaciones.
    - Modelado de Estresores Críticos y Análisis Residual ([[Residuality Theory]]).
-   - Asignación de roles primarios de ECC y complementos de The Agency y Agent Skills.
+   - Asignación de agentes primarios de ECC, suite Vercel, Archify y modelado residual.
 4. **Centralización Documental:** Toda documentación técnica debe residir **dentro** de `pages/projects/<NombreProyecto>/`.
 5. **Sincronización:** Registrar el proyecto en `c:/Users/User/Documents/vault/index.md` bajo `## 🚀 Proyectos & Suites Documentales (pages/projects/)`.
 6. **Historial:** Asentar la entrada en `c:/Users/User/Documents/vault/log.md`.
@@ -277,14 +301,17 @@ Al culminar cualquier tarea significativa:
 
 ---
 
-## 10. 🤖 MATRIZ DE DESPACHO RÁPIDO: ECC (NÚCLEO PRIMARIO) + THE AGENCY (COMPLEMENTO) + AGENT SKILLS
-| Dominio de Tarea | Núcleo Primario: Agentes ECC (`ecc-agent-*`) | Complemento de Dominio: The Agency (`agency-*`) | Verificación & Calidad: Addy Osmani (`osmani-*`) | Skills Procedimentales & Arneses |
+## 10. 🤖 MATRIZ DE DESPACHO RÁPIDO: ECC ⚔️ VERCEL ⚔️ RESIDUALITY ⚔️ ARCHIFY ⚔️ DESIGN SUITE & PRO-DEV SKILLS
+| Dominio de Tarea | Motor Primario (ECC & Dev) | Diseño, UI/UX & Frontend | Plataforma Cloud & Vercel | Resiliencia, E2E & Gobernanza |
 | :--- | :--- | :--- | :--- | :--- |
-| **Arquitectura & Sistema** | `ecc-agent-architect`, `ecc-agent-code-architect` | `agency-backend-architect`, `agency-solution-engineer` | `spec-driven-development`, `api-and-interface-design` | `residuality-theory`, `hexagonal-architecture` |
-| **Código, Diffs & Refactor** | `ecc-agent-code-simplifier`, `ecc-agent-code-reviewer` | `agency-senior-developer`, `agency-minimal-change-engineer` | `osmani-code-reviewer`, `code-simplification` | `ponytail`, `caveman`, `context-engineering` |
-| **Pruebas & Calidad (TDD)** | `ecc-agent-tdd-guide`, `ecc-agent-pr-test-analyzer` | `agency-test-automation-engineer`, `agency-reality-checker` | `osmani-test-engineer`, `test-driven-development` | `verification-loop`, `eval-harness`, `browser-testing-with-devtools` |
-| **Frontend & Web Performance** | `ecc-agent-react-reviewer`, `ecc-agent-a11y-architect` | `agency-frontend-developer`, `agency-ui-designer` | `osmani-web-performance-auditor`, `performance-optimization` | `frontend-ui-engineering`, `core-web-vitals` |
-| **Seguridad & AppSec** | `ecc-agent-security-reviewer`, `ecc-agent-silent-failure-hunter` | `agency-application-security-engineer`, `agency-penetration-tester` | `osmani-security-auditor`, `security-and-hardening` | `find-security-vulnerabilities-in-code`, `ci-security-scanning-with-strix`, `fix-security-vulnerabilities-with-strix`, `owasp-top-10-testing` |
-| **Build & Errores de Runtime** | `ecc-agent-build-error-resolver`, `ecc-agent-react-build-resolver` | `agency-devops-automator`, `agency-sre-site-reliability-engineer` | `debugging-and-error-recovery` | `terminal-ops`, `verification-loop` |
-| **Automatizaciones & Flujos** | `ecc-agent-loop-operator` | `agency-workflow-architect`, `agency-automation-governance-architect` | `ci-cd-and-automation` | `n8n-agents`, `n8n-workflow-patterns` |
-| **Gobernanza, Launch & Vault** | `ecc-agent-planner`, `ecc-agent-doc-updater` | `agency-senior-project-manager`, `agency-chief-of-staff` | `shipping-and-launch`, `documentation-and-adrs` | `second-brain-autolog`, `token-budget-advisor` |
+| **Arquitectura & Sistema** | `ecc-agent-architect`, `code-architect`, `feature-dev` | `ui-ux-pro-max`, `awesome-design` | `vercel-composition-patterns` | `residuality-theory`, `archify` |
+| **Desarrollo de Features** | `feature-dev`, `superpowers`, `karpathy-inspired` | `impeccable-design`, `image-to-code` | `vercel-react-best-practices` | `task-observer`, `caveman` |
+| **Código, Diffs & Refactor** | `ecc-agent-code-simplifier`, `ecc-agent-code-reviewer` | `impeccable-design`, `taste-skill` | `vercel-react-best-practices` | `karpathy-inspired`, `token-budget-advisor` |
+| **Pruebas & Calidad (TDD)** | `ecc-agent-tdd-guide`, `superpowers` | `web-design-guidelines` | `vercel-agent` | `playwright-cli`, `eval-harness` |
+| **Frontend & Animaciones 3D** | `ecc-agent-react-reviewer`, `ecc-agent-a11y-architect` | `scroll-world`, `taste-skill`, `ui-ux-pro-max` | `vercel-react-view-transitions`, `vercel-optimize` | `web-design-guidelines`, `archify` |
+| **Mockups & Imagen a Código** | `ecc-agent-code-explorer` | `image-to-code`, `ui-ux-pro-max` | `vercel-react-best-practices` | `watermarks-remover`, `archify` |
+| **Investigación & Web Scraping**| `ecc-agent-docs-lookup` | `awesome-design` | `vercel-services` | `agent-reach`, `task-observer` |
+| **Seguridad & Resiliencia** | `ecc-agent-security-reviewer`, `silent-failure-hunter` | `web-design-guidelines` | `vercel-firewall`, `vercel-sandbox` | `residuality-theory` (Trust Boundaries) |
+| **Build & Errores de Runtime** | `ecc-agent-build-error-resolver`, `react-build-resolver` | `impeccable-design` | `vercel-functions`, `vercel-cli` | `playwright-cli`, `context-compressor` |
+| **Despliegue & Producción** | `ecc-agent-planner`, `ecc-agent-doc-updater` | `impeccable-design` | `deploy-to-vercel`, `vercel-storage` | `task-observer`, `token-budget-advisor` |
+| **Gobernanza & Vault** | `ecc-agent-planner`, `ecc-agent-chief-of-staff` | `awesome-design` | `vercel-agent` | `second-brain-autolog`, `task-observer` |

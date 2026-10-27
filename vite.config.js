@@ -12,10 +12,10 @@ export default defineConfig({
         name: 'Tynor — Catálogo Médico Interactivo',
         short_name: 'Tynor Kiosk',
         description: 'Catálogo Interactivo de Ortopedia y Rehabilitación para EXPOMEDICAL',
-        theme_color: '#007A78',
-        background_color: '#0A1215',
+        theme_color: '#10B4C1',
+        background_color: '#F1F5F9',
         display: 'standalone',
-        orientation: 'landscape',
+        orientation: 'any',
         icons: [
           {
             src: '/assets/logo.png',

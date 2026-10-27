@@ -1,0 +1,16 @@
+# Vercel Ignore File
+# Excluir binarios nativos, builds pesados locales y carpetas de archivo
+android
+release
+build
+MasFichas
+FICHAS TECNICAS TYNOR
+electron
+scratch
+tests
+.playwright-cli
+.antigravity
+*.exe
+*.apk
+*.zip
+*.log

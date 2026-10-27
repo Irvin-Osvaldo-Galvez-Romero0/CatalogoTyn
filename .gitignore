@@ -4,3 +4,23 @@ dist
 *.local
 *_original_*.glb
 *.log
+AGENT.md
+AGENTS.md
+GEMINI.md
+GUIDE.md
+.antigravity
+rules.md
+RULES.md
+release
+build
+android
+*.exe
+*.apk
+MasFichas
+FICHAS TECNICAS TYNOR
+.playwright-cli
+scratch
+.vercel
+.env*.local
+.mcp.json
+

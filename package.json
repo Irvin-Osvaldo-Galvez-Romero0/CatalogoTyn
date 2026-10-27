@@ -2,23 +2,91 @@
   "name": "catalogotyn",
   "private": true,
   "version": "2.0.0",
+  "description": "Catálogo Interactivo de Ortopedia y Rehabilitación Tynor para Kiosco EXPOMEDICAL",
+  "author": "Tynor Orthotics",
   "type": "module",
+  "main": "electron/main.cjs",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "electron:dev": "electron . --windowed",
+    "electron:kiosk": "electron .",
+    "dist:win": "vite build && electron-builder --win nsis",
+    "dist:portable": "vite build && electron-builder --win portable",
+    "pack": "electron-builder --dir",
+    "dist:lite": "vite build && electron-builder --config electron-builder.lite.json",
+    "pack:lite": "vite build && electron-builder --config electron-builder.lite.json --dir",
+    "cap:sync": "cap sync android",
+    "build:apk": "vite build && cap sync android && cd android && gradlew assembleDebug"
   },
   "dependencies": {
+    "@capacitor/core": "^8.5.3",
     "@google/model-viewer": "^3.5.0",
     "canvas-confetti": "^1.9.3",
+    "html5-qrcode": "^2.3.8",
     "lucide-react": "^0.468.0",
+    "pdfjs-dist": "^3.11.174",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
     "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3",
     "vite": "^5.4.11",
     "vite-plugin-pwa": "^0.21.1"
+  },
+  "build": {
+    "appId": "com.tynor.catalogokiosk",
+    "productName": "Tynor Catálogo Kiosco",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "build/icon.ico"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "**/*.glb",
+      "**/*.pdf",
+      "**/*.mp4"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Tynor Catálogo Kiosco",
+      "uninstallDisplayName": "Tynor Catálogo Kiosco"
+    }
   }
 }
