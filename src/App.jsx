@@ -227,15 +227,11 @@ export default function App() {
     setMediaState({ type: null, src: null, title: '' });
   };
 
-  // Si se abrió desde el QR en el celular, mostrar la Landing de Auto-Descarga Móvil
+  // Si se abrió desde el QR en el celular, mostrar la Landing de Auto-Descarga Móvil (acceso exclusivo sin retorno al catálogo)
   if (mobileQuoteData) {
     return (
       <MobileQuoteLanding
         quoteData={mobileQuoteData}
-        onBackToKiosk={() => {
-          window.history.replaceState({}, document.title, window.location.pathname);
-          setMobileQuoteData(null);
-        }}
       />
     );
   }

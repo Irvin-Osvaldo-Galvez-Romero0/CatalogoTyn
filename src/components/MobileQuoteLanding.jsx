@@ -4,7 +4,7 @@ import { pdfGenerator } from '../services/pdfGenerator';
 import { brandingService } from '../services/brandingService';
 import { getWhatsAppUrl, buildWhatsAppMessage, DEFAULT_SALES_REPS } from '../data/salesReps';
 
-export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
+export default function MobileQuoteLanding({ quoteData }) {
   const [downloadStarted, setDownloadStarted] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -77,37 +77,15 @@ export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
     <div style={{
       minHeight: '100dvh',
       background: 'linear-gradient(180deg, #F0FDF4 0%, #F8FAFC 100%)',
-      padding: '1.25rem 1rem 3rem 1rem',
+      padding: '2rem 1rem 3rem 1rem',
       fontFamily: 'Inter, system-ui, sans-serif',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      justifyContent: 'center',
       color: '#0F172A',
       boxSizing: 'border-box'
     }}>
-      {/* Barra superior de regreso si se ve en desktop */}
-      {onBackToKiosk && (
-        <div style={{ width: '100%', maxWidth: 480, marginBottom: '0.75rem' }}>
-          <button
-            onClick={onBackToKiosk}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: 'var(--brand, #10B4C1)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              fontWeight: 700,
-              fontSize: '0.88rem',
-              cursor: 'pointer'
-            }}
-          >
-            <ArrowLeft size={16} />
-            <span>Volver al Catálogo</span>
-          </button>
-        </div>
-      )}
-
       {/* Tarjeta Principal Móvil */}
       <div style={{
         width: '100%',
