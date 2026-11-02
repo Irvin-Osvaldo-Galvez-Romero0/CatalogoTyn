@@ -18,3 +18,4 @@ for fname in files:
         print(f"Total words on page 1: {len(words)}")
         for w in words[:25]:
             print(f"  {w['text']} [x={w['x0']:.1f}, y={w['top']:.1f}]")
+

@@ -137,3 +137,4 @@ with open('c:/Users/User/Documents/GitHub/CatalogoTyn/scripts/accurate_price_map
     json.dump(results, f, ensure_ascii=False, indent=2)
 
 print("Saved accurate_price_map.json")
+

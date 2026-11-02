@@ -23,3 +23,4 @@ for r_start, r_end in [(200, 320), (320, 440), (440, 550), (550, 655), (655, 760
     sorted_words = sorted(cell_words, key=lambda w: (w['y'], w['x']))
     for w in sorted_words:
         print(f"  {w['text']} (x={w['x']}, y={w['y']})")
+

@@ -11,3 +11,4 @@ ort_words = raw_data['LISTA DE PRECIOS TYNOR ORTOPEDIA 2026. .pdf'][0]['words']
 codes_p1 = [w for w in ort_words if re.match(r'^[A-Z]\d{2}$', w['text'])]
 for c in codes_p1:
     print(f"Code {c['text']} at x={c['x']}, y={c['y']}")
+

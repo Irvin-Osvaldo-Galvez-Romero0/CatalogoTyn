@@ -12,3 +12,4 @@ for p_data in pages:
     for w in sorted(words, key=lambda item: (item['y'], item['x'])):
         if re.search(r'\$|[A-Z]{2}\d+|\d{3}|CH|M|G|XL|UNITALLA', w['text'], re.IGNORECASE):
             print(f"y={w['y']:<6} x={w['x']:<6} {w['text']}")
+

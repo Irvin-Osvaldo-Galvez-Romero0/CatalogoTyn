@@ -16,3 +16,4 @@ for tgt in targets:
                     found = True
     if not found:
         print(f"  NOT found in any PDF text")
+

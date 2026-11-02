@@ -17,3 +17,4 @@ try:
     print(f"Successfully loaded {len(products)} products as JSON!")
 except Exception as e:
     print(f"JSON load failed: {e}")
+

@@ -13,3 +13,4 @@ for p_data in pages:
         # match codes like A01, B02, C03, D04, E05, etc. or $ prices
         if re.search(r'\$|^[A-Z]\d{2}$|^[A-Z]\d{2}[A-Z]$|CH|M|G|XL|UNITALLA', w['text'], re.IGNORECASE):
             print(f"y={w['y']:<6} x={w['x']:<6} {w['text']}")
+

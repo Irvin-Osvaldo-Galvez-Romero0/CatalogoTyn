@@ -7,3 +7,4 @@ with open('c:/Users/User/Documents/GitHub/CatalogoTyn/scripts/raw_words.json', '
 words_dep = [w for w in raw_data['LISTA DE PRECIOS TYNOR DEPORTIVA 2026.pdf'][0]['words'] if 290 <= w['y'] <= 360]
 for w in sorted(words_dep, key=lambda w: (w['y'], w['x'])):
     print(f"dep: {w['text']} x={w['x']} y={w['y']}")
+

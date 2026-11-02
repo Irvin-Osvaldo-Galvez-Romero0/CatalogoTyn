@@ -12,3 +12,4 @@ with open('c:/Users/User/Documents/GitHub/CatalogoTyn/src/data/products.js', 'r'
 prod_codes = re.findall(r'"code":\s*"([^"]+)"', prod_text)
 print(f"Total products in products.js: {len(prod_codes)}")
 print(f"Sample codes: {prod_codes[:20]}")
+

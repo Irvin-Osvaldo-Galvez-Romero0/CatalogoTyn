@@ -9,3 +9,4 @@ for c in codes:
     m = re.search(pattern, text)
     if m:
         print(f"Code {c}: {m.group(1)} (cat: {m.group(2)})")
+

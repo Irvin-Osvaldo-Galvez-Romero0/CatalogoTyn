@@ -15,3 +15,4 @@ for kw in keywords:
             for w in p['words']:
                 if kw in w['text'].lower():
                     print(f"  {pdf_name} p.{p['page']}: {w['text']} at x={w['x']}, y={w['y']}")
+

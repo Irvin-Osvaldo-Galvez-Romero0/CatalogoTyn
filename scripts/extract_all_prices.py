@@ -119,3 +119,4 @@ with open('c:/Users/User/Documents/GitHub/CatalogoTyn/scripts/extracted_catalog_
     json.dump(catalog_extracted, f, ensure_ascii=False, indent=2)
 
 print("Saved extracted_catalog_prices.json")
+

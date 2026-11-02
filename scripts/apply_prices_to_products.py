@@ -33,3 +33,4 @@ with open('c:/Users/User/Documents/GitHub/CatalogoTyn/src/data/products.js', 'w'
     f.write(new_text)
 
 print("Updated src/data/products.js successfully.")
+

@@ -115,9 +115,12 @@ export default function ProductDetailModal({
     setVariantsList((prev) => prev.filter((_, i) => i !== idx));
   };
 
-  // Totales de piezas y subtotal del producto
+  // Totales de piezas y subtotal del producto con tarifas dinamicas por talla
   const totalProductPieces = variantsList.reduce((sum, v) => sum + (v.quantity || 1), 0);
-  const totalProductCost = totalProductPieces * (Number(product.price) || 0);
+  const totalProductCost = variantsList.reduce((sum, v) => {
+    const vPrice = product.priceBySize?.[v.size] ?? (Number(product.price) || 0);
+    return sum + (vPrice * (v.quantity || 1));
+  }, 0);
 
   const handleAddToCartOrUpdate = () => {
     if (variantsList.length === 0) {
@@ -191,7 +194,16 @@ export default function ProductDetailModal({
           </div>
 
           <h2 className="modal-title">{product.name}</h2>
-          <div className="modal-price">{formatPrice(product.price)}</div>
+          <div className="modal-price">
+            {activeSize && product.priceBySize?.[activeSize] != null
+              ? formatPrice(product.priceBySize[activeSize])
+              : formatPrice(product.price)}
+            {product.priceBySize && Object.keys(product.priceBySize).length > 0 && !activeSize && (
+              <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-secondary)', marginLeft: '0.5rem' }}>
+                (Precio varía según medida)
+              </span>
+            )}
+          </div>
 
           {/* CREADOR Y CONFIGURADOR DE VARIANTES (Talla + Color + Piezas) */}
           <div style={{
@@ -214,6 +226,7 @@ export default function ProductDetailModal({
                 <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
                   {product.sizes.map((s) => {
                     const isSelected = activeSize === s;
+                    const sizeTariff = product.priceBySize?.[s];
                     return (
                       <button
                         key={s}
@@ -231,10 +244,25 @@ export default function ProductDetailModal({
                           fontWeight: isSelected ? 800 : 600,
                           fontSize: '0.82rem',
                           cursor: 'pointer',
-                          transition: 'all 0.15s ease'
+                          transition: 'all 0.15s ease',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.35rem'
                         }}
                       >
-                        {s}
+                        <span>{s}</span>
+                        {sizeTariff != null && (
+                          <span style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 700,
+                            color: isSelected ? 'var(--brand)' : '#059669',
+                            background: isSelected ? 'rgba(255,255,255,0.7)' : 'rgba(5, 150, 105, 0.08)',
+                            padding: '1px 5px',
+                            borderRadius: '4px'
+                          }}>
+                            {formatPrice(sizeTariff)}
+                          </span>
+                        )}
                       </button>
                     );
                   })}
@@ -387,6 +415,11 @@ export default function ProductDetailModal({
                         )}
                         <span style={{ fontWeight: 800, color: 'var(--ink)' }}>{v.size}</span>
                         {v.colorName && <span style={{ color: 'var(--ink-secondary)' }}>• {v.colorName}</span>}
+                        {product.priceBySize?.[v.size] && (
+                          <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#059669', background: 'rgba(5, 150, 105, 0.08)', padding: '1px 6px', borderRadius: '4px', marginLeft: '0.2rem' }}>
+                            {formatPrice(product.priceBySize[v.size])} c/u
+                          </span>
+                        )}
                       </div>
 
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

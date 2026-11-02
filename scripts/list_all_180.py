@@ -13,3 +13,4 @@ prod_matches = re.findall(r'\{\s*"code":\s*"([^"]+)",\s*"name":\s*"([^"]+)"', pr
 print(f"Parsed {len(prod_matches)} products.")
 for code, name in prod_matches:
     print(f"{code}: {name}")
+

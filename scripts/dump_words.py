@@ -29,3 +29,4 @@ with open('c:/Users/User/Documents/GitHub/CatalogoTyn/scripts/raw_words.json', '
     json.dump(output, f, ensure_ascii=False, indent=2)
 
 print("Dumped raw_words.json successfully.")
+

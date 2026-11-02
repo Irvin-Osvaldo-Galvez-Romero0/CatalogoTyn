@@ -189,3 +189,4 @@ with open('c:/Users/User/Documents/GitHub/CatalogoTyn/scripts/full_parsed_prices
     json.dump(results, f, ensure_ascii=False, indent=2)
 
 print("Saved full_parsed_prices.json")
+

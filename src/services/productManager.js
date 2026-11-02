@@ -186,6 +186,7 @@ export const productManager = {
       linea: productData.linea || productData.marca || 'Ortopédica',
       cat: productData.cat || 'inmovilizador',
       price: productData.price != null && productData.price !== '' ? Number(productData.price) : 0,
+      priceBySize: productData.priceBySize || null,
       stock: productData.stock != null && productData.stock !== '' ? Number(productData.stock) : 10,
       bodyPart: productData.bodyPart || 'rodilla',
       badge: productData.badge || 'Nuevo',

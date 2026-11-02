@@ -136,7 +136,9 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
 
       const payload = {
         ...productForm,
-        sizes: parsedSizes.length > 0 ? parsedSizes : ['Universal']
+        sizes: parsedSizes.length > 0 ? parsedSizes : ['Universal'],
+        price: productForm.price != null && productForm.price !== '' ? Number(productForm.price) : 0,
+        priceBySize: Object.keys(productForm.priceBySize || {}).length > 0 ? productForm.priceBySize : null
       };
 
       if (editingCode) {
@@ -167,6 +169,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
       marca: 'Tynor',
       cat: 'inmovilizador',
       price: '',
+      priceBySize: {},
       stock: 10,
       bodyPart: 'rodilla',
       linea: 'Tynor Ortopedia',
@@ -195,6 +198,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
       marca: prod.marca || 'Tynor',
       cat: prod.cat || 'inmovilizador',
       price: prod.price != null ? String(prod.price) : '',
+      priceBySize: prod.priceBySize ? { ...prod.priceBySize } : {},
       stock: prod.stock != null ? prod.stock : 10,
       bodyPart: prod.bodyPart || 'rodilla',
       linea: prod.linea || 'Tynor Ortopedia',
@@ -812,6 +816,103 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                         placeholder="CH, M, G, XL o Universal"
                         style={{ width: '100%', height: 44, padding: '0 0.8rem', borderRadius: '10px', border: '1px solid var(--border)', fontSize: '0.95rem' }}
                       />
+                    </div>
+
+                    {/* Precios específicos por Talla / Medida */}
+                    <div style={{ gridColumn: 'span 2', padding: '1rem', background: 'var(--bg-surface-raised)', borderRadius: '14px', border: '1px solid var(--border)' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                        <div>
+                          <strong style={{ fontSize: '0.9rem', color: 'var(--ink)', display: 'block' }}>Precios Específicos por Medida / Talla (Opcional)</strong>
+                          <span style={{ fontSize: '0.76rem', color: 'var(--ink-faint)' }}>
+                            Si algunas tallas (ej. XL, XXL o Especial) tienen precio diferente al precio base (${productForm.price || '0.00'}), asígnalo aquí:
+                          </span>
+                        </div>
+                      </div>
+
+                      {(() => {
+                        const parsedList = typeof productForm.sizes === 'string'
+                          ? productForm.sizes.split(',').map((s) => s.trim()).filter(Boolean)
+                          : (Array.isArray(productForm.sizes) ? productForm.sizes : []);
+                        
+                        if (parsedList.length === 0) {
+                          return (
+                            <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--ink-faint)', fontStyle: 'italic' }}>
+                              Escribe las tallas arriba separadas por coma para definir tarifas personalizadas por medida.
+                            </p>
+                          );
+                        }
+
+                        return (
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.6rem' }}>
+                            {parsedList.map((sz) => {
+                              const customPrice = productForm.priceBySize?.[sz] ?? '';
+                              const hasCustom = customPrice !== '' && customPrice !== undefined;
+                              return (
+                                <div
+                                  key={sz}
+                                  style={{
+                                    background: 'var(--bg-surface)',
+                                    border: hasCustom ? '1.5px solid var(--brand)' : '1px solid var(--border)',
+                                    borderRadius: '10px',
+                                    padding: '0.5rem 0.6rem',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '0.3rem'
+                                  }}
+                                >
+                                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <span style={{ fontSize: '0.8rem', fontWeight: 800, color: hasCustom ? 'var(--brand)' : 'var(--ink)' }}>{sz}</span>
+                                    {hasCustom && (
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const nextMap = { ...(productForm.priceBySize || {}) };
+                                          delete nextMap[sz];
+                                          setProductForm({ ...productForm, priceBySize: nextMap });
+                                        }}
+                                        title="Quitar precio especial y volver al base"
+                                        style={{ background: 'transparent', border: 'none', color: '#EF4444', cursor: 'pointer', padding: 0, fontSize: '0.75rem', fontWeight: 700 }}
+                                      >
+                                        ✕
+                                      </button>
+                                    )}
+                                  </div>
+                                  <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                                    <span style={{ position: 'absolute', left: 7, fontSize: '0.8rem', color: 'var(--ink-faint)', fontWeight: 700 }}>$</span>
+                                    <input
+                                      type="number"
+                                      step="0.01"
+                                      placeholder={productForm.price || '0.00'}
+                                      value={customPrice}
+                                      onChange={(e) => {
+                                        const val = e.target.value;
+                                        const nextMap = { ...(productForm.priceBySize || {}) };
+                                        if (val === '') {
+                                          delete nextMap[sz];
+                                        } else {
+                                          nextMap[sz] = Number(val);
+                                        }
+                                        setProductForm({ ...productForm, priceBySize: nextMap });
+                                      }}
+                                      style={{
+                                        width: '100%',
+                                        height: 32,
+                                        padding: '0 0.4rem 0 1.25rem',
+                                        borderRadius: '6px',
+                                        border: '1px solid var(--border)',
+                                        fontSize: '0.82rem',
+                                        fontWeight: hasCustom ? 800 : 500,
+                                        color: hasCustom ? '#059669' : 'var(--ink)',
+                                        background: 'var(--bg-surface)'
+                                      }}
+                                    />
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        );
+                      })()}
                     </div>
 
                     {/* Sección Ficha Técnica PDF */}
