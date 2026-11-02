@@ -61,57 +61,78 @@ export const DEFAULT_SALES_REPS = [
 ];
 
 /**
- * Genera el mensaje estructurado de WhatsApp a partir de los productos seleccionados
+ * Genera el mensaje estructurado de WhatsApp desglosando variantes compuestas
+ * (ej. 1 pz Chica Verde y 2 pzs Grande Naranja)
  */
-export function buildWhatsAppMessage(salesRepName, items) {
-  const dateStr = new Date().toLocaleDateString('es-MX', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
+export function buildWhatsAppMessage(salesRepName, items, pdfUrl = '') {
+  let message = `¡Hola ${salesRepName}! 🩺\nMe interesa solicitar la siguiente precotización:\n\n`;
 
-  const header = `*¡Hola ${salesRepName}!* 🩺\n` +
-    `Me interesa hacer una precotización de los siguientes productos del *Catálogo Tynor* (Stand EXPOMEDICAL):\n\n`;
+  let totalEstimated = 0;
+  let totalPiecesCount = 0;
 
-  const productsList = items
-    .map((item, idx) => {
-      const code = item.code ? `[Ref. ${item.code}]` : '';
-      const cat = item.cat ? `(${item.cat})` : '';
-      let line = `${idx + 1}. *${code} ${item.name}* ${cat}`;
+  items.forEach((item, idx) => {
+    const priceNum = Number(item.price) || 0;
+    const code = item.code ? `[Ref. ${item.code}]` : '';
+    const marca = item.marca ? ` (${item.marca})` : '';
 
-      const colorNames = item.selectedColorNames || (item.selectedColorName ? [item.selectedColorName] : []);
-      const colorCodes = item.selectedColors || (item.selectedColor ? [item.selectedColor] : []);
-      if (colorCodes.length > 0) {
-        const formattedColors = colorCodes.map((code, i) => {
-          const name = colorNames[i] || (item.colors?.find(c => c.id === code)?.name) || code;
-          return `${name} (${item.code}${code})`;
-        }).join(', ');
-        details.push(colorCodes.length === 1 ? `• Color: ${formattedColors}` : `• Colores solicitados: ${formattedColors}`);
-      }
+    const variants = item.variants && item.variants.length > 0 ? item.variants : null;
+
+    if (variants) {
+      const itemPieces = variants.reduce((sum, v) => sum + (v.quantity || 1), 0);
+      const itemSubtotal = priceNum * itemPieces;
+      totalEstimated += itemSubtotal;
+      totalPiecesCount += itemPieces;
+
+      message += `${idx + 1}. *${code} ${item.name}*${marca} (${itemPieces} pz${itemPieces > 1 ? 's' : ''}):\n`;
+
+      variants.forEach((v) => {
+        const vQty = v.quantity || 1;
+        const vSubtotal = priceNum * vQty;
+        const colorPart = v.colorName ? ` - Color: ${v.colorName}` : '';
+        const pricePart = priceNum > 0 ? ` [${new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(vSubtotal)}]` : '';
+        message += `   • *${vQty} pz${vQty > 1 ? 's' : ''}* - Talla/Medida: ${v.size}${colorPart}${pricePart}\n`;
+      });
+    } else {
+      const qty = item.quantity || 1;
+      const subtotal = priceNum * qty;
+      totalEstimated += subtotal;
+      totalPiecesCount += qty;
+
+      message += `${idx + 1}. *${qty} pz${qty > 1 ? 's' : ''}* - *${code} ${item.name}*${marca}\n`;
 
       const sizes = item.selectedSizes || item.sizes;
       if (sizes && sizes.length > 0) {
-        if (sizes.length === 1) {
-          details.push(`• Talla solicitada: ${sizes[0]}`);
-        } else {
-          details.push(`• Tallas solicitadas: ${sizes.join(', ')}`);
-        }
+        message += `   • Medida/Talla: ${sizes.join(', ')}\n`;
       }
 
-      if (details.length > 0) {
-        line += '\n   ' + details.join('\n   ');
+      const colorNames = item.selectedColorNames || (item.selectedColorName ? [item.selectedColorName] : []);
+      if (colorNames.length > 0) {
+        message += `   • Color: ${colorNames.join(', ')}\n`;
       }
-      return line;
-    })
-    .join('\n\n');
 
-  const footer = `\n\n📋 *Total de productos:* ${items.length}\n` +
-    `📅 *Fecha de solicitud:* ${dateStr}\n\n` +
-    `_Enviado desde el Catálogo Interactivo Tynor_`;
+      if (priceNum > 0) {
+        const formattedSubtotal = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(subtotal);
+        message += `   • Subtotal: ${formattedSubtotal}\n`;
+      }
+    }
 
-  return `${header}${productsList}${footer}`;
+    message += '\n';
+  });
+
+  if (totalPiecesCount > 0) {
+    message += `📦 *Piezas Totales:* ${totalPiecesCount}\n`;
+  }
+
+  if (totalEstimated > 0) {
+    const formattedTotal = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(totalEstimated);
+    message += `💰 *Total Estimado:* ${formattedTotal}\n`;
+  }
+
+  if (pdfUrl) {
+    message += `\n📄 *Cotización PDF:* ${pdfUrl}\n`;
+  }
+
+  return message.trim();
 }
 
 /**

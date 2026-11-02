@@ -1,6 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { X, Trash2, QrCode as QrIcon, BookmarkCheck, UserCheck, Phone, ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  X,
+  Trash2,
+  QrCode as QrIcon,
+  BookmarkCheck,
+  UserCheck,
+  Mail,
+  Plus,
+  Minus
+} from 'lucide-react';
 import QrExportModal from './QrExportModal';
+import EmailQuoteModal from './EmailQuoteModal';
 import { DEFAULT_SALES_REPS } from '../data/salesReps';
 import ModernSelect from './ModernSelect';
 
@@ -15,6 +25,8 @@ export default function InterestDrawer({
   onSelectProduct
 }) {
   const [showQrModal, setShowQrModal] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+
   const [selectedRepId, setSelectedRepId] = useState(() => {
     return localStorage.getItem('tynor_selected_sales_rep') || DEFAULT_SALES_REPS[0]?.id || '';
   });
@@ -30,30 +42,90 @@ export default function InterestDrawer({
     }
   };
 
+  // Mapear productos seleccionados desglosando variantes compuestas
   const selectedProducts = interestList
     .map((code) => {
-      const p = products.find((prod) => prod.code === code);
+      const p = products.find((prod) => String(prod.code) === String(code));
       if (!p) return null;
       const sel = interestSelections[code] || {};
-      const defaultColors = p.colors && p.colors.length > 0 ? [p.colors[0].id] : [];
-      const defaultSizes = p.sizes && p.sizes.length === 1 ? p.sizes : (p.sizes?.slice(0, 1) || ['Universal']);
 
-      const selectedColors = sel.selectedColors && sel.selectedColors.length > 0
-        ? sel.selectedColors
-        : (sel.selectedColor ? [sel.selectedColor] : defaultColors);
+      let variants = sel.variants;
+      if (!variants || variants.length === 0) {
+        const fallbackSize = sel.selectedSizes?.[0] || (p.sizes?.[0] || 'Universal');
+        const fallbackColorId = sel.selectedColor || (p.colors?.[0]?.id || null);
+        const fallbackColorObj = p.colors?.find((c) => c.id === fallbackColorId);
+        const fallbackQty = Math.max(1, Number(sel.quantity) || 1);
 
-      const selectedColorObjs = p.colors?.filter((c) => selectedColors.includes(c.id)) || [];
+        variants = [{
+          id: `${p.code}-${fallbackSize}-${fallbackColorId || 'def'}`,
+          size: fallbackSize,
+          colorId: fallbackColorId,
+          colorName: fallbackColorObj?.name || null,
+          colorHex: fallbackColorObj?.hex || null,
+          quantity: fallbackQty
+        }];
+      }
+
+      const totalQty = variants.reduce((sum, v) => sum + (v.quantity || 1), 0);
+      const allSizes = Array.from(new Set(variants.map((v) => v.size)));
+      const allColors = Array.from(new Set(variants.map((v) => v.colorName).filter(Boolean)));
 
       return {
         ...p,
-        selectedSizes: sel.selectedSizes && sel.selectedSizes.length > 0 ? sel.selectedSizes : defaultSizes,
-        selectedColors: selectedColors,
-        selectedColorNames: selectedColorObjs.map((c) => c.name),
-        selectedColor: selectedColors[0] || null,
-        selectedColorName: selectedColorObjs[0]?.name || null
+        quantity: totalQty,
+        variants: variants,
+        selectedSizes: allSizes,
+        selectedColorNames: allColors
       };
     })
     .filter(Boolean);
+
+  // Totales globales de piezas y dinero
+  const totalPiezas = selectedProducts.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  const totalCost = selectedProducts.reduce((sum, item) => {
+    const pPrice = Number(item.price) || 0;
+    return sum + (pPrice * (item.quantity || 1));
+  }, 0);
+
+  const formattedTotal = new Intl.NumberFormat('es-MX', {
+    style: 'currency',
+    currency: 'MXN'
+  }).format(totalCost);
+
+  // Manejo de actualización de piezas de una variante específica dentro del drawer
+  const handleUpdateVariantInDrawer = (productCode, variantIdx, delta) => {
+    const currentSel = interestSelections[productCode] || {};
+    const item = selectedProducts.find((p) => p.code === productCode);
+    if (!item) return;
+
+    let updatedVariants = [...item.variants];
+    const target = updatedVariants[variantIdx];
+    const newQty = (target.quantity || 1) + delta;
+
+    if (newQty <= 0) {
+      if (updatedVariants.length === 1) {
+        onToggleInterest(productCode, null);
+        return;
+      }
+      updatedVariants = updatedVariants.filter((_, i) => i !== variantIdx);
+    } else {
+      updatedVariants[variantIdx] = { ...target, quantity: newQty };
+    }
+
+    const newTotalQty = updatedVariants.reduce((sum, v) => sum + (v.quantity || 1), 0);
+    const allSizes = Array.from(new Set(updatedVariants.map((v) => v.size)));
+    const allColorNames = Array.from(new Set(updatedVariants.map((v) => v.colorName).filter(Boolean)));
+    const allColorIds = Array.from(new Set(updatedVariants.map((v) => v.colorId).filter(Boolean)));
+
+    onToggleInterest(productCode, {
+      ...currentSel,
+      quantity: newTotalQty,
+      variants: updatedVariants,
+      selectedSizes: allSizes,
+      selectedColors: allColorIds,
+      selectedColorNames: allColorNames
+    });
+  };
 
   return (
     <>
@@ -66,7 +138,7 @@ export default function InterestDrawer({
         <div className="drawer-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <BookmarkCheck size={22} color="var(--brand)" />
-            <h2>Mi Lista de Interés</h2>
+            <h2>Mi Lista de Deseos</h2>
           </div>
           <button
             className="kiosk-icon-btn"
@@ -84,89 +156,162 @@ export default function InterestDrawer({
               <BookmarkCheck size={48} style={{ opacity: 0.3, marginBottom: '1rem' }} />
               <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--ink)' }}>Tu lista está vacía</h3>
               <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5 }}>
-                Toca "Agregar a mi lista" en cualquier producto o férula del catálogo para guardarlo aquí y cotizarlo en el stand.
+                Toca "Agregar a cotización" en cualquier producto del catálogo para guardarlo aquí y cotizarlo en el stand.
               </p>
             </div>
           ) : (
-            selectedProducts.map((p) => (
-              <div key={p.code} className="drawer-item">
-                <div
-                  className="drawer-item-img"
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => {
-                    onClose();
-                    onSelectProduct(p);
-                  }}
-                >
-                  <img src={`/assets/${p.code}.png`} alt={p.name} />
-                </div>
+            selectedProducts.map((p) => {
+              const itemPriceNum = Number(p.price) || 0;
+              const imgSrc = p.customImage || `/assets/${p.code}.png`;
 
-                <div
-                  className="drawer-item-details"
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => {
-                    onClose();
-                    onSelectProduct(p);
-                  }}
-                >
-                  <div className="drawer-item-code">Ref. {p.code}</div>
-                  <div className="drawer-item-name">{p.name}</div>
-                  
-                  {/* Badges de Colores y Tallas Seleccionadas */}
-                  <div className="drawer-item-tags">
-                    {p.selectedColors && p.selectedColors.length > 0 && (
-                      <div style={{ display: 'flex', gap: '0.25rem', flexWrap: 'wrap' }}>
-                        {p.selectedColors.map((cid) => {
-                          const cObj = p.colors?.find((c) => c.id === cid);
-                          return (
-                            <span key={cid} className="drawer-tag-color" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-                              <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: cObj?.hex || '#64748B', display: 'inline-block', border: '1px solid rgba(0,0,0,0.15)' }} />
-                              <span>{cObj?.name || cid} ({p.code}{cid})</span>
-                            </span>
-                          );
-                        })}
+              return (
+                <div key={p.code} className="drawer-item" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', width: '100%' }}>
+                    <div
+                      className="drawer-item-img"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        onClose();
+                        onSelectProduct(p);
+                      }}
+                    >
+                      <img
+                        src={imgSrc}
+                        alt={p.name}
+                        onError={(e) => { e.currentTarget.src = '/assets/logo.png'; }}
+                      />
+                    </div>
+
+                    <div
+                      className="drawer-item-details"
+                      style={{ cursor: 'pointer', flex: 1 }}
+                      onClick={() => {
+                        onClose();
+                        onSelectProduct(p);
+                      }}
+                    >
+                      <div className="drawer-item-code">
+                        Ref. {p.code} • <span style={{ color: 'var(--brand)', fontWeight: 800 }}>{p.marca || 'Tynor'}</span>
                       </div>
-                    )}
-                    {p.selectedSizes && p.selectedSizes.length > 0 && (
-                      <span className="drawer-tag-size">
-                        Tallas: {p.selectedSizes.join(', ')}
-                      </span>
-                    )}
+                      <div className="drawer-item-name">{p.name}</div>
+                    </div>
+
+                    <button
+                      className="drawer-item-remove"
+                      onClick={() => onToggleInterest(p.code)}
+                      aria-label={`Eliminar ${p.name}`}
+                      title="Quitar de la lista"
+                    >
+                      <Trash2 size={18} />
+                    </button>
                   </div>
 
-                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--brand)', marginTop: '0.2rem' }}>
-                    Consultar Precio
+                  {/* DESGLOSE DE VARIANTES COMPUESTAS */}
+                  <div style={{ marginTop: '0.6rem', padding: '0.5rem', background: 'var(--bg-surface)', borderRadius: '12px', border: '1px solid var(--border)' }}>
+                    <span style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--ink-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'block', marginBottom: '0.35rem' }}>
+                      Variantes Solicitadas:
+                    </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+                      {p.variants.map((v, vIdx) => {
+                        const variantSubtotal = itemPriceNum * (v.quantity || 1);
+                        return (
+                          <div
+                            key={v.id || vIdx}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              background: 'var(--bg-surface-raised)',
+                              padding: '0.3rem 0.5rem',
+                              borderRadius: '8px',
+                              fontSize: '0.8rem'
+                            }}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                              {v.colorHex && (
+                                <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: v.colorHex, border: '1px solid rgba(0,0,0,0.2)' }} />
+                              )}
+                              <span style={{ fontWeight: 800, color: 'var(--ink)' }}>{v.size}</span>
+                              {v.colorName && <span style={{ color: 'var(--ink-secondary)', fontSize: '0.76rem' }}>({v.colorName})</span>}
+                            </div>
+
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                              {itemPriceNum > 0 && (
+                                <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#059669' }}>
+                                  {new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(variantSubtotal)}
+                                </span>
+                              )}
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', background: 'var(--bg-surface)', padding: '0.1rem 0.25rem', borderRadius: '14px', border: '1px solid var(--border)' }}>
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleUpdateVariantInDrawer(p.code, vIdx, -1);
+                                  }}
+                                  style={{ width: 20, height: 20, borderRadius: '50%', border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--ink)' }}
+                                >
+                                  <Minus size={11} />
+                                </button>
+                                <span style={{ minWidth: 18, textAlign: 'center', fontWeight: 800, fontSize: '0.78rem', color: 'var(--ink)' }}>
+                                  {v.quantity || 1}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleUpdateVariantInDrawer(p.code, vIdx, 1);
+                                  }}
+                                  style={{ width: 20, height: 20, borderRadius: '50%', border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--brand)' }}
+                                >
+                                  <Plus size={11} />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-
-                <button
-                  className="drawer-item-remove"
-                  onClick={() => onToggleInterest(p.code)}
-                  aria-label={`Eliminar ${p.name}`}
-                  title="Quitar de la lista"
-                >
-                  <Trash2 size={18} />
-                </button>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 
         {selectedProducts.length > 0 && (
           <div className="drawer-footer">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--ink-secondary)' }}>
-                Total seleccionados:
-              </span>
-              <span style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--brand)' }}>
-                {selectedProducts.length} {selectedProducts.length === 1 ? 'producto' : 'productos'}
-              </span>
+            {/* Contador de Productos y Suma Total de Costos */}
+            <div
+              style={{
+                background: 'var(--bg-surface-raised)',
+                border: '1px solid var(--border)',
+                borderRadius: '16px',
+                padding: '0.9rem 1.1rem',
+                marginBottom: '1rem'
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink-secondary)' }}>
+                  Total de artículos:
+                </span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--ink)' }}>
+                  {totalPiezas} {totalPiezas === 1 ? 'pieza' : 'piezas'} ({selectedProducts.length} {selectedProducts.length === 1 ? 'modelo' : 'modelos'})
+                </span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--ink)' }}>
+                  Suma Total Estimada:
+                </span>
+                <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#059669' }}>
+                  {formattedTotal}
+                </span>
+              </div>
             </div>
 
-            {/* Selector de Vendedor / Asesor para WhatsApp con ModernSelect */}
+            {/* Selector de Asesor Asignado */}
             <div className="sales-rep-selector-box" style={{ marginBottom: '1rem' }}>
-              <label className="sales-rep-label" style={{ marginBottom: '0.45rem', display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', fontWeight: 700, color: '#10B4C1' }}>
-                <UserCheck size={16} color="var(--brand)" />
+              <label className="sales-rep-label" style={{ marginBottom: '0.45rem', display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', fontWeight: 700, color: 'var(--brand)' }}>
+                <UserCheck size={16} />
                 <span>Asignar Vendedor / Asesor:</span>
               </label>
               <ModernSelect
@@ -177,34 +322,85 @@ export default function InterestDrawer({
               />
             </div>
 
+            {/* Botón Principal Destacado: Enviar Pedido a WhatsApp */}
             <button
-              className="drawer-btn-qr"
               onClick={() => setShowQrModal(true)}
+              style={{
+                width: '100%',
+                height: 52,
+                borderRadius: 'var(--radius-pill)',
+                background: '#25D366',
+                color: '#FFFFFF',
+                border: 'none',
+                fontWeight: 900,
+                fontSize: '0.98rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.6rem',
+                cursor: 'pointer',
+                boxShadow: '0 8px 20px -4px rgba(37, 211, 102, 0.45)',
+                marginBottom: '0.65rem'
+              }}
             >
-              <QrIcon size={22} />
-              <span>Enviar Pedido a WhatsApp (QR)</span>
+              <QrIcon size={20} />
+              <span>Enviar Pedido a WhatsApp</span>
             </button>
 
-            <div className="drawer-footer-actions" style={{ gridTemplateColumns: '1fr' }}>
+            {/* Acciones Secundarias */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem', marginBottom: '0.65rem' }}>
+              <button
+                onClick={() => setShowEmailModal(true)}
+                style={{
+                  height: 44,
+                  borderRadius: 'var(--radius-pill)',
+                  border: '1px solid var(--border)',
+                  background: 'var(--bg-surface-raised)',
+                  color: 'var(--ink)',
+                  fontWeight: 700,
+                  fontSize: '0.82rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.4rem',
+                  cursor: 'pointer'
+                }}
+              >
+                <Mail size={16} color="var(--brand)" />
+                <span>Mandar a Correo</span>
+              </button>
+
               <button
                 className="drawer-btn-secondary"
                 onClick={onClearInterest}
-                style={{ color: '#EF4444', width: '100%', justifyContent: 'center' }}
+                style={{ color: '#EF4444', justifyContent: 'center', height: 44, fontSize: '0.82rem' }}
               >
-                <Trash2 size={18} />
-                <span>Vaciar Lista de Interés</span>
+                <Trash2 size={16} />
+                <span>Vaciar Lista</span>
               </button>
             </div>
           </div>
         )}
       </aside>
 
+      {/* Modal QR de WhatsApp */}
       {showQrModal && (
         <QrExportModal
           items={selectedProducts}
           initialRepId={selectedRep?.id}
           onRepChange={handleRepChange}
           onClose={() => setShowQrModal(false)}
+        />
+      )}
+
+      {/* Modal de Envío de Cotización por Correo */}
+      {showEmailModal && (
+        <EmailQuoteModal
+          isOpen={showEmailModal}
+          onClose={() => setShowEmailModal(false)}
+          items={selectedProducts}
+          totalAmount={totalCost}
+          salesRep={selectedRep}
         />
       )}
     </>

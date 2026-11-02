@@ -122,13 +122,23 @@ export async function syncPendingLeads() {
   }
 }
 
-// Escuchar evento online para sincronizar automáticamente
+// Escuchar eventos online, focus y temporizador periódico para sincronizar automáticamente (FLAW-01)
 if (typeof window !== 'undefined') {
-  window.addEventListener('online', () => {
+  const triggerLeadSync = () => {
     syncPendingLeads().then((res) => {
       if (res.synced > 0) {
         console.log(`[Supabase Sync] ${res.synced} prospectos pendientes sincronizados exitosamente.`);
       }
     });
-  });
+  };
+
+  // 1. Sincronizar al recuperar conexión de red
+  window.addEventListener('online', triggerLeadSync);
+
+  // 2. Sincronizar cuando la ventana o app vuelve al foco (ej. tablet reactivada o cambio de pestaña)
+  window.addEventListener('focus', triggerLeadSync);
+
+  // 3. Temporizador periódico de reintento cada 5 minutos (300,000 ms)
+  setInterval(triggerLeadSync, 300000);
 }
+

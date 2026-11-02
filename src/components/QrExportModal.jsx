@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import QRCode from 'qrcode';
 import { X, Smartphone, Check, UserCheck, Phone } from 'lucide-react';
 import { DEFAULT_SALES_REPS, buildWhatsAppMessage, getWhatsAppUrl } from '../data/salesReps';
@@ -9,8 +9,6 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
   const [repId, setRepId] = useState(initialRepId || DEFAULT_SALES_REPS[0]?.id || '');
 
   const currentRep = DEFAULT_SALES_REPS.find((r) => r.id === repId) || DEFAULT_SALES_REPS[0];
-  const message = buildWhatsAppMessage(currentRep?.name || 'Asesor Tynor', items);
-  const whatsappUrl = getWhatsAppUrl(currentRep?.phone || '', message);
 
   const handleSelectRep = (newId) => {
     setRepId(newId);
@@ -19,14 +17,20 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
     }
   };
 
+  // URL del QR: Directo al WhatsApp del Asesor Oficial sin intermediarios ni descargas locales
+  const qrTargetUrl = useMemo(() => {
+    const directWaMsg = buildWhatsAppMessage(currentRep?.name || 'Asesor Tynor', items);
+    return getWhatsAppUrl(currentRep?.phone || '', directWaMsg);
+  }, [items, currentRep]);
+
   useEffect(() => {
     if (!canvasRef.current || items.length === 0) return;
 
     QRCode.toCanvas(
       canvasRef.current,
-      whatsappUrl,
+      qrTargetUrl,
       {
-        width: 220,
+        width: 240,
         margin: 2,
         color: {
           dark: '#0f172a',
@@ -35,10 +39,10 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
         errorCorrectionLevel: 'M'
       },
       (err) => {
-        if (err) console.error('Error generating WhatsApp QR:', err);
+        if (err) console.error('Error generating QR:', err);
       }
     );
-  }, [whatsappUrl, items]);
+  }, [qrTargetUrl, items]);
 
   return (
     <div className="modal-overlay open" onClick={onClose}>
@@ -59,7 +63,7 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
                   Enviar Pedido a WhatsApp
                 </h3>
                 <span style={{ fontSize: '0.78rem', color: 'var(--ink-secondary)' }}>
-                  {items.length} {items.length === 1 ? 'producto seleccionado' : 'productos seleccionados'}
+                  {items.length} {items.length === 1 ? 'modelo seleccionado' : 'modelos seleccionados'}
                 </span>
               </div>
             </div>
@@ -73,8 +77,8 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
             </button>
           </div>
 
-          {/* Vendedor Asignado con ModernSelect Estilo iPhone */}
-          <div className="modal-sales-rep-box" style={{ marginBottom: '1rem', position: 'relative', zIndex: 100 }}>
+          {/* Vendedor Asignado con ModernSelect */}
+          <div className="modal-sales-rep-box" style={{ marginBottom: '0.85rem', position: 'relative', zIndex: 100 }}>
             <div className="modal-sales-rep-header">
               <span className="modal-sales-rep-tag">Vendedor Asignado</span>
             </div>
@@ -85,28 +89,30 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
             />
           </div>
 
-          {/* Canvas QR con URL wa.me */}
-          <div className="qr-canvas-wrap whatsapp-qr-wrap" style={{ margin: '0.5rem auto 1rem auto', position: 'relative', zIndex: 1 }}>
+          {/* Canvas QR */}
+          <div className="qr-canvas-wrap whatsapp-qr-wrap" style={{ margin: '0.4rem auto 0.85rem auto', position: 'relative', zIndex: 1 }}>
             <canvas ref={canvasRef} style={{ maxWidth: '100%', height: 'auto' }} />
             <div className="qr-badge-overlay">
-              <span className="whatsapp-qr-tag">Escanear para WhatsApp</span>
+              <span className="whatsapp-qr-tag">
+                🟢 Abre WhatsApp Inmediatamente
+              </span>
             </div>
           </div>
 
-          <p className="qr-instruction" style={{ marginBottom: '1rem', fontSize: '0.85rem', lineHeight: '1.4', textAlign: 'center' }}>
-            <Smartphone size={16} style={{ verticalAlign: 'middle', marginRight: 6, color: 'var(--brand)' }} />
-            Apunta la cámara de tu teléfono al código QR. Se abrirá WhatsApp con el pedido y la cotización lista para enviar a <strong>{currentRep?.name}</strong>.
+          <p className="qr-instruction" style={{ marginBottom: '1.25rem', fontSize: '0.86rem', lineHeight: '1.45', textAlign: 'center', color: 'var(--ink-secondary)' }}>
+            <Smartphone size={16} style={{ verticalAlign: 'middle', marginRight: 6, color: '#25D366' }} />
+            Apunta la cámara de tu teléfono móvil al código QR. <strong>Se abrirá WhatsApp directamente</strong> con tu pedido y cotización lista para enviar a <strong>{currentRep?.name}</strong> con el desglose exacto de tus piezas, medidas y colores.
           </p>
 
-          {/* Acción única y limpia de cierre */}
-          <div className="qr-action-buttons" style={{ width: '100%', marginTop: '0.5rem' }}>
+          {/* Acción de cierre */}
+          <div className="qr-action-buttons" style={{ width: '100%', marginTop: '0.3rem' }}>
             <button
               className="drawer-btn-secondary"
               style={{
                 width: '100%',
                 height: 48,
                 fontSize: '0.95rem',
-                fontWeight: 700,
+                fontWeight: 800,
                 borderRadius: 'var(--radius-pill)',
                 background: 'var(--bg-surface-raised)',
                 border: '1px solid var(--border)',
@@ -127,4 +133,3 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
     </div>
   );
 }
-

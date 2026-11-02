@@ -1,8 +1,9 @@
-import React from 'react';
-import { Layers, User, Moon, Sun, Bookmark, WifiOff, Play, UserPlus, UserCheck, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Layers, User, Bookmark, Play, UserPlus, UserCheck } from 'lucide-react';
 import { Capacitor } from '@capacitor/core';
+import { brandingService } from '../services/brandingService';
 
-// Detección de entorno APK nativo (Capacitor Android o parámetro ?apk=true de prueba)
+// Detección de entorno APK nativo
 const isApk = typeof window !== 'undefined' && (
   Capacitor.isNativePlatform() ||
   Capacitor.getPlatform() === 'android' ||
@@ -20,21 +21,68 @@ export default function KioskHeader({
   onStartDemo,
   onOpenForm,
   fixedRepName,
-  onOpenFixedRepModal
+  onOpenFixedRepModal,
+  onOpenAdminAuth
 }) {
-  const toggleTheme = () => {
-    const next = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
+  const [logo, setLogo] = useState(() => brandingService.getLogo());
+
+  // Suscribirse a cambios de branding dinámico
+  useEffect(() => {
+    const unsub = brandingService.subscribe((data) => {
+      setLogo(data.logo);
+    });
+    return unsub;
+  }, []);
+
+  // Trigger Oculto de Administrador en el Logo (Triple Clic o Pulsación Continua de 2.5s)
+  const clickCountRef = useRef(0);
+  const clickTimeoutRef = useRef(null);
+  const longPressTimerRef = useRef(null);
+
+  const handleLogoClick = () => {
+    clickCountRef.current += 1;
+    if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
+
+    if (clickCountRef.current >= 3) {
+      clickCountRef.current = 0;
+      if (onOpenAdminAuth) onOpenAdminAuth();
+      return;
+    }
+
+    clickTimeoutRef.current = setTimeout(() => {
+      clickCountRef.current = 0;
+    }, 700);
+  };
+
+  const handleLogoPointerDown = () => {
+    if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
+    longPressTimerRef.current = setTimeout(() => {
+      if (onOpenAdminAuth) onOpenAdminAuth();
+    }, 2500);
+  };
+
+  const handleLogoPointerUp = () => {
+    if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
   };
 
   return (
     <header className="kiosk-header">
       <div className="kiosk-brand">
-        <div className="kiosk-brand-card" title="Tynor — Ortopedia y Rehabilitación">
+        {/* Logo con trigger oculto */}
+        <div
+          className="kiosk-brand-card"
+          title="Tynor — Ortopedia y Rehabilitación"
+          onClick={handleLogoClick}
+          onPointerDown={handleLogoPointerDown}
+          onPointerUp={handleLogoPointerUp}
+          onPointerLeave={handleLogoPointerUp}
+          style={{ cursor: 'pointer', userSelect: 'none' }}
+        >
           <img
-            src="/assets/logo.png"
+            src={logo}
             alt="Tynor"
             className="kiosk-logo"
+            onError={(e) => { e.currentTarget.src = '/assets/logo.png'; }}
           />
         </div>
 
@@ -57,10 +105,11 @@ export default function KioskHeader({
           </div>
         </button>
 
+        {/* Insignia Institucional Limpia */}
         <div className="kiosk-brand-badge">
           <div className="brand-status-line">
             <span className="brand-live-pulse" />
-            <span className="brand-expo-tag">EXPOMEDICAL 2026</span>
+            <span className="brand-expo-tag">Catálogo Oficial</span>
           </div>
           <span className="brand-subtitle">Ortopedia & Biomecánica</span>
         </div>
@@ -86,7 +135,7 @@ export default function KioskHeader({
       </div>
 
       <div className="kiosk-actions">
-        {/* Botón de Registro Comercial (Formulario para Usuarios conectado a Supabase) */}
+        {/* Botón de Registro Comercial (Formulario de prospectos conectado a Supabase) */}
         <button
           className="kiosk-register-btn"
           onClick={onOpenForm}
@@ -105,13 +154,13 @@ export default function KioskHeader({
           <Play size={18} fill="currentColor" style={{ marginLeft: '2px' }} />
         </button>
 
-        {/* Botón de Mi Lista de Interés: Ocultado en UI sin eliminar el módulo */}
+        {/* Botón de Mi Lista de Deseos / Cotizador: REACTIVADO Y VISIBLE */}
         <button
           className="kiosk-icon-btn"
           onClick={onOpenDrawer}
-          aria-label="Ver Lista de Interés"
-          title="Ver mi lista de productos seleccionados"
-          style={{ display: 'none' }}
+          aria-label="Ver Mi Lista de Deseos"
+          title="Ver mi lista de deseos y cotización"
+          style={{ position: 'relative' }}
         >
           <Bookmark size={22} />
           {interestCount > 0 && (

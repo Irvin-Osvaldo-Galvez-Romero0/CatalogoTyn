@@ -26,7 +26,15 @@ export default function CatalogView({
     return matchesCat && matchesQuery;
   });
 
-  const formatPrice = () => 'Consultar Precio';
+  const formatPrice = (price) => {
+    if (price != null && Number(price) > 0) {
+      return new Intl.NumberFormat('es-MX', {
+        style: 'currency',
+        currency: 'MXN'
+      }).format(Number(price));
+    }
+    return 'Precio Especial';
+  };
 
   const handleOpenKeyboard = () => {
     if (isNativeMobile) return;
@@ -119,13 +127,14 @@ export default function CatalogView({
                   <div className="kiosk-card-img-wrap">
                     {p.badge && <span className="card-badge">{p.badge}</span>}
                     <img
-                      src={`/assets/${p.code}.png`}
+                      src={p.customImage || `/assets/${p.code}.png`}
                       alt={p.name}
                       className="kiosk-card-img"
                       loading="lazy"
+                      onError={(e) => { e.currentTarget.src = '/assets/logo.png'; }}
                     />
                     <div className="card-media-indicators">
-                      {p.hasPdf && (
+                      {(p.hasPdf || p.customPdfUrl) && (
                         <span className="media-tag" title="Ficha Técnica PDF Disponible">
                           <FileText size={12} /> PDF
                         </span>
@@ -140,7 +149,7 @@ export default function CatalogView({
 
                   <div className="kiosk-card-body">
                     <span className="kiosk-card-cat">
-                      Ref. {p.code} • {p.cat}
+                      Ref. {p.code} • {p.marca || 'Tynor'} • {p.cat}
                     </span>
                     <h3 className="kiosk-card-title">{p.name}</h3>
                     <p className="kiosk-card-desc">{p.shortDesc}</p>
