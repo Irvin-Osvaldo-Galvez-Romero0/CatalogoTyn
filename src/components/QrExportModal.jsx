@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import QRCode from 'qrcode';
-import { X, Smartphone, Check, UserCheck, Phone } from 'lucide-react';
-import { DEFAULT_SALES_REPS, buildWhatsAppMessage, getWhatsAppUrl } from '../data/salesReps';
+import { X, Smartphone, Check, UserCheck, Phone, Sparkles } from 'lucide-react';
+import { DEFAULT_SALES_REPS } from '../data/salesReps';
 import ModernSelect from './ModernSelect';
+
+// Dominio oficial desplegado en Vercel
+const VERCEL_PRODUCTION_ORIGIN = 'https://catalogotyn-kh85g5dv0-irvin-romeros-projects.vercel.app';
 
 export default function QrExportModal({ items, initialRepId, onRepChange, onClose }) {
   const canvasRef = useRef(null);
@@ -17,10 +20,40 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
     }
   };
 
-  // URL del QR: Directo al WhatsApp del Asesor Oficial sin intermediarios ni descargas locales
+  // URL del QR: Siempre apunta al dominio oficial de producción en Vercel con el payload de cotización
   const qrTargetUrl = useMemo(() => {
-    const directWaMsg = buildWhatsAppMessage(currentRep?.name || 'Asesor Tynor', items);
-    return getWhatsAppUrl(currentRep?.phone || '', directWaMsg);
+    try {
+      const minimalItems = items.map((it) => ({
+        c: it.code,
+        n: it.name,
+        m: it.marca || '',
+        p: Number(it.price) || 0,
+        v: (it.variants || []).map((v) => ({
+          s: v.size,
+          cn: v.colorName || '',
+          q: v.quantity || 1
+        }))
+      }));
+
+      const payload = {
+        r: currentRep.id,
+        i: minimalItems,
+        t: Date.now()
+      };
+
+      const jsonStr = JSON.stringify(payload);
+      const encoded = btoa(unescape(encodeURIComponent(jsonStr)));
+
+      // Usar Vercel oficial para que cualquier celular con internet lo abra de inmediato
+      const targetOrigin = (window.location.origin.includes('vercel.app'))
+        ? window.location.origin
+        : VERCEL_PRODUCTION_ORIGIN;
+
+      return `${targetOrigin}/?q=${encodeURIComponent(encoded)}`;
+    } catch (e) {
+      console.warn('Error creating QR mobile landing url:', e);
+      return VERCEL_PRODUCTION_ORIGIN;
+    }
   }, [items, currentRep]);
 
   useEffect(() => {
@@ -89,19 +122,19 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
             />
           </div>
 
-          {/* Canvas QR */}
+          {/* Canvas QR apuntando a la Landing en Vercel */}
           <div className="qr-canvas-wrap whatsapp-qr-wrap" style={{ margin: '0.4rem auto 0.85rem auto', position: 'relative', zIndex: 1 }}>
             <canvas ref={canvasRef} style={{ maxWidth: '100%', height: 'auto' }} />
             <div className="qr-badge-overlay">
               <span className="whatsapp-qr-tag">
-                🟢 Abre WhatsApp Inmediatamente
+                ⚡ Auto-Descarga PDF en tu Celular
               </span>
             </div>
           </div>
 
           <p className="qr-instruction" style={{ marginBottom: '1.25rem', fontSize: '0.86rem', lineHeight: '1.45', textAlign: 'center', color: 'var(--ink-secondary)' }}>
-            <Smartphone size={16} style={{ verticalAlign: 'middle', marginRight: 6, color: '#25D366' }} />
-            Apunta la cámara de tu teléfono móvil al código QR. <strong>Se abrirá WhatsApp directamente</strong> con tu pedido y cotización lista para enviar a <strong>{currentRep?.name}</strong> con el desglose exacto de tus piezas, medidas y colores.
+            <Smartphone size={16} style={{ verticalAlign: 'middle', marginRight: 6, color: 'var(--brand)' }} />
+            Apunta la cámara de tu celular al código QR. <strong>Se descargará automáticamente el PDF oficial en tu teléfono</strong> y verás el botón para enviarlo directo al WhatsApp de <strong>{currentRep?.name}</strong> con el desglose exacto de tus piezas, medidas y colores.
           </p>
 
           {/* Acción de cierre */}
