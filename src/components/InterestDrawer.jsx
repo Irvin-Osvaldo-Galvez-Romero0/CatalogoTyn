@@ -324,7 +324,10 @@ export default function InterestDrawer({
 
             {/* Botón Principal Destacado: Enviar Pedido a WhatsApp */}
             <button
-              onClick={() => setShowQrModal(true)}
+              onClick={() => {
+                setShowQrModal(true);
+                if (onClose) onClose();
+              }}
               style={{
                 width: '100%',
                 height: 52,
@@ -350,7 +353,10 @@ export default function InterestDrawer({
             {/* Acciones Secundarias */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem', marginBottom: '0.65rem' }}>
               <button
-                onClick={() => setShowEmailModal(true)}
+                onClick={() => {
+                  setShowEmailModal(true);
+                  if (onClose) onClose();
+                }}
                 style={{
                   height: 44,
                   borderRadius: 'var(--radius-pill)',
