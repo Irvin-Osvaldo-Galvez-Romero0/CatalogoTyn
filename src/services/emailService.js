@@ -75,24 +75,42 @@ export const emailService = {
    */
   async testConnection(testRecipientEmail) {
     const config = this.getConfig();
-    if (!config.fromEmail || !config.user) {
+    if (!config.fromEmail || !config.user || !config.host) {
       return {
         success: false,
-        error: 'Por favor completa al menos el correo emisor y usuario antes de enviar la prueba.'
+        error: 'Por favor completa al menos el servidor SMTP, usuario, contraseña y correo emisor.'
       };
     }
 
     try {
-      // Simulación de verificación con endpoint de relay / Edge Function
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          config,
+          recipientEmail: testRecipientEmail,
+          recipientName: 'Prueba de Conexión',
+          quoteNumber: 'TEST',
+          items: [
+            { code: 'TEST', name: 'Comprobación de Servidor SMTP HostGator', price: 0, sizes: ['OK'] }
+          ],
+          totalAmount: 0
+        })
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Error al conectar con el servidor SMTP');
+      }
+
       return {
         success: true,
-        message: `Prueba exitosa. Conexión establecida con ${config.host || 'servidor'} para ${testRecipientEmail}.`
+        message: `¡Prueba exitosa! Correo enviado desde ${config.fromEmail} a ${testRecipientEmail}.`
       };
     } catch (err) {
       return {
         success: false,
-        error: `Fallo de conexión: ${err.message}`
+        error: `Fallo de conexión o envío: ${err.message}`
       };
     }
   },
@@ -133,12 +151,62 @@ export const emailService = {
       `Teléfono / WhatsApp: ${salesRep?.displayPhone || '+52 55 1080 5603'}\n\n` +
       `¡Gracias por tu preferencia!\nTynor Ortopedia & Biomecánica`;
 
-    // Si hay cliente de correo nativo o fallback por protocolo mailto
+    // Si está configurado el servidor SMTP, intentar despacho directo mediante la API de Vercel
+    if (config.host && config.user && config.password) {
+      try {
+        let pdfBase64 = null;
+        if (pdfBlob) {
+          pdfBase64 = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              const res = reader.result;
+              const base64 = typeof res === 'string' ? res.split(',')[1] : null;
+              resolve(base64);
+            };
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(pdfBlob);
+          });
+        }
+
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            config,
+            recipientEmail,
+            recipientName,
+            quoteNumber,
+            items,
+            totalAmount,
+            salesRep,
+            pdfBase64
+          })
+        });
+
+        const data = await response.json();
+        if (response.ok && data.success) {
+          return {
+            success: true,
+            mode: 'smtp_direct',
+            from: config.fromEmail || config.user,
+            to: recipientEmail,
+            formattedTotal,
+            message: `Correo enviado exitosamente a ${recipientEmail}`
+          };
+        } else {
+          console.warn('Fallo el envío por API, usando fallback mailto:', data.error);
+        }
+      } catch (e) {
+        console.warn('Error llamando a /api/send-email, usando fallback mailto:', e);
+      }
+    }
+
+    // Fallback: Si no hay servidor configurado o falla la red, preparar enlace mailto
     const mailtoUrl = `mailto:${encodeURIComponent(recipientEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBodyText)}`;
 
     return {
       success: true,
-      mode: config.fromEmail ? 'gateway' : 'mailto',
+      mode: 'mailto',
       mailtoUrl,
       from: config.fromEmail || 'cotizaciones@tynor.com.mx',
       to: recipientEmail,
