@@ -4,8 +4,8 @@ import { X, Smartphone, Check, UserCheck, Phone, Sparkles } from 'lucide-react';
 import { DEFAULT_SALES_REPS } from '../data/salesReps';
 import ModernSelect from './ModernSelect';
 
-// Dominio oficial desplegado en Vercel
-const VERCEL_PRODUCTION_ORIGIN = 'https://catalogotyn-kh85g5dv0-irvin-romeros-projects.vercel.app';
+// Dominio oficial público de producción en Vercel (100% libre y sin login)
+const VERCEL_PUBLIC_DOMAIN = 'https://catalogotyn.vercel.app';
 
 export default function QrExportModal({ items, initialRepId, onRepChange, onClose }) {
   const canvasRef = useRef(null);
@@ -20,7 +20,7 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
     }
   };
 
-  // URL del QR: Siempre apunta al dominio oficial de producción en Vercel con el payload de cotización
+  // URL del QR: Apunta al dominio canónico público https://catalogotyn.vercel.app
   const qrTargetUrl = useMemo(() => {
     try {
       const minimalItems = items.map((it) => ({
@@ -44,15 +44,10 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
       const jsonStr = JSON.stringify(payload);
       const encoded = btoa(unescape(encodeURIComponent(jsonStr)));
 
-      // Usar Vercel oficial para que cualquier celular con internet lo abra de inmediato
-      const targetOrigin = (window.location.origin.includes('vercel.app'))
-        ? window.location.origin
-        : VERCEL_PRODUCTION_ORIGIN;
-
-      return `${targetOrigin}/?q=${encodeURIComponent(encoded)}`;
+      return `${VERCEL_PUBLIC_DOMAIN}/?q=${encodeURIComponent(encoded)}`;
     } catch (e) {
       console.warn('Error creating QR mobile landing url:', e);
-      return VERCEL_PRODUCTION_ORIGIN;
+      return VERCEL_PUBLIC_DOMAIN;
     }
   }, [items, currentRep]);
 
@@ -122,7 +117,7 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
             />
           </div>
 
-          {/* Canvas QR apuntando a la Landing en Vercel */}
+          {/* Canvas QR apuntando al dominio público libre https://catalogotyn.vercel.app */}
           <div className="qr-canvas-wrap whatsapp-qr-wrap" style={{ margin: '0.4rem auto 0.85rem auto', position: 'relative', zIndex: 1 }}>
             <canvas ref={canvasRef} style={{ maxWidth: '100%', height: 'auto' }} />
             <div className="qr-badge-overlay">
