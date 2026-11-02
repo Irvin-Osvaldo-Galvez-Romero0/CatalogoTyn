@@ -283,11 +283,11 @@ export default function InterestDrawer({
             {/* Contador de Productos y Suma Total de Costos */}
             <div
               style={{
-                background: 'var(--bg-surface-raised)',
+                background: 'var(--bg-surface)',
                 border: '1px solid var(--border)',
-                borderRadius: '16px',
-                padding: '0.9rem 1.1rem',
-                marginBottom: '1rem'
+                borderRadius: '12px',
+                padding: '0.6rem 0.85rem',
+                marginBottom: '0.65rem'
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
@@ -309,7 +309,7 @@ export default function InterestDrawer({
             </div>
 
             {/* Selector de Asesor Asignado */}
-            <div className="sales-rep-selector-box" style={{ marginBottom: '1rem' }}>
+            <div className="sales-rep-selector-box" style={{ marginBottom: '0.65rem' }}>
               <label className="sales-rep-label" style={{ marginBottom: '0.45rem', display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', fontWeight: 700, color: 'var(--brand)' }}>
                 <UserCheck size={16} />
                 <span>Asignar Vendedor / Asesor:</span>
