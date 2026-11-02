@@ -316,11 +316,37 @@ export const pdfGenerator = {
   },
 
   /**
-   * Genera y descarga directamente el archivo PDF
+   * Genera y descarga forzadamente el archivo PDF garantizado en Android, Windows, Mac e iOS (iPhone/iPad)
    */
   async downloadQuote(options) {
     const { doc, filename } = await this.createQuotePdf(options);
-    doc.save(filename);
-    return { success: true, filename };
+
+    try {
+      // 1. Obtener Blob del PDF con tipo application/octet-stream para forzar descarga en iOS/Safari
+      const pdfBlob = doc.output('blob');
+      const forceDownloadBlob = new Blob([pdfBlob], { type: 'application/octet-stream' });
+      const blobUrl = URL.createObjectURL(forceDownloadBlob);
+
+      // 2. Disparador de descarga vía elemento <a> con atributo download
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = filename;
+      link.rel = 'noopener noreferrer';
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+
+      // Limpieza del DOM
+      setTimeout(() => {
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl);
+      }, 1500);
+
+      return { success: true, filename };
+    } catch (e) {
+      console.warn('Fallback standard doc.save:', e);
+      doc.save(filename);
+      return { success: true, filename };
+    }
   }
 };

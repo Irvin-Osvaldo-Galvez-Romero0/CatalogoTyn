@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Phone, CheckCircle, Package, ArrowLeft, ExternalLink, Loader2, FileText } from 'lucide-react';
+import { Download, Phone, CheckCircle, ArrowLeft, Loader2, FileText, ArrowRight, ShieldCheck } from 'lucide-react';
 import { pdfGenerator } from '../services/pdfGenerator';
 import { brandingService } from '../services/brandingService';
 import { getWhatsAppUrl, buildWhatsAppMessage, DEFAULT_SALES_REPS } from '../data/salesReps';
@@ -7,15 +7,15 @@ import { getWhatsAppUrl, buildWhatsAppMessage, DEFAULT_SALES_REPS } from '../dat
 export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
   const [downloadStarted, setDownloadStarted] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [whatsappSent, setWhatsappSent] = useState(false);
 
-  const { items = [], salesRep = null, folio = '', brandColor = '#10B4C1' } = quoteData || {};
+  const { items = [], salesRep = null, brandColor = '#10B4C1' } = quoteData || {};
 
   const currentRep = salesRep || DEFAULT_SALES_REPS[0];
+  // Mensaje conciso sin texto largo ni precotizaciones redundantes
   const message = buildWhatsAppMessage(currentRep?.name || 'Asesor', items);
   const whatsappUrl = getWhatsAppUrl(currentRep?.phone || '', message);
 
-  // Auto-descargar el PDF en el móvil al montar la pantalla
+  // Auto-descargar el PDF en el celular al cargar (compatible con Safari / iPhone y Chrome / Android)
   useEffect(() => {
     let isMounted = true;
     const triggerAutoDownload = async () => {
@@ -41,7 +41,7 @@ export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
 
     const timer = setTimeout(() => {
       triggerAutoDownload();
-    }, 600);
+    }, 700);
 
     return () => {
       isMounted = false;
@@ -73,23 +73,10 @@ export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
     return sum + (item.quantity || 1);
   }, 0);
 
-  const totalCost = items.reduce((sum, item) => {
-    const itemPrice = Number(item.price) || 0;
-    if (item.variants && item.variants.length > 0) {
-      return sum + item.variants.reduce((vSum, v) => vSum + (itemPrice * (v.quantity || 1)), 0);
-    }
-    return sum + (itemPrice * (item.quantity || 1));
-  }, 0);
-
-  const formattedTotal = new Intl.NumberFormat('es-MX', {
-    style: 'currency',
-    currency: 'MXN'
-  }).format(totalCost);
-
   return (
     <div style={{
       minHeight: '100dvh',
-      background: 'linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 100%)',
+      background: 'linear-gradient(180deg, #F0FDF4 0%, #F8FAFC 100%)',
       padding: '1.25rem 1rem 3rem 1rem',
       fontFamily: 'Inter, system-ui, sans-serif',
       display: 'flex',
@@ -98,7 +85,7 @@ export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
       color: '#0F172A',
       boxSizing: 'border-box'
     }}>
-      {/* Barra superior de regreso al quiosco si se ve en desktop */}
+      {/* Barra superior de regreso si se ve en desktop */}
       {onBackToKiosk && (
         <div style={{ width: '100%', maxWidth: 480, marginBottom: '0.75rem' }}>
           <button
@@ -132,12 +119,12 @@ export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
         boxSizing: 'border-box'
       }}>
         {/* Encabezado con estado de descarga */}
-        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
           <div style={{
-            width: 64,
-            height: 64,
+            width: 68,
+            height: 68,
             borderRadius: '50%',
-            background: downloadStarted ? '#ECFDF5' : '#EFF6FF',
+            background: downloadStarted ? '#DCFCE7' : '#EFF6FF',
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -145,98 +132,47 @@ export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
             transition: 'all 0.3s ease'
           }}>
             {downloadStarted ? (
-              <CheckCircle size={36} color="#059669" />
+              <CheckCircle size={40} color="#16A34A" />
             ) : isGenerating ? (
-              <Loader2 size={36} color="#0284C7" className="spin-animate" />
+              <Loader2 size={38} color="#0284C7" className="spin-animate" />
             ) : (
-              <FileText size={36} color="#0284C7" />
+              <FileText size={38} color="#0284C7" />
             )}
           </div>
 
           <h1 style={{ margin: '0 0 0.35rem 0', fontSize: '1.35rem', fontWeight: 900, color: '#0F172A' }}>
-            {downloadStarted ? '¡Cotización Oficial Descargada!' : 'Preparando tu Cotización...'}
+            {downloadStarted ? '¡PDF Descargado con Éxito!' : 'Descargando tu Cotización...'}
           </h1>
-          <p style={{ margin: 0, fontSize: '0.86rem', color: '#64748B', lineHeight: 1.45 }}>
+          <p style={{ margin: 0, fontSize: '0.88rem', color: '#64748B', lineHeight: 1.5 }}>
             {downloadStarted
-              ? 'El archivo PDF ya se encuentra en las descargas de tu celular. Ahora envíalo por WhatsApp a tu asesor.'
-              : 'Se está descargando automáticamente el documento PDF oficial en tu dispositivo.'}
+              ? 'El documento PDF oficial ya se descargó en tu dispositivo. Ahora toca el botón de abajo para abrir WhatsApp y adjuntarlo a tu asesor.'
+              : 'Se está guardando automáticamente el archivo PDF oficial en las descargas de tu celular.'}
           </p>
         </div>
 
-        {/* Resumen del Pedido y Asesor */}
+        {/* Resumen del Asesor y Piezas */}
         <div style={{
           background: '#F8FAFC',
           border: '1px solid #E2E8F0',
           borderRadius: 16,
-          padding: '1rem',
-          marginBottom: '1.5rem'
+          padding: '0.9rem 1.1rem',
+          marginBottom: '1.25rem'
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
             <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#64748B' }}>Asesor Comercial:</span>
             <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0F172A' }}>{currentRep?.name}</span>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-            <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#64748B' }}>Piezas Totales:</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#64748B' }}>Piezas Cotizadas en PDF:</span>
             <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0F172A' }}>{totalPiezas} piezas ({items.length} modelos)</span>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '0.5rem', borderTop: '1px dashed #CBD5E1' }}>
-            <span style={{ fontSize: '0.9rem', fontWeight: 800, color: '#0F172A' }}>Total Estimado:</span>
-            <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#059669' }}>{formattedTotal}</span>
-          </div>
         </div>
 
-        {/* Lista de Artículos y Variantes Desglosadas */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '0.65rem' }}>
-            Desglose de Variantes Cotizadas
-          </span>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', maxHeight: 220, overflowY: 'auto' }}>
-            {items.map((item, idx) => (
-              <div key={item.code || idx} style={{ padding: '0.65rem 0.75rem', background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 12 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <div>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0284C7' }}>Ref. {item.code}</span>
-                    <h4 style={{ margin: '0.1rem 0 0.25rem 0', fontSize: '0.88rem', fontWeight: 800, color: '#0F172A' }}>{item.name}</h4>
-                  </div>
-                  {item.marca && (
-                    <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#64748B', background: '#F1F5F9', padding: '0.15rem 0.4rem', borderRadius: 6 }}>
-                      {item.marca}
-                    </span>
-                  )}
-                </div>
-
-                {/* Sub-variantes */}
-                {item.variants && item.variants.length > 0 ? (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: '0.35rem' }}>
-                    {item.variants.map((v, vIdx) => (
-                      <div key={vIdx} style={{ fontSize: '0.78rem', color: '#475569', display: 'flex', justifyContent: 'space-between', background: '#F8FAFC', padding: '0.25rem 0.45rem', borderRadius: 6 }}>
-                        <span>
-                          <strong>{v.quantity || 1} pz{(v.quantity || 1) > 1 ? 's' : ''}</strong> • Medida: {v.size} {v.colorName ? `• Color: ${v.colorName}` : ''}
-                        </span>
-                        {Number(item.price) > 0 && (
-                          <span style={{ fontWeight: 700, color: '#059669' }}>
-                            {new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(Number(item.price) * (v.quantity || 1))}
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div style={{ fontSize: '0.78rem', color: '#475569', marginTop: '0.2rem' }}>
-                    <strong>{item.quantity || 1} pz{(item.quantity || 1) > 1 ? 's' : ''}</strong> • {item.selectedSizes?.join(', ') || 'Universal'}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Botón Principal: Abrir WhatsApp y Enviar */}
+        {/* Botón Principal: Abrir WhatsApp con el Asesor */}
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => setWhatsappSent(true)}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -252,13 +188,27 @@ export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
             fontSize: '1rem',
             boxShadow: '0 8px 20px -4px rgba(37, 211, 102, 0.45)',
             marginBottom: '0.85rem',
-            transition: 'transform 0.15s ease',
             boxSizing: 'border-box'
           }}
         >
           <Phone size={22} color="#FFFFFF" />
-          <span>Enviar Precotización por WhatsApp</span>
+          <span>Abrir WhatsApp y Adjuntar PDF</span>
         </a>
+
+        {/* Instrucción visual para adjuntar el PDF descargado */}
+        <div style={{
+          background: '#F0FDF4',
+          border: '1px dashed #86EFAC',
+          borderRadius: 12,
+          padding: '0.65rem 0.85rem',
+          marginBottom: '1rem',
+          fontSize: '0.8rem',
+          color: '#166534',
+          lineHeight: 1.45,
+          textAlign: 'center'
+        }}>
+          💡 <strong>Paso final:</strong> En WhatsApp toca el ícono del clip 📎 (o signo <strong>+</strong> en iPhone), selecciona <strong>Documento</strong> y elige el PDF que se acaba de descargar.
+        </div>
 
         {/* Botón Secundario: Re-descargar PDF */}
         <button
@@ -271,13 +221,13 @@ export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
             justifyContent: 'center',
             gap: '0.5rem',
             width: '100%',
-            height: 46,
+            height: 44,
             background: '#F1F5F9',
             border: '1px solid #CBD5E1',
-            borderRadius: 14,
+            borderRadius: 12,
             color: '#334155',
             fontWeight: 700,
-            fontSize: '0.86rem',
+            fontSize: '0.84rem',
             cursor: 'pointer'
           }}
         >
@@ -292,4 +242,3 @@ export default function MobileQuoteLanding({ quoteData, onBackToKiosk }) {
     </div>
   );
 }
-

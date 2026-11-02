@@ -61,78 +61,12 @@ export const DEFAULT_SALES_REPS = [
 ];
 
 /**
- * Genera el mensaje estructurado de WhatsApp desglosando variantes compuestas
- * (ej. 1 pz Chica Verde y 2 pzs Grande Naranja)
+ * Genera el saludo limpio para WhatsApp sin texto largo ni precotizaciones redundantes.
+ * Solo saludo cordial hacia el asesor para adjuntar directamente el PDF descargado.
  */
-export function buildWhatsAppMessage(salesRepName, items, pdfUrl = '') {
-  let message = `¡Hola ${salesRepName}! 🩺\nMe interesa solicitar la siguiente precotización:\n\n`;
-
-  let totalEstimated = 0;
-  let totalPiecesCount = 0;
-
-  items.forEach((item, idx) => {
-    const priceNum = Number(item.price) || 0;
-    const code = item.code ? `[Ref. ${item.code}]` : '';
-    const marca = item.marca ? ` (${item.marca})` : '';
-
-    const variants = item.variants && item.variants.length > 0 ? item.variants : null;
-
-    if (variants) {
-      const itemPieces = variants.reduce((sum, v) => sum + (v.quantity || 1), 0);
-      const itemSubtotal = priceNum * itemPieces;
-      totalEstimated += itemSubtotal;
-      totalPiecesCount += itemPieces;
-
-      message += `${idx + 1}. *${code} ${item.name}*${marca} (${itemPieces} pz${itemPieces > 1 ? 's' : ''}):\n`;
-
-      variants.forEach((v) => {
-        const vQty = v.quantity || 1;
-        const vSubtotal = priceNum * vQty;
-        const colorPart = v.colorName ? ` - Color: ${v.colorName}` : '';
-        const pricePart = priceNum > 0 ? ` [${new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(vSubtotal)}]` : '';
-        message += `   • *${vQty} pz${vQty > 1 ? 's' : ''}* - Talla/Medida: ${v.size}${colorPart}${pricePart}\n`;
-      });
-    } else {
-      const qty = item.quantity || 1;
-      const subtotal = priceNum * qty;
-      totalEstimated += subtotal;
-      totalPiecesCount += qty;
-
-      message += `${idx + 1}. *${qty} pz${qty > 1 ? 's' : ''}* - *${code} ${item.name}*${marca}\n`;
-
-      const sizes = item.selectedSizes || item.sizes;
-      if (sizes && sizes.length > 0) {
-        message += `   • Medida/Talla: ${sizes.join(', ')}\n`;
-      }
-
-      const colorNames = item.selectedColorNames || (item.selectedColorName ? [item.selectedColorName] : []);
-      if (colorNames.length > 0) {
-        message += `   • Color: ${colorNames.join(', ')}\n`;
-      }
-
-      if (priceNum > 0) {
-        const formattedSubtotal = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(subtotal);
-        message += `   • Subtotal: ${formattedSubtotal}\n`;
-      }
-    }
-
-    message += '\n';
-  });
-
-  if (totalPiecesCount > 0) {
-    message += `📦 *Piezas Totales:* ${totalPiecesCount}\n`;
-  }
-
-  if (totalEstimated > 0) {
-    const formattedTotal = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(totalEstimated);
-    message += `💰 *Total Estimado:* ${formattedTotal}\n`;
-  }
-
-  if (pdfUrl) {
-    message += `\n📄 *Cotización PDF:* ${pdfUrl}\n`;
-  }
-
-  return message.trim();
+export function buildWhatsAppMessage(salesRepName, items = []) {
+  const repNameClean = salesRepName || 'Asesor';
+  return `¡Hola ${repNameClean}! 🩺 Adjunto mi cotización oficial descargada en PDF desde el quiosco para su revisión y seguimiento. Quedo atento a tus comentarios. ¡Gracias!`;
 }
 
 /**
