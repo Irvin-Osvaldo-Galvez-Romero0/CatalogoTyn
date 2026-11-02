@@ -80,9 +80,16 @@ export default function InterestDrawer({
     })
     .filter(Boolean);
 
-  // Totales globales de piezas y dinero
+  // Totales globales de piezas y dinero calculando precios dinámicos por talla (priceBySize)
   const totalPiezas = selectedProducts.reduce((sum, item) => sum + (item.quantity || 1), 0);
   const totalCost = selectedProducts.reduce((sum, item) => {
+    if (item.variants && item.variants.length > 0) {
+      const itemSum = item.variants.reduce((vSum, v) => {
+        const variantPrice = item.priceBySize?.[v.size] ?? (Number(item.price) || 0);
+        return vSum + (variantPrice * (v.quantity || 1));
+      }, 0);
+      return sum + itemSum;
+    }
     const pPrice = Number(item.price) || 0;
     return sum + (pPrice * (item.quantity || 1));
   }, 0);

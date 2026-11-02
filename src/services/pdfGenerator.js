@@ -160,17 +160,18 @@ export const pdfGenerator = {
       if (variants) {
         variants.forEach((v) => {
           const qty = v.quantity || 1;
-          const subtotal = pPrice * qty;
+          const variantUnitPrice = item.priceBySize?.[v.size] ?? pPrice;
+          const subtotal = variantUnitPrice * qty;
           totalPiezas += qty;
           totalGeneral += subtotal;
 
           const colorPart = v.colorName ? ` - Color: ${v.colorName}` : '';
           const specsText = `Medida: ${v.size}${colorPart}`;
 
-          const priceStr = pPrice > 0
-            ? new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(pPrice)
+          const priceStr = variantUnitPrice > 0
+            ? new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(variantUnitPrice)
             : 'Especial';
-          const subtotalStr = pPrice > 0
+          const subtotalStr = variantUnitPrice > 0
             ? new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(subtotal)
             : '-';
 

@@ -158,7 +158,7 @@ export const PRODUCTS = [
     "code": "101",
     "name": "Rodillera Deportiva AIR PRO con Soporte Rotuliano",
     "cat": "rodillera",
-    "price": null,
+    "price": 185.0,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -195,13 +195,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 185.0,
+      "M": 185.0,
+      "G": 185.0,
+      "XL": 185.0
+    }
   },
   {
     "code": "102",
     "name": "Rodillera Deportiva AIR PRO (par)",
     "cat": "rodillera",
-    "price": null,
+    "price": 275.0,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -238,13 +244,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 275.0
+    }
   },
   {
     "code": "103",
     "name": "Rodillera Deportiva AIR (par)",
     "cat": "rodillera",
-    "price": null,
+    "price": 275.0,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -281,13 +293,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 275.0
+    }
   },
   {
     "code": "104",
     "name": "Rodillera para Levantamiento de Pesas (par)",
     "cat": "rodillera",
-    "price": null,
+    "price": 285.0,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -321,13 +339,17 @@ export const PRODUCTS = [
         "hex": "#10B981",
         "border": "#059669"
       }
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 285.0,
+      "Universal": 285.0
+    }
   },
   {
     "code": "105",
     "name": "Muslera Elástica Deportiva AIR PRO",
     "cat": "todos",
-    "price": null,
+    "price": 185.0,
     "bodyPart": "pierna",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -364,13 +386,19 @@ export const PRODUCTS = [
         "hex": "#10B981",
         "border": "#059669"
       }
-    ]
+    ],
+    "priceBySize": {
+      "CH": 185.0,
+      "M": 185.0,
+      "G": 185.0,
+      "XL": 185.0
+    }
   },
   {
     "code": "107",
     "name": "Corrector de Postura Deportivo",
     "cat": "clavicula",
-    "price": null,
+    "price": 275.0,
     "bodyPart": "clavicula",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -404,7 +432,11 @@ export const PRODUCTS = [
         "hex": "#FF6B00",
         "border": "#EA580C"
       }
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 275.0,
+      "Universal": 275.0
+    }
   },
   {
     "code": "108",
@@ -444,7 +476,7 @@ export const PRODUCTS = [
     "code": "201",
     "name": "Tobillera Deportiva AIR PRO",
     "cat": "tobillo",
-    "price": null,
+    "price": 170.0,
     "bodyPart": "tobillo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -481,13 +513,19 @@ export const PRODUCTS = [
         "hex": "#10B981",
         "border": "#059669"
       }
-    ]
+    ],
+    "priceBySize": {
+      "CH": 170.0,
+      "M": 170.0,
+      "G": 170.0,
+      "XL": 170.0
+    }
   },
   {
     "code": "202",
     "name": "Tobillera Deportiva AIR PRO con Cinta en Ocho",
     "cat": "tobillo",
-    "price": null,
+    "price": 190.0,
     "bodyPart": "tobillo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -524,13 +562,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 190.0,
+      "M": 190.0,
+      "G": 190.0,
+      "XL": 190.0
+    }
   },
   {
     "code": "301",
     "name": "Muñequera Deportiva C/sujetador Pulgar (par)",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 225.0,
     "bodyPart": "mano",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -564,13 +608,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 225.0,
+      "Universal": 225.0
+    }
   },
   {
     "code": "302",
     "name": "Codera de Tenista Deportiva PRO",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 150.0,
     "bodyPart": "brazo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -604,13 +652,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 150.0,
+      "Universal": 150.0
+    }
   },
   {
     "code": "303",
     "name": "Codera Deportiva AIR PRO con Soporte de Cinta",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 175.0,
     "bodyPart": "brazo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -647,13 +699,19 @@ export const PRODUCTS = [
         "hex": "#10B981",
         "border": "#059669"
       }
-    ]
+    ],
+    "priceBySize": {
+      "CH": 175.0,
+      "M": 175.0,
+      "G": 175.0,
+      "XL": 175.0
+    }
   },
   {
     "code": "304",
     "name": "Codera Deportiva Neopreno",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 225.0,
     "bodyPart": "brazo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -687,13 +745,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 225.0,
+      "Unitalla": 225.0
+    }
   },
   {
     "code": "401",
     "name": "Rodillera Deportiva Neopreno",
     "cat": "rodillera",
-    "price": null,
+    "price": 375.0,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -727,13 +789,17 @@ export const PRODUCTS = [
         "hex": "#FF6B00",
         "border": "#EA580C"
       }
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 375.0,
+      "Universal": 375.0
+    }
   },
   {
     "code": "402",
     "name": "Rodillera Deportiva Neopreno",
     "cat": "rodillera",
-    "price": null,
+    "price": 275.0,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -770,13 +836,19 @@ export const PRODUCTS = [
         "hex": "#10B981",
         "border": "#059669"
       }
-    ]
+    ],
+    "priceBySize": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 275.0
+    }
   },
   {
     "code": "403",
     "name": "Soporte Deportivo para Tobillo",
     "cat": "tobillo",
-    "price": null,
+    "price": 230.0,
     "bodyPart": "tobillo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -810,13 +882,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 230.0,
+      "Universal": 230.0
+    }
   },
   {
     "code": "404",
     "name": "Soporte Deportivo Hombro Doble Cierre",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 450.0,
     "bodyPart": "hombro",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -850,13 +926,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 450.0,
+      "Universal": 450.0
+    }
   },
   {
     "code": "405",
     "name": "Muñequera Deportiva C/soporte Pulgar (par)",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 200.0,
     "bodyPart": "mano",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -890,13 +970,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 200.0,
+      "Universal": 200.0
+    }
   },
   {
     "code": "406",
     "name": "Soporte Deportivo Abdominal Sencillo",
     "cat": "lumbar",
-    "price": null,
+    "price": 425.0,
     "bodyPart": "espalda",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -930,13 +1014,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 425.0,
+      "Universal": 425.0
+    }
   },
   {
     "code": "407",
     "name": "Soporte Deportivo Abdominal Ajustable",
     "cat": "lumbar",
-    "price": null,
+    "price": 425.0,
     "bodyPart": "espalda",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -970,13 +1058,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 425.0,
+      "Universal": 425.0
+    }
   },
   {
     "code": "408",
     "name": "Muñequera Deportiva (par)",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 200.0,
     "bodyPart": "mano",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1010,7 +1102,11 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 200.0,
+      "Universal": 200.0
+    }
   },
   {
     "code": "414",
@@ -1060,7 +1156,7 @@ export const PRODUCTS = [
     "code": "702",
     "name": "Espinillera y Pantorrillera Deportiva AIR PRO (par)",
     "cat": "todos",
-    "price": null,
+    "price": 225.0,
     "bodyPart": "pierna",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1097,13 +1193,19 @@ export const PRODUCTS = [
         "hex": "#10B981",
         "border": "#059669"
       }
-    ]
+    ],
+    "priceBySize": {
+      "CH": 225.0,
+      "M": 225.0,
+      "G": 225.0,
+      "XL": 225.0
+    }
   },
   {
     "code": "703",
     "name": "Espinillera y Pantorrillera Neopreno",
     "cat": "todos",
-    "price": null,
+    "price": 295.0,
     "bodyPart": "pierna",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1137,13 +1239,17 @@ export const PRODUCTS = [
         "hex": "#10B981",
         "border": "#059669"
       }
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 295.0,
+      "Unitalla": 295.0
+    }
   },
   {
     "code": "704",
     "name": "Manga Elástica de Proteccion",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 95.0,
     "bodyPart": "brazo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1177,7 +1283,11 @@ export const PRODUCTS = [
         "hex": "#10B981",
         "border": "#059669"
       }
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 95.0,
+      "Universal": 95.0
+    }
   },
   {
     "code": "706",
@@ -1235,7 +1345,7 @@ export const PRODUCTS = [
     "code": "A01",
     "name": "Faja Sacrolumbar Reforzada",
     "cat": "lumbar",
-    "price": 420,
+    "price": 344.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1259,13 +1369,20 @@ export const PRODUCTS = [
       "Varillas dorsales anatómicas de soporte rígido",
       "Doble banda elástica de contra-tracción para compresión ajustable",
       "Tejido monofilamento elástico poroso de máxima ventilación"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 344.0,
+      "M": 344.0,
+      "G": 344.0,
+      "XL": 392.0,
+      "XXL": 392.0
+    }
   },
   {
     "code": "A03",
     "name": "Reductor de Vientre",
     "cat": "lumbar",
-    "price": null,
+    "price": 385.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1289,13 +1406,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 385.0,
+      "M": 385.0,
+      "G": 385.0,
+      "XL": 427.0,
+      "XXL": 427.0
+    }
   },
   {
     "code": "A04",
     "name": "Faja Sacrolumbar Varillas Semirigidas",
     "cat": "lumbar",
-    "price": null,
+    "price": 552.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1319,13 +1443,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 552.0,
+      "M": 552.0,
+      "G": 552.0,
+      "XL": 598.0,
+      "XXL": 598.0
+    }
   },
   {
     "code": "A05",
     "name": "Faja Sacrolumbar con Soporte Acojinado",
     "cat": "lumbar",
-    "price": null,
+    "price": 433.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1350,13 +1481,21 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 433.0,
+      "M": 433.0,
+      "G": 433.0,
+      "XL": 488.0,
+      "XXL": 488.0,
+      "XXXL": 516.0
+    }
   },
   {
     "code": "A06",
     "name": "Faja Sacrolumbar con Soporte Acojinado Black",
     "cat": "lumbar",
-    "price": null,
+    "price": 433.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1388,13 +1527,20 @@ export const PRODUCTS = [
         "hex": "#1E293B",
         "border": "#0F172A"
       }
-    ]
+    ],
+    "priceBySize": {
+      "CH": 433.0,
+      "M": 433.0,
+      "G": 433.0,
+      "XL": 488.0,
+      "XXL": 488.0
+    }
   },
   {
     "code": "A07",
     "name": "Faja Sacrolumbar con Varillas Rigidas",
     "cat": "lumbar",
-    "price": null,
+    "price": 605.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1419,13 +1565,21 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 605.0,
+      "M": 605.0,
+      "G": 605.0,
+      "XL": 605.0,
+      "XXL": 625.0,
+      "XXXL": 625.0
+    }
   },
   {
     "code": "A09",
     "name": "Cinturon Torácico Regular",
     "cat": "lumbar",
-    "price": null,
+    "price": 303.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1448,13 +1602,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 303.0,
+      "M": 303.0,
+      "G": 303.0,
+      "XL": 303.0
+    }
   },
   {
     "code": "A11",
     "name": "Soporte de Pecho",
     "cat": "lumbar",
-    "price": null,
+    "price": 474.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1480,13 +1640,22 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 474.0,
+      "M": 474.0,
+      "G": 474.0,
+      "XL": 474.0,
+      "XXL": 516.0,
+      "XXXL": 550.0,
+      "XXXXL": 584.0
+    }
   },
   {
     "code": "A12",
     "name": "Corset de Hiperextension (tipo Cash)",
     "cat": "lumbar",
-    "price": null,
+    "price": 930.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1507,13 +1676,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 930.0,
+      "CH / Corto": 930.0,
+      "G / Largo": 930.0
+    }
   },
   {
     "code": "A13",
     "name": "Corset de Taylor",
     "cat": "lumbar",
-    "price": null,
+    "price": 1252.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1536,13 +1710,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 1252.0,
+      "Unitalla CR": 1252.0,
+      "Unitalla LR": 1252.0,
+      "Talla Especial CR": 1252.0,
+      "Talla Especial LR": 1252.0
+    }
   },
   {
     "code": "A15",
     "name": "Soporte Lumbar",
     "cat": "lumbar",
-    "price": null,
+    "price": 535.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1562,13 +1743,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 535.0,
+      "Universal": 535.0
+    }
   },
   {
     "code": "A16",
     "name": "Faja Inguinal Regular",
     "cat": "lumbar",
-    "price": null,
+    "price": 344.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1590,13 +1775,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 344.0,
+      "G": 344.0,
+      "XL": 344.0
+    }
   },
   {
     "code": "A29",
     "name": "Faja de Tracción Lumbar Reforzada",
     "cat": "lumbar",
-    "price": null,
+    "price": 1025.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1618,13 +1808,21 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 1025.0,
+      "M": 1025.0,
+      "XXL": 1175.0,
+      "CH - M": 1025.0,
+      "G - XL": 1025.0,
+      "XXL - XXXL": 1025.0
+    }
   },
   {
     "code": "A30",
     "name": "Faja de Tracción Lumbar Sencilla",
     "cat": "lumbar",
-    "price": null,
+    "price": 1000.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1646,13 +1844,21 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 1000.0,
+      "M": 1000.0,
+      "XXL": 1150.0,
+      "CH - M": 1000.0,
+      "G - XL": 1000.0,
+      "XXL - XXXL": 1000.0
+    }
   },
   {
     "code": "A33",
     "name": "Corrector de Postura",
     "cat": "clavicula",
-    "price": null,
+    "price": 495.0,
     "bodyPart": "clavicula",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1676,13 +1882,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 495.0,
+      "M": 495.0,
+      "G": 495.0,
+      "XL": 495.0,
+      "Pediátrico": 495.0
+    }
   },
   {
     "code": "A35",
     "name": "Soporte de Maternidad Black",
     "cat": "lumbar",
-    "price": null,
+    "price": 400.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1714,13 +1927,20 @@ export const PRODUCTS = [
         "hex": "#1E293B",
         "border": "#0F172A"
       }
-    ]
+    ],
+    "priceBySize": {
+      "CH": 400.0,
+      "M": 400.0,
+      "G": 400.0,
+      "XL": 450.0,
+      "XXL": 450.0
+    }
   },
   {
     "code": "A36",
     "name": "Cinturon de Sujecion Lumbar",
     "cat": "lumbar",
-    "price": null,
+    "price": 495.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1744,13 +1964,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 495.0,
+      "M": 495.0,
+      "G": 495.0,
+      "XL": 525.0,
+      "XXL": 550.0
+    }
   },
   {
     "code": "A38",
     "name": "Corrector de Postura Black",
     "cat": "clavicula",
-    "price": null,
+    "price": 275.0,
     "bodyPart": "clavicula",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1778,13 +2005,17 @@ export const PRODUCTS = [
         "hex": "#1E293B",
         "border": "#0F172A"
       }
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 275.0,
+      "Universal": 275.0
+    }
   },
   {
     "code": "B01",
     "name": "Collarín Cervical Suave",
     "cat": "cervical",
-    "price": 185,
+    "price": 150.0,
     "bodyPart": "cuello",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1807,13 +2038,19 @@ export const PRODUCTS = [
       "Espuma de poliuretano de alta densidad indeformable",
       "Funda de algodón 100% transpirable y lavable",
       "Cierre de velcro regulable para ajuste milimétrico"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 150.0,
+      "M": 150.0,
+      "G": 150.0,
+      "Pediátrico": 150.0
+    }
   },
   {
     "code": "B02",
     "name": "Collarín Tipo Thomas Blando",
     "cat": "cervical",
-    "price": null,
+    "price": 145.0,
     "bodyPart": "cuello",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1836,13 +2073,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 145.0,
+      "M": 145.0,
+      "G": 145.0,
+      "XL": 145.0
+    }
   },
   {
     "code": "B03",
     "name": "Collarín Tipo Thomas Firme",
     "cat": "cervical",
-    "price": null,
+    "price": 165.0,
     "bodyPart": "cuello",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1864,13 +2107,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 165.0,
+      "M": 165.0,
+      "G": 165.0
+    }
   },
   {
     "code": "B05",
     "name": "Collarín Philadelphia",
     "cat": "cervical",
-    "price": null,
+    "price": 245.0,
     "bodyPart": "cuello",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1893,13 +2141,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 245.0,
+      "M": 245.0,
+      "G": 245.0,
+      "XL": 245.0
+    }
   },
   {
     "code": "B07",
     "name": "Collarín Densidad Suave",
     "cat": "cervical",
-    "price": null,
+    "price": 140.0,
     "bodyPart": "cuello",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1921,13 +2175,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 140.0,
+      "M": 140.0,
+      "G": 140.0
+    }
   },
   {
     "code": "B10",
     "name": "Collarín Philadelphia (plastazote)",
     "cat": "cervical",
-    "price": null,
+    "price": 340.0,
     "bodyPart": "cuello",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1951,13 +2210,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 340.0,
+      "M": 340.0,
+      "G": 340.0,
+      "XL": 340.0,
+      "Pediátrico": 340.0
+    }
   },
   {
     "code": "B31",
     "name": "Corrector y Relajante Cervical",
     "cat": "cervical",
-    "price": null,
+    "price": 300.0,
     "bodyPart": "cuello",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -1977,13 +2243,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 300.0,
+      "Universal": 300.0
+    }
   },
   {
     "code": "C01",
     "name": "Cabestrillo (Tropical)",
     "cat": "cabestrillo",
-    "price": 125,
+    "price": 125.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2008,13 +2278,22 @@ export const PRODUCTS = [
       "Tela perforada 3D transpirable y antialérgica",
       "Correa de hombro con almohadilla acolchada para evitar rozaduras",
       "Hebilla de fácil liberación para colocación autónoma"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 125.0,
+      "M": 125.0,
+      "G": 125.0,
+      "XL": 145.0,
+      "XXL": 145.0,
+      "PEDIATRICO": 125.0,
+      "Pediátrico": 125.0
+    }
   },
   {
     "code": "C02",
     "name": "Inmovilizador de Hombro Universal",
     "cat": "inmovilizador",
-    "price": 265,
+    "price": 265.0,
     "bodyPart": "hombro",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2036,13 +2315,20 @@ export const PRODUCTS = [
       "Banda torácica ancha para inmovilización axial rígida",
       "Diseño adaptable izquierda/derecha sin accesorios adicionales",
       "Cierres de velcro de grado médico de alta tenacidad"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 265.0,
+      "PEDIATRICO": 265.0,
+      "Universal": 265.0,
+      "Talla Especial": 265.0,
+      "Pediátrico": 265.0
+    }
   },
   {
     "code": "C03",
     "name": "Inmovilizador Elástico de Hombros",
     "cat": "inmovilizador",
-    "price": 360,
+    "price": 360.0,
     "bodyPart": "hombro",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2065,13 +2351,19 @@ export const PRODUCTS = [
       "Tejido elástico de 4 vías con memoria elástica de alto nivel",
       "Cinturón de ajuste humeral con tensión graduada",
       "Perfil bajo para uso discreto bajo la ropa"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 360.0,
+      "M": 360.0,
+      "G": 360.0,
+      "XL": 360.0
+    }
   },
   {
     "code": "C04",
     "name": "Soporte para Clavícula con Hebilla",
     "cat": "clavicula",
-    "price": 213,
+    "price": 213.0,
     "bodyPart": "clavicula",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2095,13 +2387,20 @@ export const PRODUCTS = [
       "Hebillas de aleación ligera no deformables",
       "Almohadillas axilares de espuma viscoelástica para evitar compresión vascular",
       "Construcción duradera de resistencia grado hospitalario"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 213.0,
+      "M": 213.0,
+      "G": 213.0,
+      "XL": 213.0,
+      "Pediátrico": 213.0
+    }
   },
   {
     "code": "C05",
     "name": "Soporte para Clavícula con Velcro",
     "cat": "clavicula",
-    "price": 210,
+    "price": 285.0,
     "bodyPart": "clavicula",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2126,13 +2425,22 @@ export const PRODUCTS = [
       "Hebillas de anillo en 'D' con amortiguador axilar suave",
       "Banda dorsal acolchada antitorsión",
       "Fácil regulación de tensión por el propio paciente"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 285.0,
+      "M": 285.0,
+      "G": 285.0,
+      "XL": 325.0,
+      "XXL": 325.0,
+      "PEDIATRICO": 285.0,
+      "Pediátrico": 285.0
+    }
   },
   {
     "code": "C06",
     "name": "Cabestrillo Ancho (Buggy)",
     "cat": "cabestrillo",
-    "price": 140,
+    "price": 140.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2157,13 +2465,21 @@ export const PRODUCTS = [
       "Cuna anatómica ancha con soporte de pulgar integrado",
       "Tejido suave de tacto clínico de alta resistencia",
       "Ajuste ambidiestro de colocación rápida"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 140.0,
+      "M": 140.0,
+      "G": 140.0,
+      "Pediátrico": 140.0,
+      "XL": 140.0,
+      "XXL": 140.0
+    }
   },
   {
     "code": "C08",
     "name": "Zapato para Yeso",
     "cat": "cabestrillo",
-    "price": null,
+    "price": 250.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2186,13 +2502,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 250.0,
+      "M": 250.0,
+      "G": 250.0,
+      "XL": 250.0
+    }
   },
   {
     "code": "C16",
     "name": "Bolsa para Yeso Pierna",
     "cat": "tobillo",
-    "price": null,
+    "price": 275.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2212,13 +2534,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 275.0,
+      "Universal": 275.0
+    }
   },
   {
     "code": "C19",
     "name": "Bolsa para Yeso Brazo",
     "cat": "cabestrillo",
-    "price": null,
+    "price": 130.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2238,13 +2564,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 130.0,
+      "Universal": 130.0
+    }
   },
   {
     "code": "C21",
     "name": "Cabestrillo Ubano",
     "cat": "cabestrillo",
-    "price": null,
+    "price": 275.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2267,13 +2597,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 275.0
+    }
   },
   {
     "code": "D01",
     "name": "Tobillera Elástica de Compresión",
     "cat": "tobillo",
-    "price": 160,
+    "price": 172.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2296,13 +2632,19 @@ export const PRODUCTS = [
       "Talón anatómico abierto para óptima adaptación a la pisada",
       "Tejido circular sin costuras de compresión controlada",
       "Material transpirable que retiene el calor terapéutico"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 172.0,
+      "M": 172.0,
+      "G": 172.0,
+      "XL": 199.0
+    }
   },
   {
     "code": "D02",
     "name": "Soporte de Lona para Tobillo",
     "cat": "tobillo",
-    "price": null,
+    "price": 420.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2326,13 +2668,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 420.0,
+      "M": 420.0,
+      "G": 420.0,
+      "XL": 420.0,
+      "Pediátrico": 420.0
+    }
   },
   {
     "code": "D03",
     "name": "Tobillera Elástica (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 186.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2355,13 +2704,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 186.0,
+      "M": 186.0,
+      "G": 186.0,
+      "XL": 207.0
+    }
   },
   {
     "code": "D04",
     "name": "Rodillera Elástica (par)",
     "cat": "rodillera",
-    "price": null,
+    "price": 175.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2385,13 +2740,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 175.0,
+      "M": 175.0,
+      "G": 175.0,
+      "XL": 200.0,
+      "XXL": 200.0
+    }
   },
   {
     "code": "D05",
     "name": "Rodillera Elástica",
     "cat": "rodillera",
-    "price": null,
+    "price": 175.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2415,13 +2777,20 @@ export const PRODUCTS = [
       "Tejido circular sin costuras que previene puntos de fricción",
       "Bordes con compresión desvanecida que no cortan la circulación",
       "Conserva la temperatura terapéutica en tejidos blandos"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 175.0,
+      "M": 175.0,
+      "G": 175.0,
+      "XL": 200.0,
+      "XXL": 200.0
+    }
   },
   {
     "code": "D06",
     "name": "Rodillera Mecánica Elástica Cerrada",
     "cat": "rodillera",
-    "price": null,
+    "price": 325.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2445,13 +2814,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 325.0,
+      "M": 325.0,
+      "G": 325.0,
+      "XL": 325.0,
+      "XXL": 325.0
+    }
   },
   {
     "code": "D07",
     "name": "Soporte Elástico para Rodilla",
     "cat": "rodillera",
-    "price": null,
+    "price": 300.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2475,13 +2851,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 300.0,
+      "M": 300.0,
+      "G": 300.0,
+      "XL": 300.0,
+      "XXL": 300.0
+    }
   },
   {
     "code": "D08",
     "name": "Rodillera Abierta C/soporte Rotuliano",
     "cat": "rodillera",
-    "price": null,
+    "price": 335.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2505,13 +2888,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 335.0,
+      "M": 335.0,
+      "G": 335.0,
+      "XL": 350.0,
+      "XXL": 350.0
+    }
   },
   {
     "code": "D09",
     "name": "Rodillera Mecánica Abierta (Algodón)",
     "cat": "rodillera",
-    "price": null,
+    "price": 619.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2535,13 +2925,20 @@ export const PRODUCTS = [
       "Bisagras mecánicas bilaterales desmontables para lavado",
       "Almohadilla rotuliana de silicona viscoelástica centrada",
       "Algodón hipoalergénico con excelente gestión de humedad"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 619.0,
+      "M": 619.0,
+      "G": 619.0,
+      "XL": 688.0,
+      "XXL": 688.0
+    }
   },
   {
     "code": "D10",
     "name": "Rodillera Mecánica Graduable (ROM)",
     "cat": "rodillera",
-    "price": null,
+    "price": 1100.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2561,13 +2958,17 @@ export const PRODUCTS = [
       "Selector de ángulo con pines de bloqueo rápido de 0° a 120°",
       "Barras telescópicas extensibles según la longitud de pierna",
       "Acolchados lavables desmontables con fijación velcro de alta seguridad"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 1100.0,
+      "Universal": 1100.0
+    }
   },
   {
     "code": "D11",
     "name": "Rodillera Tripanel 19\"",
     "cat": "rodillera",
-    "price": null,
+    "price": 575.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2591,13 +2992,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 575.0,
+      "M": 575.0,
+      "G": 575.0,
+      "XL": 590.0,
+      "XXL": 590.0
+    }
   },
   {
     "code": "D13",
     "name": "Rodillera Tripanel 14\"",
     "cat": "rodillera",
-    "price": null,
+    "price": 450.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2621,13 +3029,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 450.0,
+      "M": 450.0,
+      "G": 450.0,
+      "XL": 475.0,
+      "XXL": 475.0
+    }
   },
   {
     "code": "D14",
     "name": "Muslera Elástica",
     "cat": "rodillera",
-    "price": null,
+    "price": 144.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2650,13 +3065,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 144.0,
+      "M": 144.0,
+      "G": 144.0,
+      "XL": 144.0
+    }
   },
   {
     "code": "D17",
     "name": "Órtesis para Pie y Tobillo Izquierda",
     "cat": "tobillo",
-    "price": null,
+    "price": 500.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2680,13 +3101,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 500.0,
+      "M": 500.0,
+      "G": 500.0,
+      "XL": 500.0,
+      "Pediátrico": 500.0
+    }
   },
   {
     "code": "D18",
     "name": "Soporte de Tobillo Urbano",
     "cat": "tobillo",
-    "price": null,
+    "price": 220.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2709,13 +3137,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 220.0,
+      "M": 220.0,
+      "G": 220.0,
+      "XL": 220.0
+    }
   },
   {
     "code": "D19",
     "name": "Anillo Subrotuliano",
     "cat": "rodillera",
-    "price": null,
+    "price": 138.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2735,13 +3169,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 138.0,
+      "Universal": 138.0
+    }
   },
   {
     "code": "D23",
     "name": "Rodillera Elástica Comfeel (par)",
     "cat": "rodillera",
-    "price": null,
+    "price": 275.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2764,13 +3202,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 289.0
+    }
   },
   {
     "code": "D24",
     "name": "Elevador de Pie Uni",
     "cat": "tobillo",
-    "price": null,
+    "price": 237.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2790,13 +3234,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 237.0,
+      "Universal": 237.0
+    }
   },
   {
     "code": "D25",
     "name": "Tobillera Elástica Comfeel (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 220.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2820,13 +3268,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 220.0,
+      "M": 220.0,
+      "G": 220.0,
+      "XL": 220.0,
+      "XXL": 220.0
+    }
   },
   {
     "code": "D26",
     "name": "Férula Rigida para Tobillo",
     "cat": "tobillo",
-    "price": null,
+    "price": 375.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2846,13 +3301,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 375.0,
+      "Universal": 375.0
+    }
   },
   {
     "code": "D28",
     "name": "Rodillera Tripanel 22\"",
     "cat": "rodillera",
-    "price": null,
+    "price": 690.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2876,13 +3335,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 690.0,
+      "M": 690.0,
+      "G": 690.0,
+      "XL": 750.0,
+      "XXL": 750.0
+    }
   },
   {
     "code": "D40",
     "name": "Férula de Aire para Tobillo",
     "cat": "tobillo",
-    "price": null,
+    "price": 400.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2902,13 +3368,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 400.0,
+      "Universal": 400.0
+    }
   },
   {
     "code": "D41",
     "name": "Férula Nocturna de Desrotacion",
     "cat": "rodillera",
-    "price": null,
+    "price": 650.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2930,13 +3400,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 650.0,
+      "M": 650.0,
+      "G": 650.0
+    }
   },
   {
     "code": "D43",
     "name": "Órtesis para Pie y Tobillo Luxe Izquierda",
     "cat": "tobillo",
-    "price": null,
+    "price": 575.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2960,13 +3435,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 575.0,
+      "M": 575.0,
+      "G": 575.0,
+      "XL": 575.0,
+      "Pediátrico": 575.0
+    }
   },
   {
     "code": "D44",
     "name": "Rodillera Tripanel",
     "cat": "rodillera",
-    "price": null,
+    "price": 300.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -2986,13 +3468,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "PEDIATRICO": 300.0,
+      "Pediátrico": 300.0
+    }
   },
   {
     "code": "D47",
     "name": "Soporte de Rodilla Urbano",
     "cat": "rodillera",
-    "price": null,
+    "price": 325.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3015,13 +3501,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 325.0,
+      "M": 325.0,
+      "G": 325.0,
+      "XL": 325.0
+    }
   },
   {
     "code": "D48",
     "name": "Rodillera Mecánica Graduable ROM 22\" Largo",
     "cat": "rodillera",
-    "price": null,
+    "price": 1250.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3041,7 +3533,11 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 1250.0,
+      "Universal": 1250.0
+    }
   },
   {
     "code": "D53",
@@ -3076,7 +3572,7 @@ export const PRODUCTS = [
     "code": "D54",
     "name": "Anillo Subrotuliano Black (par)",
     "cat": "rodillera",
-    "price": null,
+    "price": 250.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3104,13 +3600,17 @@ export const PRODUCTS = [
         "hex": "#1E293B",
         "border": "#0F172A"
       }
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 250.0,
+      "Universal": 250.0
+    }
   },
   {
     "code": "D58",
     "name": "Rodillera ROM Ajustable",
     "cat": "rodillera",
-    "price": null,
+    "price": 1100.0,
     "bodyPart": "rodilla",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -3130,13 +3630,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 1100.0,
+      "Universal": 1100.0
+    }
   },
   {
     "code": "E03",
     "name": "Férula para Muñeca y Antebrazo Izquierda",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 325.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3160,13 +3664,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 325.0,
+      "M": 325.0,
+      "G": 325.0,
+      "XL": 325.0,
+      "Pediátrico": 325.0
+    }
   },
   {
     "code": "E05",
     "name": "Muñequera Elástica Sencilla",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 131.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3188,13 +3699,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 131.0,
+      "M": 131.0,
+      "G": 131.0
+    }
   },
   {
     "code": "E06",
     "name": "Muñequera Elástica",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 158.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3214,13 +3730,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 158.0,
+      "Universal": 158.0
+    }
   },
   {
     "code": "E10",
     "name": "Codera de Tenista",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 172.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3243,13 +3763,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 172.0,
+      "M": 172.0,
+      "G": 172.0,
+      "XL": 172.0
+    }
   },
   {
     "code": "E11",
     "name": "Codera Elástica con Soporte",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 152.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3272,13 +3798,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 152.0,
+      "M": 152.0,
+      "G": 152.0,
+      "XL": 152.0
+    }
   },
   {
     "code": "E29",
     "name": "Férula de Posicionamiento de Mano Izquierda",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 323.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3301,13 +3833,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 323.0,
+      "M": 323.0,
+      "G": 323.0,
+      "Pediátrico": 323.0
+    }
   },
   {
     "code": "E30",
     "name": "Férula para Antebrazo Ambidiestra",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 523.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3327,13 +3865,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 523.0,
+      "Universal": 523.0
+    }
   },
   {
     "code": "E43",
     "name": "Tablilla Elástica para Muñeca",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 317.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3356,13 +3898,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 317.0,
+      "M": 317.0,
+      "G": 317.0,
+      "XL": 317.0
+    }
   },
   {
     "code": "E44",
     "name": "Férula de Muñeca con Abducción de Pulgar",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 376.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3385,13 +3933,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 376.0,
+      "M": 376.0,
+      "G": 376.0,
+      "XL": 376.0
+    }
   },
   {
     "code": "E46",
     "name": "Codera Mecánica Graduable ROM Derecha",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 1307.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3411,13 +3965,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 1307.0,
+      "Universal": 1307.0
+    }
   },
   {
     "code": "E48",
     "name": "Codera Elástica Urbana",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 250.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3441,13 +3999,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 250.0,
+      "M": 250.0,
+      "G": 250.0,
+      "XL": 250.0,
+      "XXL": 250.0
+    }
   },
   {
     "code": "F02",
     "name": "Férula de Aluminio Tipo Catre",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 76.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3469,13 +4034,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 76.0,
+      "M": 76.0,
+      "G": 76.0
+    }
   },
   {
     "code": "F03",
     "name": "Inmovilizador de Aluminio para Dedo",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 124.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3497,13 +4067,18 @@ export const PRODUCTS = [
       "Aluminio anodizado maleable a la anatomía del paciente",
       "Interior en espuma de poliuretano ventilada",
       "No interfiere con rayos X de control médico"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 124.0,
+      "M": 124.0,
+      "G": 124.0
+    }
   },
   {
     "code": "F04",
     "name": "Férula de Aluminio Tipo Rana",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 76.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3525,13 +4100,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 76.0,
+      "M": 76.0,
+      "G": 76.0
+    }
   },
   {
     "code": "F05",
     "name": "Férula de Alumionio Tipo Martillo",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 76.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3551,13 +4131,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 76.0,
+      "Universal": 76.0
+    }
   },
   {
     "code": "F06",
     "name": "Férula Tipo Quervain Ambidiestra",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 193.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3577,13 +4161,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 193.0,
+      "Universal": 193.0
+    }
   },
   {
     "code": "G01",
     "name": "Kit de Tracción Cutanea con Polea",
     "cat": "tobillo",
-    "price": null,
+    "price": 150.0,
     "bodyPart": "tobillo",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -3604,13 +4192,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 150.0,
+      "ADULTO": 150.0,
+      "INFANTIL": 150.0
+    }
   },
   {
     "code": "G20",
     "name": "Bolsa de Peso para Tracción",
     "cat": "tobillo",
-    "price": null,
+    "price": 125.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3630,13 +4223,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 125.0,
+      "Universal": 125.0
+    }
   },
   {
     "code": "G25",
     "name": "Tracción Cervical para Puerta",
     "cat": "cervical",
-    "price": null,
+    "price": 510.0,
     "bodyPart": "cuello",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3656,13 +4253,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 510.0,
+      "Universal": 510.0
+    }
   },
   {
     "code": "H01",
     "name": "Polaina para Muñeca",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 197.0,
     "bodyPart": "mano",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -3682,13 +4283,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 197.0,
+      "Universal": 197.0
+    }
   },
   {
     "code": "H02",
     "name": "Polaina para Muñeca o Pie",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 351.0,
     "bodyPart": "mano",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -3708,13 +4313,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 351.0,
+      "Universal": 351.0
+    }
   },
   {
     "code": "H03",
     "name": "Polaina para Muñeca o Pie",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 351.0,
     "bodyPart": "mano",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -3734,13 +4343,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 351.0,
+      "Universal": 351.0
+    }
   },
   {
     "code": "H05",
     "name": "Pelota de Rehabilitacion",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 55.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3760,13 +4373,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 55.0,
+      "Universal": 55.0
+    }
   },
   {
     "code": "H12",
     "name": "Compresa de Gel para Ojos (antifaz)",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 95.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3786,13 +4403,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 95.0,
+      "Universal": 95.0
+    }
   },
   {
     "code": "H13",
     "name": "Cojín para Coxis",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 680.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3812,13 +4433,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 680.0,
+      "Universal": 680.0
+    }
   },
   {
     "code": "H14",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 120.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3838,13 +4463,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 120.0,
+      "Universal": 120.0
+    }
   },
   {
     "code": "H15",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 120.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3864,13 +4493,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 120.0,
+      "Universal": 120.0
+    }
   },
   {
     "code": "H16",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 120.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3890,13 +4523,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 120.0,
+      "Universal": 120.0
+    }
   },
   {
     "code": "H17",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 150.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3916,13 +4553,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 150.0,
+      "Universal": 150.0
+    }
   },
   {
     "code": "H18",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 150.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3942,13 +4583,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 150.0,
+      "Universal": 150.0
+    }
   },
   {
     "code": "H23",
     "name": "Asiento Ortopédico",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 400.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3968,13 +4613,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 400.0,
+      "Universal": 400.0
+    }
   },
   {
     "code": "I01",
     "name": "Torniquete",
     "cat": "tobillo",
-    "price": null,
+    "price": 25.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -3996,13 +4645,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 25.0,
+      "M": 25.0,
+      "G": 25.0
+    }
   },
   {
     "code": "I02",
     "name": "Rodillera con Compresa Integrada",
     "cat": "rodillera",
-    "price": null,
+    "price": 355.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4022,13 +4676,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 355.0,
+      "Universal": 355.0
+    }
   },
   {
     "code": "I15",
     "name": "Medias Elásticas de Compresión al Muslo (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 396.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4052,13 +4710,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 396.0,
+      "M": 396.0,
+      "G": 396.0,
+      "XL": 421.0,
+      "XXL": 421.0
+    }
   },
   {
     "code": "I16",
     "name": "Medias Elásticas de Compresión a La Rodilla (par)",
     "cat": "rodillera",
-    "price": null,
+    "price": 338.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4082,13 +4747,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 338.0,
+      "M": 338.0,
+      "G": 338.0,
+      "XL": 409.0,
+      "XXL": 409.0
+    }
   },
   {
     "code": "I46",
     "name": "Respaldo Ortopédico",
     "cat": "tobillo",
-    "price": null,
+    "price": 625.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4108,13 +4780,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 625.0,
+      "Universal": 625.0
+    }
   },
   {
     "code": "I59",
     "name": "Soporte Escrotal",
     "cat": "tobillo",
-    "price": null,
+    "price": 241.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4137,13 +4813,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 241.0,
+      "M": 241.0,
+      "G": 241.0,
+      "XL": 241.0
+    }
   },
   {
     "code": "I65",
     "name": "Limitador de Movimientos Manos/pies",
     "cat": "tobillo",
-    "price": null,
+    "price": 213.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4163,7 +4845,11 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 213.0,
+      "Universal": 213.0
+    }
   },
   {
     "code": "I70",
@@ -4228,7 +4914,7 @@ export const PRODUCTS = [
     "code": "I91",
     "name": "Respaldo Ortopédico Lumbar",
     "cat": "lumbar",
-    "price": null,
+    "price": 605.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4248,13 +4934,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 605.0,
+      "Universal": 605.0
+    }
   },
   {
     "code": "I93",
     "name": "Almohada para Viaje",
     "cat": "tobillo",
-    "price": null,
+    "price": 300.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4274,13 +4964,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 300.0,
+      "Universal": 300.0
+    }
   },
   {
     "code": "I94",
     "name": "Almohada para Viaje Urbana",
     "cat": "tobillo",
-    "price": null,
+    "price": 300.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4300,13 +4994,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 350.0,
+      "Universal": 300.0
+    }
   },
   {
     "code": "J01",
     "name": "Rodillera Mecánica Cerrada Neopreno",
     "cat": "rodillera",
-    "price": null,
+    "price": 600.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4330,13 +5028,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 600.0,
+      "M": 600.0,
+      "G": 600.0,
+      "XL": 729.0,
+      "XXL": 757.0
+    }
   },
   {
     "code": "J03",
     "name": "Muñequera con Orificio para Pulgar Neopreno",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 193.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4356,13 +5061,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 193.0,
+      "Universal": 193.0
+    }
   },
   {
     "code": "J04",
     "name": "Muñequera Sencilla Neopreno",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 152.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4382,13 +5091,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 152.0,
+      "Universal": 152.0
+    }
   },
   {
     "code": "J05",
     "name": "Rodillera Abierta Sencilla Neopreno",
     "cat": "rodillera",
-    "price": null,
+    "price": 450.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4409,13 +5122,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 450.0,
+      "Universal": 450.0,
+      "Talla Especial": 450.0
+    }
   },
   {
     "code": "J06",
     "name": "Soporte Abdominal Neopreno",
     "cat": "lumbar",
-    "price": null,
+    "price": 400.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4436,13 +5154,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 400.0,
+      "Universal": 400.0,
+      "Talla Especial": 400.0
+    }
   },
   {
     "code": "J08",
     "name": "Rodillera Neopreno para Valgus y Varus",
     "cat": "rodillera",
-    "price": null,
+    "price": 633.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4466,13 +5189,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 633.0,
+      "M": 633.0,
+      "G": 633.0,
+      "XL": 633.0,
+      "XXL": 633.0
+    }
   },
   {
     "code": "J09",
     "name": "Rodillera Cerrada Corta Neopreno",
     "cat": "rodillera",
-    "price": null,
+    "price": 317.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4496,13 +5226,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 317.0,
+      "M": 317.0,
+      "G": 317.0,
+      "XL": 317.0,
+      "XXL": 317.0
+    }
   },
   {
     "code": "J12",
     "name": "Soporte Abierto para Tobillo Neopreno",
     "cat": "tobillo",
-    "price": null,
+    "price": 295.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4522,13 +5259,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 295.0,
+      "Universal": 295.0
+    }
   },
   {
     "code": "J14",
     "name": "Soporte de Hombros Neopreno",
     "cat": "hombro_brazo",
-    "price": null,
+    "price": 425.0,
     "bodyPart": "hombro",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4549,13 +5290,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 425.0,
+      "Universal": 425.0,
+      "Talla Especial": 425.0
+    }
   },
   {
     "code": "J15",
     "name": "Rodillera Mecánica Abierta Neopreno",
     "cat": "rodillera",
-    "price": null,
+    "price": 626.0,
     "bodyPart": "rodilla",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4579,13 +5325,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 626.0,
+      "M": 626.0,
+      "G": 626.0,
+      "XL": 626.0,
+      "Pediátrico": 626.0
+    }
   },
   {
     "code": "J16",
     "name": "Tobillera con Cintas Neopreno",
     "cat": "tobillo",
-    "price": null,
+    "price": 285.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4606,13 +5359,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 285.0,
+      "Universal": 285.0,
+      "Talla Especial": 285.0
+    }
   },
   {
     "code": "K01",
     "name": "Plantilla Silicón (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 605.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4635,13 +5393,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 605.0,
+      "M": 605.0,
+      "G": 605.0,
+      "XL": 605.0
+    }
   },
   {
     "code": "K02",
     "name": "Talonera Silicón (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 344.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4664,13 +5428,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 344.0,
+      "M": 344.0,
+      "G": 344.0,
+      "XL": 344.0
+    }
   },
   {
     "code": "K04",
     "name": "Separador de Dedos Silicion (par)",
     "cat": "inmovilizador",
-    "price": null,
+    "price": 75.0,
     "bodyPart": "mano",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4692,13 +5462,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 75.0,
+      "M": 75.0,
+      "G": 75.0
+    }
   },
   {
     "code": "K08",
     "name": "Protector Metatarso Silicón (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 150.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4718,13 +5493,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 150.0,
+      "Universal": 150.0
+    }
   },
   {
     "code": "K10",
     "name": "Plantilla Dura 3/4 Arco Plantar (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 323.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4746,13 +5525,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 323.0,
+      "M": 323.0,
+      "G": 323.0
+    }
   },
   {
     "code": "K11",
     "name": "Plantilla Dura 3/4 Arco Plantar (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 323.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4772,7 +5556,11 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 323.0,
+      "Pediátrico": 323.0
+    }
   },
   {
     "code": "K13",
@@ -4807,7 +5595,7 @@ export const PRODUCTS = [
     "code": "K14",
     "name": "Férula Nocturna Hallux Valgus",
     "cat": "tobillo",
-    "price": null,
+    "price": 207.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4827,13 +5615,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 207.0,
+      "Universal": 207.0
+    }
   },
   {
     "code": "K15",
     "name": "Apoyo Plantar Silicón (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 100.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4857,13 +5649,21 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 100.0,
+      "Pediátrico": 100.0,
+      "CH": 100.0,
+      "M": 100.0,
+      "G": 100.0,
+      "Adulto": 100.0
+    }
   },
   {
     "code": "K16",
     "name": "Plantilla de Gel P/ Mujer (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 130.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4885,13 +5685,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 130.0,
+      "M": 130.0,
+      "G": 130.0
+    }
   },
   {
     "code": "K18",
     "name": "Plantilla de Cuña (par)",
     "cat": "tobillo",
-    "price": null,
+    "price": 125.0,
     "bodyPart": "tobillo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4914,13 +5719,19 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 125.0,
+      "M": 125.0,
+      "G": 125.0,
+      "XL": 125.0
+    }
   },
   {
     "code": "L01",
     "name": "Soporte Sacrolumbar Contorneado",
     "cat": "lumbar",
-    "price": null,
+    "price": 325.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4944,13 +5755,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 325.0,
+      "M": 325.0,
+      "G": 325.0,
+      "XL": 345.0,
+      "XXL": 345.0
+    }
   },
   {
     "code": "L02",
     "name": "Cinturon Sacrolumbar",
     "cat": "lumbar",
-    "price": null,
+    "price": 335.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4974,13 +5792,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 335.0,
+      "M": 335.0,
+      "G": 335.0,
+      "XL": 350.0,
+      "XXL": 350.0
+    }
   },
   {
     "code": "L03",
     "name": "Faja Abdominal",
     "cat": "lumbar",
-    "price": null,
+    "price": 225.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -5004,13 +5829,20 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 225.0,
+      "M": 225.0,
+      "G": 225.0,
+      "XL": 240.0,
+      "XXL": 240.0
+    }
   },
   {
     "code": "L04",
     "name": "Cabestrillo Oxypore",
     "cat": "cabestrillo",
-    "price": null,
+    "price": 125.0,
     "bodyPart": "brazo",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -5033,13 +5865,19 @@ export const PRODUCTS = [
       "Estructura Oxypore Honeycomb para flujo de aire activo",
       "Sistema de hebilla micrométrica de alta fijación",
       "Lavable a mano sin pérdida de forma estructural"
-    ]
+    ],
+    "priceBySize": {
+      "CH": 125.0,
+      "M": 125.0,
+      "G": 125.0,
+      "XL": 125.0
+    }
   },
   {
     "code": "L07",
     "name": "Bastón Cuello de Ganso Puño Suave",
     "cat": "movilidad",
-    "price": null,
+    "price": 254.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -5073,13 +5911,18 @@ export const PRODUCTS = [
         "hex": "#1E293B",
         "border": "#0F172A"
       }
-    ]
+    ],
+    "priceBySize": {
+      "PLATA": 254.0,
+      "NEGRO": 254.0,
+      "Universal": 254.0
+    }
   },
   {
     "code": "L08",
     "name": "Bastón Aleman",
     "cat": "movilidad",
-    "price": null,
+    "price": 254.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5119,13 +5962,17 @@ export const PRODUCTS = [
         "hex": "#1E293B",
         "border": "#0F172A"
       }
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 254.0,
+      "Universal": 254.0
+    }
   },
   {
     "code": "L12A",
     "name": "Bastón Cuatro Apoyos",
     "cat": "movilidad",
-    "price": null,
+    "price": 48.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5153,13 +6000,17 @@ export const PRODUCTS = [
         "hex": "#CBD5E1",
         "border": "#94A3B8"
       }
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 48.0,
+      "Universal": 48.0
+    }
   },
   {
     "code": "L13",
     "name": "Bastón Tipo Canadiense (pieza)",
     "cat": "tobillo",
-    "price": null,
+    "price": 399.0,
     "bodyPart": "tobillo",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5179,7 +6030,11 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 399.0,
+      "Universal": 399.0
+    }
   },
   {
     "code": "L21",
@@ -5213,7 +6068,7 @@ export const PRODUCTS = [
     "code": "L28",
     "name": "Andadera Plegable de Aluminio, con Ruedas Giratorias 360°ø",
     "cat": "movilidad",
-    "price": null,
+    "price": 780.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5233,13 +6088,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "PLATA": 780.0,
+      "Universal": 780.0
+    }
   },
   {
     "code": "L29",
     "name": "Andadera Reforzada Plegable, con Ruedas Giratorias 360°ø",
     "cat": "movilidad",
-    "price": null,
+    "price": 800.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5267,13 +6126,17 @@ export const PRODUCTS = [
         "hex": "#CBD5E1",
         "border": "#94A3B8"
       }
-    ]
+    ],
+    "priceBySize": {
+      "PLATA": 800.0,
+      "Universal": 800.0
+    }
   },
   {
     "code": "L32",
     "name": "Bastón Aluminio Tres Apoyos",
     "cat": "movilidad",
-    "price": null,
+    "price": 337.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -5293,13 +6156,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 337.0,
+      "Universal": 337.0
+    }
   },
   {
     "code": "L34",
     "name": "Andadera Plegable Reforzada",
     "cat": "movilidad",
-    "price": null,
+    "price": 745.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5327,13 +6194,17 @@ export const PRODUCTS = [
         "hex": "#CBD5E1",
         "border": "#94A3B8"
       }
-    ]
+    ],
+    "priceBySize": {
+      "PLATA": 745.0,
+      "Universal": 745.0
+    }
   },
   {
     "code": "L35",
     "name": "Silla Cómodo Cromada Altura Ajustable",
     "cat": "movilidad",
-    "price": null,
+    "price": 1134.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5353,13 +6224,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 1134.0,
+      "Universal": 1134.0
+    }
   },
   {
     "code": "L36",
     "name": "Bastón Cuatro Apoyos Base Pequeña",
     "cat": "movilidad",
-    "price": null,
+    "price": 344.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -5379,13 +6254,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 344.0,
+      "Universal": 344.0
+    }
   },
   {
     "code": "L37",
     "name": "Andadera Plegable Ergonómica",
     "cat": "movilidad",
-    "price": null,
+    "price": 450.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5405,13 +6284,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "PLATA": 450.0,
+      "Universal": 450.0
+    }
   },
   {
     "code": "L43",
     "name": "Silla Cómodo Plegable Tijera Tynor",
     "cat": "movilidad",
-    "price": null,
+    "price": 675.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5431,13 +6314,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 675.0,
+      "Universal": 675.0
+    }
   },
   {
     "code": "L44",
     "name": "Bastón Tres Apoyos",
     "cat": "movilidad",
-    "price": null,
+    "price": 325.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5457,13 +6344,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 325.0,
+      "Universal": 325.0
+    }
   },
   {
     "code": "L45",
     "name": "Bastón Base Pirámide (tetra)",
     "cat": "movilidad",
-    "price": null,
+    "price": 435.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5483,13 +6374,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 435.0,
+      "Universal": 435.0
+    }
   },
   {
     "code": "L46",
     "name": "Regatón Trio 19 MM para L07 y L08",
     "cat": "movilidad",
-    "price": null,
+    "price": 165.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5509,13 +6404,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 165.0,
+      "Universal": 165.0
+    }
   },
   {
     "code": "L47",
     "name": "Regatón Tetra 19 MM para L45",
     "cat": "movilidad",
-    "price": null,
+    "price": 165.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5535,13 +6434,17 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 165.0,
+      "Universal": 165.0
+    }
   },
   {
     "code": "L49",
     "name": "Muleta Axilar Skipper 110 KG",
     "cat": "movilidad",
-    "price": null,
+    "price": 1300.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5562,13 +6465,18 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 1300.0,
+      "75 kg": 1300.0,
+      "110 kg": 1300.0
+    }
   },
   {
     "code": "L50",
     "name": "Recipiente con Tapa para Silla Cómodo L35",
     "cat": "tobillo",
-    "price": null,
+    "price": 75.0,
     "bodyPart": "tobillo",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5588,6 +6496,10 @@ export const PRODUCTS = [
       "Material transpirable hipoalergénico de alta resistencia",
       "Diseño ergonómico ajustable a la morfología del paciente",
       "Estructura diseñada bajo estándares ortopédicos internacionales"
-    ]
+    ],
+    "priceBySize": {
+      "UNITALLA": 75.0,
+      "Universal": 75.0
+    }
   }
 ];

@@ -1,0 +1,1598 @@
+{
+  "101": {
+    "code": "101",
+    "base_price": 185.0,
+    "price_by_size": {
+      "CH": 185.0,
+      "M": 185.0,
+      "G": 185.0,
+      "XL": 185.0
+    }
+  },
+  "102": {
+    "code": "102",
+    "base_price": 275.0,
+    "price_by_size": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 275.0
+    }
+  },
+  "103": {
+    "code": "103",
+    "base_price": 275.0,
+    "price_by_size": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 275.0
+    }
+  },
+  "104": {
+    "code": "104",
+    "base_price": 285.0,
+    "price_by_size": {
+      "UNITALLA": 285.0,
+      "Universal": 285.0
+    }
+  },
+  "105": {
+    "code": "105",
+    "base_price": 185.0,
+    "price_by_size": {
+      "CH": 185.0,
+      "M": 185.0,
+      "G": 185.0,
+      "XL": 185.0
+    }
+  },
+  "107": {
+    "code": "107",
+    "base_price": 275.0,
+    "price_by_size": {
+      "UNITALLA": 275.0,
+      "Universal": 275.0
+    }
+  },
+  "201": {
+    "code": "201",
+    "base_price": 170.0,
+    "price_by_size": {
+      "CH": 170.0,
+      "M": 170.0,
+      "G": 170.0,
+      "XL": 170.0
+    }
+  },
+  "202": {
+    "code": "202",
+    "base_price": 190.0,
+    "price_by_size": {
+      "CH": 190.0,
+      "M": 190.0,
+      "G": 190.0,
+      "XL": 190.0
+    }
+  },
+  "301": {
+    "code": "301",
+    "base_price": 225.0,
+    "price_by_size": {
+      "UNITALLA": 225.0,
+      "Universal": 225.0
+    }
+  },
+  "302": {
+    "code": "302",
+    "base_price": 150.0,
+    "price_by_size": {
+      "UNITALLA": 150.0,
+      "Universal": 150.0
+    }
+  },
+  "303": {
+    "code": "303",
+    "base_price": 175.0,
+    "price_by_size": {
+      "CH": 175.0,
+      "M": 175.0,
+      "G": 175.0,
+      "XL": 175.0
+    }
+  },
+  "304": {
+    "code": "304",
+    "base_price": 225.0,
+    "price_by_size": {
+      "UNITALLA": 225.0,
+      "Unitalla": 225.0
+    }
+  },
+  "401": {
+    "code": "401",
+    "base_price": 375.0,
+    "price_by_size": {
+      "UNITALLA": 375.0,
+      "Universal": 375.0
+    }
+  },
+  "402": {
+    "code": "402",
+    "base_price": 275.0,
+    "price_by_size": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 275.0
+    }
+  },
+  "403": {
+    "code": "403",
+    "base_price": 230.0,
+    "price_by_size": {
+      "UNITALLA": 230.0,
+      "Universal": 230.0
+    }
+  },
+  "404": {
+    "code": "404",
+    "base_price": 450.0,
+    "price_by_size": {
+      "UNITALLA": 450.0,
+      "Universal": 450.0
+    }
+  },
+  "405": {
+    "code": "405",
+    "base_price": 200.0,
+    "price_by_size": {
+      "UNITALLA": 200.0,
+      "Universal": 200.0
+    }
+  },
+  "406": {
+    "code": "406",
+    "base_price": 425.0,
+    "price_by_size": {
+      "UNITALLA": 425.0,
+      "Universal": 425.0
+    }
+  },
+  "407": {
+    "code": "407",
+    "base_price": 425.0,
+    "price_by_size": {
+      "UNITALLA": 425.0,
+      "Universal": 425.0
+    }
+  },
+  "408": {
+    "code": "408",
+    "base_price": 200.0,
+    "price_by_size": {
+      "UNITALLA": 200.0,
+      "Universal": 200.0
+    }
+  },
+  "702": {
+    "code": "702",
+    "base_price": 225.0,
+    "price_by_size": {
+      "CH": 225.0,
+      "M": 225.0,
+      "G": 225.0,
+      "XL": 225.0
+    }
+  },
+  "703": {
+    "code": "703",
+    "base_price": 295.0,
+    "price_by_size": {
+      "UNITALLA": 295.0,
+      "Unitalla": 295.0
+    }
+  },
+  "704": {
+    "code": "704",
+    "base_price": 95.0,
+    "price_by_size": {
+      "UNITALLA": 95.0,
+      "Universal": 95.0
+    }
+  },
+  "A01": {
+    "code": "A01",
+    "base_price": 344.0,
+    "price_by_size": {
+      "CH": 344.0,
+      "M": 344.0,
+      "G": 344.0,
+      "XL": 392.0,
+      "XXL": 392.0
+    }
+  },
+  "A03": {
+    "code": "A03",
+    "base_price": 385.0,
+    "price_by_size": {
+      "CH": 385.0,
+      "M": 385.0,
+      "G": 385.0,
+      "XL": 427.0,
+      "XXL": 427.0
+    }
+  },
+  "A04": {
+    "code": "A04",
+    "base_price": 552.0,
+    "price_by_size": {
+      "CH": 552.0,
+      "M": 552.0,
+      "G": 552.0,
+      "XL": 598.0,
+      "XXL": 598.0
+    }
+  },
+  "A05": {
+    "code": "A05",
+    "base_price": 433.0,
+    "price_by_size": {
+      "CH": 433.0,
+      "M": 433.0,
+      "G": 433.0,
+      "XL": 488.0,
+      "XXL": 488.0,
+      "XXXL": 516.0
+    }
+  },
+  "A06": {
+    "code": "A06",
+    "base_price": 433.0,
+    "price_by_size": {
+      "CH": 433.0,
+      "M": 433.0,
+      "G": 433.0,
+      "XL": 488.0,
+      "XXL": 488.0
+    }
+  },
+  "A07": {
+    "code": "A07",
+    "base_price": 605.0,
+    "price_by_size": {
+      "CH": 605.0,
+      "M": 605.0,
+      "G": 605.0,
+      "XL": 605.0,
+      "XXL": 625.0,
+      "XXXL": 625.0
+    }
+  },
+  "A09": {
+    "code": "A09",
+    "base_price": 303.0,
+    "price_by_size": {
+      "CH": 303.0,
+      "M": 303.0,
+      "G": 303.0,
+      "XL": 303.0
+    }
+  },
+  "A11": {
+    "code": "A11",
+    "base_price": 474.0,
+    "price_by_size": {
+      "CH": 474.0,
+      "M": 474.0,
+      "G": 474.0,
+      "XL": 474.0,
+      "XXL": 516.0,
+      "XXXL": 550.0,
+      "XXXXL": 584.0
+    }
+  },
+  "A12": {
+    "code": "A12",
+    "base_price": 930.0,
+    "price_by_size": {
+      "CH": 930.0,
+      "CH / Corto": 930.0,
+      "G / Largo": 930.0
+    }
+  },
+  "A13": {
+    "code": "A13",
+    "base_price": 1252.0,
+    "price_by_size": {
+      "UNITALLA": 1252.0,
+      "Unitalla CR": 1252.0,
+      "Unitalla LR": 1252.0,
+      "Talla Especial CR": 1252.0,
+      "Talla Especial LR": 1252.0
+    }
+  },
+  "A15": {
+    "code": "A15",
+    "base_price": 535.0,
+    "price_by_size": {
+      "UNITALLA": 535.0,
+      "Universal": 535.0
+    }
+  },
+  "A16": {
+    "code": "A16",
+    "base_price": 344.0,
+    "price_by_size": {
+      "CH": 344.0,
+      "G": 344.0,
+      "XL": 344.0
+    }
+  },
+  "A29": {
+    "code": "A29",
+    "base_price": 1025.0,
+    "price_by_size": {
+      "CH": 1025.0,
+      "M": 1025.0,
+      "XXL": 1175.0,
+      "CH - M": 1025.0,
+      "G - XL": 1025.0,
+      "XXL - XXXL": 1025.0
+    }
+  },
+  "A30": {
+    "code": "A30",
+    "base_price": 1000.0,
+    "price_by_size": {
+      "CH": 1000.0,
+      "M": 1000.0,
+      "XXL": 1150.0,
+      "CH - M": 1000.0,
+      "G - XL": 1000.0,
+      "XXL - XXXL": 1000.0
+    }
+  },
+  "A33": {
+    "code": "A33",
+    "base_price": 495.0,
+    "price_by_size": {
+      "CH": 495.0,
+      "M": 495.0,
+      "G": 495.0,
+      "XL": 495.0,
+      "Pediátrico": 495.0
+    }
+  },
+  "A35": {
+    "code": "A35",
+    "base_price": 400.0,
+    "price_by_size": {
+      "CH": 400.0,
+      "M": 400.0,
+      "G": 400.0,
+      "XL": 450.0,
+      "XXL": 450.0
+    }
+  },
+  "A36": {
+    "code": "A36",
+    "base_price": 495.0,
+    "price_by_size": {
+      "CH": 495.0,
+      "M": 495.0,
+      "G": 495.0,
+      "XL": 525.0,
+      "XXL": 550.0
+    }
+  },
+  "A38": {
+    "code": "A38",
+    "base_price": 275.0,
+    "price_by_size": {
+      "UNITALLA": 275.0,
+      "Universal": 275.0
+    }
+  },
+  "B01": {
+    "code": "B01",
+    "base_price": 150.0,
+    "price_by_size": {
+      "CH": 150.0,
+      "M": 150.0,
+      "G": 150.0,
+      "Pediátrico": 150.0
+    }
+  },
+  "B02": {
+    "code": "B02",
+    "base_price": 145.0,
+    "price_by_size": {
+      "CH": 145.0,
+      "M": 145.0,
+      "G": 145.0,
+      "XL": 145.0
+    }
+  },
+  "B03": {
+    "code": "B03",
+    "base_price": 165.0,
+    "price_by_size": {
+      "CH": 165.0,
+      "M": 165.0,
+      "G": 165.0
+    }
+  },
+  "B05": {
+    "code": "B05",
+    "base_price": 245.0,
+    "price_by_size": {
+      "CH": 245.0,
+      "M": 245.0,
+      "G": 245.0,
+      "XL": 245.0
+    }
+  },
+  "B07": {
+    "code": "B07",
+    "base_price": 140.0,
+    "price_by_size": {
+      "CH": 140.0,
+      "M": 140.0,
+      "G": 140.0
+    }
+  },
+  "B10": {
+    "code": "B10",
+    "base_price": 340.0,
+    "price_by_size": {
+      "CH": 340.0,
+      "M": 340.0,
+      "G": 340.0,
+      "XL": 340.0,
+      "Pediátrico": 340.0
+    }
+  },
+  "B31": {
+    "code": "B31",
+    "base_price": 300.0,
+    "price_by_size": {
+      "UNITALLA": 300.0,
+      "Universal": 300.0
+    }
+  },
+  "C01": {
+    "code": "C01",
+    "base_price": 125.0,
+    "price_by_size": {
+      "CH": 125.0,
+      "M": 125.0,
+      "G": 125.0,
+      "XL": 145.0,
+      "XXL": 145.0,
+      "PEDIATRICO": 125.0,
+      "Pediátrico": 125.0
+    }
+  },
+  "C02": {
+    "code": "C02",
+    "base_price": 265.0,
+    "price_by_size": {
+      "UNITALLA": 265.0,
+      "PEDIATRICO": 265.0,
+      "Universal": 265.0,
+      "Talla Especial": 265.0,
+      "Pediátrico": 265.0
+    }
+  },
+  "C03": {
+    "code": "C03",
+    "base_price": 360.0,
+    "price_by_size": {
+      "CH": 360.0,
+      "M": 360.0,
+      "G": 360.0,
+      "XL": 360.0
+    }
+  },
+  "C04": {
+    "code": "C04",
+    "base_price": 213.0,
+    "price_by_size": {
+      "CH": 213.0,
+      "M": 213.0,
+      "G": 213.0,
+      "XL": 213.0,
+      "Pediátrico": 213.0
+    }
+  },
+  "C05": {
+    "code": "C05",
+    "base_price": 285.0,
+    "price_by_size": {
+      "CH": 285.0,
+      "M": 285.0,
+      "G": 285.0,
+      "XL": 325.0,
+      "XXL": 325.0,
+      "PEDIATRICO": 285.0,
+      "Pediátrico": 285.0
+    }
+  },
+  "C06": {
+    "code": "C06",
+    "base_price": 140.0,
+    "price_by_size": {
+      "CH": 140.0,
+      "M": 140.0,
+      "G": 140.0,
+      "Pediátrico": 140.0,
+      "XL": 140.0,
+      "XXL": 140.0
+    }
+  },
+  "C08": {
+    "code": "C08",
+    "base_price": 250.0,
+    "price_by_size": {
+      "CH": 250.0,
+      "M": 250.0,
+      "G": 250.0,
+      "XL": 250.0
+    }
+  },
+  "C16": {
+    "code": "C16",
+    "base_price": 275.0,
+    "price_by_size": {
+      "UNITALLA": 275.0,
+      "Universal": 275.0
+    }
+  },
+  "C19": {
+    "code": "C19",
+    "base_price": 130.0,
+    "price_by_size": {
+      "UNITALLA": 130.0,
+      "Universal": 130.0
+    }
+  },
+  "C21": {
+    "code": "C21",
+    "base_price": 275.0,
+    "price_by_size": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 275.0
+    }
+  },
+  "D01": {
+    "code": "D01",
+    "base_price": 172.0,
+    "price_by_size": {
+      "CH": 172.0,
+      "M": 172.0,
+      "G": 172.0,
+      "XL": 199.0
+    }
+  },
+  "D02": {
+    "code": "D02",
+    "base_price": 420.0,
+    "price_by_size": {
+      "CH": 420.0,
+      "M": 420.0,
+      "G": 420.0,
+      "XL": 420.0,
+      "Pediátrico": 420.0
+    }
+  },
+  "D03": {
+    "code": "D03",
+    "base_price": 186.0,
+    "price_by_size": {
+      "CH": 186.0,
+      "M": 186.0,
+      "G": 186.0,
+      "XL": 207.0
+    }
+  },
+  "D04": {
+    "code": "D04",
+    "base_price": 175.0,
+    "price_by_size": {
+      "CH": 175.0,
+      "M": 175.0,
+      "G": 175.0,
+      "XL": 200.0,
+      "XXL": 200.0
+    }
+  },
+  "D05": {
+    "code": "D05",
+    "base_price": 175.0,
+    "price_by_size": {
+      "CH": 175.0,
+      "M": 175.0,
+      "G": 175.0,
+      "XL": 200.0,
+      "XXL": 200.0
+    }
+  },
+  "D06": {
+    "code": "D06",
+    "base_price": 325.0,
+    "price_by_size": {
+      "CH": 325.0,
+      "M": 325.0,
+      "G": 325.0,
+      "XL": 325.0,
+      "XXL": 325.0
+    }
+  },
+  "D07": {
+    "code": "D07",
+    "base_price": 300.0,
+    "price_by_size": {
+      "CH": 300.0,
+      "M": 300.0,
+      "G": 300.0,
+      "XL": 300.0,
+      "XXL": 300.0
+    }
+  },
+  "D08": {
+    "code": "D08",
+    "base_price": 335.0,
+    "price_by_size": {
+      "CH": 335.0,
+      "M": 335.0,
+      "G": 335.0,
+      "XL": 350.0,
+      "XXL": 350.0
+    }
+  },
+  "D09": {
+    "code": "D09",
+    "base_price": 619.0,
+    "price_by_size": {
+      "CH": 619.0,
+      "M": 619.0,
+      "G": 619.0,
+      "XL": 688.0,
+      "XXL": 688.0
+    }
+  },
+  "D10": {
+    "code": "D10",
+    "base_price": 1100.0,
+    "price_by_size": {
+      "UNITALLA": 1100.0,
+      "Universal": 1100.0
+    }
+  },
+  "D11": {
+    "code": "D11",
+    "base_price": 575.0,
+    "price_by_size": {
+      "CH": 575.0,
+      "M": 575.0,
+      "G": 575.0,
+      "XL": 590.0,
+      "XXL": 590.0
+    }
+  },
+  "D13": {
+    "code": "D13",
+    "base_price": 450.0,
+    "price_by_size": {
+      "CH": 450.0,
+      "M": 450.0,
+      "G": 450.0,
+      "XL": 475.0,
+      "XXL": 475.0
+    }
+  },
+  "D14": {
+    "code": "D14",
+    "base_price": 144.0,
+    "price_by_size": {
+      "CH": 144.0,
+      "M": 144.0,
+      "G": 144.0,
+      "XL": 144.0
+    }
+  },
+  "D17": {
+    "code": "D17",
+    "base_price": 500.0,
+    "price_by_size": {
+      "CH": 500.0,
+      "M": 500.0,
+      "G": 500.0,
+      "XL": 500.0,
+      "Pediátrico": 500.0
+    }
+  },
+  "D18": {
+    "code": "D18",
+    "base_price": 220.0,
+    "price_by_size": {
+      "CH": 220.0,
+      "M": 220.0,
+      "G": 220.0,
+      "XL": 220.0
+    }
+  },
+  "D19": {
+    "code": "D19",
+    "base_price": 138.0,
+    "price_by_size": {
+      "UNITALLA": 138.0,
+      "Universal": 138.0
+    }
+  },
+  "D23": {
+    "code": "D23",
+    "base_price": 275.0,
+    "price_by_size": {
+      "CH": 275.0,
+      "M": 275.0,
+      "G": 275.0,
+      "XL": 289.0
+    }
+  },
+  "D24": {
+    "code": "D24",
+    "base_price": 237.0,
+    "price_by_size": {
+      "UNITALLA": 237.0,
+      "Universal": 237.0
+    }
+  },
+  "D25": {
+    "code": "D25",
+    "base_price": 220.0,
+    "price_by_size": {
+      "CH": 220.0,
+      "M": 220.0,
+      "G": 220.0,
+      "XL": 220.0,
+      "XXL": 220.0
+    }
+  },
+  "D26": {
+    "code": "D26",
+    "base_price": 375.0,
+    "price_by_size": {
+      "UNITALLA": 375.0,
+      "Universal": 375.0
+    }
+  },
+  "D28": {
+    "code": "D28",
+    "base_price": 690.0,
+    "price_by_size": {
+      "CH": 690.0,
+      "M": 690.0,
+      "G": 690.0,
+      "XL": 750.0,
+      "XXL": 750.0
+    }
+  },
+  "D40": {
+    "code": "D40",
+    "base_price": 400.0,
+    "price_by_size": {
+      "UNITALLA": 400.0,
+      "Universal": 400.0
+    }
+  },
+  "D41": {
+    "code": "D41",
+    "base_price": 650.0,
+    "price_by_size": {
+      "CH": 650.0,
+      "M": 650.0,
+      "G": 650.0
+    }
+  },
+  "D43": {
+    "code": "D43",
+    "base_price": 575.0,
+    "price_by_size": {
+      "CH": 575.0,
+      "M": 575.0,
+      "G": 575.0,
+      "XL": 575.0,
+      "Pediátrico": 575.0
+    }
+  },
+  "D44": {
+    "code": "D44",
+    "base_price": 300.0,
+    "price_by_size": {
+      "PEDIATRICO": 300.0,
+      "Pediátrico": 300.0
+    }
+  },
+  "D47": {
+    "code": "D47",
+    "base_price": 325.0,
+    "price_by_size": {
+      "CH": 325.0,
+      "M": 325.0,
+      "G": 325.0,
+      "XL": 325.0
+    }
+  },
+  "D48": {
+    "code": "D48",
+    "base_price": 1250.0,
+    "price_by_size": {
+      "UNITALLA": 1250.0,
+      "Universal": 1250.0
+    }
+  },
+  "D54": {
+    "code": "D54",
+    "base_price": 250.0,
+    "price_by_size": {
+      "UNITALLA": 250.0,
+      "Universal": 250.0
+    }
+  },
+  "D58": {
+    "code": "D58",
+    "base_price": 1100.0,
+    "price_by_size": {
+      "UNITALLA": 1100.0,
+      "Universal": 1100.0
+    }
+  },
+  "E03": {
+    "code": "E03",
+    "base_price": 325.0,
+    "price_by_size": {
+      "CH": 325.0,
+      "M": 325.0,
+      "G": 325.0,
+      "XL": 325.0,
+      "Pediátrico": 325.0
+    }
+  },
+  "E05": {
+    "code": "E05",
+    "base_price": 131.0,
+    "price_by_size": {
+      "CH": 131.0,
+      "M": 131.0,
+      "G": 131.0
+    }
+  },
+  "E06": {
+    "code": "E06",
+    "base_price": 158.0,
+    "price_by_size": {
+      "UNITALLA": 158.0,
+      "Universal": 158.0
+    }
+  },
+  "E10": {
+    "code": "E10",
+    "base_price": 172.0,
+    "price_by_size": {
+      "CH": 172.0,
+      "M": 172.0,
+      "G": 172.0,
+      "XL": 172.0
+    }
+  },
+  "E11": {
+    "code": "E11",
+    "base_price": 152.0,
+    "price_by_size": {
+      "CH": 152.0,
+      "M": 152.0,
+      "G": 152.0,
+      "XL": 152.0
+    }
+  },
+  "E29": {
+    "code": "E29",
+    "base_price": 323.0,
+    "price_by_size": {
+      "CH": 323.0,
+      "M": 323.0,
+      "G": 323.0,
+      "Pediátrico": 323.0
+    }
+  },
+  "E30": {
+    "code": "E30",
+    "base_price": 523.0,
+    "price_by_size": {
+      "UNITALLA": 523.0,
+      "Universal": 523.0
+    }
+  },
+  "E43": {
+    "code": "E43",
+    "base_price": 317.0,
+    "price_by_size": {
+      "CH": 317.0,
+      "M": 317.0,
+      "G": 317.0,
+      "XL": 317.0
+    }
+  },
+  "E44": {
+    "code": "E44",
+    "base_price": 376.0,
+    "price_by_size": {
+      "CH": 376.0,
+      "M": 376.0,
+      "G": 376.0,
+      "XL": 376.0
+    }
+  },
+  "E46": {
+    "code": "E46",
+    "base_price": 1307.0,
+    "price_by_size": {
+      "UNITALLA": 1307.0,
+      "Universal": 1307.0
+    }
+  },
+  "E48": {
+    "code": "E48",
+    "base_price": 250.0,
+    "price_by_size": {
+      "CH": 250.0,
+      "M": 250.0,
+      "G": 250.0,
+      "XL": 250.0,
+      "XXL": 250.0
+    }
+  },
+  "F02": {
+    "code": "F02",
+    "base_price": 76.0,
+    "price_by_size": {
+      "CH": 76.0,
+      "M": 76.0,
+      "G": 76.0
+    }
+  },
+  "F03": {
+    "code": "F03",
+    "base_price": 124.0,
+    "price_by_size": {
+      "CH": 124.0,
+      "M": 124.0,
+      "G": 124.0
+    }
+  },
+  "F04": {
+    "code": "F04",
+    "base_price": 76.0,
+    "price_by_size": {
+      "CH": 76.0,
+      "M": 76.0,
+      "G": 76.0
+    }
+  },
+  "F05": {
+    "code": "F05",
+    "base_price": 76.0,
+    "price_by_size": {
+      "UNITALLA": 76.0,
+      "Universal": 76.0
+    }
+  },
+  "F06": {
+    "code": "F06",
+    "base_price": 193.0,
+    "price_by_size": {
+      "UNITALLA": 193.0,
+      "Universal": 193.0
+    }
+  },
+  "G01": {
+    "code": "G01",
+    "base_price": 150.0,
+    "price_by_size": {
+      "UNITALLA": 150.0,
+      "ADULTO": 150.0,
+      "INFANTIL": 150.0
+    }
+  },
+  "G20": {
+    "code": "G20",
+    "base_price": 125.0,
+    "price_by_size": {
+      "UNITALLA": 125.0,
+      "Universal": 125.0
+    }
+  },
+  "G25": {
+    "code": "G25",
+    "base_price": 510.0,
+    "price_by_size": {
+      "UNITALLA": 510.0,
+      "Universal": 510.0
+    }
+  },
+  "H01": {
+    "code": "H01",
+    "base_price": 197.0,
+    "price_by_size": {
+      "UNITALLA": 197.0,
+      "Universal": 197.0
+    }
+  },
+  "H02": {
+    "code": "H02",
+    "base_price": 351.0,
+    "price_by_size": {
+      "UNITALLA": 351.0,
+      "Universal": 351.0
+    }
+  },
+  "H03": {
+    "code": "H03",
+    "base_price": 351.0,
+    "price_by_size": {
+      "UNITALLA": 351.0,
+      "Universal": 351.0
+    }
+  },
+  "H05": {
+    "code": "H05",
+    "base_price": 55.0,
+    "price_by_size": {
+      "UNITALLA": 55.0,
+      "Universal": 55.0
+    }
+  },
+  "H12": {
+    "code": "H12",
+    "base_price": 95.0,
+    "price_by_size": {
+      "UNITALLA": 95.0,
+      "Universal": 95.0
+    }
+  },
+  "H13": {
+    "code": "H13",
+    "base_price": 680.0,
+    "price_by_size": {
+      "UNITALLA": 680.0,
+      "Universal": 680.0
+    }
+  },
+  "H14": {
+    "code": "H14",
+    "base_price": 120.0,
+    "price_by_size": {
+      "UNITALLA": 120.0,
+      "Universal": 120.0
+    }
+  },
+  "H15": {
+    "code": "H15",
+    "base_price": 120.0,
+    "price_by_size": {
+      "UNITALLA": 120.0,
+      "Universal": 120.0
+    }
+  },
+  "H16": {
+    "code": "H16",
+    "base_price": 120.0,
+    "price_by_size": {
+      "UNITALLA": 120.0,
+      "Universal": 120.0
+    }
+  },
+  "H17": {
+    "code": "H17",
+    "base_price": 150.0,
+    "price_by_size": {
+      "UNITALLA": 150.0,
+      "Universal": 150.0
+    }
+  },
+  "H18": {
+    "code": "H18",
+    "base_price": 150.0,
+    "price_by_size": {
+      "UNITALLA": 150.0,
+      "Universal": 150.0
+    }
+  },
+  "H23": {
+    "code": "H23",
+    "base_price": 400.0,
+    "price_by_size": {
+      "UNITALLA": 400.0,
+      "Universal": 400.0
+    }
+  },
+  "I01": {
+    "code": "I01",
+    "base_price": 25.0,
+    "price_by_size": {
+      "CH": 25.0,
+      "M": 25.0,
+      "G": 25.0
+    }
+  },
+  "I02": {
+    "code": "I02",
+    "base_price": 355.0,
+    "price_by_size": {
+      "UNITALLA": 355.0,
+      "Universal": 355.0
+    }
+  },
+  "I15": {
+    "code": "I15",
+    "base_price": 396.0,
+    "price_by_size": {
+      "CH": 396.0,
+      "M": 396.0,
+      "G": 396.0,
+      "XL": 421.0,
+      "XXL": 421.0
+    }
+  },
+  "I16": {
+    "code": "I16",
+    "base_price": 338.0,
+    "price_by_size": {
+      "CH": 338.0,
+      "M": 338.0,
+      "G": 338.0,
+      "XL": 409.0,
+      "XXL": 409.0
+    }
+  },
+  "I46": {
+    "code": "I46",
+    "base_price": 625.0,
+    "price_by_size": {
+      "UNITALLA": 625.0,
+      "Universal": 625.0
+    }
+  },
+  "I59": {
+    "code": "I59",
+    "base_price": 241.0,
+    "price_by_size": {
+      "CH": 241.0,
+      "M": 241.0,
+      "G": 241.0,
+      "XL": 241.0
+    }
+  },
+  "I65": {
+    "code": "I65",
+    "base_price": 213.0,
+    "price_by_size": {
+      "UNITALLA": 213.0,
+      "Universal": 213.0
+    }
+  },
+  "I91": {
+    "code": "I91",
+    "base_price": 605.0,
+    "price_by_size": {
+      "UNITALLA": 605.0,
+      "Universal": 605.0
+    }
+  },
+  "I93": {
+    "code": "I93",
+    "base_price": 300.0,
+    "price_by_size": {
+      "UNITALLA": 300.0,
+      "Universal": 300.0
+    }
+  },
+  "I94": {
+    "code": "I94",
+    "base_price": 300.0,
+    "price_by_size": {
+      "UNITALLA": 350.0,
+      "Universal": 300.0
+    }
+  },
+  "J01": {
+    "code": "J01",
+    "base_price": 600.0,
+    "price_by_size": {
+      "CH": 600.0,
+      "M": 600.0,
+      "G": 600.0,
+      "XL": 729.0,
+      "XXL": 757.0
+    }
+  },
+  "J03": {
+    "code": "J03",
+    "base_price": 193.0,
+    "price_by_size": {
+      "UNITALLA": 193.0,
+      "Universal": 193.0
+    }
+  },
+  "J04": {
+    "code": "J04",
+    "base_price": 152.0,
+    "price_by_size": {
+      "UNITALLA": 152.0,
+      "Universal": 152.0
+    }
+  },
+  "J05": {
+    "code": "J05",
+    "base_price": 450.0,
+    "price_by_size": {
+      "UNITALLA": 450.0,
+      "Universal": 450.0,
+      "Talla Especial": 450.0
+    }
+  },
+  "J06": {
+    "code": "J06",
+    "base_price": 400.0,
+    "price_by_size": {
+      "UNITALLA": 400.0,
+      "Universal": 400.0,
+      "Talla Especial": 400.0
+    }
+  },
+  "J08": {
+    "code": "J08",
+    "base_price": 633.0,
+    "price_by_size": {
+      "CH": 633.0,
+      "M": 633.0,
+      "G": 633.0,
+      "XL": 633.0,
+      "XXL": 633.0
+    }
+  },
+  "J09": {
+    "code": "J09",
+    "base_price": 317.0,
+    "price_by_size": {
+      "CH": 317.0,
+      "M": 317.0,
+      "G": 317.0,
+      "XL": 317.0,
+      "XXL": 317.0
+    }
+  },
+  "J12": {
+    "code": "J12",
+    "base_price": 295.0,
+    "price_by_size": {
+      "UNITALLA": 295.0,
+      "Universal": 295.0
+    }
+  },
+  "J14": {
+    "code": "J14",
+    "base_price": 425.0,
+    "price_by_size": {
+      "UNITALLA": 425.0,
+      "Universal": 425.0,
+      "Talla Especial": 425.0
+    }
+  },
+  "J15": {
+    "code": "J15",
+    "base_price": 626.0,
+    "price_by_size": {
+      "CH": 626.0,
+      "M": 626.0,
+      "G": 626.0,
+      "XL": 626.0,
+      "Pediátrico": 626.0
+    }
+  },
+  "J16": {
+    "code": "J16",
+    "base_price": 285.0,
+    "price_by_size": {
+      "UNITALLA": 285.0,
+      "Universal": 285.0,
+      "Talla Especial": 285.0
+    }
+  },
+  "K01": {
+    "code": "K01",
+    "base_price": 605.0,
+    "price_by_size": {
+      "CH": 605.0,
+      "M": 605.0,
+      "G": 605.0,
+      "XL": 605.0
+    }
+  },
+  "K02": {
+    "code": "K02",
+    "base_price": 344.0,
+    "price_by_size": {
+      "CH": 344.0,
+      "M": 344.0,
+      "G": 344.0,
+      "XL": 344.0
+    }
+  },
+  "K04": {
+    "code": "K04",
+    "base_price": 75.0,
+    "price_by_size": {
+      "CH": 75.0,
+      "M": 75.0,
+      "G": 75.0
+    }
+  },
+  "K08": {
+    "code": "K08",
+    "base_price": 150.0,
+    "price_by_size": {
+      "UNITALLA": 150.0,
+      "Universal": 150.0
+    }
+  },
+  "K10": {
+    "code": "K10",
+    "base_price": 323.0,
+    "price_by_size": {
+      "CH": 323.0,
+      "M": 323.0,
+      "G": 323.0
+    }
+  },
+  "K11": {
+    "code": "K11",
+    "base_price": 323.0,
+    "price_by_size": {
+      "UNITALLA": 323.0,
+      "Pediátrico": 323.0
+    }
+  },
+  "K14": {
+    "code": "K14",
+    "base_price": 207.0,
+    "price_by_size": {
+      "UNITALLA": 207.0,
+      "Universal": 207.0
+    }
+  },
+  "K15": {
+    "code": "K15",
+    "base_price": 100.0,
+    "price_by_size": {
+      "UNITALLA": 100.0,
+      "Pediátrico": 100.0,
+      "CH": 100.0,
+      "M": 100.0,
+      "G": 100.0,
+      "Adulto": 100.0
+    }
+  },
+  "K16": {
+    "code": "K16",
+    "base_price": 130.0,
+    "price_by_size": {
+      "CH": 130.0,
+      "M": 130.0,
+      "G": 130.0
+    }
+  },
+  "K18": {
+    "code": "K18",
+    "base_price": 125.0,
+    "price_by_size": {
+      "CH": 125.0,
+      "M": 125.0,
+      "G": 125.0,
+      "XL": 125.0
+    }
+  },
+  "L01": {
+    "code": "L01",
+    "base_price": 325.0,
+    "price_by_size": {
+      "CH": 325.0,
+      "M": 325.0,
+      "G": 325.0,
+      "XL": 345.0,
+      "XXL": 345.0
+    }
+  },
+  "L02": {
+    "code": "L02",
+    "base_price": 335.0,
+    "price_by_size": {
+      "CH": 335.0,
+      "M": 335.0,
+      "G": 335.0,
+      "XL": 350.0,
+      "XXL": 350.0
+    }
+  },
+  "L03": {
+    "code": "L03",
+    "base_price": 225.0,
+    "price_by_size": {
+      "CH": 225.0,
+      "M": 225.0,
+      "G": 225.0,
+      "XL": 240.0,
+      "XXL": 240.0
+    }
+  },
+  "L04": {
+    "code": "L04",
+    "base_price": 125.0,
+    "price_by_size": {
+      "CH": 125.0,
+      "M": 125.0,
+      "G": 125.0,
+      "XL": 125.0
+    }
+  },
+  "L07": {
+    "code": "L07",
+    "base_price": 254.0,
+    "price_by_size": {
+      "PLATA": 254.0,
+      "NEGRO": 254.0,
+      "Universal": 254.0
+    }
+  },
+  "L08": {
+    "code": "L08",
+    "base_price": 254.0,
+    "price_by_size": {
+      "UNITALLA": 254.0,
+      "Universal": 254.0
+    }
+  },
+  "L12A": {
+    "code": "L12A",
+    "base_price": 48.0,
+    "price_by_size": {
+      "UNITALLA": 48.0,
+      "Universal": 48.0
+    }
+  },
+  "L13": {
+    "code": "L13",
+    "base_price": 399.0,
+    "price_by_size": {
+      "UNITALLA": 399.0,
+      "Universal": 399.0
+    }
+  },
+  "L28": {
+    "code": "L28",
+    "base_price": 780.0,
+    "price_by_size": {
+      "PLATA": 780.0,
+      "Universal": 780.0
+    }
+  },
+  "L29": {
+    "code": "L29",
+    "base_price": 800.0,
+    "price_by_size": {
+      "PLATA": 800.0,
+      "Universal": 800.0
+    }
+  },
+  "L32": {
+    "code": "L32",
+    "base_price": 337.0,
+    "price_by_size": {
+      "UNITALLA": 337.0,
+      "Universal": 337.0
+    }
+  },
+  "L34": {
+    "code": "L34",
+    "base_price": 745.0,
+    "price_by_size": {
+      "PLATA": 745.0,
+      "Universal": 745.0
+    }
+  },
+  "L35": {
+    "code": "L35",
+    "base_price": 1134.0,
+    "price_by_size": {
+      "UNITALLA": 1134.0,
+      "Universal": 1134.0
+    }
+  },
+  "L36": {
+    "code": "L36",
+    "base_price": 344.0,
+    "price_by_size": {
+      "UNITALLA": 344.0,
+      "Universal": 344.0
+    }
+  },
+  "L37": {
+    "code": "L37",
+    "base_price": 450.0,
+    "price_by_size": {
+      "PLATA": 450.0,
+      "Universal": 450.0
+    }
+  },
+  "L43": {
+    "code": "L43",
+    "base_price": 675.0,
+    "price_by_size": {
+      "UNITALLA": 675.0,
+      "Universal": 675.0
+    }
+  },
+  "L44": {
+    "code": "L44",
+    "base_price": 325.0,
+    "price_by_size": {
+      "UNITALLA": 325.0,
+      "Universal": 325.0
+    }
+  },
+  "L45": {
+    "code": "L45",
+    "base_price": 435.0,
+    "price_by_size": {
+      "UNITALLA": 435.0,
+      "Universal": 435.0
+    }
+  },
+  "L46": {
+    "code": "L46",
+    "base_price": 165.0,
+    "price_by_size": {
+      "UNITALLA": 165.0,
+      "Universal": 165.0
+    }
+  },
+  "L47": {
+    "code": "L47",
+    "base_price": 165.0,
+    "price_by_size": {
+      "UNITALLA": 165.0,
+      "Universal": 165.0
+    }
+  },
+  "L49": {
+    "code": "L49",
+    "base_price": 1300.0,
+    "price_by_size": {
+      "UNITALLA": 1300.0,
+      "75 kg": 1300.0,
+      "110 kg": 1300.0
+    }
+  },
+  "L50": {
+    "code": "L50",
+    "base_price": 75.0,
+    "price_by_size": {
+      "UNITALLA": 75.0,
+      "Universal": 75.0
+    }
+  }
+}
