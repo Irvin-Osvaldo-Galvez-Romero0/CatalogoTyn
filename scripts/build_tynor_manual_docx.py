@@ -1,9 +1,9 @@
 import docx
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
-from docx.oxml import parse_xml, OxmlElement
-from docx.oxml.ns import nsdecls, qn
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.oxml import parse_xml
+from docx.oxml.ns import nsdecls
 import os
 
 def set_cell_background(cell, fill_hex):
@@ -53,13 +53,12 @@ def create_styled_table(doc, headers, data, col_widths=None):
                 else:
                     run.font.color.rgb = RGBColor(51, 65, 85)
 
-    # Set column widths if provided
     if col_widths:
         for row in table.rows:
             for idx, w in enumerate(col_widths):
                 row.cells[idx].width = Inches(w)
 
-    doc.add_paragraph() # Spacing after table
+    doc.add_paragraph()
     return table
 
 def add_figure(doc, img_path, caption_text, width=Inches(5.8)):
@@ -91,7 +90,7 @@ def set_document_metadata(doc):
     core_props.comments = "Documentación técnica y manual operativo oficial para quioscos táctiles y dispositivos móviles."
     core_props.subject = "Manual de Operación y Administración de Catálogo"
     core_props.category = "Manual Técnico"
-    core_props.keywords = "tynor, catalogo, manual, ortopedia, cotizador, qr, whatsapp"
+    core_props.keywords = "tynor, catalogo, manual, ortopedia, cotizador, qr, whatsapp, administracion, 9824"
 
 def build_manual():
     doc = docx.Document()
@@ -132,7 +131,7 @@ def build_manual():
         p_logo.paragraph_format.space_after = Pt(6)
         p_logo.add_run().add_picture(logo_path, width=Inches(1.8))
 
-    # Document Title (matching Nota de Credito style)
+    # Document Title
     p_title = doc.add_paragraph()
     p_title.paragraph_format.space_before = Pt(4)
     p_title.paragraph_format.space_after = Pt(2)
@@ -178,7 +177,6 @@ def build_manual():
     run_route_url.font.bold = True
     run_route_url.font.color.rgb = RGBColor(0, 150, 136)
 
-    # Fig. 1
     add_figure(doc, 'docs/screenshots/fig1_catalogo_principal.png', 'Fig. 1. Pantalla Principal del Catálogo Oficial Tynor', width=Inches(5.8))
 
     doc.add_paragraph("Una vez se realice el acceso al sistema, se mostrará la pantalla principal ilustrada en la Figura 1, la cual contiene los siguientes elementos operativos:")
@@ -196,7 +194,7 @@ def build_manual():
     create_styled_table(doc, table1_headers, table1_data, col_widths=[1.8, 4.4])
 
     # ----------------------------------------------------
-    # SECCIÓN 2: EXPLORACIÓN Y CUERPO ANATÓMICO 3D
+    # SECCIÓN 2: CUERPO ANATÓMICO 3D
     # ----------------------------------------------------
     p_sec2_title = doc.add_heading("2. Exploración Clínica y Filtro Anatómico 3D", level=1)
     p_sec2_title.paragraph_format.space_before = Pt(14)
@@ -368,40 +366,195 @@ def build_manual():
     create_styled_table(doc, table7_headers, table7_data, col_widths=[1.8, 4.4])
 
     # ----------------------------------------------------
-    # SECCIÓN 8: PANEL DE ADMINISTRACIÓN Y CONFIGURACIÓN
+    # SECCIÓN 8: PANEL DE ADMINISTRACIÓN Y CONFIGURACIÓN CENTRALIZADA
     # ----------------------------------------------------
     p_sec8_title = doc.add_heading("8. Panel de Administración y Configuración Centralizada", level=1)
-    p_sec8_title.paragraph_format.space_before = Pt(14)
+    p_sec8_title.paragraph_format.space_before = Pt(16)
     p_sec8_title.paragraph_format.space_after = Pt(6)
     for r in p_sec8_title.runs:
         r.font.color.rgb = RGBColor(15, 23, 42)
-        r.font.size = Pt(13)
+        r.font.size = Pt(14)
 
     p_sec8_desc = doc.add_paragraph(
-        "El catálogo cuenta con un Panel de Administración protegido por credenciales para la gestión técnica, catálogo de productos, personalización visual y configuración de pasarelas de correo.\n\n"
-        "Ruta de Acceso Administrativo:\n"
-        "Para acceder, realice un triple clic rápido (3 pulsaciones) sobre el logotipo Tynor en la barra superior izquierda. Se desplegará la ventana de autenticación mostrada en la Figura 8."
+        "El catálogo cuenta con un Panel de Administración centralizado en pantalla completa que permite gestionar de manera integral el catálogo de productos, las tarifas dinámicas por talla, la identidad visual de la marca y las pasarelas de correo emisor.\n\n"
+        "Este panel opera bajo un protocolo de seguridad discreto diseñado para quioscos públicos y puntos de venta desatendidos, impidiendo que usuarios no autorizados modifiquen la información clínica o comercial."
     )
 
-    add_figure(doc, 'docs/screenshots/fig6_login_admin.png', 'Fig. 8. Ventana de Autenticación de Administrador (NIP)', width=Inches(4.5))
+    # 8.1 Acceso y Autenticación
+    p_sec8_1 = doc.add_heading("8.1 Procedimiento de Acceso Oculto y NIP de Seguridad (9824)", level=2)
+    p_sec8_1.paragraph_format.space_before = Pt(12)
+    p_sec8_1.paragraph_format.space_after = Pt(4)
+    for r in p_sec8_1.runs:
+        r.font.color.rgb = RGBColor(0, 150, 136)
+        r.font.size = Pt(12)
 
     doc.add_paragraph(
-        "Ingrese el Usuario ('admin') y el NIP maestro asignado (por defecto '2026'). Al validar las credenciales, se abrirá el Panel de Control en pantalla completa ilustrado en la Figura 9:"
+        "Para acceder al panel administrativo, siga cualquiera de los siguientes dos métodos táctiles sobre el logotipo institucional ubicado en la esquina superior izquierda de la pantalla:\n\n"
+        "• Método A (Triple Clic Rápido): Pulse 3 veces consecutivas sobre el logotipo en un lapso menor a 700 ms.\n"
+        "• Método B (Pulsación Prolongada): Mantenga presionado el logotipo durante 2.5 segundos continuos.\n\n"
+        "El sistema desplegará inmediatamente la ventana modal de autenticación segura ilustrada en la Figura 8.1:"
     )
 
-    add_figure(doc, 'docs/screenshots/fig7_panel_administracion.png', 'Fig. 9. Panel Central de Control Administrativo', width=Inches(5.8))
+    add_figure(doc, 'docs/screenshots/fig_admin_login.png', 'Fig. 8.1. Ventana de Autenticación de Administrador (NIP 9824)', width=Inches(4.5))
 
-    doc.add_paragraph("El Panel de Administración se estructura en 4 módulos principales:")
+    doc.add_paragraph("Las credenciales oficiales predeterminadas para ingresar son:")
 
-    table8_headers = ["Módulo / Pestaña", "Funcionalidades Principales"]
-    table8_data = [
-        ["Pestaña Productos", "Listado y buscador de los 180 productos. Permite agregar nuevos artículos, modificar información clínica, cargar fichas técnicas PDF, definir stock y ajustar precios."],
-        ["Editor de Precios por Talla (priceBySize)", "Herramienta integrada que detecta automáticamente las tallas ingresadas y permite fijar tarifas diferenciadas por medida (ej. XL o XXL con sobreprecio) o retornar al precio base con un clic."],
-        ["Pestaña Branding & Logo", "Personalización en tiempo real del logotipo institucional y de la paleta de color principal sin requerir reinicio del servidor."],
-        ["Pestaña Correo Emisor", "Configuración centralizada de pasarela SMTP (presets para Gmail, Outlook 365 o Dominio Propio/HostGator) y herramienta de prueba de envío en vivo."],
-        ["Pestaña Seguridad NIP", "Permite actualizar el nombre de usuario y el NIP de autorización de 4 o más dígitos."]
+    table_creds_headers = ["Parámetro de Acceso", "Valor Predeterminado / Descripción"]
+    table_creds_data = [
+        ["Usuario Administrador", "admin (viene precargado en el campo de texto)."],
+        ["NIP de Acceso Oficial", "9824 (código numérico de seguridad requerido)."],
+        ["Teclado Numérico Táctil", "Permite ingresar el NIP directamente en pantallas táctiles sin requerir teclado físico."],
+        ["Botón de Visibilidad (Ojo)", "Alterna entre ocultar el NIP o visualizarlo en texto claro para verificarlo."],
+        ["Botón 'Ingresar al Panel'", "Valida las credenciales ingresadas y concede acceso al panel de administración en pantalla completa."]
     ]
-    create_styled_table(doc, table8_headers, table8_data, col_widths=[2.0, 4.2])
+    create_styled_table(doc, table_creds_headers, table_creds_data, col_widths=[2.0, 4.2])
+
+    # 8.2 Pestaña 1: Gestión de Productos
+    p_sec8_2 = doc.add_heading("8.2 Gestión del Catálogo de Productos (Pestaña 'Productos')", level=2)
+    p_sec8_2.paragraph_format.space_before = Pt(12)
+    p_sec8_2.paragraph_format.space_after = Pt(4)
+    for r in p_sec8_2.runs:
+        r.font.color.rgb = RGBColor(0, 150, 136)
+        r.font.size = Pt(12)
+
+    doc.add_paragraph(
+        "Una vez dentro del panel, la primera pestaña ('Productos') despliega la base de datos completa de los 180 productos del catálogo. Ofrece un buscador en tiempo real, contador de artículos y controles rápidos de edición y eliminación."
+    )
+
+    add_figure(doc, 'docs/screenshots/fig_admin_products_table.png', 'Fig. 8.2. Pestaña de Productos: Tabla de Control y Búsqueda', width=Inches(5.8))
+
+    doc.add_paragraph("La tabla de gestión de productos proporciona los siguientes componentes:")
+
+    table_prod_headers = ["Elemento / Control", "Descripción Operativa"]
+    table_prod_data = [
+        ["Contador de Productos", "Indica el número total de artículos disponibles en la base de datos en tiempo real (180 productos)."],
+        ["Buscador en Tiempo Real", "Filtra la tabla al instante por código SKU, nombre clínico o categoría médica."],
+        ["Botón '+ Nuevo Producto'", "Abre el formulario completo para dar de alta un nuevo dispositivo ortopédico."],
+        ["Columna Referencia / Código", "Identificador único del producto (ej. L03, 101, A01, D55)."],
+        ["Columna Nombre y Marca", "Nombre comercial completo del producto y su línea (Tynor Ortopedia, Deportiva, Athlon, Medivaric)."],
+        ["Columna Precio y Stock", "Muestra la tarifa base oficial y el número de unidades disponibles en el inventario del quiosco."],
+        ["Botón 'Editar'", "Abre el formulario para actualizar precios, tallas, fichas técnicas y fotos del producto."],
+        ["Botón 'Eliminar'", "Solicita el NIP de confirmación (9824) para eliminar un producto de forma segura evitando pérdidas accidentales."]
+    ]
+    create_styled_table(doc, table_prod_headers, table_prod_data, col_widths=[2.0, 4.2])
+
+    # 8.3 Formulario de Producto y Editor de Tarifas por Talla
+    p_sec8_3 = doc.add_heading("8.3 Formulario de Producto y Editor de Precios por Talla (priceBySize)", level=2)
+    p_sec8_3.paragraph_format.space_before = Pt(12)
+    p_sec8_3.paragraph_format.space_after = Pt(4)
+    for r in p_sec8_3.runs:
+        r.font.color.rgb = RGBColor(0, 150, 136)
+        r.font.size = Pt(12)
+
+    doc.add_paragraph(
+        "Al pulsar el botón 'Nuevo Producto' o 'Editar', se despliega el formulario integral del artículo. En esta sección se introdujo el Editor Interactivo de Precios por Medida / Talla (priceBySize), el cual soluciona las variaciones de costo en tallas grandes o especiales (ej. Faja L03 donde CH|M|G cuestan $225 y XL|XXL cuestan $240)."
+    )
+
+    add_figure(doc, 'docs/screenshots/fig_admin_product_form.png', 'Fig. 8.3. Formulario de Edición de Producto y Editor de Precios por Talla', width=Inches(5.8))
+
+    doc.add_paragraph("Los campos y controles del formulario de producto se detallan a continuación:")
+
+    table_form_headers = ["Campo / Sección", "Instrucciones de Llenado / Función"]
+    table_form_data = [
+        ["Código de Referencia (SKU)", "Obligatorio. Código oficial de catálogo (ej. L03, A11, 101)."],
+        ["Precio Base ($ MXN)", "Tarifa regular del artículo. Se utiliza automáticamente para todas las tallas estándar."],
+        ["Nombre del Producto", "Nombre clínico descriptivo oficial (ej. Faja Abdominal)."],
+        ["Marca / Línea", "Selector de marca: Tynor, Deportiva, Athlon o Medivaric."],
+        ["Categoría Médica", "Clasificación clínica (Inmovilizadores, Rodilleras, Tobillo, etc.)."],
+        ["Parte del Cuerpo (Anatomía 3D)", "Vincula el producto con el modelo 3D (rodilla, hombro, cuello, columna/lumbar, tobillo, etc.)."],
+        ["Stock Disponible", "Número de piezas físicas en existencia."],
+        ["Tallas Disponibles", "Lista separada por comas (ej. CH, M, G, XL, XXL o Universal)."],
+        ["Editor de Precios por Talla (priceBySize)", "Al escribir las tallas, se genera una cuadrícula interactiva. Si una talla (ej. XL o XXL) tiene un costo superior al precio base, capture su importe específico aquí. Si se deja en blanco o se presiona '✕', asume el precio base."],
+        ["Ficha Técnica PDF", "Permite habilitar la casilla 'Incluye PDF' y presionar 'Subir Archivo PDF' para adjuntar el folleto técnico oficial."],
+        ["Carga de Imagen (WebP)", "Permite subir una nueva fotografía clínica. El sistema la comprime automáticamente a formato WebP optimizado para no saturar la memoria."],
+        ["Colores y Descripción Clínica", "Configuración de muestras cromáticas, descripción técnica, indicaciones de uso y características ergonómicas."]
+    ]
+    create_styled_table(doc, table_form_headers, table_form_data, col_widths=[2.1, 4.1])
+
+    # 8.4 Pestaña 2: Branding & Logo
+    p_sec8_4 = doc.add_heading("8.4 Personalización de Marca (Pestaña 'Branding & Logo')", level=2)
+    p_sec8_4.paragraph_format.space_before = Pt(12)
+    p_sec8_4.paragraph_format.space_after = Pt(4)
+    for r in p_sec8_4.runs:
+        r.font.color.rgb = RGBColor(0, 150, 136)
+        r.font.size = Pt(12)
+
+    doc.add_paragraph(
+        "La pestaña 'Branding & Logo' permite adaptar la identidad corporativa del catálogo en tiempo real. Esta función es ideal para personalizar la pantalla con la identidad de distribuidores, farmacias aliadas o stands temáticos sin necesidad de alterar el código fuente."
+    )
+
+    add_figure(doc, 'docs/screenshots/fig_admin_branding.png', 'Fig. 8.4. Módulo de Branding: Logotipo y Color Institucional', width=Inches(5.8))
+
+    doc.add_paragraph("Opciones de configuración de marca:")
+
+    table_brand_headers = ["Item", "Descripción"]
+    table_brand_data = [
+        ["Subir Archivo de Logotipo", "Permite cargar una imagen PNG o SVG transparente para reemplazar el logo de la cabecera."],
+        ["URL de Logotipo Externo", "Permite especificar un enlace directo a un logotipo alojado en la nube."],
+        ["Selector de Color Primario", "Control interactivo de color (HEX) para ajustar el color principal de botones, acentos y resaltados."],
+        ["Paleta de Presets Médicos", "Botones preconfigurados con colores oficiales: Teal Tynor (#009688), Azul Clínico (#0284C7), Índigo (#4F46E5) y Verde Médico (#059669)."],
+        ["Botón 'Guardar y Aplicar'", "Aplica los cambios en vivo en la interfaz del quiosco y guarda la preferencia en almacenamiento permanente."]
+    ]
+    create_styled_table(doc, table_brand_headers, table_brand_data, col_widths=[1.9, 4.3])
+
+    # 8.5 Pestaña 3: Correo Emisor Centralizado
+    p_sec8_5 = doc.add_heading("8.5 Configuración de Correo Emisor Centralizado (Pestaña 'Correo Emisor')", level=2)
+    p_sec8_5.paragraph_format.space_before = Pt(12)
+    p_sec8_5.paragraph_format.space_after = Pt(4)
+    for r in p_sec8_5.runs:
+        r.font.color.rgb = RGBColor(0, 150, 136)
+        r.font.size = Pt(12)
+
+    doc.add_paragraph(
+        "La pestaña 'Correo Emisor' gestiona la pasarela centralizada de envío de cotizaciones (Zero-Code SMTP). Todos los correos generados desde el quiosco son despachados desde una única cuenta corporativa central hacia los correos de los clientes y los asesores comerciales responsables.\n\n"
+        "El módulo incluye botones preconfigurados (Presets) para los tres servicios de correo más comunes en el ámbito empresarial:"
+    )
+
+    add_figure(doc, 'docs/screenshots/fig_admin_email.png', 'Fig. 8.5. Configuración de Pasarela SMTP y Prueba de Envío en Vivo', width=Inches(5.8))
+
+    doc.add_paragraph("Parámetros de configuración del servidor SMTP:")
+
+    table_email_headers = ["Campo / Botón", "Descripción y Valores Recomendados"]
+    table_email_data = [
+        ["Preset: Gmail", "Configura Host smtp.gmail.com y Puerto 465 (SSL). Requiere utilizar una 'Contraseña de Aplicación' de 16 dígitos generada en la cuenta de Google."],
+        ["Preset: Outlook / 365", "Configura Host smtp.office365.com y Puerto 587 (TLS)."],
+        ["Preset: Dominio Propio", "Para servidores corporativos (ej. HostGator, cPanel, Webmail). Ejemplo: Host gator2006.hostgator.com, Puerto 465."],
+        ["Correo Electrónico Emisor", "Dirección de correo remitente oficial (ej. igalvez@tynor.com.mx o cotizaciones@tynor.com.mx)."],
+        ["Nombre del Remitente Visible", "Nombre formal que aparecerá en la bandeja de entrada del cliente (ej. 'Tynor Ortopedia — Cotizaciones Oficiales')."],
+        ["Servidor SMTP (Host)", "Dirección del servidor saliente proporcionada por su proveedor de hosting."],
+        ["Puerto SMTP", "465 para conexiones seguras SSL (recomendado) o 587 para TLS/STARTTLS."],
+        ["Usuario de Autenticación", "Dirección de correo completa o usuario de la cuenta emisora."],
+        ["Contraseña / App Password", "Contraseña del correo corporativo o contraseña de aplicación segura."],
+        ["Prueba de Envío en Tiempo Real", "Campo para escribir un correo de prueba (ej. prueba@gmail.com) y botón 'Enviar Prueba'. Valida inmediatamente si la conexión y autenticación son exitosas antes de guardar."],
+        ["Botón 'Guardar Configuración'", "Almacena los parámetros SMTP de forma segura y encriptada en el sistema."]
+    ]
+    create_styled_table(doc, table_email_headers, table_email_data, col_widths=[2.1, 4.1])
+
+    # 8.6 Pestaña 4: Seguridad y Cambio de NIP
+    p_sec8_6 = doc.add_heading("8.6 Seguridad y Actualización de NIP Maestro (Pestaña 'Seguridad NIP')", level=2)
+    p_sec8_6.paragraph_format.space_before = Pt(12)
+    p_sec8_6.paragraph_format.space_after = Pt(4)
+    for r in p_sec8_6.runs:
+        r.font.color.rgb = RGBColor(0, 150, 136)
+        r.font.size = Pt(12)
+
+    doc.add_paragraph(
+        "La pestaña 'Seguridad NIP' permite cambiar el nombre de usuario y el código NIP maestro para garantizar la protección del quiosco. Cualquier cambio requiere verificar primero el NIP actual en vigencia (predeterminado: 9824)."
+    )
+
+    add_figure(doc, 'docs/screenshots/fig_admin_security.png', 'Fig. 8.6. Módulo de Seguridad: Cambio de NIP y Credenciales', width=Inches(5.8))
+
+    doc.add_paragraph("Procedimiento para actualizar el NIP de acceso:")
+
+    table_sec_headers = ["Paso / Campo", "Instrucciones de Configuración"]
+    table_sec_data = [
+        ["1. NIP Actual de Seguridad", "Obligatorio. Ingrese el NIP vigente (por defecto 9824) para autorizar la modificación."],
+        ["2. Nuevo Usuario Administrador", "Defina el nombre de usuario deseado (ej. admin o supervisor)."],
+        ["3. Nuevo NIP de Acceso", "Capture el nuevo código numérico (debe contener un mínimo de 4 dígitos)."],
+        ["4. Confirmación de Nuevo NIP", "Vuelva a teclear el nuevo código para asegurar su coincidencia exacta."],
+        ["5. Botón 'Actualizar Credenciales'", "Aplica el nuevo NIP de inmediato. A partir de ese momento, todas las acciones críticas y accesos requerirán el nuevo código."]
+    ]
+    create_styled_table(doc, table_sec_headers, table_sec_data, col_widths=[2.0, 4.2])
 
     # ----------------------------------------------------
     # SECCIÓN 9: SOPORTE Y PREGUNTAS FRECUENTES
@@ -415,7 +568,8 @@ def build_manual():
 
     table9_headers = ["Situación / Pregunta", "Solución / Procedimiento Recomendado"]
     table9_data = [
-        ["¿Cómo actualizo el precio de un producto que tiene diferente tarifa por medida?", "Ingrese al Panel de Administrador con el NIP 2026, busque el código del producto, pulse 'Editar' y en la sección 'Precios Específicos por Medida / Talla' capture el importe de cada talla."],
+        ["¿Cuál es la contraseña predeterminada del quiosco?", "El usuario por defecto es 'admin' y el NIP oficial es '9824'. Se ingresa mediante un triple clic o pulsación continua de 2.5s sobre el logotipo Tynor."],
+        ["¿Cómo actualizo el precio de un producto que tiene diferente tarifa por medida?", "Ingrese al Panel de Administrador con el NIP 9824, busque el código del producto, pulse 'Editar' y en la sección 'Precios Específicos por Medida / Talla' capture el importe de cada talla."],
         ["¿Qué sucede si un cliente no tiene lector de QR?", "El cliente puede abrir el navegador en su smartphone y teclear el enlace directo o el asesor puede seleccionar la opción 'Mandar a Correo' desde la lista de deseos."],
         ["¿Cómo se garantiza que el quiosco funcione sin conexión a internet?", "El sistema está construido como Progressive Web App (PWA) con Service Worker activo. La totalidad del catálogo de 180 productos y las imágenes se almacenan en caché local para navegación continua."],
         ["¿Dónde se contacta a soporte técnico?", "Para asistencia técnica, actualización de listas de precios o soporte de infraestructura, comuníquese con el Departamento de TI de Mexortho / Tynor México."]
