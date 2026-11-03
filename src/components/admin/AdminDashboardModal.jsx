@@ -58,6 +58,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
   const [newColorHex, setNewColorHex] = useState('#10B4C1');
   const [newColorName, setNewColorName] = useState('');
   const [pdfFileName, setPdfFileName] = useState('');
+  const [pdfFile, setPdfFile] = useState(null);
 
   // Modal de confirmación de NIP para acciones destructivas
   const [nipPromptOpen, setNipPromptOpen] = useState(false);
@@ -143,7 +144,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
       };
 
       if (editingCode) {
-        const res = await productManager.updateProduct(editingCode, payload, imageFile, verifiedNip);
+        const res = await productManager.updateProduct(editingCode, payload, imageFile, pdfFile, verifiedNip);
         if (res.success) {
           setIsEditingProduct(false);
           setEditingCode(null);
@@ -152,7 +153,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
           alert(`Error: ${res.error}`);
         }
       } else {
-        const res = await productManager.addProduct(payload, imageFile, verifiedNip);
+        const res = await productManager.addProduct(payload, imageFile, pdfFile, verifiedNip);
         if (res.success) {
           setIsEditingProduct(false);
           resetProductForm();
@@ -187,6 +188,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
     setImageFile(null);
     setImagePreview('');
     setPdfFileName('');
+    setPdfFile(null);
     setNewColorName('');
   };
 
@@ -262,6 +264,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
   const handlePdfFileChange = (e) => {
     const file = e.target.files?.[0];
     if (file) {
+      setPdfFile(file);
       setPdfFileName(file.name);
       const reader = new FileReader();
       reader.onload = (ev) => {

@@ -1,17 +1,18 @@
 -- =============================================================================
--- CatalogoTyn: Tabla Oficial de Productos Centralizados en Supabase
+-- CatalogoTyn: Tabla Oficial de Productos y Storage Centralizados en Supabase
 -- Tabla: public.productos_catalogo
+-- Storage Bucket: catalog-media (Imágenes WebP y PDFs de Fichas Técnicas)
 -- Engine: PostgreSQL 15+ / 17+ (Supabase Project: xvrnssesbkzxeusubzes)
--- Propósito: Sincronización en la nube de productos creados/editados por el Admin
 -- =============================================================================
 
 BEGIN;
 
--- 1. Extensiones necesarias
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
--- 2. Creación de la tabla de productos centralizada
+-- =============================================================================
+-- 1. TABLA PRINCIPAL DE PRODUCTOS
+-- =============================================================================
 CREATE TABLE IF NOT EXISTS public.productos_catalogo (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     code TEXT NOT NULL UNIQUE,
@@ -39,13 +40,12 @@ CREATE TABLE IF NOT EXISTS public.productos_catalogo (
     updated_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
--- 3. Índices de aceleración de consultas
+-- Índices de aceleración
 CREATE INDEX IF NOT EXISTS idx_productos_catalogo_code ON public.productos_catalogo(code);
 CREATE INDEX IF NOT EXISTS idx_productos_catalogo_cat ON public.productos_catalogo(cat);
-CREATE INDEX IF NOT EXISTS idx_productos_catalogo_body_part ON public.productos_catalogo(body_part);
 CREATE INDEX IF NOT EXISTS idx_productos_catalogo_active ON public.productos_catalogo(is_active);
 
--- 4. Trigger para auto-actualizar updated_at
+-- Trigger para updated_at automático
 CREATE OR REPLACE FUNCTION public.handle_productos_catalogo_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -60,56 +60,65 @@ CREATE TRIGGER trigger_productos_catalogo_updated_at
     FOR EACH ROW
     EXECUTE FUNCTION public.handle_productos_catalogo_updated_at();
 
--- 5. Habilitar Row Level Security (RLS)
+-- Permisos DCL y RLS para la tabla
 ALTER TABLE public.productos_catalogo ENABLE ROW LEVEL SECURITY;
 
--- 6. Configurar permisos DCL
 GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.productos_catalogo TO anon, authenticated, service_role;
 
--- 7. Limpieza de políticas previas
 DROP POLICY IF EXISTS "Permitir lectura publica de productos" ON public.productos_catalogo;
 DROP POLICY IF EXISTS "Permitir insercion de productos" ON public.productos_catalogo;
 DROP POLICY IF EXISTS "Permitir actualizacion de productos" ON public.productos_catalogo;
 DROP POLICY IF EXISTS "Permitir eliminacion de productos" ON public.productos_catalogo;
 DROP POLICY IF EXISTS "Permitir todo a service_role" ON public.productos_catalogo;
 
--- 8. Políticas RLS
--- Lectura pública: Todos los quioscos y clientes pueden ver los productos activos
-CREATE POLICY "Permitir lectura publica de productos"
-ON public.productos_catalogo
-FOR SELECT
-TO anon, authenticated
-USING (is_active = true);
+CREATE POLICY "Permitir lectura publica de productos" ON public.productos_catalogo FOR SELECT TO anon, authenticated USING (is_active = true);
+CREATE POLICY "Permitir insercion de productos" ON public.productos_catalogo FOR INSERT TO anon, authenticated WITH CHECK (true);
+CREATE POLICY "Permitir actualizacion de productos" ON public.productos_catalogo FOR UPDATE TO anon, authenticated USING (true) WITH CHECK (true);
+CREATE POLICY "Permitir eliminacion de productos" ON public.productos_catalogo FOR DELETE TO anon, authenticated USING (true);
+CREATE POLICY "Permitir todo a service_role" ON public.productos_catalogo FOR ALL TO service_role USING (true) WITH CHECK (true);
 
--- Inserción: Permitir registrar nuevos productos
-CREATE POLICY "Permitir insercion de productos"
-ON public.productos_catalogo
-FOR INSERT
-TO anon, authenticated
-WITH CHECK (true);
+-- =============================================================================
+-- 2. BUCKET DE SUPABASE STORAGE PARA ARCHIVOS (IMÁGENES Y PDFS)
+-- =============================================================================
+INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+VALUES (
+    'catalog-media',
+    'catalog-media',
+    true,
+    52428800, -- Límite de 50 MB por archivo
+    ARRAY['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml', 'application/pdf']
+)
+ON CONFLICT (id) DO UPDATE SET
+    public = true,
+    file_size_limit = 52428800,
+    allowed_mime_types = ARRAY['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml', 'application/pdf'];
 
--- Actualización: Permitir modificar productos existentes
-CREATE POLICY "Permitir actualizacion de productos"
-ON public.productos_catalogo
-FOR UPDATE
-TO anon, authenticated
-USING (true)
-WITH CHECK (true);
+-- Políticas de Acceso en storage.objects
+DROP POLICY IF EXISTS "Permitir lectura publica de catalog-media" ON storage.objects;
+DROP POLICY IF EXISTS "Permitir subida a catalog-media" ON storage.objects;
+DROP POLICY IF EXISTS "Permitir actualizacion en catalog-media" ON storage.objects;
+DROP POLICY IF EXISTS "Permitir eliminacion en catalog-media" ON storage.objects;
 
--- Eliminación: Permitir eliminar o deshabilitar productos
-CREATE POLICY "Permitir eliminacion de productos"
-ON public.productos_catalogo
-FOR DELETE
+CREATE POLICY "Permitir lectura publica de catalog-media"
+ON storage.objects FOR SELECT
 TO anon, authenticated
-USING (true);
+USING (bucket_id = 'catalog-media');
 
--- Acceso irrestricto para administradores de base de datos
-CREATE POLICY "Permitir todo a service_role"
-ON public.productos_catalogo
-FOR ALL
-TO service_role
-USING (true)
-WITH CHECK (true);
+CREATE POLICY "Permitir subida a catalog-media"
+ON storage.objects FOR INSERT
+TO anon, authenticated
+WITH CHECK (bucket_id = 'catalog-media');
+
+CREATE POLICY "Permitir actualizacion en catalog-media"
+ON storage.objects FOR UPDATE
+TO anon, authenticated
+USING (bucket_id = 'catalog-media')
+WITH CHECK (bucket_id = 'catalog-media');
+
+CREATE POLICY "Permitir eliminacion en catalog-media"
+ON storage.objects FOR DELETE
+TO anon, authenticated
+USING (bucket_id = 'catalog-media');
 
 COMMIT;

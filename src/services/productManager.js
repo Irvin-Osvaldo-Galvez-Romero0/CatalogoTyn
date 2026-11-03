@@ -158,6 +158,40 @@ export async function compressImage(file, maxDimension = 1000, quality = 0.82) {
   });
 }
 
+/**
+ * Sube un archivo binario (imagen o PDF) al Bucket 'catalog-media' de Supabase Storage
+ * @param {File|Blob} file
+ * @param {'images'|'pdfs'} folder
+ * @param {string} fileName
+ * @returns {Promise<string|null>} URL pública CDN del archivo o null si falla
+ */
+export async function uploadToStorage(file, folder, fileName) {
+  if (!file) return null;
+  try {
+    const cleanName = `${Date.now()}_${fileName.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+    const storagePath = `${folder}/${cleanName}`;
+    const uploadUrl = `${SUPABASE_URL}/storage/v1/object/catalog-media/${storagePath}`;
+
+    const res = await fetch(uploadUrl, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': file.type || (folder === 'pdfs' ? 'application/pdf' : 'image/webp'),
+        'x-upsert': 'true'
+      },
+      body: file
+    });
+
+    if (res.ok) {
+      return `${SUPABASE_URL}/storage/v1/object/public/catalog-media/${storagePath}`;
+    }
+  } catch (err) {
+    console.warn('[Storage] Fallo al subir archivo a Supabase Storage:', err.message);
+  }
+  return null;
+}
+
 export const productManager = {
   /**
    * Obtiene las credenciales del Administrador con migración transparente
@@ -345,7 +379,7 @@ export const productManager = {
   /**
    * Agrega un nuevo producto (requiere confirmación asíncrona de NIP)
    */
-  async addProduct(productData, imageFile = null, nip) {
+  async addProduct(productData, imageFile = null, pdfFile = null, nip) {
     const isAuthorized = await this.verifyNip(nip);
     if (!isAuthorized) {
       return { success: false, error: 'NIP de autorización incorrecto.' };
@@ -364,6 +398,19 @@ export const productManager = {
     let finalImageUrl = productData.imageUrl || '';
     if (imageFile) {
       finalImageUrl = await compressImage(imageFile);
+      // Subir archivo original o comprimido a Supabase Storage
+      const cloudImg = await uploadToStorage(imageFile, 'images', `${code}.webp`);
+      if (cloudImg) {
+        finalImageUrl = cloudImg;
+      }
+    }
+
+    let finalPdfUrl = productData.customPdfUrl || null;
+    if (pdfFile) {
+      const cloudPdf = await uploadToStorage(pdfFile, 'pdfs', `${code}_ficha.pdf`);
+      if (cloudPdf) {
+        finalPdfUrl = cloudPdf;
+      }
     }
 
     const newProd = {
@@ -380,7 +427,7 @@ export const productManager = {
       sizes: Array.isArray(productData.sizes) ? productData.sizes : ['Universal'],
       colors: Array.isArray(productData.colors) ? productData.colors : [],
       hasPdf: Boolean(productData.hasPdf || productData.customPdfUrl),
-      customPdfUrl: productData.customPdfUrl || null,
+      customPdfUrl: finalPdfUrl,
       shortDesc: productData.shortDesc || '',
       desc: productData.desc || '',
       uses: Array.isArray(productData.uses) ? productData.uses : [productData.uses || 'Soporte ortopédico'],
@@ -406,7 +453,7 @@ export const productManager = {
   /**
    * Modifica un producto existente (requiere confirmación asíncrona de NIP)
    */
-  async updateProduct(code, updatedData, newImageFile = null, nip) {
+  async updateProduct(code, updatedData, newImageFile = null, newPdfFile = null, nip) {
     const isAuthorized = await this.verifyNip(nip);
     if (!isAuthorized) {
       return { success: false, error: 'NIP de autorización incorrecto.' };
@@ -416,6 +463,18 @@ export const productManager = {
     let finalImageUrl = updatedData.imageUrl || null;
     if (newImageFile) {
       finalImageUrl = await compressImage(newImageFile);
+      const cloudImg = await uploadToStorage(newImageFile, 'images', `${strCode}.webp`);
+      if (cloudImg) {
+        finalImageUrl = cloudImg;
+      }
+    }
+
+    let finalPdfUrl = updatedData.customPdfUrl || null;
+    if (newPdfFile) {
+      const cloudPdf = await uploadToStorage(newPdfFile, 'pdfs', `${strCode}_ficha.pdf`);
+      if (cloudPdf) {
+        finalPdfUrl = cloudPdf;
+      }
     }
 
     const currentCustom = this.getCustomProducts();
@@ -426,6 +485,7 @@ export const productManager = {
         ...currentCustom[existingCustomIndex],
         ...updatedData,
         customImage: finalImageUrl || currentCustom[existingCustomIndex].customImage,
+        customPdfUrl: finalPdfUrl || currentCustom[existingCustomIndex].customPdfUrl,
         updatedAt: new Date().toISOString()
       };
       currentCustom[existingCustomIndex] = merged;
@@ -446,6 +506,7 @@ export const productManager = {
         ...baseProd,
         ...updatedData,
         customImage: finalImageUrl || baseProd.customImage || null,
+        customPdfUrl: finalPdfUrl || baseProd.customPdfUrl || null,
         isCustom: true,
         updatedAt: new Date().toISOString()
       };
