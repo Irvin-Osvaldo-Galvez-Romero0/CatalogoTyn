@@ -9,6 +9,9 @@ import { PRODUCTS as BASE_PRODUCTS } from '../data/products';
 const STORAGE_KEY_CUSTOM_PRODUCTS = 'tynor_custom_products';
 const STORAGE_KEY_ADMIN_AUTH = 'tynor_admin_credentials';
 
+const SUPABASE_URL = 'https://xvrnssesbkzxeusubzes.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2cm5zc2VzYmt6eGV1c3ViemVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwNDg2NTgsImV4cCI6MjEwODYyNDY1OH0.Flfpf4NZHP84b5MvDpBDU6cHXkt78dty8GF63RnHy3c';
+
 export const KIOSK_SECURITY_SALT = 'TYNOR_KIOSK_SALT_2026';
 export const DEFAULT_ADMIN_NIP_HASH = '573e2dc11281e6e5f5642973c2da5351a8838d662c4c55d80973c344171382ac';
 
@@ -17,6 +20,68 @@ const DEFAULT_ADMIN = {
   nipHash: DEFAULT_ADMIN_NIP_HASH,
   version: 2
 };
+
+function getHeaders(prefer = 'return=minimal') {
+  return {
+    'apikey': SUPABASE_ANON_KEY,
+    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+    'Content-Type': 'application/json',
+    'Prefer': prefer
+  };
+}
+
+function mapRowToProduct(row) {
+  return {
+    code: row.code,
+    name: row.name,
+    marca: row.marca || 'Tynor',
+    linea: row.linea || 'Ortopédica',
+    cat: row.cat || 'inmovilizador',
+    price: Number(row.price) || 0,
+    priceBySize: row.price_by_size || null,
+    stock: row.stock != null ? Number(row.stock) : 10,
+    bodyPart: row.body_part || 'rodilla',
+    badge: row.badge || 'Nuevo',
+    sizes: Array.isArray(row.sizes) ? row.sizes : ['Universal'],
+    colors: Array.isArray(row.colors) ? row.colors : [],
+    hasPdf: Boolean(row.has_pdf || row.custom_pdf_url),
+    customPdfUrl: row.custom_pdf_url || null,
+    shortDesc: row.short_desc || '',
+    desc: row.desc_text || '',
+    uses: Array.isArray(row.uses) ? row.uses : [row.uses || 'Soporte ortopédico'],
+    features: Array.isArray(row.features) ? row.features : [row.features || 'Diseño anatómico'],
+    customImage: row.custom_image || null,
+    isCustom: Boolean(row.is_custom),
+    createdAt: row.created_at,
+    updatedAt: row.updated_at
+  };
+}
+
+function mapProductToRow(prod) {
+  return {
+    code: String(prod.code).trim(),
+    name: String(prod.name).trim(),
+    marca: prod.marca ? String(prod.marca).trim() : 'Tynor',
+    linea: prod.linea ? String(prod.linea).trim() : 'Ortopédica',
+    cat: prod.cat || 'inmovilizador',
+    price: Number(prod.price) || 0,
+    price_by_size: prod.priceBySize || null,
+    stock: prod.stock != null ? Number(prod.stock) : 10,
+    body_part: prod.bodyPart || 'rodilla',
+    badge: prod.badge || 'Nuevo',
+    sizes: Array.isArray(prod.sizes) ? prod.sizes : ['Universal'],
+    colors: Array.isArray(prod.colors) ? prod.colors : [],
+    has_pdf: Boolean(prod.hasPdf || prod.customPdfUrl),
+    custom_pdf_url: prod.customPdfUrl || null,
+    short_desc: prod.shortDesc || '',
+    desc_text: prod.desc || '',
+    uses: Array.isArray(prod.uses) ? prod.uses : [prod.uses || 'Soporte ortopédico'],
+    features: Array.isArray(prod.features) ? prod.features : [prod.features || 'Diseño anatómico'],
+    custom_image: prod.customImage || null,
+    is_custom: true,
+    is_active: true
+  };
+}
 
 /**
  * Genera el hash criptográfico SHA-256 de un NIP con salt para almacenamiento seguro
@@ -202,6 +267,47 @@ export const productManager = {
   },
 
   /**
+   * Sincroniza los productos personalizados desde la nube (Supabase)
+   * Si la tabla aún no existe o el dispositivo está offline, mantiene los datos locales sin errores.
+   */
+  async syncCloudProducts() {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?select=*&is_active=eq.true&order=created_at.desc`, {
+        headers: getHeaders('return=representation')
+      });
+
+      if (!res.ok) {
+        // HTTP 404 significa que la tabla aún no se ha creado en Supabase
+        return { success: false, status: res.status };
+      }
+
+      const rows = await res.json();
+      if (Array.isArray(rows)) {
+        const cloudProducts = rows.map(mapRowToProduct);
+        const localCustom = this.getCustomProducts();
+
+        // Mezclar dando prioridad a la versión con fecha de actualización más reciente
+        const productMap = new Map();
+        localCustom.forEach((p) => productMap.set(String(p.code), p));
+        cloudProducts.forEach((p) => {
+          const local = productMap.get(String(p.code));
+          if (!local || new Date(p.updatedAt || p.createdAt || 0) >= new Date(local.updatedAt || local.createdAt || 0)) {
+            productMap.set(String(p.code), p);
+          }
+        });
+
+        const unifiedCustom = Array.from(productMap.values());
+        localStorage.setItem(STORAGE_KEY_CUSTOM_PRODUCTS, JSON.stringify(unifiedCustom));
+        this.notifyListeners();
+        return { success: true, count: unifiedCustom.length };
+      }
+    } catch (e) {
+      console.warn('[ProductManager] Sincronización en la nube en modo offline:', e.message);
+    }
+    return { success: false };
+  },
+
+  /**
    * Lee productos personalizados guardados por el admin
    */
   getCustomProducts() {
@@ -286,6 +392,14 @@ export const productManager = {
 
     const currentCustom = this.getCustomProducts();
     this.setCustomProducts([newProd, ...currentCustom]);
+
+    // Sincronizacion asincrona en Supabase
+    fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo`, {
+      method: 'POST',
+      headers: getHeaders('return=minimal'),
+      body: JSON.stringify(mapProductToRow(newProd))
+    }).catch((err) => console.warn('[ProductManager] Supabase cloud insert pending/offline:', err.message));
+
     return { success: true, product: newProd };
   },
 
@@ -316,6 +430,11 @@ export const productManager = {
       };
       currentCustom[existingCustomIndex] = merged;
       this.setCustomProducts([...currentCustom]);
+      fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?code=eq.${encodeURIComponent(strCode)}`, {
+        method: 'PATCH',
+        headers: getHeaders('return=minimal'),
+        body: JSON.stringify(mapProductToRow(merged))
+      }).catch((err) => console.warn('[ProductManager] Supabase cloud patch pending/offline:', err.message));
       return { success: true, product: merged };
     } else {
       // Es un producto base que se está editando por primera vez: lo convertimos en custom override
@@ -331,6 +450,11 @@ export const productManager = {
         updatedAt: new Date().toISOString()
       };
       this.setCustomProducts([newOverride, ...currentCustom]);
+      fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?code=eq.${encodeURIComponent(strCode)}`, {
+        method: 'PATCH',
+        headers: getHeaders('return=minimal'),
+        body: JSON.stringify(mapProductToRow(newOverride))
+      }).catch((err) => console.warn('[ProductManager] Supabase cloud patch pending/offline:', err.message));
       return { success: true, product: newOverride };
     }
   },
@@ -349,6 +473,13 @@ export const productManager = {
     const filtered = currentCustom.filter((p) => String(p.code) !== strCode);
 
     this.setCustomProducts(filtered);
+
+    // Sincronizacion asincrona de borrado con Supabase
+    fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?code=eq.${encodeURIComponent(strCode)}`, {
+      method: 'DELETE',
+      headers: getHeaders('return=minimal')
+    }).catch((err) => console.warn('[ProductManager] Supabase cloud delete pending/offline:', err.message));
+
     return { success: true };
   },
 

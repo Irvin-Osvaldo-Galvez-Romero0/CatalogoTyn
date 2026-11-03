@@ -61,6 +61,7 @@ export default function App() {
 
   useEffect(() => {
     brandingService.initBranding();
+    productManager.syncCloudProducts();
     const unsub = productManager.subscribe((prods) => {
       setAllProducts(prods);
     });
