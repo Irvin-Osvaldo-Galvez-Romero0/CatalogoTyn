@@ -11,7 +11,7 @@ export default function AdminAuthModal({ isOpen, onClose, onSuccess }) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     setErrorMsg('');
 
@@ -24,7 +24,7 @@ export default function AdminAuthModal({ isOpen, onClose, onSuccess }) {
       return;
     }
 
-    const isValid = productManager.verifyCredentials(username, nip);
+    const isValid = await productManager.verifyCredentials(username, nip);
     if (isValid) {
       onSuccess(nip);
       onClose();
@@ -219,7 +219,7 @@ export default function AdminAuthModal({ isOpen, onClose, onSuccess }) {
                 value={nip}
                 onChange={(e) => setNip(e.target.value)}
                 onFocus={() => setActiveInput('nip')}
-                placeholder="Ingresa tu NIP (ej. 9824)"
+                placeholder="Ingresa tu NIP (4-8 dígitos)"
                 style={{
                   border: 'none',
                   background: 'transparent',

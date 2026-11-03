@@ -1,14 +1,42 @@
 /**
  * Gestor Unificado de Productos y Almacenamiento en la Nube
  * Soporte híbrido: Productos base + Productos creados por Administrador (LocalStorage + Supabase)
- * Incluye optimización automática de imágenes en WebP y confirmación de NIP
+ * Incluye optimización automática de imágenes en WebP y confirmación criptográfica de NIP (SHA-256 + Salt)
  */
 
 import { PRODUCTS as BASE_PRODUCTS } from '../data/products';
 
 const STORAGE_KEY_CUSTOM_PRODUCTS = 'tynor_custom_products';
 const STORAGE_KEY_ADMIN_AUTH = 'tynor_admin_credentials';
-const DEFAULT_ADMIN = { username: 'admin', nip: '9824' };
+
+export const KIOSK_SECURITY_SALT = 'TYNOR_KIOSK_SALT_2026';
+export const DEFAULT_ADMIN_NIP_HASH = '573e2dc11281e6e5f5642973c2da5351a8838d662c4c55d80973c344171382ac';
+
+const DEFAULT_ADMIN = {
+  username: 'admin',
+  nipHash: DEFAULT_ADMIN_NIP_HASH,
+  version: 2
+};
+
+/**
+ * Genera el hash criptográfico SHA-256 de un NIP con salt para almacenamiento seguro
+ * @param {string|number} nip
+ * @param {string} salt
+ * @returns {Promise<string>} Resumen hexadecimal en minúsculas de 64 caracteres
+ */
+export async function hashNip(nip, salt = KIOSK_SECURITY_SALT) {
+  if (nip == null || nip === '') return '';
+  const encoder = new TextEncoder();
+  const data = encoder.encode(String(nip).trim() + salt);
+
+  if (typeof crypto !== 'undefined' && crypto.subtle) {
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hashBuffer))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+  }
+  throw new Error('Web Crypto API (crypto.subtle) no disponible en este entorno.');
+}
 
 /**
  * Comprime una imagen a formato WebP o JPEG usando Canvas para reducir su tamaño a ~90-130 KB
@@ -67,51 +95,103 @@ export async function compressImage(file, maxDimension = 1000, quality = 0.82) {
 
 export const productManager = {
   /**
-   * Obtiene las credenciales del Administrador
+   * Obtiene las credenciales del Administrador con migración transparente
+   * de texto plano legacy a hash criptográfico SHA-256 + Salt
+   * @returns {Promise<{username: string, nipHash: string, version: number}>}
    */
-  getAdminCredentials() {
+  async getAdminCredentials() {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY_ADMIN_AUTH);
-      if (saved) return JSON.parse(saved);
+      const savedRaw = localStorage.getItem(STORAGE_KEY_ADMIN_AUTH);
+      if (!savedRaw) return { ...DEFAULT_ADMIN };
+
+      const saved = JSON.parse(savedRaw);
+      const is64Hex = (str) => typeof str === 'string' && /^[0-9a-f]{64}$/i.test(str);
+
+      // 1. Estructura moderna con hash ya computado
+      if (saved.nipHash && is64Hex(saved.nipHash)) {
+        return {
+          username: saved.username || 'admin',
+          nipHash: saved.nipHash,
+          version: 2
+        };
+      }
+
+      // 2. Migración de estructura legacy con campo 'nip' en texto plano o hash sin salt
+      if (saved.nip) {
+        if (is64Hex(saved.nip)) {
+          const upgraded = {
+            username: saved.username || 'admin',
+            nipHash: saved.nip,
+            version: 2
+          };
+          localStorage.setItem(STORAGE_KEY_ADMIN_AUTH, JSON.stringify(upgraded));
+          return upgraded;
+        } else {
+          const computedHash = await hashNip(saved.nip);
+          const upgraded = {
+            username: saved.username || 'admin',
+            nipHash: computedHash,
+            version: 2
+          };
+          localStorage.setItem(STORAGE_KEY_ADMIN_AUTH, JSON.stringify(upgraded));
+          console.info('[Security] NIP de administrador migrado de texto plano a SHA-256 con Salt.');
+          return upgraded;
+        }
+      }
     } catch (e) {
-      console.warn('Error reading admin credentials:', e);
+      console.warn('Error reading or migrating admin credentials:', e);
     }
-    return DEFAULT_ADMIN;
+    return { ...DEFAULT_ADMIN };
   },
 
   /**
-   * Valida Usuario y NIP
+   * Valida Usuario y NIP calculando el hash con Salt en tiempo real
+   * @param {string} user
+   * @param {string|number} nip
+   * @returns {Promise<boolean>}
    */
-  verifyCredentials(user, nip) {
-    const creds = this.getAdminCredentials();
-    return (
-      creds.username.trim().toLowerCase() === String(user).trim().toLowerCase() &&
-      String(creds.nip).trim() === String(nip).trim()
-    );
+  async verifyCredentials(user, nip) {
+    if (!user || !nip) return false;
+    const creds = await this.getAdminCredentials();
+    const inputHash = await hashNip(nip);
+    const userMatch = creds.username.trim().toLowerCase() === String(user).trim().toLowerCase();
+    const hashMatch = creds.nipHash.toLowerCase() === inputHash.toLowerCase();
+    return userMatch && hashMatch;
   },
 
   /**
    * Valida solo el NIP para acciones administrativas críticas (editar o eliminar)
+   * @param {string|number} nip
+   * @returns {Promise<boolean>}
    */
-  verifyNip(nip) {
-    const creds = this.getAdminCredentials();
-    return String(creds.nip).trim() === String(nip).trim();
+  async verifyNip(nip) {
+    if (!nip) return false;
+    const creds = await this.getAdminCredentials();
+    const inputHash = await hashNip(nip);
+    return creds.nipHash.toLowerCase() === inputHash.toLowerCase();
   },
 
   /**
-   * Actualiza Usuario y NIP
+   * Actualiza Usuario y NIP almacenando únicamente el hash SHA-256 con Salt
+   * @param {string|number} currentNip
+   * @param {string} newUsername
+   * @param {string|number} newNip
+   * @returns {Promise<{success: boolean, error?: string}>}
    */
-  updateCredentials(currentNip, newUsername, newNip) {
-    if (!this.verifyNip(currentNip)) {
+  async updateCredentials(currentNip, newUsername, newNip) {
+    const isCurrentValid = await this.verifyNip(currentNip);
+    if (!isCurrentValid) {
       return { success: false, error: 'El NIP actual ingresado es incorrecto.' };
     }
-    if (!newUsername || !newNip || newNip.length < 4) {
+    if (!newUsername || !newNip || String(newNip).trim().length < 4) {
       return { success: false, error: 'El nuevo usuario y NIP (mínimo 4 dígitos) son requeridos.' };
     }
 
+    const nipHash = await hashNip(newNip);
     const next = {
-      username: newUsername.trim(),
-      nip: String(newNip).trim()
+      username: String(newUsername).trim(),
+      nipHash,
+      version: 2
     };
     try {
       localStorage.setItem(STORAGE_KEY_ADMIN_AUTH, JSON.stringify(next));
@@ -157,10 +237,11 @@ export const productManager = {
   },
 
   /**
-   * Agrega un nuevo producto (requiere NIP de confirmación)
+   * Agrega un nuevo producto (requiere confirmación asíncrona de NIP)
    */
   async addProduct(productData, imageFile = null, nip) {
-    if (!this.verifyNip(nip)) {
+    const isAuthorized = await this.verifyNip(nip);
+    if (!isAuthorized) {
       return { success: false, error: 'NIP de autorización incorrecto.' };
     }
 
@@ -209,10 +290,11 @@ export const productManager = {
   },
 
   /**
-   * Modifica un producto existente (requiere NIP)
+   * Modifica un producto existente (requiere confirmación asíncrona de NIP)
    */
   async updateProduct(code, updatedData, newImageFile = null, nip) {
-    if (!this.verifyNip(nip)) {
+    const isAuthorized = await this.verifyNip(nip);
+    if (!isAuthorized) {
       return { success: false, error: 'NIP de autorización incorrecto.' };
     }
 
@@ -254,10 +336,11 @@ export const productManager = {
   },
 
   /**
-   * Elimina un producto (requiere NIP)
+   * Elimina un producto (requiere confirmación asíncrona de NIP)
    */
-  deleteProduct(code, nip) {
-    if (!this.verifyNip(nip)) {
+  async deleteProduct(code, nip) {
+    const isAuthorized = await this.verifyNip(nip);
+    if (!isAuthorized) {
       return { success: false, error: 'NIP de autorización incorrecto para eliminar.' };
     }
 
@@ -285,4 +368,3 @@ export const productManager = {
     });
   }
 };
-

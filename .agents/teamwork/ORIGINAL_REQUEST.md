@@ -1,27 +1,16 @@
 # Original User Request
 
-## Initial Request — 2026-11-02T15:54:00Z
+## Parameters
+[skip-interview]
+How this run was launched; not part of the task.
 
-Recommend an online database and image storage solution with a generous, reliable free tier for the Tynor interactive kiosk catalog (React, Vite, Electron, Android/Capacitor), taking into account product data, image hosting, and the existing Supabase integration.
+## Initial Request — 2026-11-03T20:42:25Z
 
-Integrity mode: development
-
-## Requirements
-
-### R1. Technical Evaluation and Recommendation
-Evaluate and compare viable online database and image hosting solutions operating on reliable free tiers for the Tynor interactive kiosk catalog. The team may decide the exact deliverable format (comparative analysis report alone, or accompanied by database schema design and integration guidance for the project).
-
-### R2. Solution Architecture and Free Tier Feasibility
-Assess both unified platforms (handling structured product data and media in one place) and hybrid architectures (e.g. database paired with dedicated image storage/CDN), determining the optimal architecture under free-tier quotas for a medium-scale catalog (100 to 1,000 products, up to 5 GB of images).
-
-### R3. Kiosk Online Operation and Client Caching
-The proposed solution must support online-only operation for the kiosk with standard client/browser caching across React/Vite, Electron, and Capacitor (Android APK), evaluating latency, image delivery performance, and bandwidth consumption.
-
-## Acceptance Criteria
-
-### Feasibility & Limits Verification
-- [ ] Evaluates the existing Supabase integration in `src/services/supabase.js` and assesses whether expanding it covers product catalog storage and image hosting within its free tier.
-- [ ] Compares viable alternative solutions (including Firebase, Cloudflare D1/R2, Cloudinary, and/or PocketBase) against the project's medium catalog scale (100–1,000 products, up to 5 GB images).
-- [ ] Validates free-tier quotas against verified official documentation, explicitly documenting storage limits (GB), egress/bandwidth limits, read/write or API call quotas, and any project pause/inactivity policies.
-- [ ] Verifies compatibility with the existing tech stack (React, Vite, Electron, Capacitor Android).
-- [ ] Delivers a clear final recommendation with documented trade-offs, pros and cons, and actionable guidance for storing products (prices, stock, sizes, colors, body part, descriptions) and images.
+Procede de inmediato con la ejecución autónoma del plan de seguridad integral ECC sin interrupciones:
+1. Supabase RLS: Generar 'scripts/supabase_secure_rls.sql' y asegurar 'src/services/supabase.js'.
+2. API Correo: Hardening de 'api/send-email.js' con CORS estricto y rejectUnauthorized: true.
+3. Hashing NIP: Hashing SHA-256 en 'src/services/productManager.js' y 'src/components/admin/AdminAuthModal.jsx'.
+4. Cabeceras: Crear 'vercel.json' con cabeceras de seguridad OWASP.
+5. Limpieza: Eliminar 'src/data/products.js.bak' y 'npm audit fix'.
+6. Preservar intactos 'docs/TynorManuales.docx' y 'docs/TynorManuales.pdf'.
+7. Validar compilación 'npm run build' y emitir reporte de verificación.

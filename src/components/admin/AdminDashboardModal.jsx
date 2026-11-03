@@ -110,8 +110,9 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
     setNipPromptOpen(true);
   };
 
-  const handleConfirmNip = () => {
-    if (!productManager.verifyNip(nipInput)) {
+  const handleConfirmNip = async () => {
+    const isValid = await productManager.verifyNip(nipInput);
+    if (!isValid) {
       setNipError('NIP incorrecto. Acción cancelada por seguridad.');
       return;
     }
@@ -275,8 +276,8 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
   };
 
   const handleDeleteProductClick = (code) => {
-    requestNipVerification((verifiedNip) => {
-      const res = productManager.deleteProduct(code, verifiedNip);
+    requestNipVerification(async (verifiedNip) => {
+      const res = await productManager.deleteProduct(code, verifiedNip);
       if (!res.success) {
         alert(res.error);
       }
@@ -363,13 +364,13 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
   };
 
   // Manejador de Seguridad
-  const handleUpdateSecurity = (e) => {
+  const handleUpdateSecurity = async (e) => {
     e.preventDefault();
     if (securityForm.newNip !== securityForm.confirmNip) {
       setSecurityStatus({ type: 'error', message: 'El nuevo NIP y su confirmación no coinciden.' });
       return;
     }
-    const res = productManager.updateCredentials(
+    const res = await productManager.updateCredentials(
       securityForm.currentNip,
       securityForm.newUsername,
       securityForm.newNip

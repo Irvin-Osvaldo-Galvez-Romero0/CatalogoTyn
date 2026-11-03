@@ -1,54 +1,66 @@
-# Orchestrator Handoff Report
+# Orchestrator Handoff: Comprehensive AppSec & Infrastructure Hardening
 
-**Agent:** Project Orchestrator (`orchestrator`)  
-**Parent Sentinel ID:** `e4d3a539-271e-47aa-9666-c7c86e4c0dcd`  
-**Date:** 2026-11-02  
-**Handoff Type:** Hard (Mission Complete)  
+- **Archetype:** teamwork_orchestrator
+- **Working Directory:** `c:\Users\User\Documents\GitHub\CatalogoTyn\.agents\teamwork\orchestrator`
+- **Timestamp:** 2026-11-03T21:14:30Z
+- **Gate Result:** **PASS** (Unanimous Approval & Clean Audit)
 
 ---
 
 ## 1. Milestone State
-| Milestone | Scope | Status | Notes |
-|---|---|---|---|
-| M1: Comparative Evaluation & Architecture Report | F1, F2, F3, F4, F5 | DONE | Published in `docs/DATABASE_AND_STORAGE_EVALUATION.md` (26.6 KB). Full evaluation of existing Supabase integration, 5-provider comparison, mathematical bandwidth modeling, and binary shrinkage analysis. |
-| M2: Schema Design & Media Pipeline Specification | F6, F7 | DONE | Published in `docs/DATABASE_SCHEMA_AND_MIGRATION.md` (31.3 KB). Relational DDL for PostgreSQL 17 and SQLite D1, `body_parts` 3D coordinate table & FK, `pg_trgm` & Spanish FTS indexes, dual seed scripts (`supabase_seed.sql` 195.7 KB & `d1_seed.sql` 189.1 KB). |
-| M3: Kiosk Integration Blueprint & Final Guidance | F8, F9 | DONE | Published in `docs/KIOSK_CACHING_AND_INTEGRATION_GUIDE.md` (19.0 KB). Three-tier caching blueprint, operational mitigations (periodic lead sync timer, universal SVG fallback `placeholder-product.svg`, Ghostscript PDF downsampling, URL versioning). |
-| M4: Review, Adversarial Stress Testing & Forensic Audit | Verification & Audit | DONE | Iteration 1 Gate failed on 4 schema items; Iteration 2 remediation executed and passed 100% across all Reviewers (`APPROVE`), Challengers (`CONFIRM_CORRECTNESS`), and Forensic Auditor (`CLEAN`). 41/41 tests pass. |
+
+| Milestone / Subtask | Status | Evidence / Verification |
+|---|---|---|
+| **M5.1: Supabase RLS Lockdown** | **DONE** | `scripts/supabase_secure_rls.sql` generated with RLS enabled, DCL revocations, and INSERT-only policy for anon. `src/services/supabase.js` sanitized, `'Prefer': 'return=minimal'` implemented, and offline queue capped at 50 items. 0 client-side SELECT operations. |
+| **M5.2: Serverless Email API Hardening** | **DONE** | `api/send-email.js` hardened: strict origin regex whitelist (`catalogotyn.vercel.app`, `tynor.com.mx`, local ports), `rejectUnauthorized: true` with TLS 1.2 minVersion, anti-CRLF header check, HTML escaping (`escapeHtml`), SSRF host blocking, and 15 req/min IP sliding rate limiting. |
+| **M5.3: Kiosk Admin NIP Hashing** | **DONE** | `src/services/productManager.js` upgraded with Web Crypto API salted SHA-256 (`TYNOR_KIOSK_SALT_2026`). Expected hash `573e2dc1...` verified. Automatic transparent migration of legacy plaintext NIPs in `localStorage`. Async flows awaited in `AdminAuthModal.jsx` and `AdminDashboardModal.jsx`. Placeholder leak removed. 0 occurrences of hardcoded `9824` in `src/`. |
+| **M5.4: OWASP Security Headers** | **DONE** | `vercel.json` created with valid JSON schema, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, HSTS, CSP, and `Permissions-Policy: camera=(self)` protecting camera access for `html5-qrcode`. |
+| **M5.5: Dependency & Asset Hygiene** | **DONE** | `src/data/products.js.bak` safely deleted. `npm audit fix` executed without `--force`, dropping vulnerabilities from 31 to 25 without breaking Vite or PDF.js. |
+| **M5.6: Document Asset Preservation** | **DONE** | Cryptographic SHA-256 hashes of `docs/TynorManuales.docx` (`F08D7147...`) and `docs/TynorManuales.pdf` (`48608DFD...`) verified 100% bit-for-bit identical to baseline. |
+| **M5.7: Production Compilation Verification** | **DONE** | `npm run build` executed and verified by worker, both reviewers, challengers, and auditor (exit code 0, 2099 modules, complete PWA bundle). |
 
 ---
 
-## 2. Active Subagents
-- All subagents have concluded and delivered their handoffs. Zero pending subagents.
-- Cumulative spawn count: 12 / 16.
-- Background tasks (cron task-20 and safety timers) have been terminated cleanly.
+## 2. Gate Verification Summary
+
+| Agent | Type | Role | Verdict | Key Finding |
+|---|---|---|---|---|
+| `reviewer_sec_code` | teamwork_reviewer | AppSec Code & Logic | **APPROVE** | Robust code, correct async/await propagation, clean build |
+| `reviewer_sec_infra` | teamwork_reviewer | Infra & Headers | **APPROVE** | OWASP headers verified, camera=(self) verified, doc hashes match 100% |
+| `challenger_sec_api` | teamwork_challenger | API Adversarial | **CONFIRM** | 30/30 scenarios passed (CORS 403, CRLF 400, SSRF 400, Rate Limit 429) |
+| `challenger_sec_auth` | teamwork_challenger | Crypto & Auth Adversarial | **CONFIRM** | 66/66 scenarios passed (SHA-256 match, legacy migration, injection immunity) |
+| `auditor_sec_integrity` | teamwork_auditor | Forensic Integrity | **CLEAN** | Zero facades, zero dummy stubs, 100% authentic implementations |
+
+**Final Gate Status:** **PASS**
 
 ---
 
-## 3. Pending Decisions
-- Decision between **Option A (Incremental Hybrid: Existing Supabase DB + Cloudflare R2)** and **Option B (Sovereign Edge: Cloudflare D1 + R2)** is ready for executive sign-off:
-  - Option A preserves the existing codebase in `src/services/supabase.js` and requires zero backend migration, pairing Supabase PostgreSQL with Cloudflare R2 for zero-egress media.
-  - Option B provides unified edge execution on Cloudflare D1/R2 with 0 ms cold starts and zero inactivity pauses.
+## 3. Active Subagents
+All 9 subagents (`explorer_sec_supabase`, `explorer_sec_auth_email`, `explorer_sec_infra_hygiene`, `worker_sec_implementation`, `reviewer_sec_code`, `reviewer_sec_infra`, `challenger_sec_api`, `challenger_sec_auth`, `auditor_sec_integrity`) have delivered their handoff reports and are retired.
+- Heartbeat cron `task-36` cancelled.
 
 ---
 
-## 4. Remaining Work (Future Deployment Steps)
-1. Execute `scripts/supabase_seed.sql` or `scripts/d1_seed.sql` in the cloud database console (or via Supabase CLI / Wrangler).
-2. Provision Cloudflare R2 bucket (`media.tynorcatalog.com`) and upload optimized WebP assets and compressed PDFs.
-3. Apply Ghostscript batch downsampling script on vendor PDFs to reduce 911 MB down to ~69 MB.
+## 4. Pending Decisions & Human Guidance
+1. **Remote Supabase DDL Execution:**
+   The administrator must run the generated script `scripts/supabase_secure_rls.sql` in the Supabase Project SQL Editor (`https://supabase.com/dashboard/project/xvrnssesbkzxeusubzes/sql`) to activate the PostgreSQL RLS policy on the live database.
+2. **SMTP Credentials Evolution:**
+   While `api/send-email.js` now strictly defends against open relay, MitM, and SSRF, future architectural iterations should consider moving SMTP credentials from client `localStorage` to Vercel secret environment variables (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`).
 
 ---
 
-## 5. Key Artifacts
-- Master Scope & Architecture: `c:\Users\User\Documents\GitHub\CatalogoTyn\PROJECT.md`
-- Gate Verification Tracking: `c:\Users\User\Documents\GitHub\CatalogoTyn\.agents\teamwork\orchestrator\GATE_STATUS.md`
-- Evaluation Report: `c:\Users\User\Documents\GitHub\CatalogoTyn\docs\DATABASE_AND_STORAGE_EVALUATION.md`
-- Schema & Migration Guide: `c:\Users\User\Documents\GitHub\CatalogoTyn\docs\DATABASE_SCHEMA_AND_MIGRATION.md`
-- Kiosk Integration Guide: `c:\Users\User\Documents\GitHub\CatalogoTyn\docs\KIOSK_CACHING_AND_INTEGRATION_GUIDE.md`
-- Dual Migration Generator: `c:\Users\User\Documents\GitHub\CatalogoTyn\scripts\generate_migrations.cjs`
-- PostgreSQL 17 Seed Script: `c:\Users\User\Documents\GitHub\CatalogoTyn\scripts\supabase_seed.sql`
-- Cloudflare D1 SQLite Seed Script: `c:\Users\User\Documents\GitHub\CatalogoTyn\scripts\d1_seed.sql`
-- Universal Vector Fallback: `c:\Users\User\Documents\GitHub\CatalogoTyn\public\assets\placeholder-product.svg`
-- Resilient Image Component: `c:\Users\User\Documents\GitHub\CatalogoTyn\src\components\KioskImage.jsx`
-- Second Brain Syntheses:
-  - `c:/Users/User/Documents/vault/pages/syntheses/2026-11-02-CatalogoTyn-BaseDatos-Storage-Recomendacion.md`
-  - `c:/Users/User/Documents/vault/pages/syntheses/2026-11-02-CatalogoTyn-Remediacion-Esquema-D1-Kiosco.md`
+## 5. Key Artifacts Index
+- Implementation & SQL Script: `scripts/supabase_secure_rls.sql`
+- Supabase Client Service: `src/services/supabase.js`
+- Hardened Email API Route: `api/send-email.js`
+- Cryptographic Auth Service: `src/services/productManager.js`
+- UI Modals: `src/components/admin/AdminAuthModal.jsx`, `src/components/admin/AdminDashboardModal.jsx`
+- Vercel Security Config: `vercel.json`
+- Adversarial Test Suites:
+  - `tests/test_api_and_supabase_security.mjs` (30 test scenarios)
+  - `tests/test_auth_crypto_adversarial.mjs` (66 test scenarios)
+- Second Brain Vault Syntheses:
+  - `c:/Users/User/Documents/vault/pages/syntheses/2026-11-03-CatalogoTyn-AppSecHardening.md`
+  - `c:/Users/User/Documents/vault/pages/syntheses/2026-11-03-CatalogoTyn-Revision-Seguridad-Infraestructura.md`
+  - `c:/Users/User/Documents/vault/pages/syntheses/2026-11-03-CatalogoTyn-Auditoria-Forense-Integridad-Seguridad.md`
+  - `c:/Users/User/Documents/vault/pages/syntheses/2026-11-03-CatalogoTyn-Auditoria-Criptografica-Auth-NIP.md`
