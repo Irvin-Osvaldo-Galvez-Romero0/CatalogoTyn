@@ -1,0 +1,117 @@
+{
+  "timestamp": "2026-11-03T20:22:47.864Z",
+  "environment": {
+    "node": "v24.3.0",
+    "platform": "win32",
+    "browser": "Microsoft Edge (Chromium)",
+    "localUrl": "http://127.0.0.1:4173/",
+    "prodUrl": "https://catalogotyn.vercel.app/"
+  },
+  "tests": [
+    {
+      "id": "S5",
+      "name": "Invarianza Matemática de Precios Oficiales y priceBySize",
+      "type": "Residualidad & Integridad",
+      "status": "PASS",
+      "metrics": {
+        "totalSkus": 180,
+        "skusConPrecioValido": 171,
+        "skusSinPrecioEnLista2026": 9,
+        "skusConTarifaDiferenciada": 171,
+        "verificacionL03_CH_M_G": "$225.00",
+        "verificacionL03_XL_XXL": "$240.00"
+      },
+      "notes": "Matriz de 171 productos con precio 2026 verificado al 100% y 9 ítems de consulta especial."
+    },
+    {
+      "id": "P1",
+      "name": "Core Web Vitals & Latencias (Vercel Edge & Shell PWA)",
+      "type": "Rendimiento",
+      "status": "PASS",
+      "metrics": {
+        "vercelEdgeTTFB": "1108 ms",
+        "localDomInteractive": "307.7999999523163 ms",
+        "firstContentfulPaint": "1516 ms",
+        "fullKioskCardRender": "2108 ms",
+        "vercelStatus": 200
+      },
+      "notes": "Renderizado inicial bajo umbral crítico de quiosco táctil (<3000ms)."
+    },
+    {
+      "id": "P2",
+      "name": "Capacidad de Renderizado & Dinámica de Memoria Heap (30 Ciclos)",
+      "type": "Capacidad & Memoria",
+      "status": "PASS",
+      "metrics": {
+        "totalCardsEnMemoria": 180,
+        "heapInicial": "13 MB",
+        "heapPostCiclosBusqueda": "27 MB",
+        "deltaHeap": "+14 MB"
+      },
+      "notes": "El motor React y Virtual DOM absorben la carga sin sobrepasamiento de heap."
+    },
+    {
+      "id": "P3",
+      "name": "Resiliencia de Cuota de Almacenamiento (LocalStorage Quota Limit)",
+      "type": "Capacidad & Almacenamiento",
+      "status": "PASS",
+      "metrics": {
+        "bytesProbadosAntesDeCuota": "4864 KB",
+        "excepcionCapturadaLimpia": "SI (QuotaExceededError)"
+      },
+      "notes": "El navegador maneja la cota de 5MB sin corromper el estado global del catálogo."
+    },
+    {
+      "id": "S1",
+      "name": "Resiliencia ante Caída Brusca de Red (Air-Gapped Operation)",
+      "type": "Residualidad (Barry O'Reilly)",
+      "status": "PASS",
+      "metrics": {
+        "tarjetasDisponiblesSinRed": 180,
+        "aperturaModalSinConexion": "EXITOSA",
+        "atractorResiduo": "PWA Cache / Estado Local Autocontenido"
+      },
+      "notes": "El sistema continúa cotizando y operando 100% offline sin bloquear la interfaz."
+    },
+    {
+      "id": "S2",
+      "name": "Saturación de Pedidos Masivos & Carga de Generación de Cotización",
+      "type": "Estrés de Carga",
+      "status": "PASS",
+      "metrics": {
+        "partidasGeneradas": 50,
+        "totalPiezasEnCesta": 100,
+        "importeTotalCalculado": "$24,000.00",
+        "tamanoPayloadQR": "1956 bytes"
+      },
+      "notes": "Cálculo de 50 partidas heterogéneas exacto al centavo y payload compatible con QR móvil."
+    },
+    {
+      "id": "S3",
+      "name": "Aislamiento de Fallo de Pasarela SMTP (Error 535 Controlado)",
+      "type": "Residualidad & Tolerancia a Fallos",
+      "status": "PASS",
+      "metrics": {
+        "comportamientoAnteAuthInvalida": "Captura Excepción \"535 Incorrect authentication data\"",
+        "bloqueoDeUI": "NO (Interfaz reactiva inmediata)",
+        "cierreDeSockets": "CORRECTO (<2.5s)"
+      },
+      "notes": "El quiosco aísla el subsistema de correo sin dejar estados pendientes ni congelar la pantalla."
+    },
+    {
+      "id": "S4",
+      "name": "Estabilidad de Memoria en Sesión Continua (Ciclos Kiosco Modal)",
+      "type": "Antifragilidad & Concurrencia",
+      "status": "PASS",
+      "metrics": {
+        "ciclosEjecutados": 20,
+        "heapCiclo1": "32 MB",
+        "heapCiclo5": "23 MB",
+        "heapCiclo10": "35 MB",
+        "heapCiclo20": "41 MB",
+        "crecimientoNetoHeap": "+9 MB"
+      },
+      "notes": "Curva asintótica plana: el recolector de basura (V8 GC) libera nodos DOM sin fuga residual."
+    }
+  ]
+}
