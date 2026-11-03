@@ -86,13 +86,16 @@ export default function KioskHeader({
           />
         </div>
 
-        {/* Botón para Fijar Asesor Responsable (Sin mostrar número) */}
+        {/* Botón para Fijar Asesor Responsable (Oculto y desactivado por solicitud, sin eliminarlo) */}
         <button
           type="button"
           className={`kiosk-advisor-pin-btn ${fixedRepName ? 'has-advisor' : ''}`}
-          onClick={onOpenFixedRepModal}
+          onClick={undefined}
           title={fixedRepName ? `Asesor fijado: ${fixedRepName}` : 'Fijar Asesor para este dispositivo'}
           aria-label="Fijar asesor de ventas para este dispositivo"
+          disabled
+          aria-hidden="true"
+          style={{ display: 'none', pointerEvents: 'none' }}
         >
           <div className="advisor-pin-icon-wrap">
             <UserCheck size={16} />
@@ -135,12 +138,15 @@ export default function KioskHeader({
       </div>
 
       <div className="kiosk-actions">
-        {/* Botón de Registro Comercial (Formulario de prospectos conectado a Supabase) */}
+        {/* Botón de Registro Comercial (Oculto y desactivado por solicitud, sin eliminarlo) */}
         <button
           className="kiosk-register-btn"
-          onClick={onOpenForm}
+          onClick={undefined}
           aria-label="Abrir Formulario de Registro Comercial"
           title="Registrar prospecto o cliente comercial"
+          disabled
+          aria-hidden="true"
+          style={{ display: 'none', pointerEvents: 'none' }}
         >
           <UserPlus size={18} />
         </button>
