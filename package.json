@@ -25,6 +25,7 @@
     "@google/model-viewer": "^3.5.0",
     "canvas-confetti": "^1.9.3",
     "html5-qrcode": "^2.3.8",
+    "imapflow": "^2.10.0",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.9",
     "lucide-react": "^0.468.0",

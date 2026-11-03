@@ -1418,6 +1418,68 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                   />
                 </div>
 
+                {/* Sección de Sincronización IMAP */}
+                <div style={{ gridColumn: 'span 2', marginTop: '0.5rem', padding: '1rem', background: 'var(--bg-surface-raised)', borderRadius: '14px', border: '1px solid var(--border)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
+                    <div>
+                      <h4 style={{ margin: '0 0 0.2rem 0', fontSize: '0.92rem', fontWeight: 800, color: 'var(--ink)' }}>
+                        Sincronización IMAP y Copia de Respaldo
+                      </h4>
+                      <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--ink-secondary)' }}>
+                        Garantiza que cualquier cotización enviada quede visible de inmediato en tu cuenta de correo y carpeta de Enviados.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem', marginBottom: '0.8rem' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, marginBottom: '0.3rem', color: 'var(--ink-secondary)' }}>
+                        Servidor IMAP (Host)
+                      </label>
+                      <input
+                        type="text"
+                        value={emailConfig.imapHost || ''}
+                        onChange={(e) => setEmailConfig({ ...emailConfig, imapHost: e.target.value })}
+                        placeholder={emailConfig.host ? `Igual a SMTP (${emailConfig.host})` : 'gator2006.hostgator.com'}
+                        style={{ width: '100%', height: 40, padding: '0 0.8rem', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '0.85rem' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, marginBottom: '0.3rem', color: 'var(--ink-secondary)' }}>
+                        Puerto IMAP (SSL)
+                      </label>
+                      <input
+                        type="number"
+                        value={emailConfig.imapPort || 993}
+                        onChange={(e) => setEmailConfig({ ...emailConfig, imapPort: e.target.value })}
+                        style={{ width: '100%', height: 40, padding: '0 0.8rem', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '0.85rem' }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', cursor: 'pointer' }}>
+                      <input
+                        type="checkbox"
+                        checked={emailConfig.syncImap !== false}
+                        onChange={(e) => setEmailConfig({ ...emailConfig, syncImap: e.target.checked })}
+                        style={{ width: 17, height: 17, accentColor: 'var(--brand)', cursor: 'pointer' }}
+                      />
+                      <span>Guardar copia automáticamente en mi carpeta "Enviados" de IMAP</span>
+                    </label>
+
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', cursor: 'pointer' }}>
+                      <input
+                        type="checkbox"
+                        checked={emailConfig.copyToSender !== false}
+                        onChange={(e) => setEmailConfig({ ...emailConfig, copyToSender: e.target.checked })}
+                        style={{ width: 17, height: 17, accentColor: 'var(--brand)', cursor: 'pointer' }}
+                      />
+                      <span>Recibir copia oculta de respaldo en mi bandeja de entrada (Cco / BCC)</span>
+                    </label>
+                  </div>
+                </div>
+
                 <div style={{ gridColumn: 'span 2', display: 'flex', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
                   <button
                     type="submit"

@@ -12,6 +12,8 @@ export const EMAIL_PRESETS = {
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
+    imapHost: 'imap.gmail.com',
+    imapPort: 993,
     note: 'Requiere contraseña de aplicación (App Password) de 16 caracteres de Google.'
   },
   OUTLOOK: {
@@ -20,15 +22,19 @@ export const EMAIL_PRESETS = {
     host: 'smtp.office365.com',
     port: 587,
     secure: false,
-    note: 'Requiere autenticación SMTP habilitada en tu cuenta de Microsoft 365 / Outlook.'
+    imapHost: 'outlook.office365.com',
+    imapPort: 993,
+    note: 'Requiere autenticación SMTP e IMAP habilitadas en Microsoft 365 / Outlook.'
   },
   CUSTOM: {
     id: 'custom',
-    name: 'Dominio Propio / Servidor Corporativo',
+    name: 'Dominio Propio / HostGator / cPanel (IMAP + SMTP)',
     host: '',
     port: 465,
     secure: true,
-    note: 'Ingresa los datos de tu servidor cPanel, Plesk, Hostinger, GoDaddy o servidor de correo institucional.'
+    imapHost: '',
+    imapPort: 993,
+    note: 'Ingresa los datos de tu servidor cPanel, HostGator o correo institucional con sincronización IMAP.'
   }
 };
 
@@ -39,7 +45,24 @@ export const emailService = {
   getConfig() {
     try {
       const saved = localStorage.getItem(EMAIL_CONFIG_KEY);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          provider: parsed.provider || 'custom',
+          host: parsed.host || '',
+          port: parsed.port || 465,
+          secure: parsed.secure !== undefined ? parsed.secure : true,
+          imapHost: parsed.imapHost !== undefined ? parsed.imapHost : '',
+          imapPort: parsed.imapPort || 993,
+          syncImap: parsed.syncImap !== undefined ? parsed.syncImap : true,
+          copyToSender: parsed.copyToSender !== undefined ? parsed.copyToSender : true,
+          user: parsed.user || '',
+          password: parsed.password || '',
+          fromName: parsed.fromName || 'Tynor Ortopedia — Cotizaciones',
+          fromEmail: parsed.fromEmail || '',
+          replyTo: parsed.replyTo || ''
+        };
+      }
     } catch (e) {
       console.warn('Could not read email config:', e);
     }
@@ -47,8 +70,12 @@ export const emailService = {
     return {
       provider: 'custom',
       host: '',
-      port: 587,
-      secure: false,
+      port: 465,
+      secure: true,
+      imapHost: '',
+      imapPort: 993,
+      syncImap: true,
+      copyToSender: true,
       user: '',
       password: '',
       fromName: 'Tynor Ortopedia — Cotizaciones',

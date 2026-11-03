@@ -261,9 +261,13 @@ export default async function handler(req, res) {
     const cleanFromEmail = config.fromEmail ? String(config.fromEmail).trim() : String(config.user).trim();
     const fromAddress = cleanFromName ? `"${cleanFromName}" <${cleanFromEmail}>` : cleanFromEmail;
 
+    // Copia oculta (BCC) automática al correo emisor para asegurar visibilidad inmediata en el cliente IMAP
+    const shouldBcc = config.copyToSender !== false;
+
     const mailOptions = {
       from: fromAddress,
       to: cleanRecipientEmail,
+      bcc: shouldBcc ? cleanFromEmail : undefined,
       subject,
       html: htmlBody,
       attachments
@@ -271,10 +275,68 @@ export default async function handler(req, res) {
 
     const info = await transporter.sendMail(mailOptions);
 
+    // Sincronización IMAP directa hacia la carpeta de "Enviados" (Sent Items)
+    let imapResult = 'skipped';
+    if (config.syncImap !== false) {
+      try {
+        const { ImapFlow } = await import('imapflow');
+        const MailComposerModule = await import('nodemailer/lib/mail-composer/index.js');
+        const MailComposer = MailComposerModule.default || MailComposerModule;
+
+        const composer = new MailComposer(mailOptions);
+        const rawMimeBuffer = await composer.compile().build();
+
+        const imapHost = String(config.imapHost || hostTrimmed).trim();
+        const imapPort = Number(config.imapPort) || 993;
+
+        const client = new ImapFlow({
+          host: imapHost,
+          port: imapPort,
+          secure: imapPort === 993,
+          auth: {
+            user: String(config.user).trim(),
+            pass: String(config.password)
+          },
+          logger: false,
+          tls: {
+            rejectUnauthorized: false
+          }
+        });
+
+        // Timeout preventivo de 4.5s para no comprometer el tiempo de respuesta
+        const appendTask = (async () => {
+          await client.connect();
+          const mailboxes = await client.list();
+          let targetMailbox = 'INBOX.Sent';
+
+          for (const mb of mailboxes) {
+            if (mb.specialUse === '\\Sent' || /sent|enviad|elements enviats/i.test(mb.path)) {
+              targetMailbox = mb.path;
+              break;
+            }
+          }
+
+          await client.append(targetMailbox, rawMimeBuffer, ['\\Seen']);
+          await client.logout();
+          return 'synced';
+        })();
+
+        const timeoutTask = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('IMAP timeout')), 4500)
+        );
+
+        imapResult = await Promise.race([appendTask, timeoutTask]);
+      } catch (imapErr) {
+        console.warn('Sincronización IMAP (respaldo garantizado vía SMTP + BCC):', imapErr.message);
+        imapResult = `fallback_bcc (${imapErr.message})`;
+      }
+    }
+
     return res.status(200).json({
       success: true,
       messageId: info.messageId,
-      message: `Correo enviado exitosamente a ${cleanRecipientEmail}`
+      imapStatus: imapResult,
+      message: `Correo enviado exitosamente a ${cleanRecipientEmail}${shouldBcc ? ' con copia visible en tu cuenta IMAP' : ''}.`
     });
   } catch (error) {
     console.error('Error in send-email API route:', error);
