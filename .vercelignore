@@ -1,5 +1,5 @@
 # Vercel Ignore File
-# Excluir binarios nativos, builds pesados locales y carpetas de archivo
+# Excluir binarios nativos, builds pesados locales, documentación privada y carpetas de archivo
 android
 release
 build
@@ -14,3 +14,10 @@ tests
 *.apk
 *.zip
 *.log
+
+# Exclusión estricta de documentación y manuales (no se suben a Vercel)
+docs
+docs/**
+*.docx
+*.pdf
+!public/pdf/**
