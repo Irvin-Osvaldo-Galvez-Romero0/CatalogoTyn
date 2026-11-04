@@ -6,7 +6,7 @@
 const STORAGE_KEY_LOGO = 'tynor_branding_logo';
 const STORAGE_KEY_COLOR = 'tynor_branding_color';
 const DEFAULT_BRAND_COLOR = '#10B4C1';
-const DEFAULT_LOGO_PATH = '/assets/logo.png';
+const DEFAULT_LOGO_PATH = '/assets/logo.webp';
 
 /**
  * Convierte un color HEX a RGB

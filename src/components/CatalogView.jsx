@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Search, X, Plus, Check, FileText, Video, Keyboard } from 'lucide-react';
 import { Capacitor } from '@capacitor/core';
 import { CATEGORIES } from '../data/products';
@@ -21,6 +21,25 @@ export default function CatalogView({
   const { hasPhysicalKeyboard } = usePhysicalKeyboardDetector();
 
   const isNativeMobile = typeof window !== 'undefined' && (Capacitor.isNativePlatform() || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+  const PAGE_CHUNK = 24;
+  const [visibleCount, setVisibleCount] = useState(PAGE_CHUNK);
+
+  useEffect(() => {
+    setVisibleCount(PAGE_CHUNK);
+  }, [category, query]);
+
+  const observerRef = useRef(null);
+  const sentinelRef = useCallback((node) => {
+    if (observerRef.current) observerRef.current.disconnect();
+    if (!node) return;
+    observerRef.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setVisibleCount((prev) => Math.min(prev + PAGE_CHUNK, filteredProducts.length));
+      }
+    }, { rootMargin: '300px' });
+    observerRef.current.observe(node);
+  }, [filteredProducts.length]);
+
 
   const filteredProducts = products.filter((p) => {
     const matchesCat = category === 'todos' || p.cat === category;
@@ -118,8 +137,9 @@ export default function CatalogView({
             <p style={{ margin: 0 }}>Prueba con otro término o selecciona "Todos los productos".</p>
           </div>
         ) : (
+          <>
           <div className="products-grid">
-            {filteredProducts.map((p, idx) => {
+            {filteredProducts.slice(0, visibleCount).map((p, idx) => {
               const inList = interestList.includes(p.code);
               const isPriorityLcp = idx < 12;
               return (
@@ -229,6 +249,10 @@ export default function CatalogView({
               );
             })}
           </div>
+          {visibleCount < filteredProducts.length && (
+            <div ref={sentinelRef} style={{ width: '100%', height: '30px', margin: '1rem 0', opacity: 0 }} />
+          )}
+          </>
         )}
       </div>
     </div>

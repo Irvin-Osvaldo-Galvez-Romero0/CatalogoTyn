@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import confetti from 'canvas-confetti';
+
 import KioskHeader from './components/KioskHeader';
 import CatalogView from './components/CatalogView';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -13,10 +13,18 @@ const LeadFormModal = React.lazy(() => import('./components/LeadFormModal'));
 const FixedSalesRepModal = React.lazy(() => import('./components/FixedSalesRepModal'));
 const AdminAuthModal = React.lazy(() => import('./components/admin/AdminAuthModal'));
 const AdminDashboardModal = React.lazy(() => import('./components/admin/AdminDashboardModal'));
-import MobileQuoteLanding from './components/MobileQuoteLanding';
+const MobileQuoteLanding = React.lazy(() => import('./components/MobileQuoteLanding'));
 import { productManager } from './services/productManager';
 import { brandingService } from './services/brandingService';
 import { DEFAULT_SALES_REPS } from './data/salesReps';
+
+
+const triggerConfetti = (opts) => {
+  import('canvas-confetti').then((m) => {
+    const fire = m.default || m;
+    fire(opts);
+  }).catch(() => {});
+};
 
 const INACTIVITY_TIMEOUT_MS = 60000; // 60 segundos de inactividad para modo demo automático
 
@@ -191,7 +199,7 @@ export default function App() {
     setInterestList((prev) => {
       const exists = prev.includes(code);
       if (!exists) {
-        confetti({
+        triggerConfetti({
           particleCount: 25,
           spread: 45,
           origin: { y: 0.85 },
@@ -232,9 +240,11 @@ export default function App() {
   // Si se abrió desde el QR en el celular, mostrar la Landing de Auto-Descarga Móvil (acceso exclusivo sin retorno al catálogo)
   if (mobileQuoteData) {
     return (
-      <MobileQuoteLanding
-        quoteData={mobileQuoteData}
-      />
+      <React.Suspense fallback={null}>
+        <MobileQuoteLanding
+          quoteData={mobileQuoteData}
+        />
+      </React.Suspense>
     );
   }
 

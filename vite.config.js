@@ -7,6 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'inline',
       includeAssets: [
         'assets/logo.png',
         'assets/logo.webp',
@@ -136,6 +137,15 @@ export default defineConfig({
     })
   ],
   build: {
+    modulePreload: {
+      polyfill: true,
+      resolveDependencies: (filename, deps, { hostType }) => {
+        if (hostType === 'html') {
+          return deps.filter((dep) => !dep.includes('jspdf') && !dep.includes('LeadFormModal') && !dep.includes('AdminDashboardModal') && !dep.includes('MediaOverlay'));
+        }
+        return deps;
+      }
+    },
     rollupOptions: {
       output: {
         manualChunks: {
