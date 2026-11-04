@@ -1616,53 +1616,216 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
         </div>
       </div>
 
-      {/* Modal Emergente de Confirmación con NIP */}
+      {/* Modal Emergente de Confirmacion con NIP */}
       {nipPromptOpen && (
-        <div className="modal-overlay open" style={{ zIndex: 1300 }}>
+        <div
+          className="modal-overlay open"
+          style={{
+            zIndex: 1300,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1rem',
+            backdropFilter: 'blur(8px)',
+            background: 'rgba(15, 23, 42, 0.65)'
+          }}
+          onClick={() => setNipPromptOpen(false)}
+        >
           <div
-            className="modal-card"
-            style={{ width: 'min(380px, 90vw)', background: 'var(--bg-surface)', padding: '1.5rem', borderRadius: '20px', border: '1px solid var(--border-strong)', boxShadow: 'var(--shadow-modal)' }}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+              maxWidth: 400,
+              background: 'var(--bg-surface)',
+              padding: 'clamp(1.2rem, 3vw, 1.6rem)',
+              borderRadius: '24px',
+              border: '1px solid var(--border-strong)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)',
+              boxSizing: 'border-box',
+              position: 'relative',
+              animation: 'modal-pop 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-              <KeyRound size={20} color="var(--brand)" />
-              <h4 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: 'var(--ink)' }}>
-                Confirmación de Seguridad
-              </h4>
+            {/* Cabecera */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '12px',
+                    background: 'var(--brand-soft)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--brand)'
+                  }}
+                >
+                  <KeyRound size={22} />
+                </div>
+                <div>
+                  <h4 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: 'var(--ink)' }}>
+                    Confirmación de Seguridad
+                  </h4>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--ink-secondary)' }}>
+                    Autorización requerida
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="kiosk-icon-btn"
+                style={{ width: 34, height: 34 }}
+                onClick={() => setNipPromptOpen(false)}
+                aria-label="Cerrar modal"
+              >
+                <X size={18} />
+              </button>
             </div>
-            <p style={{ margin: '0 0 1rem 0', fontSize: '0.85rem', color: 'var(--ink-secondary)' }}>
-              Ingresa el NIP de Administrador para autorizar esta acción:
+
+            <p style={{ margin: '0 0 1rem 0', fontSize: '0.85rem', color: 'var(--ink-secondary)', lineHeight: 1.4 }}>
+              Ingresa el <strong>NIP de Administrador</strong> para autorizar esta acción en el catálogo:
             </p>
 
             {nipError && (
-              <div style={{ padding: '0.5rem 0.8rem', borderRadius: '8px', background: 'rgba(239, 68, 68, 0.1)', color: '#EF4444', fontSize: '0.8rem', marginBottom: '0.75rem' }}>
-                {nipError}
+              <div
+                style={{
+                  padding: '0.65rem 0.9rem',
+                  borderRadius: '12px',
+                  background: 'rgba(239, 68, 68, 0.1)',
+                  border: '1px solid rgba(239, 68, 68, 0.25)',
+                  color: '#DC2626',
+                  fontSize: '0.82rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '1rem'
+                }}
+              >
+                <AlertCircle size={16} style={{ flexShrink: 0 }} />
+                <span>{nipError}</span>
               </div>
             )}
 
+            {/* Input NIP */}
             <input
               type="password"
               autoFocus
               value={nipInput}
-              onChange={(e) => setNipInput(e.target.value)}
-              placeholder="NIP de 4 dígitos"
-              style={{ width: '100%', height: 46, padding: '0 0.8rem', borderRadius: '12px', border: '2px solid var(--brand)', fontSize: '1.2rem', textAlign: 'center', letterSpacing: '0.3em', marginBottom: '1.25rem' }}
+              onChange={(e) => {
+                setNipError('');
+                setNipInput(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleConfirmNip();
+              }}
+              placeholder="••••"
+              style={{
+                width: '100%',
+                height: 50,
+                padding: '0 1rem',
+                borderRadius: '14px',
+                border: '2px solid var(--brand)',
+                background: 'var(--bg-surface-raised)',
+                color: 'var(--ink)',
+                fontSize: '1.4rem',
+                fontWeight: 800,
+                textAlign: 'center',
+                letterSpacing: '0.35em',
+                marginBottom: '1rem',
+                outline: 'none',
+                boxSizing: 'border-box'
+              }}
             />
 
-            <div style={{ display: 'flex', gap: '0.8rem' }}>
+            {/* Teclado Tactil Rapido para Kiosco */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '0.45rem',
+                marginBottom: '1.2rem'
+              }}
+            >
+              {['1', '2', '3', '4', '5', '6', '7', '8', '9', 'C', '0', '⌫'].map((k) => (
+                <button
+                  key={k}
+                  type="button"
+                  onClick={() => {
+                    setNipError('');
+                    if (k === 'C') {
+                      setNipInput('');
+                    } else if (k === '⌫') {
+                      setNipInput((prev) => prev.slice(0, -1));
+                    } else {
+                      if (nipInput.length < 8) setNipInput((prev) => prev + k);
+                    }
+                  }}
+                  style={{
+                    height: 42,
+                    fontSize: '1.1rem',
+                    fontWeight: 700,
+                    borderRadius: '10px',
+                    border: '1px solid var(--border)',
+                    background: k === 'C' ? 'rgba(239, 68, 68, 0.08)' : 'var(--bg-surface-raised)',
+                    color: k === 'C' ? '#EF4444' : 'var(--ink)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transition: 'all 0.1s ease',
+                    userSelect: 'none'
+                  }}
+                >
+                  {k}
+                </button>
+              ))}
+            </div>
+
+            {/* Botones de Accion */}
+            <div style={{ display: 'flex', gap: '0.75rem', width: '100%' }}>
               <button
                 type="button"
                 onClick={() => setNipPromptOpen(false)}
-                style={{ flex: 1, height: 44, borderRadius: 'var(--radius-pill)', border: '1px solid var(--border)', background: 'none', fontWeight: 700, cursor: 'pointer' }}
+                style={{
+                  flex: 1,
+                  height: 46,
+                  borderRadius: 'var(--radius-pill)',
+                  border: '1px solid var(--border)',
+                  background: 'var(--bg-surface-raised)',
+                  color: 'var(--ink-secondary)',
+                  fontWeight: 700,
+                  fontSize: '0.92rem',
+                  cursor: 'pointer',
+                  transition: 'background 0.15s ease'
+                }}
               >
                 Cancelar
               </button>
               <button
                 type="button"
                 onClick={handleConfirmNip}
-                style={{ flex: 1, height: 44, borderRadius: 'var(--radius-pill)', background: 'var(--brand)', color: '#FFFFFF', border: 'none', fontWeight: 800, cursor: 'pointer' }}
+                style={{
+                  flex: 1.2,
+                  height: 46,
+                  borderRadius: 'var(--radius-pill)',
+                  background: 'var(--brand)',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  fontWeight: 800,
+                  fontSize: '0.95rem',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.4rem',
+                  boxShadow: 'var(--shadow-glow)'
+                }}
               >
-                Autorizar
+                <CheckCircle size={18} />
+                <span>Autorizar</span>
               </button>
             </div>
           </div>
@@ -1671,4 +1834,3 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
     </div>
   );
 }
-

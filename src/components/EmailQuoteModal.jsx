@@ -70,12 +70,15 @@ export default function EmailQuoteModal({
       <div
         className="modal-card"
         style={{
+          display: 'flex',
+          flexDirection: 'column',
           width: 'min(500px, 94vw)',
           background: 'var(--bg-surface)',
           borderRadius: '24px',
           boxShadow: 'var(--shadow-modal)',
           border: '1px solid var(--border)',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          boxSizing: 'border-box'
         }}
         onClick={(e) => e.stopPropagation()}
       >
