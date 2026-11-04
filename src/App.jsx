@@ -14,6 +14,8 @@ const FixedSalesRepModal = React.lazy(() => import('./components/FixedSalesRepMo
 const AdminAuthModal = React.lazy(() => import('./components/admin/AdminAuthModal'));
 const AdminDashboardModal = React.lazy(() => import('./components/admin/AdminDashboardModal'));
 const MobileQuoteLanding = React.lazy(() => import('./components/MobileQuoteLanding'));
+const EmailQuoteModal = React.lazy(() => import('./components/EmailQuoteModal'));
+const QrExportModal = React.lazy(() => import('./components/QrExportModal'));
 import { productManager } from './services/productManager';
 import { brandingService } from './services/brandingService';
 import { DEFAULT_SALES_REPS } from './data/salesReps';
@@ -133,6 +135,18 @@ export default function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isAttractMode, setIsAttractMode] = useState(false);
   const [isLeadFormOpen, setIsLeadFormOpen] = useState(false);
+  const [emailQuoteData, setEmailQuoteData] = useState(null);
+  const [qrExportData, setQrExportData] = useState(null);
+
+  const handleOpenEmailModal = useCallback((data) => {
+    setIsDrawerOpen(false);
+    setEmailQuoteData(data);
+  }, []);
+
+  const handleOpenQrModal = useCallback((data) => {
+    setIsDrawerOpen(false);
+    setQrExportData(data);
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -326,9 +340,33 @@ export default function App() {
             onToggleInterest={handleToggleInterest}
             onClearInterest={handleClearInterest}
             onSelectProduct={(p) => setSelectedProduct(p)}
+            onOpenEmailModal={handleOpenEmailModal}
+            onOpenQrModal={handleOpenQrModal}
           />
         )}
       </React.Suspense>
+
+      {emailQuoteData && (
+        <React.Suspense fallback={null}>
+          <EmailQuoteModal
+            isOpen={Boolean(emailQuoteData)}
+            onClose={() => setEmailQuoteData(null)}
+            items={emailQuoteData.items}
+            totalAmount={emailQuoteData.totalAmount}
+            salesRep={emailQuoteData.salesRep}
+          />
+        </React.Suspense>
+      )}
+
+      {qrExportData && (
+        <React.Suspense fallback={null}>
+          <QrExportModal
+            items={qrExportData.items}
+            initialRepId={qrExportData.salesRep?.id}
+            onClose={() => setQrExportData(null)}
+          />
+        </React.Suspense>
+      )}
 
       <React.Suspense fallback={null}>
         {isLeadFormOpen && (

@@ -73,7 +73,7 @@ export default function QrExportModal({ items, initialRepId, onRepChange, onClos
   }, [qrTargetUrl, items]);
 
   return (
-    <div className="modal-overlay open" onClick={onClose}>
+    <div className="modal-overlay open" onClick={onClose} style={{ zIndex: 3000 }}>
       <div
         className="modal-card qr-whatsapp-modal-card"
         style={{ width: 'min(480px, 94vw)', maxHeight: '92dvh', overflowY: 'auto' }}

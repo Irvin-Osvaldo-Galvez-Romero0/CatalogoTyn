@@ -1382,6 +1382,11 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                     placeholder="••••••••••••"
                     style={{ width: '100%', height: 44, padding: '0 0.8rem', borderRadius: '10px', border: '1px solid var(--border)' }}
                   />
+                  {(emailConfig.provider === 'gmail' || (emailConfig.host && emailConfig.host.includes('gmail'))) && (
+                    <span style={{ display: 'block', marginTop: '0.35rem', fontSize: '0.74rem', color: '#B45309', background: 'rgba(245, 158, 11, 0.1)', padding: '0.4rem 0.6rem', borderRadius: '8px', lineHeight: 1.3 }}>
+                      💡 <strong>Gmail:</strong> Google requiere una <strong>Contraseña de Aplicación de 16 letras</strong> generada en tu cuenta Google (<em>Seguridad &gt; Verificación en 2 pasos &gt; Contraseñas de aplicaciones</em>), no tu contraseña normal.
+                    </span>
+                  )}
                 </div>
 
                 {/* Sección de Sincronización IMAP */}

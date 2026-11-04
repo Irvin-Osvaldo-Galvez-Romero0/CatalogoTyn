@@ -226,9 +226,37 @@ export const emailService = {
           };
         } else {
           console.warn('Fallo el envío por API, usando fallback mailto:', data.error);
+          const ccParam = ccEmail ? `&cc=${encodeURIComponent(ccEmail)}` : '';
+          const mailtoUrl = `mailto:${encodeURIComponent(recipientEmail)}?subject=${encodeURIComponent(subject)}${ccParam}&body=${encodeURIComponent(emailBodyText)}`;
+
+          return {
+            success: true,
+            mode: 'mailto',
+            mailtoUrl,
+            from: config.fromEmail || 'cotizaciones@tynor.com.mx',
+            to: recipientEmail,
+            cc: ccEmail,
+            formattedTotal,
+            warning: data.error
+              ? `Aviso del servidor de correo: "${data.error}". Se preparó el desglose oficial para enviarlo directamente desde tu aplicación de correo.`
+              : null
+          };
         }
       } catch (e) {
         console.warn('Error llamando a /api/send-email, usando fallback mailto:', e);
+        const ccParam = ccEmail ? `&cc=${encodeURIComponent(ccEmail)}` : '';
+        const mailtoUrl = `mailto:${encodeURIComponent(recipientEmail)}?subject=${encodeURIComponent(subject)}${ccParam}&body=${encodeURIComponent(emailBodyText)}`;
+
+        return {
+          success: true,
+          mode: 'mailto',
+          mailtoUrl,
+          from: config.fromEmail || 'cotizaciones@tynor.com.mx',
+          to: recipientEmail,
+          cc: ccEmail,
+          formattedTotal,
+          warning: `No se pudo conectar al servicio SMTP (${e.message}). Puedes abrir el correo directamente en tu aplicación abajo.`
+        };
       }
     }
 

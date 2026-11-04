@@ -55,6 +55,15 @@ export default function EmailQuoteModal({
       ccEmail = null;
     }
 
+    if (!targetEmail) {
+      setIsSending(false);
+      setResult({
+        success: false,
+        message: 'Por favor ingresa una dirección de correo electrónico válida.'
+      });
+      return;
+    }
+
     const quoteFolio = `COT-${Date.now().toString().slice(-6)}`;
 
     // Generar PDF formal para adjuntar directamente a la cotización
@@ -87,8 +96,9 @@ export default function EmailQuoteModal({
       setIsSending(false);
       setResult({
         success: true,
-        message: res.message || `Cotización enviada exitosamente desde ${res.from}.`,
-        mailtoUrl: res.mailtoUrl
+        message: res.message || (res.mode === 'mailto' ? 'Se preparó la cotización con el desglose oficial.' : `Cotización enviada exitosamente desde ${res.from}.`),
+        mailtoUrl: res.mailtoUrl,
+        warning: res.warning
       });
 
       confetti({
@@ -107,7 +117,7 @@ export default function EmailQuoteModal({
   };
 
   return (
-    <div className="modal-overlay open" onClick={onClose} style={{ zIndex: 1250 }}>
+    <div className="modal-overlay open" onClick={onClose} style={{ zIndex: 3000 }}>
       <div
         className="modal-card"
         style={{
@@ -190,9 +200,31 @@ export default function EmailQuoteModal({
               <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '1.2rem', fontWeight: 800, color: 'var(--ink)' }}>
                 ¡Cotización Enviada!
               </h4>
-              <p style={{ margin: '0 0 1.5rem 0', fontSize: '0.9rem', color: 'var(--ink-secondary)', lineHeight: 1.5 }}>
+              <p style={{ margin: '0 0 1rem 0', fontSize: '0.9rem', color: 'var(--ink-secondary)', lineHeight: 1.5 }}>
                 {result.message}
               </p>
+
+              {result.warning && (
+                <div
+                  style={{
+                    padding: '0.75rem 1rem',
+                    borderRadius: '12px',
+                    background: 'rgba(245, 158, 11, 0.1)',
+                    border: '1px solid #F59E0B',
+                    color: '#B45309',
+                    fontSize: '0.82rem',
+                    marginBottom: '1rem',
+                    textAlign: 'left',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '0.5rem',
+                    lineHeight: 1.4
+                  }}
+                >
+                  <AlertCircle size={16} style={{ flexShrink: 0, marginTop: 2 }} />
+                  <span>{result.warning}</span>
+                </div>
+              )}
 
               {result.mailtoUrl && (
                 <a
@@ -237,6 +269,26 @@ export default function EmailQuoteModal({
             </div>
           ) : (
             <form onSubmit={handleSend}>
+              {result && !result.success && (
+                <div
+                  style={{
+                    padding: '0.75rem 1rem',
+                    borderRadius: '12px',
+                    background: 'rgba(239, 68, 68, 0.1)',
+                    border: '1px solid #EF4444',
+                    color: '#DC2626',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    marginBottom: '1.25rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
+                  }}
+                >
+                  <AlertCircle size={18} style={{ flexShrink: 0 }} />
+                  <span>{result.message}</span>
+                </div>
+              )}
               {/* Opciones de Destinatario */}
               <div style={{ marginBottom: '1.25rem' }}>
                 <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--ink-secondary)' }}>

@@ -23,7 +23,9 @@ export default function InterestDrawer({
   products,
   onToggleInterest,
   onClearInterest,
-  onSelectProduct
+  onSelectProduct,
+  onOpenEmailModal,
+  onOpenQrModal
 }) {
   const [showQrModal, setShowQrModal] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
@@ -334,8 +336,14 @@ export default function InterestDrawer({
             {/* Botón Principal Destacado: Enviar Pedido a WhatsApp */}
             <button
               onClick={() => {
-                setShowQrModal(true);
-                if (onClose) onClose();
+                if (onOpenQrModal) {
+                  onOpenQrModal({
+                    items: selectedProducts,
+                    salesRep: selectedRep
+                  });
+                } else {
+                  setShowQrModal(true);
+                }
               }}
               style={{
                 width: '100%',
@@ -363,8 +371,15 @@ export default function InterestDrawer({
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem', marginBottom: '0.65rem' }}>
               <button
                 onClick={() => {
-                  setShowEmailModal(true);
-                  if (onClose) onClose();
+                  if (onOpenEmailModal) {
+                    onOpenEmailModal({
+                      items: selectedProducts,
+                      totalAmount: totalCost,
+                      salesRep: selectedRep
+                    });
+                  } else {
+                    setShowEmailModal(true);
+                  }
                 }}
                 style={{
                   height: 44,
