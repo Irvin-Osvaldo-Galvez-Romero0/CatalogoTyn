@@ -18,6 +18,16 @@ export default function AnatomyView({
   const [currentTarget, setCurrentTarget] = useState(null);
   const modelRef = useRef(null);
 
+  // Carga diferida bajo demanda de model-viewer solo al entrar a la vista 3D
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !customElements.get('model-viewer')) {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = '/js/model-viewer.min.js';
+      document.head.appendChild(script);
+    }
+  }, []);
+
   useEffect(() => {
     const model = modelRef.current;
     if (!model) return;

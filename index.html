@@ -2,26 +2,76 @@
 <html lang="es" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#10B4C1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Tynor Kiosk" />
     <meta
       name="description"
       content="Catálogo Médico Táctil Interactivo Tynor — Edición EXPOMEDICAL 2026. Soluciones de ortopedia y rehabilitación."
     />
     <title>Tynor — Catálogo Médico Interactivo</title>
+    
+    <!-- Canonical & Alternate Links -->
+    <link rel="canonical" href="https://catalogotyn.vercel.app/" />
     <link rel="icon" type="image/png" href="/assets/logo.png" />
+    <link rel="apple-touch-icon" href="/assets/logo.png" />
+    <link rel="llms-txt" href="/llms.txt" />
+    <link rel="ard" href="/.well-known/ard.json" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://catalogotyn.vercel.app/" />
+    <meta property="og:title" content="Tynor — Catálogo Médico Interactivo" />
+    <meta property="og:description" content="Soluciones avanzadas de ortopedia, rehabilitación física y biomecánica deportiva Tynor México." />
+    <meta property="og:image" content="https://catalogotyn.vercel.app/assets/logo.png" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tynor — Catálogo Médico Interactivo" />
+    <meta name="twitter:description" content="Soluciones avanzadas de ortopedia, rehabilitación física y biomecánica deportiva Tynor México." />
+    <meta name="twitter:image" content="https://catalogotyn.vercel.app/assets/logo.png" />
+
+    <!-- Google Fonts Optimized (Preload + Swap) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
     />
-    <script type="module" src="/js/model-viewer.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      />
+    </noscript>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalWebPage",
+      "name": "Tynor — Catálogo Médico Interactivo",
+      "url": "https://catalogotyn.vercel.app/",
+      "description": "Catálogo interactivo de dispositivos médicos de ortopedia y rehabilitación.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Tynor México",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://catalogotyn.vercel.app/assets/logo.png"
+        }
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

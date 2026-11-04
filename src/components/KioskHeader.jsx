@@ -122,7 +122,7 @@ export default function KioskHeader({
         <button
           className={`kiosk-tab-btn ${view === 'catalog' ? 'active' : ''}`}
           onClick={() => setView('catalog')}
-          aria-label="Ver Catálogo General"
+          aria-label="Catálogo — Ver Catálogo General"
         >
           <Layers size={20} />
           <span>Catálogo</span>
@@ -130,7 +130,7 @@ export default function KioskHeader({
         <button
           className={`kiosk-tab-btn ${view === 'anatomy' ? 'active' : ''}`}
           onClick={() => setView('anatomy')}
-          aria-label="Ver Cuerpo Anatómico 3D"
+          aria-label="Cuerpo 3D — Ver Cuerpo Anatómico 3D"
         >
           <User size={20} />
           <span>Cuerpo 3D</span>

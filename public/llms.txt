@@ -1,0 +1,15 @@
+# Tynor México — Catálogo Médico Interactivo
+
+> Catálogo oficial de dispositivos médicos ortopédicos, soporte anatómico, rehabilitación física y biomecánica deportiva Tynor México.
+
+## Resumen del Sistema
+- Aplicación Web Progresiva (PWA) de alto rendimiento para consulta médica, cotizaciones y fichas técnicas.
+- URL oficial: https://catalogotyn.vercel.app/
+
+## Categorías Principales
+- **Línea Ortopedia:** Inmovilizadores y soportes cervicales, cabestrillos, férulas de antebrazo y muñeca, soportes dorsolumbares, fajas lumbosacras, rodilleras mecánicas, tobilleras y auxiliares de marcha (bastones, andaderas, muletas).
+- **Línea Deportiva AIR PRO:** Rodilleras deportivas con anillo rotuliano de silicona, coderas elásticas 3D, fajas deportivas de alta compresión y tobilleras de estabilidad dinámica.
+
+## Fichas Técnicas y Certificaciones
+- Cada dispositivo médico cuenta con especificaciones de tallas, medidas en centímetros, composición de grado médico y ficha técnica en formato PDF.
+- Certificaciones: ISO 9001, ISO 13485, CE Medical Devices y registro sanitario oficial.

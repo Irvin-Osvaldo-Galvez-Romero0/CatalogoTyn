@@ -136,7 +136,10 @@ export default function CatalogView({
                       src={p.customImage || `/assets/${p.code}.png`}
                       alt={p.name}
                       className="kiosk-card-img"
+                      width="240"
+                      height="240"
                       loading="lazy"
+                      decoding="async"
                       onError={(e) => { e.currentTarget.src = '/assets/logo.png'; }}
                     />
                     <div className="card-media-indicators">

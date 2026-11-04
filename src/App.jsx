@@ -2,16 +2,17 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import KioskHeader from './components/KioskHeader';
 import CatalogView from './components/CatalogView';
-import AnatomyView from './components/AnatomyView';
 import ProductDetailModal from './components/ProductDetailModal';
-import MediaOverlay from './components/MediaOverlay';
 import InterestDrawer from './components/InterestDrawer';
-import AttractMode from './components/AttractMode';
 import ErrorBoundary from './components/ErrorBoundary';
-import LeadFormModal from './components/LeadFormModal';
-import FixedSalesRepModal from './components/FixedSalesRepModal';
-import AdminAuthModal from './components/admin/AdminAuthModal';
-import AdminDashboardModal from './components/admin/AdminDashboardModal';
+
+const AnatomyView = React.lazy(() => import('./components/AnatomyView'));
+const MediaOverlay = React.lazy(() => import('./components/MediaOverlay'));
+const AttractMode = React.lazy(() => import('./components/AttractMode'));
+const LeadFormModal = React.lazy(() => import('./components/LeadFormModal'));
+const FixedSalesRepModal = React.lazy(() => import('./components/FixedSalesRepModal'));
+const AdminAuthModal = React.lazy(() => import('./components/admin/AdminAuthModal'));
+const AdminDashboardModal = React.lazy(() => import('./components/admin/AdminDashboardModal'));
 import MobileQuoteLanding from './components/MobileQuoteLanding';
 import { productManager } from './services/productManager';
 import { brandingService } from './services/brandingService';
@@ -267,12 +268,14 @@ export default function App() {
         </div>
 
         <div style={{ display: view === 'anatomy' ? 'flex' : 'none', width: '100%', height: '100%', flex: 1, minHeight: 0, flexDirection: 'column' }}>
-          <AnatomyView
-            products={allProducts}
-            onSelectProduct={(p) => setSelectedProduct(p)}
-            interestList={interestList}
-            onToggleInterest={handleToggleInterest}
-          />
+          <React.Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--brand)', fontFamily: 'var(--font-display)', fontWeight: 700 }}>Cargando Anatomía 3D...</div>}>
+            <AnatomyView
+              products={allProducts}
+              onSelectProduct={(p) => setSelectedProduct(p)}
+              interestList={interestList}
+              onToggleInterest={handleToggleInterest}
+            />
+          </React.Suspense>
         </div>
       </main>
 
@@ -288,12 +291,14 @@ export default function App() {
       )}
 
       {mediaState.type && (
-        <MediaOverlay
-          mediaType={mediaState.type}
-          src={mediaState.src}
-          title={mediaState.title}
-          onClose={handleCloseMedia}
-        />
+        <React.Suspense fallback={null}>
+          <MediaOverlay
+            mediaType={mediaState.type}
+            src={mediaState.src}
+            title={mediaState.title}
+            onClose={handleCloseMedia}
+          />
+        </React.Suspense>
       )}
 
       <InterestDrawer
@@ -307,35 +312,41 @@ export default function App() {
         onSelectProduct={(p) => setSelectedProduct(p)}
       />
 
-      <LeadFormModal
-        isOpen={isLeadFormOpen}
-        onClose={() => setIsLeadFormOpen(false)}
-      />
-
-      <FixedSalesRepModal
-        isOpen={isFixedRepModalOpen}
-        onClose={() => setIsFixedRepModalOpen(false)}
-        fixedRepId={fixedRepId}
-        onSelectRep={handleSelectFixedRep}
-      />
-
-      {/* Modal de Autenticación de Administrador (Usuario + NIP) */}
-      <AdminAuthModal
-        isOpen={isAdminAuthOpen}
-        onClose={() => setIsAdminAuthOpen(false)}
-        onSuccess={handleAdminAuthSuccess}
-      />
-
-      {/* Panel de Control de Administración en Pantalla Completa */}
-      <AdminDashboardModal
-        isOpen={isAdminDashboardOpen}
-        onClose={() => setIsAdminDashboardOpen(false)}
-        initialNip={adminNip}
-      />
+      <React.Suspense fallback={null}>
+        {isLeadFormOpen && (
+          <LeadFormModal
+            isOpen={isLeadFormOpen}
+            onClose={() => setIsLeadFormOpen(false)}
+          />
+        )}
+        {isFixedRepModalOpen && (
+          <FixedSalesRepModal
+            isOpen={isFixedRepModalOpen}
+            onClose={() => setIsFixedRepModalOpen(false)}
+            fixedRepId={fixedRepId}
+            onSelectRep={handleSelectFixedRep}
+          />
+        )}
+        {isAdminAuthOpen && (
+          <AdminAuthModal
+            isOpen={isAdminAuthOpen}
+            onClose={() => setIsAdminAuthOpen(false)}
+            onSuccess={handleAdminAuthSuccess}
+          />
+        )}
+        {isAdminDashboardOpen && (
+          <AdminDashboardModal
+            isOpen={isAdminDashboardOpen}
+            onClose={() => setIsAdminDashboardOpen(false)}
+            initialNip={adminNip}
+          />
+        )}
+      </React.Suspense>
 
       {isAttractMode && (
         <ErrorBoundary onReset={handleDismissAttract}>
-          <AttractMode
+          <React.Suspense fallback={null}>
+            <AttractMode
             onDismiss={handleDismissAttract}
             theme={theme}
             onSelectProduct={(product) => {
@@ -351,6 +362,7 @@ export default function App() {
               setView('catalog');
             }}
           />
+          </React.Suspense>
         </ErrorBoundary>
       )}
     </div>

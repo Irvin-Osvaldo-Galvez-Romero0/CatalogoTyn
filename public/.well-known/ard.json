@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "name": "Tynor Catálogo Médico Interactivo",
+  "description": "Catálogo interactivo de productos de ortopedia y rehabilitación médica Tynor México",
+  "url": "https://catalogotyn.vercel.app/",
+  "documentation": "https://catalogotyn.vercel.app/llms.txt",
+  "capabilities": [
+    {
+      "type": "catalog",
+      "description": "Búsqueda y consulta de productos ortopédicos y fichas técnicas"
+    }
+  ]
+}
