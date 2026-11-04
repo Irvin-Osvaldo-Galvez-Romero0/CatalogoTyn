@@ -27,3 +27,4 @@ if scripts:
             out.write(s[:2000])
 else:
     print("Script class ds:0 not found")
+

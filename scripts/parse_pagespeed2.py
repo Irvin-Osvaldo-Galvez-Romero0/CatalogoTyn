@@ -12,3 +12,4 @@ print('Number of scripts:', len(scripts))
 for i, s in enumerate(scripts):
     if len(s) > 1000:
         print(f'Script {i} length: {len(s)}, preview: {s[:100]}...')
+

@@ -31,3 +31,4 @@ for audit_ref in cat_a11y.get('auditRefs', []):
             for it in items[:3]:
                 print(f"    Node: {it.get('node', {}).get('snippet')}")
                 print(f"    Explanation: {it.get('node', {}).get('explanation') or it.get('subItems')}")
+

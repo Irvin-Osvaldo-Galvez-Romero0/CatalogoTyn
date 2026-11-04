@@ -119,8 +119,9 @@ export default function CatalogView({
           </div>
         ) : (
           <div className="products-grid">
-            {filteredProducts.map((p) => {
+            {filteredProducts.map((p, idx) => {
               const inList = interestList.includes(p.code);
+              const isPriorityLcp = idx < 4;
               return (
                 <div
                   key={p.code}
@@ -132,16 +133,26 @@ export default function CatalogView({
                 >
                   <div className="kiosk-card-img-wrap">
                     {p.badge && <span className="card-badge">{p.badge}</span>}
-                    <img
-                      src={p.customImage || `/assets/${p.code}.png`}
-                      alt={p.name}
-                      className="kiosk-card-img"
-                      width="240"
-                      height="240"
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => { e.currentTarget.src = '/assets/logo.png'; }}
-                    />
+                    <picture>
+                      <source srcSet={p.customImage || `/assets/${p.code}.webp`} type="image/webp" />
+                      <img
+                        src={p.customImage || `/assets/${p.code}.webp`}
+                        alt={p.name}
+                        className="kiosk-card-img"
+                        width="240"
+                        height="240"
+                        loading={isPriorityLcp ? "eager" : "lazy"}
+                        fetchpriority={isPriorityLcp ? "high" : "auto"}
+                        decoding={isPriorityLcp ? "sync" : "async"}
+                        onError={(e) => {
+                          if (!e.currentTarget.src.endsWith('.png') && !e.currentTarget.src.includes('logo')) {
+                            e.currentTarget.src = `/assets/${p.code}.png`;
+                          } else {
+                            e.currentTarget.src = '/assets/logo.png';
+                          }
+                        }}
+                      />
+                    </picture>
                     <div className="card-media-indicators">
                       {(p.hasPdf || p.customPdfUrl) && (
                         <span className="media-tag" title="Ficha Técnica PDF Disponible">

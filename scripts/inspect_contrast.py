@@ -11,3 +11,4 @@ for i, item in enumerate(items):
     print(f"  Snippet: {node.get('snippet')}")
     print(f"  Selector: {node.get('selector')}")
     print(f"  Explanation: {node.get('explanation')}")
+

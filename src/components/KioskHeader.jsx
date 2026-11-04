@@ -82,6 +82,8 @@ export default function KioskHeader({
             src={logo}
             alt="Tynor"
             className="kiosk-logo"
+            width="140"
+            height="42"
             onError={(e) => { e.currentTarget.src = '/assets/logo.png'; }}
           />
         </div>

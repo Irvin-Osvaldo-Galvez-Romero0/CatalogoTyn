@@ -31,3 +31,4 @@ if old_crlf in text_crlf:
     print("SUCCESS updating CatalogView.jsx")
 else:
     print("Could not find old_block in CatalogView.jsx")
+

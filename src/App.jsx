@@ -2,11 +2,11 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import KioskHeader from './components/KioskHeader';
 import CatalogView from './components/CatalogView';
-import ProductDetailModal from './components/ProductDetailModal';
-import InterestDrawer from './components/InterestDrawer';
 import ErrorBoundary from './components/ErrorBoundary';
 
 const AnatomyView = React.lazy(() => import('./components/AnatomyView'));
+const ProductDetailModal = React.lazy(() => import('./components/ProductDetailModal'));
+const InterestDrawer = React.lazy(() => import('./components/InterestDrawer'));
 const MediaOverlay = React.lazy(() => import('./components/MediaOverlay'));
 const AttractMode = React.lazy(() => import('./components/AttractMode'));
 const LeadFormModal = React.lazy(() => import('./components/LeadFormModal'));
@@ -267,27 +267,31 @@ export default function App() {
           />
         </div>
 
-        <div style={{ display: view === 'anatomy' ? 'flex' : 'none', width: '100%', height: '100%', flex: 1, minHeight: 0, flexDirection: 'column' }}>
-          <React.Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--brand)', fontFamily: 'var(--font-display)', fontWeight: 700 }}>Cargando Anatomía 3D...</div>}>
-            <AnatomyView
-              products={allProducts}
-              onSelectProduct={(p) => setSelectedProduct(p)}
-              interestList={interestList}
-              onToggleInterest={handleToggleInterest}
-            />
-          </React.Suspense>
-        </div>
+        {view === 'anatomy' && (
+          <div style={{ display: 'flex', width: '100%', height: '100%', flex: 1, minHeight: 0, flexDirection: 'column' }}>
+            <React.Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--brand)', fontFamily: 'var(--font-display)', fontWeight: 700 }}>Cargando Anatomía 3D...</div>}>
+              <AnatomyView
+                products={allProducts}
+                onSelectProduct={(p) => setSelectedProduct(p)}
+                interestList={interestList}
+                onToggleInterest={handleToggleInterest}
+              />
+            </React.Suspense>
+          </div>
+        )}
       </main>
 
       {selectedProduct && (
-        <ProductDetailModal
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-          interestList={interestList}
-          interestSelections={interestSelections}
-          onToggleInterest={handleToggleInterest}
-          onOpenMedia={handleOpenMedia}
-        />
+        <React.Suspense fallback={null}>
+          <ProductDetailModal
+            product={selectedProduct}
+            onClose={() => setSelectedProduct(null)}
+            interestList={interestList}
+            interestSelections={interestSelections}
+            onToggleInterest={handleToggleInterest}
+            onOpenMedia={handleOpenMedia}
+          />
+        </React.Suspense>
       )}
 
       {mediaState.type && (
@@ -301,16 +305,20 @@ export default function App() {
         </React.Suspense>
       )}
 
-      <InterestDrawer
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        interestList={interestList}
-        interestSelections={interestSelections}
-        products={allProducts}
-        onToggleInterest={handleToggleInterest}
-        onClearInterest={handleClearInterest}
-        onSelectProduct={(p) => setSelectedProduct(p)}
-      />
+      <React.Suspense fallback={null}>
+        {isDrawerOpen && (
+          <InterestDrawer
+            isOpen={isDrawerOpen}
+            onClose={() => setIsDrawerOpen(false)}
+            interestList={interestList}
+            interestSelections={interestSelections}
+            products={allProducts}
+            onToggleInterest={handleToggleInterest}
+            onClearInterest={handleClearInterest}
+            onSelectProduct={(p) => setSelectedProduct(p)}
+          />
+        )}
+      </React.Suspense>
 
       <React.Suspense fallback={null}>
         {isLeadFormOpen && (

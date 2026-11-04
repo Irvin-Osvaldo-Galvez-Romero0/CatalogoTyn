@@ -82,3 +82,4 @@ with open('src/styles/kiosk.css', 'w', encoding='utf-8', newline='\r\n') as f:
     f.write(text_norm)
 
 print(f"kiosk.css patched successfully ({found}/3 replacements)")
+

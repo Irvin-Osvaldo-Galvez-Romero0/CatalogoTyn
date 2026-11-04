@@ -33,3 +33,4 @@ def search_nested(obj, path=""):
             search_nested(val, f"{path}.{k}")
 
 search_nested(data)
+

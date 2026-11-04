@@ -1,15 +1,11 @@
 # Tynor México — Catálogo Médico Interactivo
 
-> Catálogo oficial de dispositivos médicos ortopédicos, soporte anatómico, rehabilitación física y biomecánica deportiva Tynor México.
+> Catálogo médico oficial e interactivo de dispositivos ortopédicos, rehabilitación y medicina deportiva Tynor México.
 
-## Resumen del Sistema
-- Aplicación Web Progresiva (PWA) de alto rendimiento para consulta médica, cotizaciones y fichas técnicas.
-- URL oficial: https://catalogotyn.vercel.app/
+## Secciones Principales
+- [Catálogo General](https://catalogotyn.vercel.app/): Exploración y cotización de más de 180 dispositivos médicos ortopédicos y biomecánicos.
+- [Línea Ortopedia](https://catalogotyn.vercel.app/?cat=ortopedia): Inmovilizadores, fajas sacrolumbares, cabestrillos, férulas y auxiliares de marcha.
+- [Línea Deportiva AIR PRO](https://catalogotyn.vercel.app/?cat=deportiva): Rodilleras de compresión 3D con anillo rotuliano, coderas elásticas y soportes deportivos de alto impacto.
 
-## Categorías Principales
-- **Línea Ortopedia:** Inmovilizadores y soportes cervicales, cabestrillos, férulas de antebrazo y muñeca, soportes dorsolumbares, fajas lumbosacras, rodilleras mecánicas, tobilleras y auxiliares de marcha (bastones, andaderas, muletas).
-- **Línea Deportiva AIR PRO:** Rodilleras deportivas con anillo rotuliano de silicona, coderas elásticas 3D, fajas deportivas de alta compresión y tobilleras de estabilidad dinámica.
-
-## Fichas Técnicas y Certificaciones
-- Cada dispositivo médico cuenta con especificaciones de tallas, medidas en centímetros, composición de grado médico y ficha técnica en formato PDF.
-- Certificaciones: ISO 9001, ISO 13485, CE Medical Devices y registro sanitario oficial.
+## Especificaciones y Fichas Técnicas
+- [Fichas Técnicas Oficiales](https://catalogotyn.vercel.app/pdf): Fichas técnicas descargables en formato PDF con tablas de medidas, composiciones y certificaciones ISO 13485 / CE.

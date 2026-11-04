@@ -103,3 +103,4 @@ else:
 with open('src/App.jsx', 'w', encoding='utf-8', newline='\r\n') as f:
     f.write(text_norm)
 print("Finished wrapping in Suspense")
+

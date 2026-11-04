@@ -7,7 +7,16 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['assets/logo.png', 'assets/logo1.png', 'robots.txt', 'sitemap.xml', 'llms.txt'],
+      includeAssets: [
+        'assets/logo.png',
+        'assets/logo.webp',
+        'assets/logo1.png',
+        'robots.txt',
+        'sitemap.xml',
+        'llms.txt',
+        '.well-known/ai-catalog.json',
+        '.well-known/ard.json'
+      ],
       manifest: {
         id: '/',
         name: 'Tynor — Catálogo Médico Interactivo',
@@ -58,17 +67,17 @@ export default defineConfig({
       },
       workbox: {
         // Solo precachear el shell de la aplicación (HTML, CSS, JS core e íconos indispensables)
-        globPatterns: ['**/*.{js,css,html,svg,ico,woff2}', 'assets/logo*.png'],
+        globPatterns: ['**/*.{js,css,html,svg,ico,woff2}', 'assets/logo*.*'],
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
         runtimeCaching: [
-          // Caché bajo demanda de imágenes de catálogo (con política CacheFirst y expiración a 30 días)
+          // Caché bajo demanda de imágenes de catálogo (con política CacheFirst para WebP y PNG a 30 días)
           {
-            urlPattern: ({ url }) => url.pathname.startsWith('/assets/') && url.pathname.endsWith('.png'),
+            urlPattern: ({ url }) => url.pathname.startsWith('/assets/') && (url.pathname.endsWith('.png') || url.pathname.endsWith('.webp')),
             handler: 'CacheFirst',
             options: {
               cacheName: 'product-images-cache',
               expiration: {
-                maxEntries: 250,
+                maxEntries: 300,
                 maxAgeSeconds: 60 * 60 * 24 * 30
               },
               cacheableResponse: {

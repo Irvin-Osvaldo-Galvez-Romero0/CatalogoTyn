@@ -25,3 +25,4 @@ for cat in ['performance', 'accessibility', 'best-practices', 'seo']:
         pos = idx + 200
         if pos > idx + 1000:
             break
+

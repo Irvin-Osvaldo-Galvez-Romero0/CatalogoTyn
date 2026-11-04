@@ -13,3 +13,4 @@ for key in ['llms-txt', 'webmcp-form-coverage', 'webmcp-registered-tools', 'webm
         print(f"Score: {a.get('score')}")
         print(f"Desc: {a.get('description')}")
         print(f"Details: {a.get('details')}")
+

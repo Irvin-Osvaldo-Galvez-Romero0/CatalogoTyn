@@ -39,3 +39,4 @@ if audits_list:
                     print(f"    DisplayValue: {a.get('displayValue')}")
                 if 'explanation' in a:
                     print(f"    Explanation: {a.get('explanation')}")
+

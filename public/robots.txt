@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://catalogotyn.vercel.app/sitemap.xml
+Agentmap: https://catalogotyn.vercel.app/.well-known/ai-catalog.json

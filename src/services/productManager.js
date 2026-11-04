@@ -375,6 +375,8 @@ export const productManager = {
     const customCodes = new Set(custom.map((p) => String(p.code)));
     const filteredBase = BASE_PRODUCTS.filter((p) => !customCodes.has(String(p.code)));
     const unified = [...custom, ...filteredBase];
+    // Ordenamiento determinista estable por código para evitar Cumulative Layout Shift (CLS)
+    unified.sort((a, b) => String(a.code).localeCompare(String(b.code), undefined, { numeric: true, sensitivity: 'base' }));
     return unified.map((p) => ({
       ...p,
       colors: Array.isArray(p.colors) ? p.colors.map(normalizeColor).filter(Boolean) : []

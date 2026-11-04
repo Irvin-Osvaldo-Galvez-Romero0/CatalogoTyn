@@ -1,0 +1,20 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "id": "did:web:catalogotyn.vercel.app"
+  },
+  "entries": [
+    {
+      "identifier": "urn:ai:catalogotyn.vercel.app:catalog:orthopedics",
+      "displayName": "Tynor Medical & Sports Catalog",
+      "type": "catalog",
+      "url": "https://catalogotyn.vercel.app/",
+      "description": "Catálogo interactivo oficial de más de 180 dispositivos médicos de ortopedia, soporte anatómico y biomecánica deportiva.",
+      "representativeQueries": [
+        "Buscar rodillera deportiva con soporte rotuliano",
+        "Consultar ficha técnica de faja sacrolumbar",
+        "Ver catálogo de inmovilizadores y soportes ortopédicos"
+      ]
+    }
+  ]
+}

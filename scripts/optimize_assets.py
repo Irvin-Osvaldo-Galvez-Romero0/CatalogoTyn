@@ -38,3 +38,4 @@ for f in png_files:
 
 print(f"\nDone! Processed and optimized {processed} files.")
 print(f"Total payload saved: {total_saved / (1024 * 1024):.2f} MB")
+
