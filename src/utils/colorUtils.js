@@ -118,3 +118,4 @@ export function normalizeColor(c) {
 
   return null;
 }
+

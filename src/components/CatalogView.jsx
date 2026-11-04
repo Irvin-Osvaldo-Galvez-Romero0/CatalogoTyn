@@ -3,6 +3,7 @@ import { Search, X, Plus, Check, FileText, Video, Keyboard } from 'lucide-react'
 import { Capacitor } from '@capacitor/core';
 import { CATEGORIES } from '../data/products';
 import TouchKeyboard from './TouchKeyboard';
+import usePhysicalKeyboardDetector from '../hooks/usePhysicalKeyboardDetector';
 import { normalizeColor } from '../utils/colorUtils';
 
 export default function CatalogView({
@@ -17,6 +18,7 @@ export default function CatalogView({
 }) {
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const searchInputRef = useRef(null);
+  const { hasPhysicalKeyboard } = usePhysicalKeyboardDetector();
 
   const isNativeMobile = typeof window !== 'undefined' && (Capacitor.isNativePlatform() || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
 
@@ -39,6 +41,9 @@ export default function CatalogView({
 
   const handleOpenKeyboard = () => {
     if (isNativeMobile) return;
+    // Si el dispositivo tiene teclado físico conectado o detectado, no abrir automáticamente
+    if (hasPhysicalKeyboard) return;
+    // Dispositivo táctil puro sin teclado físico -> abrir teclado en pantalla
     setIsKeyboardOpen(true);
   };
 
@@ -86,7 +91,7 @@ export default function CatalogView({
                 className={`kiosk-search-kb-btn ${isKeyboardOpen ? 'active' : ''}`}
                 onClick={() => setIsKeyboardOpen((prev) => !prev)}
                 aria-label="Alternar teclado en pantalla"
-                title={isKeyboardOpen ? 'Ocultar teclado táctil' : 'Abrir teclado táctil'}
+                title={isKeyboardOpen ? 'Ocultar teclado táctil' : hasPhysicalKeyboard ? 'Abrir teclado táctil (opcional)' : 'Abrir teclado táctil'}
               >
                 <Keyboard size={18} />
               </button>

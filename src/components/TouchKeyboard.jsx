@@ -11,11 +11,14 @@ export default function TouchKeyboard({
   const [isUppercase, setIsUppercase] = useState(true);
   const keyboardRef = useRef(null);
 
-  // Escuchar tecla Escape para cerrar
+  // Escuchar tecla Escape o escritura con teclado físico para cerrar automáticamente
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
+        onClose();
+      } else if (e.isTrusted && e.key && e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        // Si el usuario escribe directamente con su teclado físico, cerrar el teclado táctil para no tapar la pantalla
         onClose();
       }
     };
