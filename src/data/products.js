@@ -158,7 +158,7 @@ export const PRODUCTS = [
     "code": "101",
     "name": "Rodillera Deportiva AIR PRO con Soporte Rotuliano",
     "cat": "rodillera",
-    "price": 185.0,
+    "price": 185,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -197,17 +197,17 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "CH": 185.0,
-      "M": 185.0,
-      "G": 185.0,
-      "XL": 185.0
+      "CH": 185,
+      "M": 185,
+      "G": 185,
+      "XL": 185
     }
   },
   {
     "code": "102",
     "name": "Rodillera Deportiva AIR PRO (par)",
     "cat": "rodillera",
-    "price": 275.0,
+    "price": 275,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -246,17 +246,17 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "CH": 275.0,
-      "M": 275.0,
-      "G": 275.0,
-      "XL": 275.0
+      "CH": 275,
+      "M": 275,
+      "G": 275,
+      "XL": 275
     }
   },
   {
     "code": "103",
     "name": "Rodillera Deportiva AIR (par)",
     "cat": "rodillera",
-    "price": 275.0,
+    "price": 275,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -295,17 +295,17 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "CH": 275.0,
-      "M": 275.0,
-      "G": 275.0,
-      "XL": 275.0
+      "CH": 275,
+      "M": 275,
+      "G": 275,
+      "XL": 275
     }
   },
   {
     "code": "104",
     "name": "Rodillera para Levantamiento de Pesas (par)",
     "cat": "rodillera",
-    "price": 285.0,
+    "price": 285,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -341,15 +341,15 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "UNITALLA": 285.0,
-      "Universal": 285.0
+      "UNITALLA": 285,
+      "Universal": 285
     }
   },
   {
     "code": "105",
     "name": "Muslera Elástica Deportiva AIR PRO",
     "cat": "todos",
-    "price": 185.0,
+    "price": 185,
     "bodyPart": "pierna",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -388,17 +388,17 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "CH": 185.0,
-      "M": 185.0,
-      "G": 185.0,
-      "XL": 185.0
+      "CH": 185,
+      "M": 185,
+      "G": 185,
+      "XL": 185
     }
   },
   {
     "code": "107",
     "name": "Corrector de Postura Deportivo",
     "cat": "clavicula",
-    "price": 275.0,
+    "price": 275,
     "bodyPart": "clavicula",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -434,8 +434,8 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "UNITALLA": 275.0,
-      "Universal": 275.0
+      "UNITALLA": 275,
+      "Universal": 275
     }
   },
   {
@@ -476,7 +476,7 @@ export const PRODUCTS = [
     "code": "201",
     "name": "Tobillera Deportiva AIR PRO",
     "cat": "tobillo",
-    "price": 170.0,
+    "price": 170,
     "bodyPart": "tobillo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -515,17 +515,17 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "CH": 170.0,
-      "M": 170.0,
-      "G": 170.0,
-      "XL": 170.0
+      "CH": 170,
+      "M": 170,
+      "G": 170,
+      "XL": 170
     }
   },
   {
     "code": "202",
     "name": "Tobillera Deportiva AIR PRO con Cinta en Ocho",
     "cat": "tobillo",
-    "price": 190.0,
+    "price": 190,
     "bodyPart": "tobillo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -564,17 +564,17 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "CH": 190.0,
-      "M": 190.0,
-      "G": 190.0,
-      "XL": 190.0
+      "CH": 190,
+      "M": 190,
+      "G": 190,
+      "XL": 190
     }
   },
   {
     "code": "301",
     "name": "Muñequera Deportiva C/sujetador Pulgar (par)",
     "cat": "inmovilizador",
-    "price": 225.0,
+    "price": 225,
     "bodyPart": "mano",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -610,15 +610,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 225.0,
-      "Universal": 225.0
+      "UNITALLA": 225,
+      "Universal": 225
     }
   },
   {
     "code": "302",
     "name": "Codera de Tenista Deportiva PRO",
     "cat": "hombro_brazo",
-    "price": 150.0,
+    "price": 150,
     "bodyPart": "brazo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -654,15 +654,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 150.0,
-      "Universal": 150.0
+      "UNITALLA": 150,
+      "Universal": 150
     }
   },
   {
     "code": "303",
     "name": "Codera Deportiva AIR PRO con Soporte de Cinta",
     "cat": "hombro_brazo",
-    "price": 175.0,
+    "price": 175,
     "bodyPart": "brazo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -701,17 +701,17 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "CH": 175.0,
-      "M": 175.0,
-      "G": 175.0,
-      "XL": 175.0
+      "CH": 175,
+      "M": 175,
+      "G": 175,
+      "XL": 175
     }
   },
   {
     "code": "304",
     "name": "Codera Deportiva Neopreno",
     "cat": "hombro_brazo",
-    "price": 225.0,
+    "price": 225,
     "bodyPart": "brazo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -747,15 +747,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 225.0,
-      "Unitalla": 225.0
+      "UNITALLA": 225,
+      "Unitalla": 225
     }
   },
   {
     "code": "401",
     "name": "Rodillera Deportiva Neopreno",
     "cat": "rodillera",
-    "price": 375.0,
+    "price": 375,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -791,15 +791,15 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "UNITALLA": 375.0,
-      "Universal": 375.0
+      "UNITALLA": 375,
+      "Universal": 375
     }
   },
   {
     "code": "402",
     "name": "Rodillera Deportiva Neopreno",
     "cat": "rodillera",
-    "price": 275.0,
+    "price": 275,
     "bodyPart": "rodilla",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -838,17 +838,17 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "CH": 275.0,
-      "M": 275.0,
-      "G": 275.0,
-      "XL": 275.0
+      "CH": 275,
+      "M": 275,
+      "G": 275,
+      "XL": 275
     }
   },
   {
     "code": "403",
     "name": "Soporte Deportivo para Tobillo",
     "cat": "tobillo",
-    "price": 230.0,
+    "price": 230,
     "bodyPart": "tobillo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -884,15 +884,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 230.0,
-      "Universal": 230.0
+      "UNITALLA": 230,
+      "Universal": 230
     }
   },
   {
     "code": "404",
     "name": "Soporte Deportivo Hombro Doble Cierre",
     "cat": "hombro_brazo",
-    "price": 450.0,
+    "price": 450,
     "bodyPart": "hombro",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -928,15 +928,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 450.0,
-      "Universal": 450.0
+      "UNITALLA": 450,
+      "Universal": 450
     }
   },
   {
     "code": "405",
     "name": "Muñequera Deportiva C/soporte Pulgar (par)",
     "cat": "inmovilizador",
-    "price": 200.0,
+    "price": 200,
     "bodyPart": "mano",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -972,15 +972,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 200.0,
-      "Universal": 200.0
+      "UNITALLA": 200,
+      "Universal": 200
     }
   },
   {
     "code": "406",
     "name": "Soporte Deportivo Abdominal Sencillo",
     "cat": "lumbar",
-    "price": 425.0,
+    "price": 425,
     "bodyPart": "espalda",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1016,15 +1016,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 425.0,
-      "Universal": 425.0
+      "UNITALLA": 425,
+      "Universal": 425
     }
   },
   {
     "code": "407",
     "name": "Soporte Deportivo Abdominal Ajustable",
     "cat": "lumbar",
-    "price": 425.0,
+    "price": 425,
     "bodyPart": "espalda",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1060,15 +1060,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 425.0,
-      "Universal": 425.0
+      "UNITALLA": 425,
+      "Universal": 425
     }
   },
   {
     "code": "408",
     "name": "Muñequera Deportiva (par)",
     "cat": "inmovilizador",
-    "price": 200.0,
+    "price": 200,
     "bodyPart": "mano",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1104,8 +1104,8 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 200.0,
-      "Universal": 200.0
+      "UNITALLA": 200,
+      "Universal": 200
     }
   },
   {
@@ -1156,7 +1156,7 @@ export const PRODUCTS = [
     "code": "702",
     "name": "Espinillera y Pantorrillera Deportiva AIR PRO (par)",
     "cat": "todos",
-    "price": 225.0,
+    "price": 225,
     "bodyPart": "pierna",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1195,17 +1195,17 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "CH": 225.0,
-      "M": 225.0,
-      "G": 225.0,
-      "XL": 225.0
+      "CH": 225,
+      "M": 225,
+      "G": 225,
+      "XL": 225
     }
   },
   {
     "code": "703",
     "name": "Espinillera y Pantorrillera Neopreno",
     "cat": "todos",
-    "price": 295.0,
+    "price": 295,
     "bodyPart": "pierna",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1241,15 +1241,15 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "UNITALLA": 295.0,
-      "Unitalla": 295.0
+      "UNITALLA": 295,
+      "Unitalla": 295
     }
   },
   {
     "code": "704",
     "name": "Manga Elástica de Proteccion",
     "cat": "hombro_brazo",
-    "price": 95.0,
+    "price": 95,
     "bodyPart": "brazo",
     "badge": "Deportiva",
     "linea": "Deportiva",
@@ -1285,8 +1285,8 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "UNITALLA": 95.0,
-      "Universal": 95.0
+      "UNITALLA": 95,
+      "Universal": 95
     }
   },
   {
@@ -1660,8 +1660,8 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "CH / Corto",
-      "G / Largo"
+      "CH Corto",
+      "G Largo"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -1678,9 +1678,8 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "CH": 930.0,
-      "CH / Corto": 930.0,
-      "G / Largo": 930.0
+      "CH Corto": 930.0,
+      "G Largo": 930.0
     }
   },
   {
@@ -1692,10 +1691,10 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "Unitalla CR",
-      "Unitalla LR",
-      "Talla Especial CR",
-      "Talla Especial LR"
+      "Universal (CR)",
+      "Universal (LG)",
+      "Talla Especial (CR)",
+      "Talla Especial (LG)"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -1712,11 +1711,10 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 1252.0,
-      "Unitalla CR": 1252.0,
-      "Unitalla LR": 1252.0,
-      "Talla Especial CR": 1252.0,
-      "Talla Especial LR": 1252.0
+      "Universal (CR)": 1252.0,
+      "Universal (LG)": 1252.0,
+      "Talla Especial (CR)": 1313.0,
+      "Talla Especial (LG)": 1313.0
     }
   },
   {
@@ -1728,7 +1726,8 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "Universal"
+      "Universal",
+      "Talla Especial"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -1745,8 +1744,8 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 535.0,
-      "Universal": 535.0
+      "Universal": 535.0,
+      "Talla Especial": 535.0
     }
   },
   {
@@ -1793,7 +1792,7 @@ export const PRODUCTS = [
     "sizes": [
       "CH - M",
       "G - XL",
-      "XXL - XXXL"
+      "XXL"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -1810,26 +1809,23 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "CH": 1025.0,
-      "M": 1025.0,
-      "XXL": 1175.0,
       "CH - M": 1025.0,
       "G - XL": 1025.0,
-      "XXL - XXXL": 1025.0
+      "XXL": 1175.0
     }
   },
   {
     "code": "A30",
     "name": "Faja de Tracción Lumbar Sencilla",
     "cat": "lumbar",
-    "price": 1000.0,
+    "price": 1025.0,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
       "CH - M",
       "G - XL",
-      "XXL - XXXL"
+      "XXL"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -1846,12 +1842,9 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "CH": 1000.0,
-      "M": 1000.0,
-      "XXL": 1150.0,
-      "CH - M": 1000.0,
-      "G - XL": 1000.0,
-      "XXL - XXXL": 1000.0
+      "CH - M": 1025.0,
+      "G - XL": 1025.0,
+      "XXL": 1175.0
     }
   },
   {
@@ -2007,7 +2000,6 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "UNITALLA": 275.0,
       "Universal": 275.0
     }
   },
@@ -2191,11 +2183,11 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "Pediátrico",
       "CH",
       "M",
       "G",
-      "XL"
+      "XL",
+      "Pediátrico"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -2245,7 +2237,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 300.0,
       "Universal": 300.0
     }
   },
@@ -2285,7 +2276,6 @@ export const PRODUCTS = [
       "G": 125.0,
       "XL": 145.0,
       "XXL": 145.0,
-      "PEDIATRICO": 125.0,
       "Pediátrico": 125.0
     }
   },
@@ -2317,10 +2307,8 @@ export const PRODUCTS = [
       "Cierres de velcro de grado médico de alta tenacidad"
     ],
     "priceBySize": {
-      "UNITALLA": 265.0,
-      "PEDIATRICO": 265.0,
       "Universal": 265.0,
-      "Talla Especial": 265.0,
+      "Talla Especial": 323.0,
       "Pediátrico": 265.0
     }
   },
@@ -2405,12 +2393,12 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "Pediátrico",
       "CH",
       "M",
       "G",
       "XL",
-      "XXL"
+      "XXL",
+      "Pediátrico"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -2432,7 +2420,6 @@ export const PRODUCTS = [
       "G": 285.0,
       "XL": 325.0,
       "XXL": 325.0,
-      "PEDIATRICO": 285.0,
       "Pediátrico": 285.0
     }
   },
@@ -2445,12 +2432,12 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "Pediátrico",
+      "XL",
+      "XXL",
       "CH",
       "M",
       "G",
-      "XL",
-      "XXL"
+      "Pediátrico"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -2467,12 +2454,12 @@ export const PRODUCTS = [
       "Ajuste ambidiestro de colocación rápida"
     ],
     "priceBySize": {
+      "XL": 140.0,
+      "XXL": 140.0,
       "CH": 140.0,
       "M": 140.0,
       "G": 140.0,
-      "Pediátrico": 140.0,
-      "XL": 140.0,
-      "XXL": 140.0
+      "Pediátrico": 140.0
     }
   },
   {
@@ -2536,7 +2523,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 275.0,
       "Universal": 275.0
     }
   },
@@ -2566,7 +2552,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 130.0,
       "Universal": 130.0
     }
   },
@@ -2649,11 +2634,11 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "Pediátrico",
       "CH",
       "M",
       "G",
-      "XL"
+      "XL",
+      "Pediátrico"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -2960,7 +2945,6 @@ export const PRODUCTS = [
       "Acolchados lavables desmontables con fijación velcro de alta seguridad"
     ],
     "priceBySize": {
-      "UNITALLA": 1100.0,
       "Universal": 1100.0
     }
   },
@@ -2977,7 +2961,8 @@ export const PRODUCTS = [
       "M",
       "G",
       "XL",
-      "XXL"
+      "XXL",
+      "Largo"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -2998,7 +2983,8 @@ export const PRODUCTS = [
       "M": 575.0,
       "G": 575.0,
       "XL": 590.0,
-      "XXL": 590.0
+      "XXL": 590.0,
+      "Largo": 590.0
     }
   },
   {
@@ -3014,7 +3000,8 @@ export const PRODUCTS = [
       "M",
       "G",
       "XL",
-      "XXL"
+      "XXL",
+      "Largo"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -3035,7 +3022,8 @@ export const PRODUCTS = [
       "M": 450.0,
       "G": 450.0,
       "XL": 475.0,
-      "XXL": 475.0
+      "XXL": 475.0,
+      "Largo": 475.0
     }
   },
   {
@@ -3171,7 +3159,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 138.0,
       "Universal": 138.0
     }
   },
@@ -3236,7 +3223,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 237.0,
       "Universal": 237.0
     }
   },
@@ -3303,7 +3289,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 375.0,
       "Universal": 375.0
     }
   },
@@ -3320,7 +3305,8 @@ export const PRODUCTS = [
       "M",
       "G",
       "XL",
-      "XXL"
+      "XXL",
+      "Largo"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -3341,7 +3327,8 @@ export const PRODUCTS = [
       "M": 690.0,
       "G": 690.0,
       "XL": 750.0,
-      "XXL": 750.0
+      "XXL": 750.0,
+      "Largo": 750.0
     }
   },
   {
@@ -3370,7 +3357,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 400.0,
       "Universal": 400.0
     }
   },
@@ -3470,7 +3456,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "PEDIATRICO": 300.0,
       "Pediátrico": 300.0
     }
   },
@@ -3535,7 +3520,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 1250.0,
       "Universal": 1250.0
     }
   },
@@ -3602,7 +3586,6 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "UNITALLA": 250.0,
       "Universal": 250.0
     }
   },
@@ -3632,7 +3615,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 1100.0,
       "Universal": 1100.0
     }
   },
@@ -3732,7 +3714,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 158.0,
       "Universal": 158.0
     }
   },
@@ -3850,7 +3831,8 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "Universal"
+      "Universal",
+      "Talla Especial"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -3867,8 +3849,8 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 523.0,
-      "Universal": 523.0
+      "Universal": 523.0,
+      "Talla Especial": 523.0
     }
   },
   {
@@ -3967,7 +3949,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 1307.0,
       "Universal": 1307.0
     }
   },
@@ -3983,8 +3964,7 @@ export const PRODUCTS = [
       "CH",
       "M",
       "G",
-      "XL",
-      "XXL"
+      "XL"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -4004,8 +3984,7 @@ export const PRODUCTS = [
       "CH": 250.0,
       "M": 250.0,
       "G": 250.0,
-      "XL": 250.0,
-      "XXL": 250.0
+      "XL": 250.0
     }
   },
   {
@@ -4133,7 +4112,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 76.0,
       "Universal": 76.0
     }
   },
@@ -4163,7 +4141,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 193.0,
       "Universal": 193.0
     }
   },
@@ -4176,8 +4153,9 @@ export const PRODUCTS = [
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
     "sizes": [
-      "ADULTO",
-      "INFANTIL"
+      "Adulto",
+      "Infantil",
+      "Pediátrico"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -4194,9 +4172,9 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 150.0,
-      "ADULTO": 150.0,
-      "INFANTIL": 150.0
+      "Adulto": 150.0,
+      "Infantil": 150.0,
+      "Pediátrico": 150.0
     }
   },
   {
@@ -4225,7 +4203,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 125.0,
       "Universal": 125.0
     }
   },
@@ -4255,7 +4232,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 510.0,
       "Universal": 510.0
     }
   },
@@ -4285,7 +4261,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 197.0,
       "Universal": 197.0
     }
   },
@@ -4315,7 +4290,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 351.0,
       "Universal": 351.0
     }
   },
@@ -4345,7 +4319,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 351.0,
       "Universal": 351.0
     }
   },
@@ -4375,7 +4348,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 55.0,
       "Universal": 55.0
     }
   },
@@ -4405,7 +4377,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 95.0,
       "Universal": 95.0
     }
   },
@@ -4435,7 +4406,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 680.0,
       "Universal": 680.0
     }
   },
@@ -4443,7 +4413,7 @@ export const PRODUCTS = [
     "code": "H14",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": 120.0,
+    "price": 120,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4465,15 +4435,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 120.0,
-      "Universal": 120.0
+      "UNITALLA": 120,
+      "Universal": 120
     }
   },
   {
     "code": "H15",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": 120.0,
+    "price": 120,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4495,15 +4465,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 120.0,
-      "Universal": 120.0
+      "UNITALLA": 120,
+      "Universal": 120
     }
   },
   {
     "code": "H16",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": 120.0,
+    "price": 120,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4525,15 +4495,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 120.0,
-      "Universal": 120.0
+      "UNITALLA": 120,
+      "Universal": 120
     }
   },
   {
     "code": "H17",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": 150.0,
+    "price": 150,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4555,15 +4525,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 150.0,
-      "Universal": 150.0
+      "UNITALLA": 150,
+      "Universal": 150
     }
   },
   {
     "code": "H18",
     "name": "Banda de Resistencia Tyroband 1.50 Mts Largo",
     "cat": "inmovilizador",
-    "price": 150.0,
+    "price": 150,
     "bodyPart": "espalda",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4585,8 +4555,8 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 150.0,
-      "Universal": 150.0
+      "UNITALLA": 150,
+      "Universal": 150
     }
   },
   {
@@ -4615,7 +4585,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 400.0,
       "Universal": 400.0
     }
   },
@@ -4678,7 +4647,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 355.0,
       "Universal": 355.0
     }
   },
@@ -4782,7 +4750,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 625.0,
       "Universal": 625.0
     }
   },
@@ -4847,7 +4814,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 213.0,
       "Universal": 213.0
     }
   },
@@ -4936,7 +4902,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 605.0,
       "Universal": 605.0
     }
   },
@@ -4944,7 +4909,7 @@ export const PRODUCTS = [
     "code": "I93",
     "name": "Almohada para Viaje",
     "cat": "tobillo",
-    "price": 300.0,
+    "price": 300,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4966,15 +4931,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 300.0,
-      "Universal": 300.0
+      "UNITALLA": 300,
+      "Universal": 300
     }
   },
   {
     "code": "I94",
     "name": "Almohada para Viaje Urbana",
     "cat": "tobillo",
-    "price": 300.0,
+    "price": 350.0,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -4996,8 +4961,7 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 350.0,
-      "Universal": 300.0
+      "Universal": 350.0
     }
   },
   {
@@ -5063,7 +5027,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 193.0,
       "Universal": 193.0
     }
   },
@@ -5093,7 +5056,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 152.0,
       "Universal": 152.0
     }
   },
@@ -5124,9 +5086,8 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 450.0,
       "Universal": 450.0,
-      "Talla Especial": 450.0
+      "Talla Especial": 470.0
     }
   },
   {
@@ -5156,7 +5117,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 400.0,
       "Universal": 400.0,
       "Talla Especial": 400.0
     }
@@ -5261,7 +5221,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 295.0,
       "Universal": 295.0
     }
   },
@@ -5292,7 +5251,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 425.0,
       "Universal": 425.0,
       "Talla Especial": 425.0
     }
@@ -5310,6 +5268,7 @@ export const PRODUCTS = [
       "M",
       "G",
       "XL",
+      "XXL",
       "Pediátrico"
     ],
     "hasPdf": true,
@@ -5331,6 +5290,7 @@ export const PRODUCTS = [
       "M": 626.0,
       "G": 626.0,
       "XL": 626.0,
+      "XXL": 626.0,
       "Pediátrico": 626.0
     }
   },
@@ -5361,7 +5321,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 285.0,
       "Universal": 285.0,
       "Talla Especial": 285.0
     }
@@ -5495,7 +5454,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 150.0,
       "Universal": 150.0
     }
   },
@@ -5541,7 +5499,9 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "Pediátrico"
+      "1 (15-17 cm)",
+      "2 (17-19 cm)",
+      "3 (19-21 cm)"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -5558,8 +5518,9 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 323.0,
-      "Pediátrico": 323.0
+      "1 (15-17 cm)": 323.0,
+      "2 (17-19 cm)": 323.0,
+      "3 (19-21 cm)": 323.0
     }
   },
   {
@@ -5617,7 +5578,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 207.0,
       "Universal": 207.0
     }
   },
@@ -5630,11 +5590,10 @@ export const PRODUCTS = [
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
     "sizes": [
-      "Pediátrico",
       "CH",
       "M",
       "G",
-      "Adulto"
+      "Pediátrico"
     ],
     "hasPdf": true,
     "hasVideo": false,
@@ -5651,12 +5610,10 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 100.0,
-      "Pediátrico": 100.0,
       "CH": 100.0,
       "M": 100.0,
       "G": 100.0,
-      "Adulto": 100.0
+      "Pediátrico": 100.0
     }
   },
   {
@@ -5877,7 +5834,7 @@ export const PRODUCTS = [
     "code": "L07",
     "name": "Bastón Cuello de Ganso Puño Suave",
     "cat": "movilidad",
-    "price": 254.0,
+    "price": 254,
     "bodyPart": "pierna",
     "badge": "ORTOPEDIA",
     "linea": "ORTOPEDIA",
@@ -5913,16 +5870,16 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "PLATA": 254.0,
-      "NEGRO": 254.0,
-      "Universal": 254.0
+      "PLATA": 254,
+      "NEGRO": 254,
+      "Universal": 254
     }
   },
   {
     "code": "L08",
     "name": "Bastón Aleman",
     "cat": "movilidad",
-    "price": 254.0,
+    "price": 254,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -5964,15 +5921,15 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "UNITALLA": 254.0,
-      "Universal": 254.0
+      "UNITALLA": 254,
+      "Universal": 254
     }
   },
   {
     "code": "L12A",
     "name": "Bastón Cuatro Apoyos",
     "cat": "movilidad",
-    "price": 48.0,
+    "price": 345.0,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -6002,8 +5959,7 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "UNITALLA": 48.0,
-      "Universal": 48.0
+      "Universal": 345.0
     }
   },
   {
@@ -6032,7 +5988,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 399.0,
       "Universal": 399.0
     }
   },
@@ -6068,7 +6023,7 @@ export const PRODUCTS = [
     "code": "L28",
     "name": "Andadera Plegable de Aluminio, con Ruedas Giratorias 360°ø",
     "cat": "movilidad",
-    "price": 780.0,
+    "price": 780,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -6090,15 +6045,15 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "PLATA": 780.0,
-      "Universal": 780.0
+      "PLATA": 780,
+      "Universal": 780
     }
   },
   {
     "code": "L29",
     "name": "Andadera Reforzada Plegable, con Ruedas Giratorias 360°ø",
     "cat": "movilidad",
-    "price": 800.0,
+    "price": 800,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -6128,8 +6083,8 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "PLATA": 800.0,
-      "Universal": 800.0
+      "PLATA": 800,
+      "Universal": 800
     }
   },
   {
@@ -6158,7 +6113,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 337.0,
       "Universal": 337.0
     }
   },
@@ -6166,7 +6120,7 @@ export const PRODUCTS = [
     "code": "L34",
     "name": "Andadera Plegable Reforzada",
     "cat": "movilidad",
-    "price": 745.0,
+    "price": 745,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -6196,8 +6150,8 @@ export const PRODUCTS = [
       }
     ],
     "priceBySize": {
-      "PLATA": 745.0,
-      "Universal": 745.0
+      "PLATA": 745,
+      "Universal": 745
     }
   },
   {
@@ -6226,7 +6180,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 1134.0,
       "Universal": 1134.0
     }
   },
@@ -6256,7 +6209,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 344.0,
       "Universal": 344.0
     }
   },
@@ -6264,7 +6216,7 @@ export const PRODUCTS = [
     "code": "L37",
     "name": "Andadera Plegable Ergonómica",
     "cat": "movilidad",
-    "price": 450.0,
+    "price": 450,
     "bodyPart": "pierna",
     "badge": "REHABILITACION",
     "linea": "REHABILITACION",
@@ -6286,8 +6238,8 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "PLATA": 450.0,
-      "Universal": 450.0
+      "PLATA": 450,
+      "Universal": 450
     }
   },
   {
@@ -6316,7 +6268,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 675.0,
       "Universal": 675.0
     }
   },
@@ -6346,7 +6297,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 325.0,
       "Universal": 325.0
     }
   },
@@ -6376,7 +6326,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 435.0,
       "Universal": 435.0
     }
   },
@@ -6406,7 +6355,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 165.0,
       "Universal": 165.0
     }
   },
@@ -6436,7 +6384,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 165.0,
       "Universal": 165.0
     }
   },
@@ -6467,7 +6414,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 1300.0,
       "75 kg": 1300.0,
       "110 kg": 1300.0
     }
@@ -6498,7 +6444,6 @@ export const PRODUCTS = [
       "Estructura diseñada bajo estándares ortopédicos internacionales"
     ],
     "priceBySize": {
-      "UNITALLA": 75.0,
       "Universal": 75.0
     }
   }
