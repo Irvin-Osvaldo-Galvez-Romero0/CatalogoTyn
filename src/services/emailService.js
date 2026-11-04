@@ -148,6 +148,7 @@ export const emailService = {
   async sendQuote({
     recipientEmail,
     recipientName = 'Cliente',
+    ccEmail = null,
     quoteNumber,
     items = [],
     totalAmount = 0,
@@ -175,7 +176,8 @@ export const emailService = {
       `${productRowsText}\n\n` +
       `TOTAL GENERAL: ${formattedTotal}\n\n` +
       `Asesor asignado: ${salesRep?.name || 'Tynor Ventas'}\n` +
-      `Teléfono / WhatsApp: ${salesRep?.displayPhone || '+52 55 1080 5603'}\n\n` +
+      `Teléfono / WhatsApp: ${salesRep?.displayPhone || '+52 55 1080 5603'}\n` +
+      (ccEmail ? `Copia al asesor: ${ccEmail}\n\n` : '\n') +
       `¡Gracias por tu preferencia!\nTynor Ortopedia & Biomecánica`;
 
     // Si está configurado el servidor SMTP, intentar despacho directo mediante la API de Vercel
@@ -202,6 +204,7 @@ export const emailService = {
             config,
             recipientEmail,
             recipientName,
+            ccEmail,
             quoteNumber,
             items,
             totalAmount,
@@ -217,8 +220,9 @@ export const emailService = {
             mode: 'smtp_direct',
             from: config.fromEmail || config.user,
             to: recipientEmail,
+            cc: ccEmail,
             formattedTotal,
-            message: `Correo enviado exitosamente a ${recipientEmail}`
+            message: data.message || `Correo enviado exitosamente a ${recipientEmail}`
           };
         } else {
           console.warn('Fallo el envío por API, usando fallback mailto:', data.error);
@@ -229,7 +233,8 @@ export const emailService = {
     }
 
     // Fallback: Si no hay servidor configurado o falla la red, preparar enlace mailto
-    const mailtoUrl = `mailto:${encodeURIComponent(recipientEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBodyText)}`;
+    const ccParam = ccEmail ? `&cc=${encodeURIComponent(ccEmail)}` : '';
+    const mailtoUrl = `mailto:${encodeURIComponent(recipientEmail)}?subject=${encodeURIComponent(subject)}${ccParam}&body=${encodeURIComponent(emailBodyText)}`;
 
     return {
       success: true,
@@ -237,6 +242,7 @@ export const emailService = {
       mailtoUrl,
       from: config.fromEmail || 'cotizaciones@tynor.com.mx',
       to: recipientEmail,
+      cc: ccEmail,
       formattedTotal
     };
   }

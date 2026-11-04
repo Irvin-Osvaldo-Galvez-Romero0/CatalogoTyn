@@ -101,6 +101,7 @@ export default async function handler(req, res) {
       config,
       recipientEmail,
       recipientName = 'Cliente',
+      ccEmail = null,
       quoteNumber,
       items = [],
       totalAmount = 0,
@@ -127,6 +128,7 @@ export default async function handler(req, res) {
     if (
       hasCrlf(recipientEmail) ||
       hasCrlf(recipientName) ||
+      (ccEmail && hasCrlf(ccEmail)) ||
       hasCrlf(quoteNumber) ||
       hasCrlf(config.user) ||
       hasCrlf(config.host) ||
@@ -148,6 +150,9 @@ export default async function handler(req, res) {
     }
 
     const cleanRecipientEmail = recipientEmail.trim();
+    const cleanCcEmail = ccEmail && typeof ccEmail === 'string' && EMAIL_REGEX.test(ccEmail.trim()) && ccEmail.trim().length <= 254
+      ? ccEmail.trim()
+      : null;
     const cleanRecipientName = escapeHtml(String(recipientName).trim().slice(0, 80)) || 'Cliente';
     const cleanQuoteNumber = String(quoteNumber || 'OFICIAL').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 32);
 
@@ -261,13 +266,12 @@ export default async function handler(req, res) {
     const cleanFromEmail = config.fromEmail ? String(config.fromEmail).trim() : String(config.user).trim();
     const fromAddress = cleanFromName ? `"${cleanFromName}" <${cleanFromEmail}>` : cleanFromEmail;
 
-    // Copia oculta (BCC) automática al correo emisor para asegurar visibilidad inmediata en el cliente IMAP
-    const shouldBcc = config.copyToSender !== false;
-
+    // Despacho directo sin CCO/BCC (para evitar spam en la bandeja de entrada del emisor)
+    // Si se envía a Cliente y Asesor, el asesor se incluye limpiamente en CC
     const mailOptions = {
       from: fromAddress,
       to: cleanRecipientEmail,
-      bcc: shouldBcc ? cleanFromEmail : undefined,
+      ...(cleanCcEmail && cleanCcEmail.toLowerCase() !== cleanRecipientEmail.toLowerCase() ? { cc: cleanCcEmail } : {}),
       subject,
       html: htmlBody,
       attachments
@@ -327,8 +331,8 @@ export default async function handler(req, res) {
 
         imapResult = await Promise.race([appendTask, timeoutTask]);
       } catch (imapErr) {
-        console.warn('Sincronización IMAP (respaldo garantizado vía SMTP + BCC):', imapErr.message);
-        imapResult = `fallback_bcc (${imapErr.message})`;
+        console.warn('Sincronización IMAP en carpeta Enviados:', imapErr.message);
+        imapResult = `error (${imapErr.message})`;
       }
     }
 
@@ -336,7 +340,7 @@ export default async function handler(req, res) {
       success: true,
       messageId: info.messageId,
       imapStatus: imapResult,
-      message: `Correo enviado exitosamente a ${cleanRecipientEmail}${shouldBcc ? ' con copia visible en tu cuenta IMAP' : ''}.`
+      message: `Correo enviado exitosamente a ${cleanRecipientEmail}${cleanCcEmail ? ` con copia a ${cleanCcEmail}` : ''} y registrado en tu carpeta de Enviados.`
     });
   } catch (error) {
     console.error('Error in send-email API route:', error);
