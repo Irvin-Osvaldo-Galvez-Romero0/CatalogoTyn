@@ -4437,7 +4437,15 @@ export const PRODUCTS = [
     "priceBySize": {
       "UNITALLA": 120,
       "Universal": 120
-    }
+    },
+    "colors": [
+      {
+        "id": "AMARILLO",
+        "name": "Amarillo",
+        "hex": "#EAB308",
+        "border": "#CA8A04"
+      }
+    ]
   },
   {
     "code": "H15",
@@ -4467,7 +4475,15 @@ export const PRODUCTS = [
     "priceBySize": {
       "UNITALLA": 120,
       "Universal": 120
-    }
+    },
+    "colors": [
+      {
+        "id": "ROJO",
+        "name": "Rojo",
+        "hex": "#EF4444",
+        "border": "#DC2626"
+      }
+    ]
   },
   {
     "code": "H16",
@@ -4497,7 +4513,15 @@ export const PRODUCTS = [
     "priceBySize": {
       "UNITALLA": 120,
       "Universal": 120
-    }
+    },
+    "colors": [
+      {
+        "id": "VERDE",
+        "name": "Verde",
+        "hex": "#22C55E",
+        "border": "#16A34A"
+      }
+    ]
   },
   {
     "code": "H17",
@@ -4527,7 +4551,15 @@ export const PRODUCTS = [
     "priceBySize": {
       "UNITALLA": 150,
       "Universal": 150
-    }
+    },
+    "colors": [
+      {
+        "id": "AZUL",
+        "name": "Azul",
+        "hex": "#3B82F6",
+        "border": "#2563EB"
+      }
+    ]
   },
   {
     "code": "H18",
@@ -4557,7 +4589,15 @@ export const PRODUCTS = [
     "priceBySize": {
       "UNITALLA": 150,
       "Universal": 150
-    }
+    },
+    "colors": [
+      {
+        "id": "GRIS",
+        "name": "Gris",
+        "hex": "#64748B",
+        "border": "#475569"
+      }
+    ]
   },
   {
     "code": "H23",
@@ -6047,7 +6087,15 @@ export const PRODUCTS = [
     "priceBySize": {
       "PLATA": 780,
       "Universal": 780
-    }
+    },
+    "colors": [
+      {
+        "id": "PLATA",
+        "name": "Plata",
+        "hex": "#CBD5E1",
+        "border": "#94A3B8"
+      }
+    ]
   },
   {
     "code": "L29",
@@ -6181,7 +6229,15 @@ export const PRODUCTS = [
     ],
     "priceBySize": {
       "Universal": 1134.0
-    }
+    },
+    "colors": [
+      {
+        "id": "CROMADO",
+        "name": "Cromado",
+        "hex": "#CBD5E1",
+        "border": "#94A3B8"
+      }
+    ]
   },
   {
     "code": "L36",
@@ -6240,7 +6296,15 @@ export const PRODUCTS = [
     "priceBySize": {
       "PLATA": 450,
       "Universal": 450
-    }
+    },
+    "colors": [
+      {
+        "id": "PLATA",
+        "name": "Plata",
+        "hex": "#CBD5E1",
+        "border": "#94A3B8"
+      }
+    ]
   },
   {
     "code": "L43",
