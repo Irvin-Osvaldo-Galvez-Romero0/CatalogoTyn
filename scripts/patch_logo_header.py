@@ -27,3 +27,4 @@ if old_norm in text_norm:
     print("SUCCESS patching KioskHeader.jsx with logo dimensions")
 else:
     print("old_norm not found in KioskHeader.jsx")
+

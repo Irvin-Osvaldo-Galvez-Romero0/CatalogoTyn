@@ -35,3 +35,4 @@ if old_norm in text_norm:
     print("SUCCESS patching pulseGreen in kiosk.css")
 else:
     print("old_norm not found in kiosk.css")
+

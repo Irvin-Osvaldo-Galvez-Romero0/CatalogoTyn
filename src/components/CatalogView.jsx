@@ -121,7 +121,7 @@ export default function CatalogView({
           <div className="products-grid">
             {filteredProducts.map((p, idx) => {
               const inList = interestList.includes(p.code);
-              const isPriorityLcp = idx < 4;
+              const isPriorityLcp = idx < 12;
               return (
                 <div
                   key={p.code}

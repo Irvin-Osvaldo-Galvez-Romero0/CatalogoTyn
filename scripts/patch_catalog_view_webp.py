@@ -70,3 +70,4 @@ if old_norm in text_norm:
     print("SUCCESS patching CatalogView.jsx with WebP & LCP fetchpriority")
 else:
     print("old_norm not found in CatalogView.jsx")
+

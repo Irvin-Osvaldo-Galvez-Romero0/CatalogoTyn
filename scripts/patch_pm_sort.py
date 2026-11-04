@@ -37,3 +37,4 @@ if old_norm in text_norm:
     print("SUCCESS patching productManager.js with deterministic sort")
 else:
     print("old_block not found in productManager.js")
+

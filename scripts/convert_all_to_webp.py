@@ -64,3 +64,4 @@ print(f"Original total PNG payload: {total_orig_size / (1024*1024):.2f} MB")
 print(f"New total WebP payload:     {total_webp_size / (1024*1024):.2f} MB")
 print(f"New total PNG payload:      {total_new_png_size / (1024*1024):.2f} MB")
 print(f"Savings via WebP:           {(total_orig_size - total_webp_size) / (1024*1024):.2f} MB ({100 - (total_webp_size/total_orig_size)*100:.1f}%)")
+

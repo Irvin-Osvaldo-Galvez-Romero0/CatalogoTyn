@@ -132,3 +132,4 @@ with open('src/App.jsx', 'w', encoding='utf-8', newline='\r\n') as f:
     f.write(text_norm)
 
 print(f"App.jsx patched successfully ({replacements}/4 replacements)")
+

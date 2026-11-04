@@ -37,3 +37,4 @@ if old_drawer_norm in text_norm:
     print("SUCCESS wrapping InterestDrawer in Suspense")
 else:
     print("old_drawer_norm not found")
+

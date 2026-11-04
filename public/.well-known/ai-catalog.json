@@ -5,9 +5,9 @@
   },
   "entries": [
     {
-      "identifier": "urn:ai:catalogotyn.vercel.app:catalog:orthopedics",
+      "identifier": "urn:air:catalogotyn.vercel.app:catalog:orthopedics",
       "displayName": "Tynor Medical & Sports Catalog",
-      "type": "catalog",
+      "type": "text/html",
       "url": "https://catalogotyn.vercel.app/",
       "description": "Catálogo interactivo oficial de más de 180 dispositivos médicos de ortopedia, soporte anatómico y biomecánica deportiva.",
       "representativeQueries": [
@@ -18,3 +18,4 @@
     }
   ]
 }
+
