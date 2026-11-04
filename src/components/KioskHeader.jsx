@@ -78,20 +78,21 @@ export default function KioskHeader({
           onPointerLeave={handleLogoPointerUp}
           style={{ cursor: 'pointer', userSelect: 'none' }}
         >
-          <picture>
-            <source srcSet="/assets/logo.webp" type="image/webp" />
-            <img
-              src={logo}
-              alt="Tynor"
-              className="kiosk-logo"
-              width="100"
-              height="42"
-              loading="eager"
-              fetchPriority="high"
-              decoding="sync"
-              onError={(e) => { e.currentTarget.src = "/assets/logo.png"; }}
-            />
-          </picture>
+          <img
+            src={logo}
+            alt="Logotipo de Marca"
+            className="kiosk-logo"
+            width="100"
+            height="42"
+            loading="eager"
+            fetchPriority="high"
+            decoding="sync"
+            onError={(e) => {
+              if (e.currentTarget.src !== window.location.origin + '/assets/logo.webp') {
+                e.currentTarget.src = '/assets/logo.webp';
+              }
+            }}
+          />
         </div>
 
         {/* Botón para Fijar Asesor Responsable (Oculto y desactivado por solicitud, sin eliminarlo) */}
