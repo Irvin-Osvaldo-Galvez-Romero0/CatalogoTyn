@@ -21,6 +21,13 @@ export default function CatalogView({
   const { hasPhysicalKeyboard } = usePhysicalKeyboardDetector();
 
   const isNativeMobile = typeof window !== 'undefined' && (Capacitor.isNativePlatform() || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+
+  const filteredProducts = products.filter((p) => {
+    const matchesCat = category === 'todos' || p.cat === category;
+    const q = query.trim().toLowerCase();
+    const matchesQuery = !q || p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q);
+    return matchesCat && matchesQuery;
+  });
   const PAGE_CHUNK = 24;
   const [visibleCount, setVisibleCount] = useState(PAGE_CHUNK);
 
@@ -41,12 +48,7 @@ export default function CatalogView({
   }, [filteredProducts.length]);
 
 
-  const filteredProducts = products.filter((p) => {
-    const matchesCat = category === 'todos' || p.cat === category;
-    const q = query.trim().toLowerCase();
-    const matchesQuery = !q || p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q);
-    return matchesCat && matchesQuery;
-  });
+
 
   const formatPrice = (price) => {
     if (price != null && Number(price) > 0) {

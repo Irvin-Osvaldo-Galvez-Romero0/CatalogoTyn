@@ -68,7 +68,7 @@ export default defineConfig({
       },
       workbox: {
         // Solo precachear el shell de la aplicación (HTML, CSS, JS core e íconos indispensables)
-        globPatterns: ['**/*.{js,css,html,svg,ico,woff2}', 'assets/logo*.*'],
+        globPatterns: ['**/*.{js,css,html,svg,ico,woff2}'],
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
         runtimeCaching: [
           // Caché bajo demanda de imágenes de catálogo (con política CacheFirst para WebP y PNG a 30 días)
@@ -137,25 +137,8 @@ export default defineConfig({
     })
   ],
   build: {
-    modulePreload: {
-      polyfill: true,
-      resolveDependencies: (filename, deps, { hostType }) => {
-        if (hostType === 'html') {
-          return deps.filter((dep) => !dep.includes('jspdf') && !dep.includes('LeadFormModal') && !dep.includes('AdminDashboardModal') && !dep.includes('MediaOverlay'));
-        }
-        return deps;
-      }
-    },
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-icons': ['lucide-react'],
-          'vendor-confetti': ['canvas-confetti'],
-          'vendor-jspdf': ['jspdf', 'jspdf-autotable']
-        }
-      }
-    }
+    minify: true,
+
   },
   server: {
     port: 3000,
