@@ -3,6 +3,7 @@ import { Search, X, Plus, Check, FileText, Video, Keyboard } from 'lucide-react'
 import { Capacitor } from '@capacitor/core';
 import { CATEGORIES } from '../data/products';
 import TouchKeyboard from './TouchKeyboard';
+import { normalizeColor } from '../utils/colorUtils';
 
 export default function CatalogView({
   products,
@@ -156,26 +157,31 @@ export default function CatalogView({
 
                     {/* Previsualización de Tallas y Colores Disponibles */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginTop: '0.25rem', marginBottom: '0.35rem', flexWrap: 'wrap' }}>
-                      {p.colors && p.colors.length > 0 && (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', background: 'var(--bg-surface-raised)', padding: '0.15rem 0.4rem', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border)' }} title="Colores Disponibles">
-                          {p.colors.map((c) => (
-                            <span
-                              key={c.id}
-                              style={{
-                                width: 10,
-                                height: 10,
-                                borderRadius: '50%',
-                                backgroundColor: c.hex,
-                                display: 'inline-block',
-                                border: '1px solid rgba(0,0,0,0.15)'
-                              }}
-                            />
-                          ))}
-                          <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--ink-secondary)' }}>
-                            {p.colors.length} col.
-                          </span>
-                        </div>
-                      )}
+                      {p.colors && p.colors.length > 0 && (() => {
+                        const normColors = p.colors.map(normalizeColor).filter(Boolean);
+                        if (!normColors.length) return null;
+                        return (
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', background: 'var(--bg-surface-raised)', padding: '0.15rem 0.4rem', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border)' }} title="Colores Disponibles">
+                            {normColors.map((c, idx) => (
+                              <span
+                                key={c.id || idx}
+                                title={c.name}
+                                style={{
+                                  width: 10,
+                                  height: 10,
+                                  borderRadius: '50%',
+                                  backgroundColor: c.hex,
+                                  display: 'inline-block',
+                                  border: '1px solid rgba(0,0,0,0.15)'
+                                }}
+                              />
+                            ))}
+                            <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--ink-secondary)' }}>
+                              {normColors.length} col.
+                            </span>
+                          </div>
+                        );
+                      })()}
                       {p.sizes && p.sizes.length > 0 && (
                         <span style={{ fontSize: '0.71rem', fontWeight: 700, color: 'var(--ink-secondary)', background: 'var(--bg-surface-raised)', padding: '0.15rem 0.45rem', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border)' }}>
                           {p.sizes.length === 1 ? `Talla ${p.sizes[0]}` : `${p.sizes.length} tallas (${p.sizes.join(', ')})`}

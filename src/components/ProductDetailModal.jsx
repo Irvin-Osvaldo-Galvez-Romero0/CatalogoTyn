@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { normalizeColor } from '../utils/colorUtils';
 import { X, Check, Plus, Minus, FileText, Video, Sparkles, CheckCircle2, Layers, Palette, Trash2, AlertCircle } from 'lucide-react';
 
 export default function ProductDetailModal({
@@ -14,7 +15,11 @@ export default function ProductDetailModal({
   const inList = interestList.includes(product.code);
   const currentSaved = interestSelections[product.code] || {};
 
-  const hasColors = product.colors && product.colors.length > 0;
+  const productColors = useMemo(() => {
+    return Array.isArray(product.colors) ? product.colors.map(normalizeColor).filter(Boolean) : [];
+  }, [product.colors]);
+
+  const hasColors = productColors.length > 0;
   const hasSizes = product.sizes && product.sizes.length > 0;
 
   // Variantes compuestas configuradas: inicia VACÍO si no ha sido configurado previamente
@@ -45,7 +50,7 @@ export default function ProductDetailModal({
     setValidationError('');
   }, [product.code, interestSelections]);
 
-  const activeColorObj = product.colors?.find((c) => c.id === activeColorId);
+  const activeColorObj = productColors.find((c) => c.id === activeColorId);
 
   // Agregar una nueva variante a la lista
   const handleAddVariant = () => {
@@ -277,7 +282,7 @@ export default function ProductDetailModal({
                   2. Selecciona Color: {!activeColorId && <span style={{ color: '#EF4444', fontWeight: 500 }}>(Elige un color)</span>}
                 </span>
                 <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-                  {product.colors.map((c) => {
+                  {productColors.map((c) => {
                     const isSel = activeColorId === c.id;
                     return (
                       <button

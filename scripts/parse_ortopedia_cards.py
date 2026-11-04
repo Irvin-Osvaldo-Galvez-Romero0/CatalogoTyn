@@ -91,3 +91,4 @@ print(f"Parsed {len(cards)} Ortopedia product cards from PDF")
 # Save to json for quick inspection
 with open('scripts/ortopedia_cards.json', 'w', encoding='utf-8') as f:
     json.dump(cards, f, ensure_ascii=False, indent=2)
+

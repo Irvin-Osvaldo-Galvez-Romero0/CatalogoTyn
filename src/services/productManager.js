@@ -5,6 +5,7 @@
  */
 
 import { PRODUCTS as BASE_PRODUCTS } from '../data/products';
+import { normalizeColor } from '../utils/colorUtils';
 
 const STORAGE_KEY_CUSTOM_PRODUCTS = 'tynor_custom_products';
 const STORAGE_KEY_ADMIN_AUTH = 'tynor_admin_credentials';
@@ -43,7 +44,7 @@ function mapRowToProduct(row) {
     bodyPart: row.body_part || 'rodilla',
     badge: row.badge || 'Nuevo',
     sizes: Array.isArray(row.sizes) ? row.sizes : ['Universal'],
-    colors: Array.isArray(row.colors) ? row.colors : [],
+    colors: Array.isArray(row.colors) ? row.colors.map(normalizeColor).filter(Boolean) : [],
     hasPdf: Boolean(row.has_pdf || row.custom_pdf_url),
     customPdfUrl: row.custom_pdf_url || null,
     shortDesc: row.short_desc || '',
@@ -373,7 +374,11 @@ export const productManager = {
     // Mapa con los productos custom reemplazando o sumándose a los base
     const customCodes = new Set(custom.map((p) => String(p.code)));
     const filteredBase = BASE_PRODUCTS.filter((p) => !customCodes.has(String(p.code)));
-    return [...custom, ...filteredBase];
+    const unified = [...custom, ...filteredBase];
+    return unified.map((p) => ({
+      ...p,
+      colors: Array.isArray(p.colors) ? p.colors.map(normalizeColor).filter(Boolean) : []
+    }));
   },
 
   /**

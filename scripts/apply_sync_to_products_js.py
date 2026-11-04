@@ -36,3 +36,4 @@ with open('src/data/products.js', 'w', encoding='utf-8') as f:
     f.write(final_js)
 
 print("Updated src/data/products.js successfully!")
+

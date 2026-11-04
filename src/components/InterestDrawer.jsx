@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { normalizeColor } from '../utils/colorUtils';
 import {
   X,
   Trash2,
@@ -52,8 +53,9 @@ export default function InterestDrawer({
       let variants = sel.variants;
       if (!variants || variants.length === 0) {
         const fallbackSize = sel.selectedSizes?.[0] || (p.sizes?.[0] || 'Universal');
-        const fallbackColorId = sel.selectedColor || (p.colors?.[0]?.id || null);
-        const fallbackColorObj = p.colors?.find((c) => c.id === fallbackColorId);
+        const prodColors = (p.colors || []).map(normalizeColor).filter(Boolean);
+        const fallbackColorId = sel.selectedColor || (prodColors?.[0]?.id || null);
+        const fallbackColorObj = prodColors?.find((c) => c.id === fallbackColorId);
         const fallbackQty = Math.max(1, Number(sel.quantity) || 1);
 
         variants = [{

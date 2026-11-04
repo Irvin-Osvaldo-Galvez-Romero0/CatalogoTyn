@@ -23,7 +23,7 @@ function mapProductToRow(prod) {
     badge: prod.badge || 'Catálogo',
     sizes: Array.isArray(prod.sizes) && prod.sizes.length > 0 ? prod.sizes : ['Universal'],
     colors: Array.isArray(prod.colors)
-      ? prod.colors.map((c) => (typeof c === 'object' && c !== null ? (c.name || c.id || JSON.stringify(c)) : String(c)))
+      ? prod.colors.map((c) => (typeof c === 'object' && c !== null ? JSON.stringify(c) : String(c)))
       : [],
     has_pdf: Boolean(prod.hasPdf || prod.customPdfUrl),
     custom_pdf_url: prod.customPdfUrl || null,
