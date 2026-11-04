@@ -18,7 +18,8 @@ import {
   Layers,
   Send,
   Eye,
-  KeyRound
+  KeyRound,
+  MoveHorizontal
 } from 'lucide-react';
 import { productManager } from '../../services/productManager';
 import { brandingService } from '../../services/brandingService';
@@ -403,49 +404,36 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
         onClick={(e) => e.stopPropagation()}
       >
         {/* Barra Superior del Panel */}
-        <header
-          style={{
-            height: '68px',
-            background: 'var(--bg-surface)',
-            borderBottom: '1px solid var(--border)',
-            padding: '0 2rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexShrink: 0
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <div
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: '12px',
-                background: 'var(--brand)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#FFFFFF'
-              }}
+        <header className="admin-header">
+          <div className="admin-brand-group">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+              <div className="admin-shield-icon">
+                <Shield size={24} />
+              </div>
+              <div>
+                <h2 className="admin-title">
+                  Panel de Administración Kiosco
+                </h2>
+                <span className="admin-subtitle">
+                  Gestión Centralizada • Tynor Ortopedia
+                </span>
+              </div>
+            </div>
+
+            <button
+              className="kiosk-icon-btn admin-close-btn-mobile"
+              onClick={onClose}
+              aria-label="Cerrar panel de administración"
             >
-              <Shield size={24} />
-            </div>
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, color: 'var(--ink)' }}>
-                Panel de Administración Kiosco
-              </h2>
-              <span style={{ fontSize: '0.8rem', color: 'var(--ink-faint)' }}>
-                Gestión Centralizada • Tynor Ortopedia
-              </span>
-            </div>
+              <X size={20} />
+            </button>
           </div>
 
           {/* Navegación por Pestañas */}
-          <nav style={{ display: 'flex', gap: '0.5rem', background: 'var(--bg-surface-raised)', padding: '0.3rem', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border)' }}>
+          <nav className="admin-nav-tabs">
             <button
               className={`kiosk-tab-btn ${activeTab === 'products' ? 'active' : ''}`}
               onClick={() => { setActiveTab('products'); setIsEditingProduct(false); }}
-              style={{ padding: '0.45rem 1.1rem', fontSize: '0.9rem', borderRadius: 'var(--radius-pill)' }}
             >
               <Package size={17} style={{ marginRight: 6 }} />
               <span>Productos ({products.length})</span>
@@ -453,7 +441,6 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
             <button
               className={`kiosk-tab-btn ${activeTab === 'branding' ? 'active' : ''}`}
               onClick={() => setActiveTab('branding')}
-              style={{ padding: '0.45rem 1.1rem', fontSize: '0.9rem', borderRadius: 'var(--radius-pill)' }}
             >
               <Palette size={17} style={{ marginRight: 6 }} />
               <span>Branding & Logo</span>
@@ -461,7 +448,6 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
             <button
               className={`kiosk-tab-btn ${activeTab === 'email' ? 'active' : ''}`}
               onClick={() => setActiveTab('email')}
-              style={{ padding: '0.45rem 1.1rem', fontSize: '0.9rem', borderRadius: 'var(--radius-pill)' }}
             >
               <Mail size={17} style={{ marginRight: 6 }} />
               <span>Correo Emisor</span>
@@ -469,7 +455,6 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
             <button
               className={`kiosk-tab-btn ${activeTab === 'security' ? 'active' : ''}`}
               onClick={() => setActiveTab('security')}
-              style={{ padding: '0.45rem 1.1rem', fontSize: '0.9rem', borderRadius: 'var(--radius-pill)' }}
             >
               <KeyRound size={17} style={{ marginRight: 6 }} />
               <span>Seguridad NIP</span>
@@ -477,8 +462,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
           </nav>
 
           <button
-            className="kiosk-icon-btn"
-            style={{ width: 44, height: 44 }}
+            className="kiosk-icon-btn admin-close-btn-desktop"
             onClick={onClose}
             aria-label="Cerrar panel de administración"
           >
@@ -487,33 +471,22 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
         </header>
 
         {/* Cuerpo Principal del Panel */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: '2rem' }}>
+        <div className="admin-body">
           {/* ================= PESTAÑA 1: PRODUCTOS ================= */}
           {activeTab === 'products' && (
             <div>
               {!isEditingProduct ? (
                 <div>
                   {/* Barra de Búsqueda y Botón Agregar */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', gap: '1rem' }}>
-                    <div style={{ position: 'relative', width: '380px' }}>
-                      <Search size={18} style={{ position: 'absolute', left: 14, top: 14, color: 'var(--ink-faint)' }} />
+                  <div className="admin-toolbar">
+                    <div className="admin-search-wrapper">
+                      <Search size={18} className="admin-search-icon" />
                       <input
                         type="text"
                         placeholder="Buscar por nombre, código o categoría..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        style={{
-                          width: '100%',
-                          height: 46,
-                          paddingLeft: 42,
-                          paddingRight: 16,
-                          borderRadius: 'var(--radius-pill)',
-                          border: '1px solid var(--border)',
-                          background: 'var(--bg-surface)',
-                          fontSize: '0.92rem',
-                          color: 'var(--ink)',
-                          outline: 'none'
-                        }}
+                        className="admin-search-input"
                       />
                     </div>
 
@@ -523,38 +496,21 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                         setEditingCode(null);
                         setIsEditingProduct(true);
                       }}
-                      style={{
-                        height: 46,
-                        padding: '0 1.5rem',
-                        borderRadius: 'var(--radius-pill)',
-                        background: 'var(--brand)',
-                        color: '#FFFFFF',
-                        border: 'none',
-                        fontSize: '0.95rem',
-                        fontWeight: 700,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.6rem',
-                        cursor: 'pointer',
-                        boxShadow: 'var(--shadow-glow)'
-                      }}
+                      className="admin-add-product-btn"
                     >
                       <Plus size={20} />
                       <span>Agregar Nuevo Producto</span>
                     </button>
                   </div>
 
+                  <div className="admin-mobile-scroll-hint">
+                    <MoveHorizontal size={14} />
+                    <span>Desliza horizontalmente para ver todas las columnas y acciones</span>
+                  </div>
+
                   {/* Tabla de Productos */}
-                  <div
-                    style={{
-                      background: 'var(--bg-surface)',
-                      borderRadius: '16px',
-                      border: '1px solid var(--border)',
-                      overflow: 'hidden',
-                      boxShadow: 'var(--shadow-sm)'
-                    }}
-                  >
-                    <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                  <div className="admin-table-wrapper">
+                    <table className="admin-table">
                       <thead>
                         <tr style={{ background: 'var(--bg-surface-raised)', borderBottom: '1px solid var(--border)' }}>
                           <th style={{ padding: '1rem', fontSize: '0.82rem', fontWeight: 800, color: 'var(--ink-secondary)' }}>FOTO</th>
@@ -668,7 +624,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                 </div>
               ) : (
                 /* Formulario de Creación / Edición de Producto */
-                <div style={{ maxWidth: '820px', margin: '0 auto', background: 'var(--bg-surface)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}>
+                <div className="admin-card-container">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
                     <div>
                       <h3 style={{ margin: 0, fontSize: '1.3rem', fontWeight: 800, color: 'var(--ink)' }}>
@@ -686,7 +642,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                     </button>
                   </div>
 
-                  <form onSubmit={handleSaveProduct} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem' }}>
+                  <form onSubmit={handleSaveProduct} className="admin-form-grid">
                     <div>
                       <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.4rem', color: 'var(--ink-secondary)' }}>
                         Código de Referencia (Único) *
@@ -1097,7 +1053,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                       <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.4rem', color: 'var(--ink-secondary)' }}>
                         Imagen del Producto (Compresión WebP automática)
                       </label>
-                      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                      <div className="admin-image-upload-row" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                         {imagePreview && (
                           <div style={{ width: 80, height: 80, borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-surface-raised)', overflow: 'hidden' }}>
                             <img src={imagePreview} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
@@ -1141,7 +1097,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                     </div>
 
                     {/* Botones de Acción */}
-                    <div style={{ gridColumn: 'span 2', display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '1rem' }}>
+                    <div className="admin-form-actions">
                       <button
                         type="button"
                         onClick={() => setIsEditingProduct(false)}
@@ -1187,7 +1143,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
 
           {/* ================= PESTAÑA 2: BRANDING ================= */}
           {activeTab === 'branding' && (
-            <div style={{ maxWidth: '720px', margin: '0 auto', background: 'var(--bg-surface)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--border)' }}>
+            <div className="admin-card-container">
               <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', fontWeight: 800, color: 'var(--ink)' }}>
                 Personalización de Marca & Identidad Visual
               </h3>
@@ -1206,8 +1162,8 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                 <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--ink)' }}>
                   Logotipo Oficial del Quiosco
                 </label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                  <div style={{ padding: '1rem', background: 'var(--bg-surface-raised)', borderRadius: '14px', border: '1px solid var(--border)', maxWidth: '220px' }}>
+                <div className="admin-branding-logo-row" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                  <div className="admin-branding-logo-preview" style={{ padding: '1rem', background: 'var(--bg-surface-raised)', borderRadius: '14px', border: '1px solid var(--border)', maxWidth: '220px' }}>
                     <img src={currentLogo} alt="Logo activo" style={{ maxWidth: '100%', maxHeight: '50px', objectFit: 'contain' }} />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -1284,7 +1240,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
 
           {/* ================= PESTAÑA 3: CORREO EMISOR ================= */}
           {activeTab === 'email' && (
-            <div style={{ maxWidth: '760px', margin: '0 auto', background: 'var(--bg-surface)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--border)' }}>
+            <div className="admin-card-container">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
                 <div>
                   <h3 style={{ margin: '0 0 0.4rem 0', fontSize: '1.25rem', fontWeight: 800, color: 'var(--ink)' }}>
@@ -1297,7 +1253,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
               </div>
 
               {/* Botones de Presets */}
-              <div style={{ display: 'flex', gap: '0.6rem', marginBottom: '1.5rem' }}>
+              <div className="admin-email-presets">
                 <button
                   type="button"
                   onClick={() => handleApplyEmailPreset('GMAIL')}
@@ -1337,7 +1293,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                 </div>
               )}
 
-              <form onSubmit={handleSaveEmailConfig} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <form onSubmit={handleSaveEmailConfig} className="admin-email-form">
                 <div>
                   <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.35rem', color: 'var(--ink-secondary)' }}>
                     Correo Electrónico Emisor
@@ -1483,7 +1439,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                   </div>
                 </div>
 
-                <div style={{ gridColumn: 'span 2', display: 'flex', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
+                <div className="admin-email-actions" style={{ gridColumn: 'span 2', display: 'flex', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
                   <button
                     type="submit"
                     style={{ padding: '0 1.8rem', height: 46, borderRadius: 'var(--radius-pill)', background: 'var(--brand)', color: '#FFFFFF', border: 'none', fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
@@ -1499,7 +1455,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                 <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.95rem', fontWeight: 800, color: 'var(--ink)' }}>
                   Prueba de Envío en Tiempo Real
                 </h4>
-                <div style={{ display: 'flex', gap: '0.8rem' }}>
+                <div className="admin-test-email-row" style={{ display: 'flex', gap: '0.8rem' }}>
                   <input
                     type="email"
                     value={testEmail}
@@ -1523,7 +1479,7 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
 
           {/* ================= PESTAÑA 4: SEGURIDAD ================= */}
           {activeTab === 'security' && (
-            <div style={{ maxWidth: '520px', margin: '0 auto', background: 'var(--bg-surface)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--border)' }}>
+            <div className="admin-card-container">
               <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', fontWeight: 800, color: 'var(--ink)' }}>
                 Seguridad & Cambio de Credenciales
               </h3>

@@ -5642,3 +5642,393 @@ model-viewer > .hide,
     height: 44px !important;
   }
 }
+
+
+/* ========================================================
+   ADMIN DASHBOARD RESPONSIVE SUITE (Mobile, Tablet, Desktop)
+   ======================================================== */
+
+.admin-dashboard-fullscreen {
+  width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  border-radius: 0;
+  background: var(--bg-kiosk);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.admin-header {
+  height: 68px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 1rem;
+}
+
+.admin-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-shield-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.admin-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.admin-subtitle {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  display: block;
+}
+
+.admin-nav-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--bg-surface-raised);
+  padding: 0.3rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  align-items: center;
+}
+
+.admin-nav-tabs .kiosk-tab-btn {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.admin-close-btn-desktop {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-close-btn-mobile {
+  display: none;
+}
+
+/* Main Body */
+.admin-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+/* Toolbar (Search & Add) */
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.admin-search-wrapper {
+  position: relative;
+  width: 380px;
+}
+
+.admin-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  color: var(--ink-faint);
+  pointer-events: none;
+}
+
+.admin-search-input {
+  width: 100%;
+  height: 46px;
+  padding-left: 42px;
+  padding-right: 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  font-size: 0.92rem;
+  color: var(--ink);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.admin-add-product-btn {
+  height: 46px;
+  padding: 0 1.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--brand);
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Table */
+.admin-table-wrapper {
+  background: var(--bg-surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 840px;
+}
+
+.admin-mobile-scroll-hint {
+  display: none;
+}
+
+/* Admin Card Container (Form, Branding, Email, Security) */
+.admin-card-container {
+  max-width: 820px;
+  margin: 0 auto;
+  background: var(--bg-surface);
+  padding: 2rem;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.admin-form-full-width {
+  grid-column: span 2;
+}
+
+.admin-form-actions {
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Presets & Email Form */
+.admin-email-presets {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-email-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Mobile Media Query Breakpoint (<= 768px) */
+@media (max-width: 768px) {
+  .admin-header {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 0.75rem 1rem !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+
+  .admin-brand-group {
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  .admin-title {
+    font-size: 1.05rem !important;
+  }
+
+  .admin-subtitle {
+    font-size: 0.72rem !important;
+  }
+
+  .admin-shield-icon {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+  }
+
+  .admin-close-btn-desktop {
+    display: none !important;
+  }
+
+  .admin-close-btn-mobile {
+    display: flex !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 10px !important;
+  }
+
+  .admin-nav-tabs {
+    width: 100% !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 0.25rem 0.35rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .admin-nav-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .admin-nav-tabs .kiosk-tab-btn {
+    flex-shrink: 0 !important;
+    padding: 0.4rem 0.85rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  .admin-body {
+    padding: 1rem 0.75rem !important;
+  }
+
+  .admin-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .admin-search-wrapper {
+    width: 100% !important;
+  }
+
+  .admin-add-product-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    height: 46px !important;
+    white-space: nowrap !important;
+  }
+
+  .admin-mobile-scroll-hint {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    font-size: 0.75rem !important;
+    color: var(--ink-faint) !important;
+    margin-bottom: 0.5rem !important;
+    padding: 0.25rem 0.5rem !important;
+    background: var(--bg-surface-raised) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 6px !important;
+    width: fit-content !important;
+  }
+
+  .admin-card-container {
+    padding: 1.25rem 0.85rem !important;
+    border-radius: 16px !important;
+    margin: 0 !important;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .admin-form-full-width {
+    grid-column: 1 / -1 !important;
+  }
+
+  .admin-form-actions {
+    grid-column: 1 / -1 !important;
+    flex-direction: column-reverse !important;
+    gap: 0.65rem !important;
+  }
+
+  .admin-form-actions button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .admin-image-upload-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+
+  .admin-branding-logo-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+  }
+
+  .admin-branding-logo-preview {
+    max-width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .admin-email-presets {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .admin-email-form {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .admin-email-actions {
+    grid-column: 1 / -1 !important;
+  }
+
+  .admin-email-actions button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .admin-test-email-row {
+    flex-direction: column !important;
+    gap: 0.6rem !important;
+  }
+
+  .admin-test-email-row button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
