@@ -1,70 +1,88 @@
-// Catálogo Oficial de Asesores, Vendedores y Directivos Tynor para WhatsApp
+// Catálogo Oficial de Asesores, Vendedores y Directivos Tynor para WhatsApp y Correo
 // Números en formato internacional México (+52 1 / wa.me/521XXXXXXXXXX)
+// Directorio Oficial Tynor 2026
 
 export const DEFAULT_SALES_REPS = [
   {
     id: 'gabriel_catalan',
-    name: 'Gabriel Fersunnyc Catalán Ramos',
+    name: 'Gabriel Catalán Ramos',
     phone: '5215510805603',
     displayPhone: '+52 55 1080 5603',
-    department: 'Ventas',
-    email: 'gabriel.catalan@tynor.com.mx'
+    extension: '',
+    department: 'Ejecutivo Comercial',
+    email: 'gcatalan@tynor.com.mx'
   },
   {
     id: 'susana_castillo',
-    name: 'Susana Castillo',
+    name: 'Lic. Susana Castillo',
     phone: '5215519647622',
     displayPhone: '+52 55 1964 7622',
-    department: 'Ventas',
-    email: 'susana.castillo@tynor.com.mx'
+    extension: '105',
+    department: 'Dirección Comercial',
+    email: 'susana@tynor.com.mx'
   },
   {
     id: 'cesar_aparicio',
     name: 'César Aparicio Hernández',
     phone: '5215530204398',
     displayPhone: '+52 55 3020 4398',
-    department: 'Ventas',
-    email: 'cesar.aparicio@tynor.com.mx'
+    extension: '111',
+    department: 'Ejecutivo Comercial',
+    email: 'cesar@tynor.com.mx'
   },
   {
     id: 'saul_reyes',
-    name: 'Saúl Elpidio Reyes Olguín',
+    name: 'Saúl Reyes Olguín',
     phone: '5215519647610',
     displayPhone: '+52 55 1964 7610',
-    department: 'Ventas',
-    email: 'saul.reyes@tynor.com.mx'
+    extension: '112',
+    department: 'Ejecutivo Comercial',
+    email: 'saul@tynor.com.mx'
   },
   {
     id: 'x_magesh',
-    name: 'X Magesh Deevakar',
+    name: 'Deevakar X Magesh',
     phone: '5215610241060',
     displayPhone: '+52 56 1024 1060',
-    department: 'Ventas',
-    email: 'magesh.deevakar@tynor.com.mx'
-  },
-  {
-    id: 'edgar_lopez',
-    name: 'Edgar Horacio López Ortega Mariche',
-    phone: '5215530184858',
-    displayPhone: '+52 55 3018 4858',
-    department: 'Ventas',
-    email: 'edgar.lopez@tynor.com.mx'
-  },
-  {
-    id: 'jose_alfredo_gomez',
-    name: 'José Alfredo Gómez Martínez',
-    phone: '5215530175434',
-    displayPhone: '+52 55 3017 5434',
-    department: 'Ventas',
-    email: 'alfredo.gomez@tynor.com.mx'
+    extension: '109',
+    department: 'Gerente de Ventas',
+    email: 'deevakar@tynor.com.mx'
   },
   {
     id: 'elizabeth_bustamante',
     name: 'Elizabeth Bustamante Ramos',
     phone: '5215562967168',
     displayPhone: '+52 55 6296 7168',
-    department: 'Ventas',
-    email: 'elizabeth.bustamante@tynor.com.mx'
+    extension: '',
+    department: 'Ejecutivo Comercial / Televentas',
+    email: 'televentas@tynor.com.mx'
+  },
+  {
+    id: 'edgar_lopez',
+    name: 'Edgar López Ortega Mariche',
+    phone: '5215530184858',
+    displayPhone: '+52 55 3018 4858',
+    extension: '',
+    department: 'Ejecutivo Comercial / Foráneo',
+    email: 'edgar.l@tynor.com.mx'
+  },
+  {
+    id: 'jose_alfredo_gomez',
+    name: 'José Alfredo Gómez Martínez',
+    phone: '5215530175434',
+    displayPhone: '+52 55 3017 5434',
+    extension: '',
+    department: 'Ejecutivo Comercial / Foráneo (GDL)',
+    email: 'ventasgdl@tynor.com.mx'
+  },
+  {
+    id: 'inder_pal_singh',
+    name: 'Inder Pal Singh',
+    phone: '5215519647624',
+    displayPhone: '+52 55 1964 7624',
+    extension: '103',
+    department: 'CEO',
+    email: 'inder@tynor.com.mx'
   }
 ];
 
