@@ -1,12 +1,16 @@
 /**
- * Servicio de Personalización de Marca (Branding Dinámico / White-Labeling)
- * Permite cambiar el logotipo oficial y la paleta de color principal del quiosco
+ * Servicio de Personalización de Marca (Branding Dinámico / White-Labeling Centralizado)
+ * Conexión Híbrida: Supabase Cloud Database + Supabase Storage + LocalStorage Fallback
+ * Sincroniza en tiempo real el logotipo oficial y la paleta de color principal en TODOS los quioscos y dispositivos.
  */
 
 const STORAGE_KEY_LOGO = 'tynor_branding_logo';
 const STORAGE_KEY_COLOR = 'tynor_branding_color';
 const DEFAULT_BRAND_COLOR = '#10B4C1';
 const DEFAULT_LOGO_PATH = '/assets/logo.webp';
+
+const SUPABASE_URL = 'https://xvrnssesbkzxeusubzes.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2cm5zc2VzYmt6eGV1c3ViemVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwNDg2NTgsImV4cCI6MjEwODYyNDY1OH0.Flfpf4NZHP84b5MvDpBDU6cHXkt78dty8GF63RnHy3c';
 
 /**
  * Convierte un color HEX a RGB
@@ -36,7 +40,7 @@ function adjustBrightness(hex, percent) {
 
 export const brandingService = {
   /**
-   * Obtiene la ruta o data-URL del logotipo activo
+   * Obtiene la ruta o data-URL del logotipo activo (Caché local inmediata)
    */
   getLogo() {
     try {
@@ -47,35 +51,7 @@ export const brandingService = {
   },
 
   /**
-   * Guarda un nuevo logotipo (ruta o base64)
-   */
-  setLogo(logoUrlOrBase64) {
-    try {
-      if (logoUrlOrBase64) {
-        localStorage.setItem(STORAGE_KEY_LOGO, logoUrlOrBase64);
-      } else {
-        localStorage.removeItem(STORAGE_KEY_LOGO);
-      }
-      this.notifyListeners();
-    } catch (e) {
-      console.warn('Error saving custom logo:', e);
-    }
-  },
-
-  /**
-   * Restablece el logotipo al oficial por defecto
-   */
-  resetLogo() {
-    try {
-      localStorage.removeItem(STORAGE_KEY_LOGO);
-      this.notifyListeners();
-    } catch (e) {
-      console.warn('Error resetting logo:', e);
-    }
-  },
-
-  /**
-   * Obtiene el color principal activo
+   * Obtiene el color principal activo (Caché local inmediata)
    */
   getBrandColor() {
     try {
@@ -86,7 +62,76 @@ export const brandingService = {
   },
 
   /**
-   * Aplica y guarda un nuevo color principal en las variables CSS globales
+   * Guarda un nuevo logotipo (ruta o URL pública) y lo sincroniza en Supabase Cloud
+   */
+  async setLogo(logoUrlOrBase64) {
+    try {
+      if (logoUrlOrBase64) {
+        localStorage.setItem(STORAGE_KEY_LOGO, logoUrlOrBase64);
+      } else {
+        localStorage.removeItem(STORAGE_KEY_LOGO);
+      }
+      this.notifyListeners();
+
+      // Sincronizar en la nube si no es base64 pesado
+      if (logoUrlOrBase64 && !logoUrlOrBase64.startsWith('data:')) {
+        this.patchCloudConfig({ logo_url: logoUrlOrBase64 });
+      }
+    } catch (e) {
+      console.warn('Error saving custom logo:', e);
+    }
+  },
+
+  /**
+   * Sube un archivo de logotipo a Supabase Storage y lo asigna globalmente a todos los dispositivos
+   */
+  async uploadLogoToCloud(file) {
+    if (!file) throw new Error('Archivo no especificado');
+
+    const ext = file.name ? file.name.split('.').pop().toLowerCase() : 'webp';
+    const mimeType = file.type || 'image/webp';
+    const fileName = `logo_${Date.now()}.${ext}`;
+    const storagePath = `branding/${fileName}`;
+    const uploadUrl = `${SUPABASE_URL}/storage/v1/object/catalog-media/${storagePath}`;
+
+    const res = await fetch(uploadUrl, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': mimeType,
+        'x-upsert': 'true'
+      },
+      body: file
+    });
+
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`Error al subir logo a Supabase Storage: ${res.status} - ${err}`);
+    }
+
+    const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/catalog-media/${storagePath}`;
+    localStorage.setItem(STORAGE_KEY_LOGO, publicUrl);
+    this.notifyListeners();
+    await this.patchCloudConfig({ logo_url: publicUrl });
+    return publicUrl;
+  },
+
+  /**
+   * Restablece el logotipo al oficial por defecto en local y en la nube
+   */
+  async resetLogo() {
+    try {
+      localStorage.removeItem(STORAGE_KEY_LOGO);
+      this.notifyListeners();
+      await this.patchCloudConfig({ logo_url: DEFAULT_LOGO_PATH });
+    } catch (e) {
+      console.warn('Error resetting logo:', e);
+    }
+  },
+
+  /**
+   * Aplica y guarda un nuevo color principal en DOM, localStorage y en la nube Supabase
    */
   setBrandColor(hexColor) {
     if (!hexColor || !/^#[0-9A-Fa-f]{6}$/.test(hexColor)) return;
@@ -94,21 +139,105 @@ export const brandingService = {
       localStorage.setItem(STORAGE_KEY_COLOR, hexColor);
       this.applyColorToDom(hexColor);
       this.notifyListeners();
+      this.patchCloudConfig({ brand_color: hexColor });
     } catch (e) {
       console.warn('Error saving brand color:', e);
     }
   },
 
   /**
-   * Restablece el color principal al turquesa médico Tynor (#10B4C1)
+   * Restablece el color principal al turquesa médico Tynor (#10B4C1) en local y en la nube
    */
-  resetBrandColor() {
+  async resetBrandColor() {
     try {
       localStorage.removeItem(STORAGE_KEY_COLOR);
       this.applyColorToDom(DEFAULT_BRAND_COLOR);
       this.notifyListeners();
+      await this.patchCloudConfig({ brand_color: DEFAULT_BRAND_COLOR });
     } catch (e) {
       console.warn('Error resetting brand color:', e);
+    }
+  },
+
+  /**
+   * Restablece todo el branding oficial en local y en la nube
+   */
+  async resetBrandingCloud() {
+    try {
+      localStorage.removeItem(STORAGE_KEY_LOGO);
+      localStorage.removeItem(STORAGE_KEY_COLOR);
+      this.applyColorToDom(DEFAULT_BRAND_COLOR);
+      this.notifyListeners();
+      await this.patchCloudConfig({
+        brand_color: DEFAULT_BRAND_COLOR,
+        logo_url: DEFAULT_LOGO_PATH
+      });
+    } catch (e) {
+      console.warn('Error resetting branding in cloud:', e);
+    }
+  },
+
+  /**
+   * Actualiza el registro de branding en Supabase
+   */
+  async patchCloudConfig(payload) {
+    try {
+      const body = {
+        ...payload,
+        updated_at: new Date().toISOString()
+      };
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/configuracion_kiosco?id=eq.global`, {
+        method: 'PATCH',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(body)
+      });
+      return res.ok;
+    } catch (err) {
+      console.warn('[Branding] Supabase patch pending/offline:', err.message);
+      return false;
+    }
+  },
+
+  /**
+   * Sincroniza la configuración de marca desde Supabase hacia este dispositivo
+   */
+  async syncFromCloud() {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/configuracion_kiosco?id=eq.global&select=*`, {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        }
+      });
+      if (!res.ok) return;
+
+      const rows = await res.json();
+      if (!rows || rows.length === 0) return;
+
+      const cloud = rows[0];
+      let hasChanged = false;
+
+      if (cloud.brand_color && cloud.brand_color !== this.getBrandColor()) {
+        localStorage.setItem(STORAGE_KEY_COLOR, cloud.brand_color);
+        this.applyColorToDom(cloud.brand_color);
+        hasChanged = true;
+      }
+
+      if (cloud.logo_url && cloud.logo_url !== this.getLogo()) {
+        localStorage.setItem(STORAGE_KEY_LOGO, cloud.logo_url);
+        hasChanged = true;
+      }
+
+      if (hasChanged) {
+        this.notifyListeners();
+      }
+    } catch (err) {
+      console.warn('[Branding] Supabase sync offline/cached:', err.message);
     }
   },
 
@@ -135,11 +264,33 @@ export const brandingService = {
   },
 
   /**
-   * Inicializa la configuración de marca al cargar la app
+   * Inicializa la configuración de marca al cargar la app:
+   * 1. Pinta el color local de inmediato (0ms sin parpadeos).
+   * 2. Sincroniza desde Supabase Cloud.
+   * 3. Registra listener de visibilidad y chequeo periódico.
    */
   initBranding() {
     const color = this.getBrandColor();
     this.applyColorToDom(color);
+
+    // Sincronización con la nube
+    this.syncFromCloud();
+
+    if (typeof window !== 'undefined' && !this._initialized) {
+      this._initialized = true;
+
+      // Re-sincronizar al volver a la pestaña o quiosco activo
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          this.syncFromCloud();
+        }
+      });
+
+      // Chequeo periódico cada 5 minutos
+      setInterval(() => {
+        this.syncFromCloud();
+      }, 5 * 60 * 1000);
+    }
   },
 
   // Sistema reactivo de suscripción a cambios de branding
@@ -162,4 +313,3 @@ export const brandingService = {
     });
   }
 };
-

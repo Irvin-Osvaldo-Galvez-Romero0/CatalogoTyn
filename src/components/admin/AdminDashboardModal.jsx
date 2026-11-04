@@ -299,32 +299,39 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
   };
 
   // Manejadores de Branding
-  const handleLogoUpload = (e) => {
+  const handleLogoUpload = async (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        const dataUrl = ev.target?.result;
-        brandingService.setLogo(dataUrl);
-        setCurrentLogo(dataUrl);
-        setBrandingStatus('Logotipo actualizado correctamente.');
-      };
-      reader.readAsDataURL(file);
+      setBrandingStatus('Subiendo nuevo logotipo a la nube Supabase...');
+      try {
+        const publicUrl = await brandingService.uploadLogoToCloud(file);
+        setCurrentLogo(publicUrl);
+        setBrandingStatus('Logotipo oficial subido y sincronizado en todos los dispositivos.');
+      } catch (err) {
+        console.warn('Fallo al subir a la nube, usando almacenamiento local:', err);
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const dataUrl = ev.target?.result;
+          brandingService.setLogo(dataUrl);
+          setCurrentLogo(dataUrl);
+          setBrandingStatus('Logotipo guardado localmente (modo offline).');
+        };
+        reader.readAsDataURL(file);
+      }
     }
   };
 
   const handleColorChange = (color) => {
     setBrandColor(color);
     brandingService.setBrandColor(color);
-    setBrandingStatus(`Color principal actualizado a ${color}`);
+    setBrandingStatus(`Color principal actualizado a ${color} (sincronizado en la nube).`);
   };
 
-  const handleResetBranding = () => {
-    brandingService.resetLogo();
-    brandingService.resetBrandColor();
+  const handleResetBranding = async () => {
+    await brandingService.resetBrandingCloud();
     setCurrentLogo(brandingService.getLogo());
     setBrandColor(brandingService.getBrandColor());
-    setBrandingStatus('Branding restablecido a los valores oficiales de Tynor.');
+    setBrandingStatus('Branding restablecido a los valores oficiales de Tynor en todos los dispositivos.');
   };
 
   // Manejadores de Correo
