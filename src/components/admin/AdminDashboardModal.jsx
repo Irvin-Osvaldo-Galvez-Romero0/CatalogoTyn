@@ -19,7 +19,8 @@ import {
   Send,
   Eye,
   KeyRound,
-  MoveHorizontal
+  MoveHorizontal,
+  Sparkles
 } from 'lucide-react';
 import { productManager } from '../../services/productManager';
 import { brandingService } from '../../services/brandingService';
