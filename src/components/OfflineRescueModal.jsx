@@ -143,15 +143,21 @@ export default function OfflineRescueModal({ isOpen, onClose }) {
     try {
       const syncResult = await syncPendingLeads();
       await brandingService.syncFromCloud();
-      await productManager.syncCloudProducts();
+      const productSyncResult = await productManager.syncCloudProducts();
 
       setSummary(offlineStorageService.getTablesSummary());
       setLeads(offlineStorageService.getArchivedLeads());
 
-      if (syncResult && syncResult.synced > 0) {
+      const leadsSynced = syncResult?.synced || 0;
+      const productsUploaded = productSyncResult?.uploaded || 0;
+
+      if (leadsSynced > 0 || productsUploaded > 0) {
+        const parts = [];
+        if (leadsSynced > 0) parts.push(`${leadsSynced} prospecto(s)`);
+        if (productsUploaded > 0) parts.push(`${productsUploaded} producto(s)`);
         setFeedback({
           type: 'success',
-          msg: `¡Sincronización Exitosa! Se enviaron ${syncResult.synced} prospecto(s) a Supabase Cloud.`
+          msg: `¡Sincronización Exitosa! Se subieron a Supabase Cloud: ${parts.join(' y ')}.`
         });
       } else if (syncResult && syncResult.remaining > 0) {
         setFeedback({
@@ -161,7 +167,7 @@ export default function OfflineRescueModal({ isOpen, onClose }) {
       } else {
         setFeedback({
           type: 'success',
-          msg: 'Todos los datos están al día con la nube. No hay registros pendientes.'
+          msg: 'Todos los datos (configuración, catálogo y prospectos) están al día con la nube.'
         });
       }
     } catch (err) {
@@ -329,6 +335,24 @@ export default function OfflineRescueModal({ isOpen, onClose }) {
                     <div className="rescue-metric-row">
                       <span className="metric-label">Personalizados:</span>
                       <span className="metric-value">{summary.table2_productos.customProductsCount} creados</span>
+                    </div>
+                    <div className="rescue-metric-row">
+                      <span className="metric-label">Estado en la nube:</span>
+                      <span
+                        className={`metric-value-chip ${
+                          summary.table2_productos.pendingUploads > 0 ? 'chip-amber' : 'chip-green'
+                        }`}
+                      >
+                        {summary.table2_productos.pendingUploads > 0 ? (
+                          <>
+                            <AlertTriangle size={13} /> {summary.table2_productos.pendingUploads} pendiente(s) de subir
+                          </>
+                        ) : (
+                          <>
+                            <Check size={13} /> Al día con Supabase
+                          </>
+                        )}
+                      </span>
                     </div>
                   </div>
                   <div className="rescue-card-footer">

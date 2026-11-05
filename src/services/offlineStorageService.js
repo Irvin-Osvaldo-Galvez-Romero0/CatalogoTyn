@@ -373,10 +373,13 @@ export const offlineStorageService = {
       table2_productos: {
         name: 'productos_catalogo',
         title: 'Catálogo de Productos',
-        status: 'Disponible Offline',
+        status: (productManager.getPendingProductsCount?.() || 0) > 0
+          ? `${productManager.getPendingProductsCount()} pendiente(s) de subir`
+          : 'Catálogo al día con la nube',
         totalProducts: catalog.length,
         baseProductsCount: 180,
         customProductsCount: Math.max(0, catalog.length - 180),
+        pendingUploads: productManager.getPendingProductsCount?.() || 0,
         hasPricing: true,
         hasSizesAndColors: true
       },

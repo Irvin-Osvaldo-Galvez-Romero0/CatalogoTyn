@@ -8,6 +8,7 @@ import { PRODUCTS as BASE_PRODUCTS } from '../data/products';
 import { normalizeColor } from '../utils/colorUtils';
 
 const STORAGE_KEY_CUSTOM_PRODUCTS = 'tynor_custom_products';
+const STORAGE_KEY_PENDING_PRODUCTS = 'tynor_pending_products';
 const STORAGE_KEY_ADMIN_AUTH = 'tynor_admin_credentials';
 
 const SUPABASE_URL = 'https://xvrnssesbkzxeusubzes.supabase.co';
@@ -166,6 +167,25 @@ export async function compressImage(file, maxDimension = 1000, quality = 0.82) {
  * @param {string} fileName
  * @returns {Promise<string|null>} URL pública CDN del archivo o null si falla
  */
+export function dataURLtoBlob(dataUrl) {
+  try {
+    if (!dataUrl || typeof dataUrl !== 'string' || !dataUrl.startsWith('data:')) return null;
+    const parts = dataUrl.split(',');
+    if (parts.length < 2) return null;
+    const mimeMatch = parts[0].match(/:(.*?);/);
+    const mime = mimeMatch ? mimeMatch[1] : 'image/webp';
+    const bstr = atob(parts[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
+  } catch {
+    return null;
+  }
+}
+
 export async function uploadToStorage(file, folder, fileName) {
   if (!file) return null;
   try {
@@ -302,18 +322,178 @@ export const productManager = {
   },
 
   /**
-   * Sincroniza los productos personalizados desde la nube (Supabase)
-   * Si la tabla aún no existe o el dispositivo está offline, mantiene los datos locales sin errores.
+   * Obtiene la cola de productos pendientes de sincronizar con Supabase Cloud
+   */
+  getPendingProducts() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_PENDING_PRODUCTS);
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  },
+
+  /**
+   * Encola un producto para sincronización diferida cuando no hay conexión
+   */
+  enqueuePendingProduct(action, product, code = null) {
+    try {
+      const targetCode = String(code || product?.code || '').trim();
+      if (!targetCode) return;
+      const queue = this.getPendingProducts();
+      const filtered = queue.filter((item) => String(item.code) !== targetCode);
+      filtered.push({
+        action,
+        code: targetCode,
+        product: action === 'upsert' ? product : null,
+        queued_at: new Date().toISOString()
+      });
+      localStorage.setItem(STORAGE_KEY_PENDING_PRODUCTS, JSON.stringify(filtered));
+    } catch (e) {
+      console.warn('[ProductManager] Could not enqueue pending product:', e);
+    }
+  },
+
+  /**
+   * Remueve un producto de la cola pendiente tras sincronización exitosa
+   */
+  removePendingProduct(code) {
+    try {
+      const targetCode = String(code).trim();
+      const queue = this.getPendingProducts();
+      const filtered = queue.filter((item) => String(item.code) !== targetCode);
+      localStorage.setItem(STORAGE_KEY_PENDING_PRODUCTS, JSON.stringify(filtered));
+    } catch (e) {
+      console.warn('[ProductManager] Error removing pending product:', e);
+    }
+  },
+
+  /**
+   * Conteo de productos pendientes de subir a la nube
+   */
+  getPendingProductsCount() {
+    return this.getPendingProducts().length;
+  },
+
+  /**
+   * Sincronización BIDIRECCIONAL con Supabase Cloud (Push de pendientes + Pull de catálogo)
+   * 1. PUSH: Sube a Supabase los productos creados, editados o eliminados offline.
+   * 2. PULL: Descarga y mezcla el catálogo activo más reciente de Supabase.
    */
   async syncCloudProducts() {
+    let uploadedCount = 0;
+    let deletedCount = 0;
+
+    // FASE 1: PUSH HACIA SUPABASE (Subida de productos pendientes y reconciliación)
+    try {
+      const pendingQueue = this.getPendingProducts();
+
+      for (const item of pendingQueue) {
+        if (item.action === 'delete') {
+          try {
+            const delRes = await fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?code=eq.${encodeURIComponent(item.code)}`, {
+              method: 'DELETE',
+              headers: getHeaders('return=minimal')
+            });
+            if (delRes.ok || delRes.status === 404) {
+              this.removePendingProduct(item.code);
+              deletedCount++;
+            }
+          } catch (e) {
+            console.warn('[ProductManager] Pending delete failed:', e.message);
+          }
+        } else if (item.action === 'upsert' && item.product) {
+          try {
+            const prod = { ...item.product };
+
+            // Si la imagen es base64, subirla a Supabase Storage Bucket 'catalog-media'
+            if (prod.customImage && prod.customImage.startsWith('data:image/')) {
+              const blob = dataURLtoBlob(prod.customImage);
+              if (blob) {
+                const cloudUrl = await uploadToStorage(blob, 'images', `${prod.code}.webp`);
+                if (cloudUrl) {
+                  prod.customImage = cloudUrl;
+                  const local = this.getCustomProducts();
+                  const idx = local.findIndex((p) => String(p.code) === String(prod.code));
+                  if (idx >= 0) {
+                    local[idx].customImage = cloudUrl;
+                    localStorage.setItem(STORAGE_KEY_CUSTOM_PRODUCTS, JSON.stringify(local));
+                  }
+                }
+              }
+            }
+
+            // Realizar UPSERT en Supabase usando on_conflict=code
+            const row = mapProductToRow(prod);
+            const upsertRes = await fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?on_conflict=code`, {
+              method: 'POST',
+              headers: {
+                ...getHeaders('return=minimal'),
+                'Prefer': 'resolution=merge-duplicates,return=minimal'
+              },
+              body: JSON.stringify(row)
+            });
+
+            if (upsertRes.ok) {
+              this.removePendingProduct(item.code);
+              uploadedCount++;
+            }
+          } catch (e) {
+            console.warn('[ProductManager] Pending upsert failed:', e.message);
+          }
+        }
+      }
+
+      // Reconciliación proactiva: verificar productos personalizados locales no subidos
+      const currentCustom = this.getCustomProducts();
+      if (currentCustom.length > 0) {
+        try {
+          const checkRes = await fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?select=code,updated_at`, {
+            headers: getHeaders('return=representation')
+          });
+          if (checkRes.ok) {
+            const cloudRows = await checkRes.json();
+            const cloudMap = new Map();
+            cloudRows.forEach((r) => cloudMap.set(String(r.code), r.updated_at));
+
+            for (const localProd of currentCustom) {
+              const cloudUpdatedAt = cloudMap.get(String(localProd.code));
+              const needsUpload = !cloudUpdatedAt || (localProd.updatedAt && new Date(localProd.updatedAt) > new Date(cloudUpdatedAt));
+
+              if (needsUpload) {
+                try {
+                  const row = mapProductToRow(localProd);
+                  const upRes = await fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?on_conflict=code`, {
+                    method: 'POST',
+                    headers: {
+                      ...getHeaders('return=minimal'),
+                      'Prefer': 'resolution=merge-duplicates,return=minimal'
+                    },
+                    body: JSON.stringify(row)
+                  });
+                  if (upRes.ok) uploadedCount++;
+                } catch (e) {
+                  console.warn('[ProductManager] Reconcile upload failed:', e.message);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('[ProductManager] Reconcile check failed:', e.message);
+        }
+      }
+    } catch (e) {
+      console.warn('[ProductManager] Error en fase PUSH de productos:', e.message);
+    }
+
+    // FASE 2: PULL DESDE SUPABASE (Descargar catálogo más reciente y mezclar)
     try {
       const res = await fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?select=*&is_active=eq.true&order=created_at.desc`, {
         headers: getHeaders('return=representation')
       });
 
       if (!res.ok) {
-        // HTTP 404 significa que la tabla aún no se ha creado en Supabase
-        return { success: false, status: res.status };
+        return { success: uploadedCount > 0, status: res.status, uploaded: uploadedCount };
       }
 
       const rows = await res.json();
@@ -321,7 +501,6 @@ export const productManager = {
         const cloudProducts = rows.map(mapRowToProduct);
         const localCustom = this.getCustomProducts();
 
-        // Mezclar dando prioridad a la versión con fecha de actualización más reciente
         const productMap = new Map();
         localCustom.forEach((p) => productMap.set(String(p.code), p));
         cloudProducts.forEach((p) => {
@@ -334,12 +513,18 @@ export const productManager = {
         const unifiedCustom = Array.from(productMap.values());
         localStorage.setItem(STORAGE_KEY_CUSTOM_PRODUCTS, JSON.stringify(unifiedCustom));
         this.notifyListeners();
-        return { success: true, count: unifiedCustom.length };
+        return {
+          success: true,
+          count: unifiedCustom.length,
+          uploaded: uploadedCount,
+          deleted: deletedCount,
+          cloudTotal: rows.length
+        };
       }
     } catch (e) {
       console.warn('[ProductManager] Sincronización en la nube en modo offline:', e.message);
     }
-    return { success: false };
+    return { success: uploadedCount > 0, uploaded: uploadedCount };
   },
 
   /**
@@ -447,12 +632,24 @@ export const productManager = {
     const currentCustom = this.getCustomProducts();
     this.setCustomProducts([newProd, ...currentCustom]);
 
-    // Sincronizacion asincrona en Supabase
-    fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo`, {
-      method: 'POST',
-      headers: getHeaders('return=minimal'),
-      body: JSON.stringify(mapProductToRow(newProd))
-    }).catch((err) => console.warn('[ProductManager] Supabase cloud insert pending/offline:', err.message));
+    // Sincronización proactiva con Supabase (con soporte offline y encolado automático)
+    try {
+      fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?on_conflict=code`, {
+        method: 'POST',
+        headers: {
+          ...getHeaders('return=minimal'),
+          'Prefer': 'resolution=merge-duplicates,return=minimal'
+        },
+        body: JSON.stringify(mapProductToRow(newProd))
+      }).then((r) => {
+        if (!r.ok) this.enqueuePendingProduct('upsert', newProd);
+      }).catch((err) => {
+        console.warn('[ProductManager] Modo offline: encolando producto para sincronización:', err.message);
+        this.enqueuePendingProduct('upsert', newProd);
+      });
+    } catch (e) {
+      this.enqueuePendingProduct('upsert', newProd);
+    }
 
     return { success: true, product: newProd };
   },
@@ -497,11 +694,19 @@ export const productManager = {
       };
       currentCustom[existingCustomIndex] = merged;
       this.setCustomProducts([...currentCustom]);
-      fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?code=eq.${encodeURIComponent(strCode)}`, {
-        method: 'PATCH',
-        headers: getHeaders('return=minimal'),
+      fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?on_conflict=code`, {
+        method: 'POST',
+        headers: {
+          ...getHeaders('return=minimal'),
+          'Prefer': 'resolution=merge-duplicates,return=minimal'
+        },
         body: JSON.stringify(mapProductToRow(merged))
-      }).catch((err) => console.warn('[ProductManager] Supabase cloud patch pending/offline:', err.message));
+      }).then((r) => {
+        if (!r.ok) this.enqueuePendingProduct('upsert', merged);
+      }).catch((err) => {
+        console.warn('[ProductManager] Modo offline: encolando actualización para sincronización:', err.message);
+        this.enqueuePendingProduct('upsert', merged);
+      });
       return { success: true, product: merged };
     } else {
       // Es un producto base que se está editando por primera vez: lo convertimos en custom override
@@ -518,11 +723,19 @@ export const productManager = {
         updatedAt: new Date().toISOString()
       };
       this.setCustomProducts([newOverride, ...currentCustom]);
-      fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?code=eq.${encodeURIComponent(strCode)}`, {
-        method: 'PATCH',
-        headers: getHeaders('return=minimal'),
+      fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?on_conflict=code`, {
+        method: 'POST',
+        headers: {
+          ...getHeaders('return=minimal'),
+          'Prefer': 'resolution=merge-duplicates,return=minimal'
+        },
         body: JSON.stringify(mapProductToRow(newOverride))
-      }).catch((err) => console.warn('[ProductManager] Supabase cloud patch pending/offline:', err.message));
+      }).then((r) => {
+        if (!r.ok) this.enqueuePendingProduct('upsert', newOverride);
+      }).catch((err) => {
+        console.warn('[ProductManager] Modo offline: encolando modificación de producto base:', err.message);
+        this.enqueuePendingProduct('upsert', newOverride);
+      });
       return { success: true, product: newOverride };
     }
   },
@@ -546,7 +759,12 @@ export const productManager = {
     fetch(`${SUPABASE_URL}/rest/v1/productos_catalogo?code=eq.${encodeURIComponent(strCode)}`, {
       method: 'DELETE',
       headers: getHeaders('return=minimal')
-    }).catch((err) => console.warn('[ProductManager] Supabase cloud delete pending/offline:', err.message));
+    }).then((r) => {
+      if (!r.ok) this.enqueuePendingProduct('delete', null, strCode);
+    }).catch((err) => {
+      console.warn('[ProductManager] Modo offline: encolando borrado de producto:', err.message);
+      this.enqueuePendingProduct('delete', null, strCode);
+    });
 
     return { success: true };
   },
@@ -567,3 +785,16 @@ export const productManager = {
     });
   }
 };
+
+// Auto-sincronización bidireccional al recuperar conexión o foco
+if (typeof window !== 'undefined') {
+  const triggerProductSync = () => {
+    productManager.syncCloudProducts().then((res) => {
+      if (res && res.uploaded > 0) {
+        console.log(`[ProductManager] ${res.uploaded} productos pendientes subidos a Supabase Cloud.`);
+      }
+    });
+  };
+  window.addEventListener('online', triggerProductSync);
+  window.addEventListener('focus', triggerProductSync);
+}
