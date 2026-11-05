@@ -16,8 +16,10 @@ const AdminDashboardModal = React.lazy(() => import('./components/admin/AdminDas
 const MobileQuoteLanding = React.lazy(() => import('./components/MobileQuoteLanding'));
 const EmailQuoteModal = React.lazy(() => import('./components/EmailQuoteModal'));
 const QrExportModal = React.lazy(() => import('./components/QrExportModal'));
+const OfflineRescueModal = React.lazy(() => import('./components/OfflineRescueModal'));
 import { productManager } from './services/productManager';
 import { brandingService } from './services/brandingService';
+import { offlineStorageService } from './services/offlineStorageService';
 import { DEFAULT_SALES_REPS } from './data/salesReps';
 
 
@@ -83,6 +85,15 @@ export default function App() {
   const [isAdminAuthOpen, setIsAdminAuthOpen] = useState(false);
   const [isAdminDashboardOpen, setIsAdminDashboardOpen] = useState(false);
   const [adminNip, setAdminNip] = useState('');
+  const [isRescueModalOpen, setIsRescueModalOpen] = useState(false);
+  const [pendingLeadsCount, setPendingLeadsCount] = useState(() => offlineStorageService.getPendingLeadsCount());
+
+  useEffect(() => {
+    const unsub = offlineStorageService.subscribe(() => {
+      setPendingLeadsCount(offlineStorageService.getPendingLeadsCount());
+    });
+    return unsub;
+  }, []);
 
   const handleAdminAuthSuccess = (nip) => {
     setAdminNip(nip);
@@ -275,6 +286,8 @@ export default function App() {
         fixedRepName={fixedRepName}
         onOpenFixedRepModal={() => setIsFixedRepModalOpen(true)}
         onOpenAdminAuth={() => setIsAdminAuthOpen(true)}
+        onOpenRescueModal={() => setIsRescueModalOpen(true)}
+        pendingLeadsCount={pendingLeadsCount}
       />
 
       <main className="kiosk-main">
@@ -395,6 +408,12 @@ export default function App() {
             isOpen={isAdminDashboardOpen}
             onClose={() => setIsAdminDashboardOpen(false)}
             initialNip={adminNip}
+          />
+        )}
+        {isRescueModalOpen && (
+          <OfflineRescueModal
+            isOpen={isRescueModalOpen}
+            onClose={() => setIsRescueModalOpen(false)}
           />
         )}
       </React.Suspense>

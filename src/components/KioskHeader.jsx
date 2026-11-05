@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Layers, User, Bookmark, Play, UserPlus, UserCheck } from 'lucide-react';
+import { Layers, User, Bookmark, Play, UserPlus, UserCheck, HardDrive } from 'lucide-react';
 import { Capacitor } from '@capacitor/core';
 import { brandingService } from '../services/brandingService';
 
@@ -22,7 +22,9 @@ export default function KioskHeader({
   onOpenForm,
   fixedRepName,
   onOpenFixedRepModal,
-  onOpenAdminAuth
+  onOpenAdminAuth,
+  onOpenRescueModal,
+  pendingLeadsCount = 0
 }) {
   const [logo, setLogo] = useState(() => brandingService.getLogo());
 
@@ -167,6 +169,23 @@ export default function KioskHeader({
           title="Iniciar Modo Demostración"
         >
           <Play size={18} fill="currentColor" style={{ marginLeft: '2px' }} />
+        </button>
+
+        {/* Botón de Memoria Local & Rescate de Datos (Método 2) */}
+        <button
+          type="button"
+          className="kiosk-icon-btn kiosk-rescue-memory-btn"
+          onClick={onOpenRescueModal}
+          aria-label="Memoria Local y Rescate de Datos"
+          title="Memoria Local & Rescate de Datos (Offline)"
+          style={{ position: 'relative' }}
+        >
+          <HardDrive size={22} />
+          {pendingLeadsCount > 0 && (
+            <span className="badge-count badge-pending-leads" title={`${pendingLeadsCount} pendientes en memoria`}>
+              {pendingLeadsCount}
+            </span>
+          )}
         </button>
 
         {/* Botón de Mi Lista de Deseos / Cotizador: REACTIVADO Y VISIBLE */}

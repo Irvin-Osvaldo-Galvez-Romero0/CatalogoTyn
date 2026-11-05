@@ -4,6 +4,8 @@
  * Conexión directa y resiliente con soporte de guardado offline (PWA / Kiosco)
  */
 
+import { offlineStorageService } from './offlineStorageService';
+
 const SUPABASE_URL = 'https://xvrnssesbkzxeusubzes.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2cm5zc2VzYmt6eGV1c3ViemVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwNDg2NTgsImV4cCI6MjEwODYyNDY1OH0.Flfpf4NZHP84b5MvDpBDU6cHXkt78dty8GF63RnHy3c';
 
@@ -99,6 +101,9 @@ export async function submitLead(leadData) {
     asesor_asignado: sanitizeString(leadData.asesorAsignado, 100)
   };
 
+  // 1. Guardar de inmediato en el Archivo Permanente Local (Rescate 100% Offline Garantizado)
+  offlineStorageService.saveLeadToPermanentArchive(payload, 'pending_sync');
+
   try {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/prospectos_comerciales`, {
       method: 'POST',
@@ -119,6 +124,8 @@ export async function submitLead(leadData) {
     }
 
     // Al usar return=minimal, PostgREST retorna 201 Created con cuerpo vacío
+    // Marcar como sincronizado en el archivo permanente
+    offlineStorageService.markLeadAsSynced(payload.codigo_qr || payload.email || payload.telefono);
     return { success: true, offline: false };
   } catch (err) {
     console.warn('Fallo de conexión con Supabase (modo offline):', err);
@@ -171,6 +178,7 @@ export async function syncPendingLeads() {
         });
         if (res.ok) {
           syncedCount++;
+          offlineStorageService.markLeadAsSynced(payload.codigo_qr || payload.email || payload.telefono);
         } else {
           remaining.push(lead);
         }
