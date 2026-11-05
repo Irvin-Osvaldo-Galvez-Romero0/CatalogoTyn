@@ -1218,7 +1218,8 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                     { name: 'Verde Médico', hex: '#059669' },
                     { name: 'Púrpura Ortopedia', hex: '#7C3AED' },
                     { name: 'Ámbar Cálido', hex: '#D97706' },
-                    { name: 'Rojo Terapéutico', hex: '#E11D48' }
+                    { name: 'Rojo Terapéutico', hex: '#E11D48' },
+                    { name: 'Blanco Minimalista', hex: '#FFFFFF' }
                   ].map((p) => (
                     <button
                       key={p.hex}
@@ -1236,11 +1237,32 @@ export default function AdminDashboardModal({ isOpen, onClose, initialNip = '' }
                         gap: '0.4rem'
                       }}
                     >
-                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: p.hex }} />
+                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: p.hex, border: p.hex === '#FFFFFF' ? '1px solid #CBD5E1' : 'none' }} />
                       <span>{p.name}</span>
                     </button>
                   ))}
                 </div>
+
+                {brandColor && brandColor.toUpperCase() === '#FFFFFF' && (
+                  <div style={{
+                    marginTop: '0.9rem',
+                    padding: '0.75rem 1rem',
+                    borderRadius: '12px',
+                    background: 'rgba(15, 23, 42, 0.05)',
+                    border: '1px solid rgba(15, 23, 42, 0.12)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.6rem',
+                    fontSize: '0.82rem',
+                    color: '#0F172A',
+                    fontWeight: 600
+                  }}>
+                    <Sparkles size={16} color="#0F172A" style={{ flexShrink: 0 }} />
+                    <span>
+                      <strong>Modo Blanco Inteligente Activo:</strong> El sistema adaptó automáticamente los botones a acabado porcelana satinada con texto grafito profundo (#0F172A) y bordes nítidos de alta definición (WCAG AAA).
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           )}

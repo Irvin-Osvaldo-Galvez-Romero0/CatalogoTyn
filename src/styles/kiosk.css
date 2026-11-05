@@ -18,6 +18,8 @@
   --brand-hover: #0E9AA6;
   --brand-vivid: #13C6D4;
   --brand-ink: #FFFFFF;
+  --brand-text: #10B4C1;
+  --brand-border: transparent;
   --brand-soft: rgba(16, 180, 193, 0.12);
   --brand-glow: rgba(16, 180, 193, 0.35);
   
@@ -171,7 +173,7 @@ html, body {
   padding: 0.38rem 0.95rem;
   border-radius: var(--radius-md);
   background: #FFFFFF;
-  border: 1px solid rgba(0, 137, 130, 0.22);
+  border: 1px solid var(--border);
   box-shadow: 0 4px 16px rgba(10, 30, 27, 0.06);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -186,8 +188,13 @@ html, body {
   height: 42px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.08));
+  mix-blend-mode: multiply;
   transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .kiosk-logo {
+  mix-blend-mode: normal;
 }
 
 .kiosk-brand-badge {
@@ -227,7 +234,7 @@ html, body {
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: var(--brand);
+  color: var(--brand-text, var(--brand));
   text-transform: uppercase;
 }
 
@@ -274,9 +281,14 @@ html, body {
 
 .kiosk-tab-btn.active {
   background: linear-gradient(135deg, var(--brand) 0%, var(--brand-hover) 100%);
-  color: var(--brand-ink);
+  color: var(--brand-ink) !important;
+  border: 1px solid var(--brand-border, transparent);
   box-shadow: 0 4px 16px var(--brand-glow);
   transform: scale(1.02);
+}
+.kiosk-tab-btn.active svg,
+.kiosk-tab-btn.active span {
+  color: var(--brand-ink) !important;
 }
 
 [data-theme="dark"] .kiosk-tab-btn.active {
@@ -477,8 +489,8 @@ html, body {
 
 .filter-pill.active {
   background: linear-gradient(135deg, var(--brand) 0%, var(--brand-hover) 100%);
-  color: var(--brand-ink);
-  border-color: transparent;
+  color: var(--brand-ink) !important;
+  border: 1px solid var(--brand-border, transparent);
   box-shadow: 0 4px 16px var(--brand-glow);
   transform: scale(1.02);
 }
@@ -5782,17 +5794,21 @@ model-viewer > .hide,
   padding: 0 1.5rem;
   border-radius: var(--radius-pill);
   background: var(--brand);
-  color: #FFFFFF;
-  border: none;
+  color: var(--brand-ink) !important;
+  border: 1px solid var(--brand-border, transparent);
   font-size: 0.95rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   gap: 0.6rem;
   cursor: pointer;
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 4px 14px var(--brand-glow);
   white-space: nowrap;
   flex-shrink: 0;
+}
+.admin-add-product-btn svg,
+.admin-add-product-btn span {
+  color: var(--brand-ink) !important;
 }
 
 /* Table */

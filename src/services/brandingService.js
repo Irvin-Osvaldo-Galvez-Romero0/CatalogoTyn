@@ -38,6 +38,18 @@ function adjustBrightness(hex, percent) {
   return `#${toHex(adjust(r))}${toHex(adjust(g))}${toHex(adjust(b))}`;
 }
 
+/**
+ * Calcula la luminancia relativa según el estándar WCAG 2.2
+ * 0.0 = negro absoluto, 1.0 = blanco puro
+ */
+function getRelativeLuminance(r, g, b) {
+  const [rs, gs, bs] = [r, g, b].map((c) => {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+}
+
 export const brandingService = {
   /**
    * Obtiene la ruta o data-URL del logotipo activo (Caché local inmediata)
@@ -249,15 +261,33 @@ export const brandingService = {
     try {
       const root = document.documentElement;
       const { r, g, b } = hexToRgb(hex);
-      const hover = adjustBrightness(hex, -12);
-      const vivid = adjustBrightness(hex, 10);
+      const luminance = getRelativeLuminance(r, g, b);
+      const isLight = luminance > 0.60;
+
+      const hover = isLight ? adjustBrightness(hex, -6) : adjustBrightness(hex, -12);
+      const vivid = isLight ? adjustBrightness(hex, -14) : adjustBrightness(hex, 10);
 
       root.style.setProperty('--brand', hex);
       root.style.setProperty('--brand-hover', hover);
       root.style.setProperty('--brand-vivid', vivid);
-      root.style.setProperty('--brand-soft', `rgba(${r}, ${g}, ${b}, 0.12)`);
-      root.style.setProperty('--brand-glow', `rgba(${r}, ${g}, ${b}, 0.35)`);
-      root.style.setProperty('--border-strong', `rgba(${r}, ${g}, ${b}, 0.30)`);
+
+      if (isLight) {
+        // Algoritmo de Luminancia Inteligente / Blanco Monocromático (WCAG AAA)
+        root.style.setProperty('--brand-ink', '#0F172A'); // Texto grafito profundo ultra nítido
+        root.style.setProperty('--brand-text', '#0F172A'); // Texto/iconos de marca sobre fondo claro
+        root.style.setProperty('--brand-border', 'rgba(15, 23, 42, 0.18)'); // Borde perimetral para relieve
+        root.style.setProperty('--brand-soft', 'rgba(15, 23, 42, 0.06)'); // Fondo suave con contraste
+        root.style.setProperty('--brand-glow', 'rgba(15, 23, 42, 0.12)'); // Sombra física de elevación
+        root.style.setProperty('--border-strong', 'rgba(15, 23, 42, 0.22)');
+      } else {
+        // Modo Cromático Normal / Colores Vivos y Saturados
+        root.style.setProperty('--brand-ink', '#FFFFFF'); // Texto blanco puro
+        root.style.setProperty('--brand-text', hex); // Texto de acento de marca
+        root.style.setProperty('--brand-border', 'transparent');
+        root.style.setProperty('--brand-soft', `rgba(${r}, ${g}, ${b}, 0.12)`);
+        root.style.setProperty('--brand-glow', `rgba(${r}, ${g}, ${b}, 0.35)`);
+        root.style.setProperty('--border-strong', `rgba(${r}, ${g}, ${b}, 0.30)`);
+      }
     } catch (err) {
       console.error('Failed to apply CSS variables:', err);
     }
