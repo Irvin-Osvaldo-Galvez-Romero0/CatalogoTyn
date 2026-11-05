@@ -263,26 +263,47 @@ export const brandingService = {
       const { r, g, b } = hexToRgb(hex);
       const luminance = getRelativeLuminance(r, g, b);
       const isLight = luminance > 0.60;
-
-      const hover = isLight ? adjustBrightness(hex, -6) : adjustBrightness(hex, -12);
-      const vivid = isLight ? adjustBrightness(hex, -14) : adjustBrightness(hex, 10);
-
-      root.style.setProperty('--brand', hex);
-      root.style.setProperty('--brand-hover', hover);
-      root.style.setProperty('--brand-vivid', vivid);
+      const isDarkMode = root.getAttribute('data-theme') === 'dark';
 
       if (isLight) {
-        // Algoritmo de Luminancia Inteligente / Blanco Monocromático (WCAG AAA)
-        root.style.setProperty('--brand-ink', '#0F172A'); // Texto grafito profundo ultra nítido
-        root.style.setProperty('--brand-text', '#0F172A'); // Texto/iconos de marca sobre fondo claro
-        root.style.setProperty('--brand-border', 'rgba(15, 23, 42, 0.18)'); // Borde perimetral para relieve
-        root.style.setProperty('--brand-soft', 'rgba(15, 23, 42, 0.06)'); // Fondo suave con contraste
-        root.style.setProperty('--brand-glow', 'rgba(15, 23, 42, 0.12)'); // Sombra física de elevación
-        root.style.setProperty('--border-strong', 'rgba(15, 23, 42, 0.22)');
+        if (isDarkMode) {
+          // En modo oscuro: fondo blanco luminoso con texto obsidiana
+          root.style.setProperty('--brand', '#FFFFFF');
+          root.style.setProperty('--brand-hover', '#F1F5F9');
+          root.style.setProperty('--brand-vivid', '#E2E8F0');
+          root.style.setProperty('--brand-ink', '#0F172A');
+          root.style.setProperty('--brand-text', '#FFFFFF');
+          root.style.setProperty('--brand-border', 'transparent');
+          root.style.setProperty('--brand-soft', 'rgba(255, 255, 255, 0.15)');
+          root.style.setProperty('--brand-glow', 'rgba(255, 255, 255, 0.35)');
+          root.style.setProperty('--border-strong', 'rgba(255, 255, 255, 0.30)');
+        } else {
+          // En modo claro: al elegir blanco, los acentos y botones activos pasan a
+          // Negro Obsidiana (#0F172A) con texto blanco puro (Estilo Apple / Nike Luxury Monochrome)
+          const obsidian = '#0F172A';
+          const obsidianHover = '#1E293B';
+          const obsidianVivid = '#020617';
+
+          root.style.setProperty('--brand', obsidian);
+          root.style.setProperty('--brand-hover', obsidianHover);
+          root.style.setProperty('--brand-vivid', obsidianVivid);
+          root.style.setProperty('--brand-ink', '#FFFFFF'); // Texto blanco puro sobre obsidiana
+          root.style.setProperty('--brand-text', obsidian); // Texto/iconos de marca sobre fondo claro
+          root.style.setProperty('--brand-border', obsidian); // Borde obsidiana nítido
+          root.style.setProperty('--brand-soft', 'rgba(15, 23, 42, 0.08)');
+          root.style.setProperty('--brand-glow', 'rgba(15, 23, 42, 0.30)');
+          root.style.setProperty('--border-strong', 'rgba(15, 23, 42, 0.25)');
+        }
       } else {
         // Modo Cromático Normal / Colores Vivos y Saturados
-        root.style.setProperty('--brand-ink', '#FFFFFF'); // Texto blanco puro
-        root.style.setProperty('--brand-text', hex); // Texto de acento de marca
+        const hover = adjustBrightness(hex, -12);
+        const vivid = adjustBrightness(hex, 10);
+
+        root.style.setProperty('--brand', hex);
+        root.style.setProperty('--brand-hover', hover);
+        root.style.setProperty('--brand-vivid', vivid);
+        root.style.setProperty('--brand-ink', '#FFFFFF');
+        root.style.setProperty('--brand-text', hex);
         root.style.setProperty('--brand-border', 'transparent');
         root.style.setProperty('--brand-soft', `rgba(${r}, ${g}, ${b}, 0.12)`);
         root.style.setProperty('--brand-glow', `rgba(${r}, ${g}, ${b}, 0.35)`);
