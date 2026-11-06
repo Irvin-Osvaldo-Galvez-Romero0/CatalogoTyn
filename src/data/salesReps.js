@@ -74,15 +74,6 @@ export const DEFAULT_SALES_REPS = [
     extension: '',
     department: 'Ejecutivo Comercial / Foráneo (GDL)',
     email: 'ventasgdl@tynor.com.mx'
-  },
-  {
-    id: 'inder_pal_singh',
-    name: 'Inder Pal Singh',
-    phone: '5215519647624',
-    displayPhone: '+52 55 1964 7624',
-    extension: '103',
-    department: 'CEO',
-    email: 'inder@tynor.com.mx'
   }
 ];
 

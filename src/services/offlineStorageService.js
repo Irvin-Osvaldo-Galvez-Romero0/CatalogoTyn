@@ -478,7 +478,7 @@ export const offlineStorageService = {
       sistema: 'Tynor Kiosk PWA - Sistema de Rescate Forense de Memoria',
       version: '2.0.0',
       export_timestamp: new Date().toISOString(),
-      metodo_rescate: 'Metodo 2: Descarga Directa Offline',
+      metodo_rescate: 'Descarga Directa Offline',
       resumen_tablas: {
         configuracion_kiosco: { registros: 1, estado: 'Activo' },
         productos_catalogo: { registros: catalog.length, estado: 'Completo' },

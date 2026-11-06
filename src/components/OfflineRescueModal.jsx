@@ -208,9 +208,6 @@ export default function OfflineRescueModal({ isOpen, onClose }) {
                   )}
                 </span>
               </div>
-              <p className="rescue-modal-subtitle">
-                Método 2: Descarga Directa Offline y Respaldo Permanente de las 3 Tablas
-              </p>
             </div>
           </div>
           <button
@@ -411,13 +408,6 @@ export default function OfflineRescueModal({ isOpen, onClose }) {
 
               {/* Botones de Rescate Directo (Método 2) */}
               <div className="rescue-actions-panel">
-                <div className="rescue-panel-header">
-                  <h4 className="rescue-panel-title">
-                    <Download size={18} />
-                    <span>Método 2: Botón de Rescate y Descarga Directa</span>
-                  </h4>
-                  <span className="rescue-panel-tag">Sin requerir internet</span>
-                </div>
 
                 <div className="rescue-actions-buttons-grid">
                   {/* Botón Principal: Descarga de Prospectos en CSV para Excel */}
@@ -608,19 +598,6 @@ export default function OfflineRescueModal({ isOpen, onClose }) {
               )}
             </div>
           )}
-        </div>
-
-        {/* Pie del Modal */}
-        <div className="rescue-modal-footer">
-          <div className="rescue-footer-guarantee">
-            <ShieldCheck size={16} className="text-emerald" />
-            <span>
-              <strong>Garantía de Persistencia:</strong> Los datos se almacenan en el almacenamiento protegido del navegador / APK y sobreviven apagados de pantalla o batería.
-            </span>
-          </div>
-          <button type="button" className="rescue-close-footer-btn" onClick={onClose}>
-            Entendido
-          </button>
         </div>
       </div>
     </div>
